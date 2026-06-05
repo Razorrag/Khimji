@@ -1,0 +1,95 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const links = ['About', 'Products', 'Manufacturing', 'Quality', 'Industries', 'Contact'];
+
+  return (
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'py-4 bg-obsidian/80 backdrop-blur-xl border-b border-glass-border' : 'py-8 bg-transparent border-b border-transparent'
+      }`}
+    >
+      <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="font-bebas text-4xl text-cream tracking-wider leading-none relative z-10">K</span>
+          <span className="font-mono text-xs font-medium text-steel tracking-widest leading-none mt-1">KHEMJI WIRE & WIRE</span>
+        </div>
+
+        <nav className="hidden md:flex items-center gap-10">
+          {links.map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="font-sans text-[11px] uppercase tracking-[0.2em] text-steel hover:text-cream transition-colors relative group"
+            >
+              {link}
+              <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-amber origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+            </a>
+          ))}
+        </nav>
+
+        <a
+          href="#contact"
+          className="hidden md:inline-flex relative group overflow-hidden rounded-full font-mono text-[10px] tracking-[0.2em] uppercase"
+        >
+          <div className="absolute inset-0 bg-transparent border border-amber/30 rounded-full group-hover:border-amber transition-colors duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-r from-amber to-amber-dim translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+          <span className="relative px-6 py-3 text-cream font-medium group-hover:text-obsidian transition-colors duration-500">Get a Quote</span>
+        </a>
+
+        <button
+          className="md:hidden text-cream p-2 z-50 relative"
+          onClick={() => setIsOpen(true)}
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 glass-panel bg-obsidian/80 backdrop-blur-2xl flex flex-col items-center justify-center"
+          >
+            <button
+              className="absolute top-8 right-[5vw] text-cream p-4"
+              onClick={() => setIsOpen(false)}
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <nav className="flex flex-col items-center gap-8">
+              {links.map((link, i) => (
+                <motion.a
+                  key={link}
+                  href={`#${link.toLowerCase()}`}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  onClick={() => setIsOpen(false)}
+                  className="font-bebas text-5xl tracking-wider text-cream hover:text-amber transition-colors"
+                >
+                  {link}
+                </motion.a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
