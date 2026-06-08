@@ -28,20 +28,31 @@ export function Hero() {
     <section className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-20 overflow-hidden bg-transparent">
       
       {/* Background with Ambient Gradient (Already in App.tsx) + Static image overlay */}
-      <div className="absolute inset-0 z-0 flex items-center justify-end">
+      <div className="absolute inset-0 z-0 flex items-center justify-end overflow-hidden">
         <motion.div 
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute right-0 top-0 w-full lg:w-[60%] h-full"
+          className="absolute inset-0 w-full h-full"
         >
-          <img 
-            src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=2670&auto=format&fit=crop" 
-            alt="Hot dip galvanized wire processing" 
-            className="w-full h-full object-cover grayscale brightness-50 contrast-125"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/20" />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=2670&auto=format&fit=crop"
+            className="w-full h-full object-cover"
+            style={{ 
+              filter: 'brightness(0.3) contrast(1.2)'
+            }}
+          >
+            <source 
+              src="https://player.vimeo.com/external/498424458.sd.mp4?s=d4520cc32ef819779dfcfccc95ab384fe98ad836&profile_id=164&oauth2_token_id=57447761" 
+              type="video/mp4" 
+            />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
         </motion.div>
       </div>
 
@@ -178,25 +189,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Bottom Ticker / Info */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.8 }}
-        className="absolute bottom-0 inset-x-0 overflow-hidden whitespace-nowrap py-4 border-t border-glass-border bg-obsidian/30 backdrop-blur-md z-20"
-      >
-        <div className="flex items-center gap-12 font-mono text-[10px] tracking-[0.2em] uppercase text-steel/60">
-          <span className="w-full flex justify-between animate-[marquee_20s_linear_infinite]">
-            <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 bg-amber rounded-full"></span> IS 280 CERTIFIED</span>
-            <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 bg-amber rounded-full"></span> 15+ YEARS EXCELLENCE</span>
-            <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 bg-amber rounded-full"></span> IS 3975 CERTIFIED</span>
-            <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 bg-amber rounded-full"></span> PAN INDIA SUPPLY</span>
-            {/* Duplicate for seamless looping */}
-            <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 bg-amber rounded-full"></span> IS 280 CERTIFIED</span>
-            <span className="inline-flex items-center gap-2"><span className="w-1.5 h-1.5 bg-amber rounded-full"></span> 15+ YEARS EXCELLENCE</span>
-          </span>
-        </div>
-      </motion.div>
     </section>
   );
 }

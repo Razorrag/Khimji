@@ -1,6 +1,8 @@
 import { Hero } from '../components/sections/Hero';
+import { MarqueeBanner } from '../components/sections/MarqueeBanner';
 import { StatsBar } from '../components/sections/StatsBar';
 import { Products } from '../components/sections/Products';
+import { Manufacturing } from '../components/sections/Manufacturing';
 import { About } from '../components/sections/About';
 import { Industries } from '../components/sections/Industries';
 import { PageTransition } from '../components/layout/PageTransition';
@@ -15,6 +17,7 @@ export function Home() {
         keywords="GI wire manufacturer Jaipur, galvanized iron wire Rajasthan, hot dip galvanized wire India"
       />
       <Hero />
+      <MarqueeBanner />
       <StatsBar />
       <Products />
       <About />

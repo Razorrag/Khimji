@@ -57,6 +57,51 @@
     background-repeat: repeat;
   }
 
+  /* Animated gradient that simulates liquid metal flow */
+  .liquid-metal-text {
+    background: linear-gradient(
+      90deg,
+      #CBD5E1 0%,
+      #FAFAFA 20%,
+      #94A3B8 35%,
+      #F97316 45%,    /* amber hot lava streak */
+      #FAFAFA 55%,
+      #94A3B8 70%,
+      #FAFAFA 85%,
+      #CBD5E1 100%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: liquidMetalFlow 8s linear infinite;
+  }
+
+  .text-outline-amber {
+    -webkit-text-stroke: 1.5px #F97316;
+    color: transparent;
+  }
+
+  .certification-stamp {
+    border: 3px solid #F97316;
+    border-radius: 4px;
+    padding: 8px 16px;
+    position: relative;
+    opacity: 0.85;
+    transform: rotate(-2deg);
+    font-family: var(--font-bebas);
+    font-size: 1.5rem;
+    color: #F97316;
+    letter-spacing: 0.2em;
+    transition: all 0.3s ease;
+  }
+
+  .certification-stamp:hover {
+    transform: rotate(0deg);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  }
+
   .mesh-bg {
     background-color: var(--color-obsidian);
     background-image:
@@ -121,6 +166,11 @@
 @keyframes meshShift {
   0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
   100% { background-position: 15% 10%, 85% 90%, 55% 45%; }
+}
+
+@keyframes liquidMetalFlow {
+  0% { background-position: 100% center; }
+  100% { background-position: 0% center; }
 }
 
 @keyframes textShine {

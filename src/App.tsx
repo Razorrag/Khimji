@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AnimatePresence } from 'framer-motion';
@@ -10,6 +10,9 @@ import { Footer } from './components/layout/Footer';
 import { AmbientBackground } from './components/ui/AmbientBackground';
 import { CustomCursor } from './components/ui/CustomCursor';
 import { ScrollProgress } from './components/ui/ScrollProgress';
+
+import { WhatsAppButton } from './components/ui/WhatsAppButton';
+import { Preloader } from './components/ui/Preloader';
 
 import { Home } from './pages/Home';
 import { ProductsCatalogue } from './pages/Products';
@@ -59,6 +62,8 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   useLayoutEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -86,21 +91,30 @@ export default function App() {
     };
   }, []);
 
-  return (
+   return (
     <HelmetProvider>
       <Router>
         <ScrollToTop />
-        <div className="min-h-screen relative flex flex-col">
-          <ScrollProgress />
-          <CustomCursor />
-          <div className="noise-bg pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-overlay"></div>
-          <AmbientBackground />
-          <Navbar />
-          <main className="flex-1">
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-        </div>
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
+          ) : (
+            <div className="min-h-screen relative flex flex-col pt-16 md:pt-0">
+              <ScrollProgress />
+              <div className="hidden md:block">
+                <CustomCursor />
+              </div>
+              <div className="noise-bg pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-overlay"></div>
+              <AmbientBackground />
+              <Navbar />
+              <main className="flex-1">
+                <AnimatedRoutes />
+              </main>
+              <Footer />
+              <WhatsAppButton />
+            </div>
+          )}
+        </AnimatePresence>
       </Router>
     </HelmetProvider>
   );
