@@ -41,7 +41,7 @@ export function Industries() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-16">
             {INDUSTRIES.map((ind, i) => (
               <motion.div
                 key={ind.name}
@@ -49,7 +49,7 @@ export function Industries() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group border-t border-glass-border pt-6 relative"
+                className="group border-t border-glass-border pt-6 relative bg-obsidian/30 sm:bg-transparent rounded-lg sm:rounded-none p-4 sm:p-0"
               >
                 {/* Visual Wire Connector */}
                 <div className="absolute top-0 left-0 w-full h-[1px] overflow-hidden">

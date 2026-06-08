@@ -6,8 +6,8 @@
   --color-amber: #F97316;
   --color-amber-dim: #C2531A;
   --color-cream: #FAFAFA;
-  --color-steel: #94A3B8;
-  --color-glass-border: rgba(255, 255, 255, 0.06);
+  --color-steel: #CBD5E1;
+  --color-glass-border: rgba(255, 255, 255, 0.1);
 
   --font-bebas: "Bebas Neue", sans-serif;
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -76,16 +76,16 @@
   }
 
   .glass-panel {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-    backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
-    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(28px) saturate(180%) brightness(1.2);
+    -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.2);
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     background-clip: padding-box;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.15),
       inset 0 -1px 0 rgba(0,0,0,0.20),
-      0 24px 64px rgba(0,0,0,0.40);
+      0 24px 64px rgba(0,0,0,0.60);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   }
 

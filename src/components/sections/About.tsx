@@ -7,8 +7,8 @@ const StatCounter = ({ value, label, suffix = "" }: { value: number; label: stri
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div ref={ref} className="glass-panel p-6 flex flex-col items-center justify-center text-center">
-      <div className="font-bebas text-5xl text-cream mb-2 flex items-center">
+    <div ref={ref} className="glass-panel p-3 md:p-6 flex flex-col items-center justify-center text-center backdrop-blur-xl">
+      <div className="font-bebas text-3xl md:text-5xl text-cream mb-1 md:mb-2 flex items-center">
         {isInView ? (
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ const StatCounter = ({ value, label, suffix = "" }: { value: number; label: stri
         )}
         <span className="text-amber ml-1">{suffix}</span>
       </div>
-      <div className="font-mono text-[10px] text-steel tracking-widest uppercase">{label}</div>
+      <div className="font-mono text-[8px] md:text-[10px] text-steel tracking-[0.1em] md:tracking-widest uppercase line-clamp-2 md:line-clamp-none">{label}</div>
     </div>
   );
 };
