@@ -89,7 +89,7 @@ export function Manufacturing() {
   }, []);
 
   return (
-    <section id="manufacturing" className="relative py-32 bg-obsidian metallic-bg-dark overflow-hidden" ref={containerRef}>
+    <section id="manufacturing" className="relative py-32 bg-transparent overflow-hidden" ref={containerRef}>
       {/* Dynamic Background */}
       <div className="absolute inset-0 mesh-bg opacity-50 z-0" />
       

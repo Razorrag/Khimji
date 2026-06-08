@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { MagneticButton } from '../ui/MagneticButton';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,37 +19,43 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'py-4 bg-obsidian/80 backdrop-blur-xl border-b border-glass-border' : 'py-8 bg-transparent border-b border-transparent'
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 p-2 ${
+        isScrolled ? 'py-4' : 'py-8'
       }`}
     >
-      <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="font-bebas text-4xl text-cream tracking-wider leading-none relative z-10">K</span>
-          <span className="font-mono text-xs font-medium text-steel tracking-widest leading-none mt-1">KHEMJI WIRE & WIRE</span>
-        </div>
+      <div className={`absolute inset-0 transition-opacity duration-500 bg-charcoal/80 backdrop-blur-xl border-b border-glass-border/50 shadow-2xl ${isScrolled ? 'opacity-100' : 'opacity-0'}`} />
+      
+      <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
+        <MagneticButton className="flex items-center gap-3">
+          <div className="flex items-center gap-3">
+             <span className="font-bebas text-4xl text-cream tracking-wider leading-none">K</span>
+             <span className="font-mono text-xs font-medium text-steel tracking-widest leading-none mt-1">KHEMJI WIRE & WIRE</span>
+          </div>
+        </MagneticButton>
 
         <nav className="hidden md:flex items-center gap-10">
           {links.map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="font-sans text-[11px] uppercase tracking-[0.2em] text-steel hover:text-cream transition-colors relative group"
+              className="font-sans text-[11px] uppercase tracking-[0.2em] text-steel hover:text-cream transition-colors relative group py-2"
             >
               {link}
-              <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-amber origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-amber origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
             </a>
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="hidden md:inline-flex relative group overflow-hidden rounded-full font-mono text-[10px] tracking-[0.2em] uppercase"
-        >
-          <div className="absolute inset-0 bg-transparent border border-amber/30 rounded-full group-hover:border-amber transition-colors duration-500" />
-          <div className="absolute inset-0 bg-gradient-to-r from-amber to-amber-dim translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-          <span className="relative px-6 py-3 text-cream font-medium group-hover:text-obsidian transition-colors duration-500">Get a Quote</span>
-        </a>
+        <MagneticButton>
+          <a
+            href="#contact"
+            className="hidden md:inline-flex relative group overflow-hidden rounded-full font-mono text-[10px] tracking-[0.2em] uppercase"
+          >
+            <div className="absolute inset-0 bg-transparent border border-amber/30 rounded-full group-hover:border-amber transition-colors duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-r from-amber to-amber-dim translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+            <span className="relative px-6 py-3 text-cream font-medium group-hover:text-obsidian transition-colors duration-500">Get a Quote</span>
+          </a>
+        </MagneticButton>
 
         <button
           className="md:hidden text-cream p-2 z-50 relative"

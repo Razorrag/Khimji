@@ -2,8 +2,7 @@ import { motion } from 'framer-motion';
 
 export function Leadership() {
   return (
-    <section className="relative py-32 bg-charcoal metallic-bg-charcoal overflow-hidden border-t border-glass-border">
-      <div className="absolute inset-0 mesh-bg opacity-30 mix-blend-screen pointer-events-none" />
+    <section className="relative py-32 bg-transparent overflow-hidden border-t border-glass-border">
       <div className="max-w-[800px] mx-auto px-[5vw] text-center relative z-10">
         
         <motion.div

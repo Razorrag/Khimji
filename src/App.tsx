@@ -1,30 +1,52 @@
 import { useEffect, useLayoutEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navbar } from './components/layout/Navbar';
-import { Hero } from './components/sections/Hero';
-import { About } from './components/sections/About';
-import { Products } from './components/sections/Products';
-import { Manufacturing } from './components/sections/Manufacturing';
-import { Quality } from './components/sections/Quality';
-import { Industries } from './components/sections/Industries';
-import { Leadership } from './components/sections/Leadership';
-import { Contact } from './components/sections/Contact';
 import { Footer } from './components/layout/Footer';
+import { AmbientBackground } from './components/ui/AmbientBackground';
+import { CustomCursor } from './components/ui/CustomCursor';
+import { ScrollProgress } from './components/ui/ScrollProgress';
+
+import { Home } from './pages/Home';
 
 gsap.registerPlugin(ScrollTrigger);
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+function AnimatedRoutes() {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        {/* We can add more routes here, falling back to home for now */}
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
 
 export default function App() {
   useLayoutEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 0.9,
       touchMultiplier: 1.5,
+      lerp: 0.08,
+      infinite: false,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -44,19 +66,20 @@ export default function App() {
   }, []);
 
   return (
-    <div className="mesh-bg min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Products />
-        <Manufacturing />
-        <Quality />
-        <Industries />
-        <Leadership />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen relative flex flex-col">
+        <ScrollProgress />
+        <CustomCursor />
+        <div className="noise-bg pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-overlay"></div>
+        <AmbientBackground />
+        <Navbar />
+        <main className="flex-1">
+          <AnimatedRoutes />
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
+

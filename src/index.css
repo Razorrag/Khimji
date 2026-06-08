@@ -21,9 +21,42 @@
     color: var(--color-cream);
     overflow-x: hidden;
   }
+
+  html {
+    scroll-behavior: smooth;
+    cursor: none;
+  }
+
+  @media (pointer: fine) {
+    * {
+      cursor: none !important;
+    }
+  }
+
+  @media (pointer: coarse) {
+    html {
+      cursor: auto;
+    }
+  }
+
+  /* Hide default scrollbar entirely since we use ScrollProgress */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+  
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 @layer utilities {
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
   .mesh-bg {
     background-color: var(--color-obsidian);
     background-image:
@@ -40,34 +73,6 @@
       radial-gradient(ellipse 60% 80% at 90% 80%, rgba(249,115,22,0.06) 0%, transparent 60%),
       radial-gradient(ellipse 100% 40% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
     animation: meshShift 25s ease-in-out infinite alternate-reverse;
-  }
-
-  .metallic-bg-dark {
-    background-color: var(--color-obsidian);
-    background-image:
-      linear-gradient(135deg, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.03) 25%, 
-        rgba(255, 255, 255, 0.08) 50%, 
-        rgba(255, 255, 255, 0.02) 75%, 
-        rgba(255, 255, 255, 0) 100%
-      ),
-      radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.06) 0%, transparent 40%),
-      radial-gradient(ellipse at bottom right, rgba(249, 115, 22, 0.04) 0%, transparent 60%);
-  }
-
-  .metallic-bg-charcoal {
-    background-color: var(--color-charcoal);
-    background-image:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.04) 0%,
-        transparent 30%,
-        transparent 70%,
-        rgba(0, 0, 0, 0.3) 100%
-      ),
-      radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
-      radial-gradient(ellipse at center bottom, rgba(0, 0, 0, 0.2) 0%, transparent 60%);
   }
 
   .glass-panel {
@@ -121,4 +126,9 @@
 @keyframes textShine {
   0% { background-position: 200% center; }
   100% { background-position: 0% center; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
