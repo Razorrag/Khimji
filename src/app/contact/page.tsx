@@ -1,16 +1,14 @@
-import { PageTransition } from '../components/layout/PageTransition';
-import { Contact } from '../components/sections/Contact';
-import { SEOHead } from '../components/layout/SEOHead';
+import { Contact } from '@/components/sections/Contact';
+import type { Metadata } from 'next';
 
-export function ContactPage() {
+export const metadata: Metadata = {
+  title: 'Contact Us | Khemji Wire',
+  description: 'Get in touch for pricing, samples, technical specifications, or to discuss a supply partnership with Khemji Wire.',
+};
+
+export default function ContactPage() {
   return (
-    <PageTransition>
-      <SEOHead 
-        title="Contact Us | Khemji Wire" 
-        description="Get in touch for pricing, samples, technical specifications, or to discuss a supply partnership with Khemji Wire."
-      />
-      
-      {/* Main contact form (existing, keep + enhance) */}
+    <>
       <div className="bg-obsidian relative z-10 pt-20">
         <Contact />
       </div>
@@ -46,6 +44,6 @@ export function ContactPage() {
           <span>PAN: AABCK1234F</span>
         </div>
       </section>
-    </PageTransition>
+    </>
   );
 }

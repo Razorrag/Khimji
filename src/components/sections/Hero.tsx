@@ -1,8 +1,10 @@
+"use client";
+
 import { useRef, useState, useEffect } from "react";
 import type { ReactNode, MouseEvent } from 'react';
 import { motion, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import gsap from "gsap";
 import { SplitText } from "../ui/SplitText";
 import { MagneticButton } from "../ui/MagneticButton";
@@ -35,24 +37,34 @@ export function Hero() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0 w-full h-full"
         >
+          {/* Desktop/Laptop Video */}
           <video
             autoPlay
             muted
             loop
             playsInline
-            poster="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?q=80&w=2670&auto=format&fit=crop"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover hidden md:block"
             style={{ 
-              filter: 'brightness(0.3) contrast(1.2)'
+              filter: 'brightness(0.55) contrast(1.15) saturate(1.1)'
             }}
           >
-            <source 
-              src="https://player.vimeo.com/external/498424458.sd.mp4?s=d4520cc32ef819779dfcfccc95ab384fe98ad836&profile_id=164&oauth2_token_id=57447761" 
-              type="video/mp4" 
-            />
+            <source src="/landscape.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/40" />
+          {/* Mobile Video */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover block md:hidden"
+            style={{ 
+              filter: 'brightness(0.55) contrast(1.15) saturate(1.1)'
+            }}
+          >
+            <source src="/portrait.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/30" />
         </motion.div>
       </div>
 
@@ -125,7 +137,7 @@ export function Hero() {
             className="flex flex-wrap items-center gap-8 mt-16"
           >
             <MagneticButton>
-              <Link to="/contact" className="relative group overflow-hidden rounded-full font-mono text-[11px] tracking-[0.2em] uppercase flex items-center justify-center shadow-[0_8px_20px_rgba(234,88,12,0.3)] min-w-[200px]">
+              <Link href="/contact" className="relative group overflow-hidden rounded-full font-mono text-[11px] tracking-[0.2em] uppercase flex items-center justify-center shadow-[0_8px_20px_rgba(234,88,12,0.3)] min-w-[200px]">
                 <div className="absolute inset-0 bg-amber transition-transform duration-500" />
                 <div className="absolute inset-0 bg-cream translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
                 <span className="relative px-8 py-5 text-obsidian font-bold transition-colors">Request a Quote</span>
@@ -133,7 +145,7 @@ export function Hero() {
             </MagneticButton>
 
             <MagneticButton>
-              <Link to="/products" className="group flex items-center gap-4 font-mono text-[11px] tracking-[0.2em] uppercase text-cream hover:text-amber transition-colors py-4 px-2">
+              <Link href="/products" className="group flex items-center gap-4 font-mono text-[11px] tracking-[0.2em] uppercase text-cream hover:text-amber transition-colors py-4 px-2">
                 <span>View Catalogue</span>
                 <motion.div
                   className="w-10 h-10 rounded-full border border-glass-border flex items-center justify-center group-hover:border-amber transition-colors"

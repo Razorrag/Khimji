@@ -1,7 +1,7 @@
+"use client";
+
 import { useRef, useLayoutEffect } from 'react';
-import { PageTransition } from '../components/layout/PageTransition';
-import { SEOHead } from '../components/layout/SEOHead';
-import { SplitText } from '../components/ui/SplitText';
+import { SplitText } from '@/components/ui/SplitText';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -59,7 +59,7 @@ const PROCESS_STEPS = [
   }
 ];
 
-export function ManufacturingPage() {
+export function ManufacturingClient() {
   const containerRef = useRef<HTMLDivElement>(null);
   const fillLineRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +71,7 @@ export function ManufacturingPage() {
           trigger: ".process-container",
           start: "top 50%",
           end: "bottom 70%",
-          scrub: 0.5, // slightly smooth scrubbing
+          scrub: 0.5,
           animation: gsap.fromTo(fillLineRef.current, 
             { scaleY: 0 }, 
             { scaleY: 1, ease: "none", transformOrigin: "top" }
@@ -104,7 +104,6 @@ export function ManufacturingPage() {
 
         // Content Reveal Animations
         if (contentLeft && contentRight) {
-          // Detect which side is text vs image based on layout order logic
           gsap.fromTo(contentLeft, 
             { x: -60, opacity: 0 },
             { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: step, start: "top 65%" } }
@@ -120,12 +119,7 @@ export function ManufacturingPage() {
   }, []);
 
   return (
-    <PageTransition>
-      <SEOHead 
-        title="Manufacturing Process | Khemji Wire" 
-        description="The Wire Galvanizing Process: From Mild Steel to Galvanized Wire. Discover our step-by-step hot dip galvanizing production line."
-      />
-      
+    <div ref={containerRef}>
       {/* Hero */}
       <section className="pt-40 pb-20 relative overflow-hidden bg-obsidian border-b border-glass-border">
         <div className="absolute inset-0 mesh-bg opacity-40 mix-blend-screen pointer-events-none" />
@@ -145,7 +139,7 @@ export function ManufacturingPage() {
       </section>
 
       {/* Animated Process Journey */}
-      <section className="py-24 bg-obsidian relative z-10" ref={containerRef}>
+      <section className="py-24 bg-obsidian relative z-10">
         <div className="max-w-[1280px] mx-auto px-[5vw] relative">
           
           <div className="relative process-container pb-20">
@@ -254,11 +248,11 @@ export function ManufacturingPage() {
              Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
            </p>
            <a href="/contact" className="group inline-flex items-center justify-center px-10 py-5 bg-amber text-obsidian font-mono text-xs tracking-widest uppercase font-bold rounded-full hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(249,115,22,0.3)] hover:shadow-[0_0_50px_rgba(249,115,22,0.5)]">
-             <span className="relative z-10">Get a Quote to Build</span>
+             <span className="relative z-10">Get a Quote</span>
              <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
            </a>
         </div>
       </section>
-    </PageTransition>
+    </div>
   );
 }

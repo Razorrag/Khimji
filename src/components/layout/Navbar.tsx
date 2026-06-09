@@ -1,13 +1,16 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { MagneticButton } from '../ui/MagneticButton';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,9 +38,12 @@ export function Navbar() {
       
       <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
         <MagneticButton className="flex items-center gap-3">
-          <Link to="/" className="flex items-center gap-3">
-             <span className="font-bebas text-4xl text-cream tracking-wider leading-none">K</span>
-             <span className="font-mono text-xs font-medium text-steel tracking-widest leading-none mt-1">KHEMJI WIRE & WIRE</span>
+          <Link href="/" className="flex items-center gap-3">
+             <img src="/tab logo just logo.png" alt="Khemji Wire Logo" className="h-8 md:h-11 w-auto object-contain" />
+             <div className="flex flex-col">
+               <span className="font-bebas text-2xl text-cream tracking-wider leading-none">KHEMJI</span>
+               <span className="font-mono text-[9px] font-medium text-steel tracking-widest leading-none mt-1">WIRE & WIRE</span>
+             </div>
           </Link>
         </MagneticButton>
 
@@ -45,8 +51,8 @@ export function Navbar() {
           {links.map((link) => (
             <div key={link.label} className="relative group py-2">
               <Link
-                to={link.href}
-                className={`font-sans text-[11px] uppercase tracking-[0.2em] transition-colors relative ${location.pathname.startsWith(link.href) ? 'text-amber' : 'text-steel hover:text-cream'}`}
+                href={link.href}
+                className={`font-sans text-[11px] uppercase tracking-[0.2em] transition-colors relative ${pathname.startsWith(link.href) ? 'text-amber' : 'text-steel hover:text-cream'}`}
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-amber origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
@@ -61,7 +67,7 @@ export function Navbar() {
           </a>
           <MagneticButton>
             <Link
-              to="/contact"
+              href="/contact"
               className="inline-flex relative group overflow-hidden rounded-full font-mono text-[10px] tracking-[0.2em] uppercase"
             >
               <div className="absolute inset-0 bg-transparent border border-amber/30 rounded-full group-hover:border-amber transition-colors duration-500" />
@@ -97,7 +103,7 @@ export function Navbar() {
               {[...links, { label: 'Blog', href: '/blog' }, { label: 'FAQ', href: '/faq' }, { label: 'Contact', href: '/contact' }].map((link, i) => (
                 <Link
                   key={link.label}
-                  to={link.href}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="font-bebas text-5xl tracking-wider text-cream hover:text-amber transition-colors"
                 >

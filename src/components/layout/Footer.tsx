@@ -1,6 +1,6 @@
 import { MagneticButton } from '../ui/MagneticButton';
 import { SplitText } from '../ui/SplitText';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -12,9 +12,8 @@ export function Footer() {
           
           {/* Col 1 */}
           <div className="flex flex-col lg:col-span-4">
-            <Link to="/" className="flex items-center gap-3 mb-6">
-              <span className="font-bebas text-5xl text-cream tracking-wider leading-none">K</span>
-              <span className="font-mono text-sm font-medium text-amber tracking-widest leading-none mt-1">KHEMJI WIRE & WIRE</span>
+            <Link href="/" className="flex items-center gap-3 mb-6">
+              <img src="/logo.png" alt="Khemji Wire Logo" className="h-12 w-auto object-contain" />
             </Link>
             <div className="font-mono text-xs text-steel tracking-widest uppercase mb-8 leading-loose">
               <SplitText text="Precision in Every Strand." delayOffset={0.1} />
@@ -47,7 +46,7 @@ export function Footer() {
                 { label: 'FAQ', href: '/faq' },
                 { label: 'Contact', href: '/contact' }
               ].map((link) => (
-                <Link key={link.label} to={link.href} className="font-sans text-sm text-steel hover:text-cream transition-colors w-fit">
+                <Link key={link.label} href={link.href} className="font-sans text-sm text-steel hover:text-cream transition-colors w-fit">
                   {link.label}
                 </Link>
               ))}
@@ -63,11 +62,11 @@ export function Footer() {
                 { label: 'Low Carbon GI Wire', href: '/products/low-carbon-galvanized-wire' },
                 { label: 'Formed Wire for Cable Armouring', href: '/products/formed-wire-cable-armouring' }
               ].map((link) => (
-                <Link key={link.label} to={link.href} className="font-sans text-sm text-steel hover:text-cream transition-colors w-fit">
+                <Link key={link.label} href={link.href} className="font-sans text-sm text-steel hover:text-cream transition-colors w-fit">
                   {link.label}
                 </Link>
               ))}
-              <Link to="/products" className="font-mono text-[10px] tracking-widest uppercase text-amber hover:text-cream transition-colors w-fit mt-2">
+              <Link href="/products" className="font-mono text-[10px] tracking-widest uppercase text-amber hover:text-cream transition-colors w-fit mt-2">
                 View All Products →
               </Link>
             </nav>
@@ -97,17 +96,19 @@ export function Footer() {
         </div>
 
         {/* Bottom Strip */}
-        <div className="pt-8 border-t border-glass-border flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[10px] uppercase tracking-widest text-steel/60">
-          <div className="flex flex-col md:flex-row items-center gap-6">
+        <div className="pt-8 border-t border-glass-border flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-[9px] md:text-[10px] uppercase tracking-widest text-steel/60 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center gap-4">
             <span>© {new Date().getFullYear()} Khemji Wire & Wire Pvt. Ltd. All Rights Reserved.</span>
-            <div className="flex items-center gap-4">
-              <Link to="/sitemap.xml" className="hover:text-cream transition-colors">Sitemap</Link>
-              <Link to="/privacy-policy" className="hover:text-cream transition-colors">Privacy Policy</Link>
-              <Link to="/terms" className="hover:text-cream transition-colors">Terms</Link>
+            <div className="flex items-center gap-4 justify-center">
+              <Link href="/sitemap.xml" className="hover:text-cream transition-colors">Sitemap</Link>
+              <span className="text-steel/30">|</span>
+              <Link href="/privacy-policy" className="hover:text-cream transition-colors">Privacy Policy</Link>
+              <span className="text-steel/30">|</span>
+              <Link href="/terms" className="hover:text-cream transition-colors">Terms</Link>
             </div>
           </div>
-          <div className="flex flex-col items-center md:items-end gap-2">
-            <span>GSTIN: 08AABCK1234F1Z5 | CIN: U27109RJ2008PTC027123 | UDYAM: RJ-17-0012345</span>
+          <div className="flex flex-col items-center md:items-end gap-2 text-center md:text-right">
+            <span className="max-w-[320px] md:max-w-none leading-relaxed">GSTIN: 08AABCK1234F1Z5 · CIN: U27109RJ2008PTC027123 · UDYAM: RJ-17-0012345</span>
             <div>Designed by AI Studio</div>
           </div>
         </div>

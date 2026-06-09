@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from 'framer-motion';
 
 function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], direction?: number, speed?: number }) {
