@@ -26,9 +26,7 @@ function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], dir
 
 export function MarqueeBanner() {
   return (
-    <section className="border-y border-glass-border overflow-hidden py-4 md:py-8 flex flex-col gap-2 relative z-10 pointer-events-none select-none bg-obsidian">
-       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[var(--color-obsidian)] to-transparent z-10" />
-       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[var(--color-obsidian)] to-transparent z-10" />
+    <section className="overflow-hidden py-2 md:py-3 flex flex-col gap-1 relative z-10 pointer-events-none select-none">
        
        <style dangerouslySetInnerHTML={{__html: `
          @keyframes marquee-left {

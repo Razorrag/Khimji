@@ -59,7 +59,7 @@ export function IndiaMap() {
             </p>
 
             {/* Interactive Logistics Info Card */}
-             <div className="blob-card p-6 rounded-2xl border border-glass-border bg-charcoal/20 min-h-[160px] flex flex-col justify-between">
+             <div className="blob-card p-6 rounded-2xl border border-glass-border min-h-[160px] flex flex-col justify-between">
               {activeRoute ? (
                 <motion.div
                   key={activeRoute.city}

@@ -303,7 +303,7 @@ export function ManufacturingClient() {
                Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
              </p>
               <a href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300">
-               <span className="relative z-10">Get a Quote</span>
+               <span className="relative z-10">Contact Us</span>
                <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
              </a>
            </motion.div>

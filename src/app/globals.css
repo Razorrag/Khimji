@@ -116,19 +116,86 @@
 }
 
 @layer utilities {
+  /* ─────────────────────────────────────────────
+     NOISE / MESH BACKGROUNDS
+     ───────────────────────────────────────────── */
   .noise-bg {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     background-repeat: repeat;
   }
 
-  /* Animated gradient that simulates liquid metal flow */
+  .mesh-bg {
+    background-color: var(--color-obsidian);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(255,255,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(249,115,22,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 40% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
+    animation: meshShift 20s ease-in-out infinite alternate;
+  }
+
+  .mesh-bg-teal {
+    background-color: var(--color-obsidian);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(255,255,255,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(249,115,22,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 40% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
+    animation: meshShift 25s ease-in-out infinite alternate-reverse;
+  }
+
+  /* ─────────────────────────────────────────────
+     STEP 1 — TEXTURED TYPOGRAPHY
+     Image-masked text using /button text shade.jpg
+     ───────────────────────────────────────────── */
+  .textured-text-primary {
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: textureShine 18s ease-in-out infinite;
+  }
+
+  .textured-text-amber {
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: textureShine 20s ease-in-out infinite;
+  }
+
+  /* High contrast / reduced motion fallback */
+  @media (prefers-reduced-motion: reduce) {
+    .textured-text-primary,
+    .textured-text-amber {
+      animation: none !important;
+      background-size: 100% 100%;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .textured-text-primary {
+      -webkit-text-fill-color: var(--color-cream);
+      color: var(--color-cream);
+      background: none;
+    }
+    .textured-text-amber {
+      -webkit-text-fill-color: var(--color-amber);
+      color: var(--color-amber);
+      background: none;
+    }
+  }
+
+  /* Existing liquid metal text */
   .liquid-metal-text {
     background: linear-gradient(
       90deg,
       #CBD5E1 0%,
       #FAFAFA 20%,
       #94A3B8 35%,
-      #F97316 45%,    /* amber hot lava streak */
+      #F97316 45%,
       #FAFAFA 55%,
       #94A3B8 70%,
       #FAFAFA 85%,
@@ -139,6 +206,15 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: liquidMetalFlow 8s linear infinite;
+  }
+
+  .metallic-text {
+    background: linear-gradient(to right, #ffffff 0%, #a1a9b8 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: textShine 5s linear infinite;
   }
 
   .text-outline-amber {
@@ -166,24 +242,9 @@
     box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
   }
 
-  .mesh-bg {
-    background-color: var(--color-obsidian);
-    background-image:
-      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(255,255,255,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(249,115,22,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 100% 40% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
-    animation: meshShift 20s ease-in-out infinite alternate;
-  }
-
-  .mesh-bg-teal {
-    background-color: var(--color-obsidian);
-    background-image:
-      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(255,255,255,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(249,115,22,0.06) 0%, transparent 60%),
-      radial-gradient(ellipse 100% 40% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 70%);
-    animation: meshShift 25s ease-in-out infinite alternate-reverse;
-  }
-
+  /* ─────────────────────────────────────────────
+     GLASS PANELS
+     ───────────────────────────────────────────── */
   .glass-panel {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
     backdrop-filter: blur(28px) saturate(180%) brightness(1.2);
@@ -217,35 +278,82 @@
     border-color: rgba(249, 115, 22, 0.3);
   }
 
-  /* Blob gradient — flowing amber/orange from the reference image */
+  /* ─────────────────────────────────────────────
+     STEP 2 — CINEMATIC BUTTONS
+     Layered texture + tint overlay + glow
+     ───────────────────────────────────────────── */
   .blob-btn {
-    background: linear-gradient(135deg, #F97316 0%, #FB923C 30%, #FDBA74 60%, #F97316 100%);
+    background:
+      url("/btn-texture.jpg") center/cover no-repeat;
     background-size: 200% 200%;
-    animation: blobShift 4s ease-in-out infinite;
-    color: #121418;
+    color: #FAFAFA;
+    font-weight: 700;
     border-radius: 9999px;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.2),
+      inset 0 -2px 4px rgba(0,0,0,0.3),
+      0 2px 12px rgba(249,115,22,0.3);
+    animation: btnTextureSweep 10s ease-in-out infinite;
   }
 
+  /* Light leak sweep on hover */
   .blob-btn::before {
     content: "";
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255,255,255,0.3) 48%,
+      rgba(255,255,255,0.1) 52%,
+      transparent 60%,
+      transparent 100%
+    );
+    background-size: 250% 100%;
+    background-position: 200% 0;
     opacity: 0;
     transition: opacity 0.4s ease;
   }
 
   .blob-btn:hover::before {
     opacity: 1;
+    animation: lightLeak 1.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  /* Inner rim highlight */
+  .blob-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15);
+    pointer-events: none;
+    transition: box-shadow 0.5s ease;
+  }
+
+  .blob-btn:hover::after {
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.25),
+      inset 0 0 16px rgba(255,255,255,0.06);
   }
 
   .blob-btn:hover {
-    box-shadow: 0 0 40px rgba(249, 115, 22, 0.4), 0 8px 32px rgba(249, 115, 22, 0.2);
-    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.3),
+      inset 0 -2px 4px rgba(0,0,0,0.3),
+      0 0 40px rgba(249, 115, 22, 0.5),
+      0 8px 32px rgba(249, 115, 22, 0.3);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .blob-btn:active {
+    transform: translateY(0) scale(0.98);
+    transition-duration: 0.1s;
   }
 
   /* Glass secondary button */
@@ -255,25 +363,55 @@
     border-radius: 9999px;
     color: #FAFAFA;
     backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    animation: subtleFloat 8s ease-in-out infinite;
+  }
+
+  .glass-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    opacity: 0;
+    mix-blend-mode: overlay;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    animation: textureShine 20s ease-in-out infinite;
+  }
+
+  .glass-btn:hover::before {
+    opacity: 0.12;
   }
 
   .glass-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(249, 115, 22, 0.4);
-    box-shadow: 0 0 30px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.15), 0 0 60px rgba(249, 115, 22, 0.05);
     transform: translateY(-2px);
   }
 
-  /* Card with blob gradient background */
+  /* ─────────────────────────────────────────────
+     STEP 3 — TEXTURED STRUCTURAL CARDS
+     Depth layers + texture map + gradient border
+     ───────────────────────────────────────────── */
   .blob-card {
-    background: linear-gradient(135deg, rgba(28,30,36,0.95) 0%, rgba(18,20,24,0.9) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1.5rem;
-    backdrop-filter: blur(20px);
+    background:
+      url("/card-dark.jpg") center/cover no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.25rem;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      0 16px 48px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.3);
   }
 
   .blob-card::before {
@@ -281,14 +419,14 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: url("/button text shade.jpg") center/cover no-repeat;
-    opacity: 0.08;
-    transition: opacity 0.5s ease;
+    background: linear-gradient(160deg, rgba(255,255,255,0.04) 0%, transparent 40%, rgba(0,0,0,0.1) 100%);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     pointer-events: none;
+    z-index: 0;
   }
 
   .blob-card:hover::before {
-    opacity: 0.15;
+    background: linear-gradient(160deg, rgba(255,255,255,0.06) 0%, transparent 40%, rgba(0,0,0,0.05) 100%);
   }
 
   .blob-card::after {
@@ -297,33 +435,170 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(249,115,22,0) 0%, rgba(249,115,22,0.2) 50%, rgba(249,115,22,0) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(249,115,22,0) 0%,
+      rgba(249,115,22,0.3) 25%,
+      rgba(255,255,255,0.15) 50%,
+      rgba(249,115,22,0.3) 75%,
+      rgba(249,115,22,0) 100%
+    );
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     opacity: 0;
-    transition: opacity 0.4s ease;
+    transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     pointer-events: none;
+    z-index: 1;
   }
 
   .blob-card:hover::after {
     opacity: 1;
   }
 
-  .blob-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 4px 20px rgba(249,115,22,0.1);
-    border-color: rgba(249, 115, 22, 0.3);
+  /* Light sweep animation on hover */
+  .blob-card > .blob-card-sweep {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(255,255,255,0.1) 45%,
+      rgba(255,255,255,0.04) 55%,
+      transparent 65%,
+      transparent 100%
+    );
+    background-size: 250% 100%;
+    background-position: 200% 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 3;
   }
 
-  .metallic-text {
-    background: linear-gradient(to right, #ffffff 0%, #a1a9b8 50%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% auto;
-    animation: textShine 5s linear infinite;
+  .blob-card:hover > .blob-card-sweep {
+    opacity: 1;
+    animation: cardSweep 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
   }
+
+  .blob-card {
+    animation: none;
+  }
+
+  .blob-card > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .blob-card span,
+  .blob-card p,
+  .blob-card div,
+  .blob-card h1,
+  .blob-card h2,
+  .blob-card h3,
+  .blob-card h4,
+  .blob-card h5,
+  .blob-card h6,
+  .blob-card a,
+  .blob-card td,
+  .blob-card th {
+    color: #FAFAFA !important;
+  }
+
+  .blob-card .text-cream { color: #FAFAFA !important; }
+  .blob-card .text-steel { color: rgba(255,255,255,0.7) !important; }
+  .blob-card .text-amber { color: #F97316 !important; }
+  .blob-card .text-white { color: #FAFAFA !important; }
+  .blob-card .border-b { border-color: rgba(255, 255, 255, 0.1) !important; }
+  .blob-card .border { border-color: rgba(255, 255, 255, 0.1) !important; }
+
+  .blob-card > .blob-btn,
+  .blob-card > a.blob-btn,
+  .blob-card > a.blob-btn span {
+    color: #FAFAFA !important;
+    font-weight: 700;
+  }
+
+  .blob-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.35),
+      0 12px 32px rgba(0, 0, 0, 0.5),
+      0 24px 64px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -2px 6px rgba(0, 0, 0, 0.35);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .blob-card:active {
+    transform: translateY(-2px) scale(0.99);
+    transition-duration: 0.15s;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   KEYFRAMES
+   ───────────────────────────────────────────── */
+
+@keyframes textureShine {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes cardSweep {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes cardFadeIn {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes lightLeak {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes btnTextureSweep {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes subtleFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-2px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes meshShift {
+  0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  100% { background-position: 15% 10%, 85% 90%, 55% 45%; }
+}
+
+@keyframes liquidMetalFlow {
+  0% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+@keyframes textShine {
+  0% { background-position: 200% center; }
+  100% { background-position: 0% center; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blobShift {
+  0% { background-position: 0% 50%, 50% 50%; }
+  50% { background-position: 100% 50%, 100% 50%; }
+  100% { background-position: 0% 50%, 50% 50%; }
 }
 
 @keyframes meshShift {
@@ -350,4 +625,54 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* ─────────────────────────────────────────────
+   SMOOTH TRANSITIONS & POLISH
+   ───────────────────────────────────────────── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(249, 115, 22, 0.3);
+  color: #FAFAFA;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.4s ease;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src=""]) {
+  opacity: 1;
+}
+
+/* Focus styles */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid rgba(249, 115, 22, 0.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth section transitions */
+section {
+  will-change: transform;
+}
+
+/* Glass button base transition */
+.glass-btn,
+.blob-btn {
+  will-change: transform, box-shadow;
 }

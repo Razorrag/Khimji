@@ -24,27 +24,9 @@ function CornerBracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
       className={`${base} ${pos} ${border}`}
     />
-  );
-}
-
-function ScrollIndicator() {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 2, duration: 1 }}
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[6] flex flex-col items-center gap-3"
-    >
-      <span className="font-mono text-[9px] text-white/30 tracking-[0.3em] uppercase">Scroll</span>
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        className="w-[1px] h-8 bg-gradient-to-b from-white/40 to-transparent"
-      />
-    </motion.div>
   );
 }
 
@@ -109,7 +91,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 1 }}
+          transition={{ delay: 2.0, duration: 1 }}
           style={{ opacity: frameOpacity }}
           className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 z-[6]"
         >
@@ -129,7 +111,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 1.5 }}
               className="inline-flex items-center gap-3 mb-10"
             >
               <span className="w-8 h-[1px] bg-amber" />
@@ -141,7 +123,7 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.9, delay: 1.65, ease: [0.16, 1, 0.3, 1] }}
               className="font-bebas text-white mb-2"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
@@ -155,8 +137,8 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="font-bebas text-amber mb-10"
+              transition={{ duration: 0.9, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+              className="font-bebas textured-text-amber mb-10"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
@@ -169,14 +151,14 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
+              transition={{ duration: 0.8, delay: 2.1 }}
               className="flex flex-wrap items-center justify-center gap-4"
             >
               <Link
                 href="/contact"
                 className="blob-btn font-mono text-[11px] tracking-[0.2em] uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
               >
-                Request a Quote
+                Contact Us
               </Link>
 
               <Link
@@ -191,9 +173,6 @@ export function Hero() {
             </motion.div>
           </div>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <ScrollIndicator />
 
       </div>
     </div>

@@ -157,7 +157,7 @@ export function Manufacturing() {
                 </div>
 
                 {/* Node Circle */}
-                <div className="w-16 h-16 rounded-full blob-card flex items-center justify-center relative z-10 transition-colors shadow-[0_0_30px_rgba(15,23,42,0.1)] bg-charcoal"
+                <div className="w-16 h-16 rounded-full blob-card flex items-center justify-center relative z-10 transition-colors shadow-[0_0_30px_rgba(15,23,42,0.1)]"
                      style={{ border: "1px solid rgba(249,115,22,0.3)" }}>
                   <div className="w-3 h-3 rounded-full bg-amber shadow-[0_0_10px_#EA580C]" />
                 </div>

@@ -34,7 +34,7 @@ export function HeroVideo() {
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       aria-hidden="true"
       className="absolute inset-0 w-full h-full object-cover object-center"
     >

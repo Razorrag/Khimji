@@ -131,12 +131,12 @@ export function Contact() {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <div className="blob-card p-8 md:p-14 relative border border-glass-border/50 rounded-2xl overflow-hidden bg-charcoal/30">
+          <div className="blob-card p-8 md:p-14 relative border border-glass-border/50 rounded-2xl overflow-hidden">
             {/* Soft amber glow inside form */}
              <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
                   style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
             
-            <h3 className="font-bebas text-4xl text-cream mb-12 tracking-wide relative z-10 border-b border-glass-border pb-4">Request a Quote</h3>
+            <h3 className="font-bebas text-4xl text-cream mb-12 tracking-wide relative z-10 border-b border-glass-border pb-4">Contact Us</h3>
             
             <form onSubmit={handleSubmit} className="flex flex-col gap-10 relative z-10" aria-label="Request a quote form">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

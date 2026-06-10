@@ -11,21 +11,21 @@ const CATALOGUE = [
     name: "Hot Dip Galvanized Mild Steel Wire",
     desc: "Premium quality GI wire for fencing, farming, and general engineering applications.",
     standard: "IS 280",
-    img: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=2000"
+    img: "/1.png"
   },
   {
     slug: 'low-carbon-galvanized-wire',
     name: "Low Carbon Galvanized Steel Wire",
     desc: "Soft and pliable wire perfect for tying, binding, and construction needs.",
     standard: "IS 280 / IS 12753",
-    img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2000"
+    img: "/2.png"
   },
   {
     slug: 'formed-wire-cable-armouring',
     name: "Formed Wire for Cable Armouring",
     desc: "High-protection armouring wire engineered for the electrical transmission industry.",
     standard: "IS 3975",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
+    img: "/3.png"
   }
 ];
 

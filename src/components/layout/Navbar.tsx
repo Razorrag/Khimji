@@ -10,13 +10,22 @@ import { MagneticButton } from '../ui/MagneticButton';
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Hide navbar when inside #products section
+      const productsEl = document.getElementById('products');
+      if (productsEl) {
+        const rect = productsEl.getBoundingClientRect();
+        const inProducts = rect.top <= 80 && rect.bottom > 80;
+        setIsHidden(inProducts);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -29,10 +38,14 @@ export function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 p-2 ${
-        isScrolled ? 'py-4' : 'py-8'
-      }`}
+    <motion.header
+      className="fixed top-0 inset-x-0 z-50 transition-all duration-500 p-2"
+      animate={{
+        y: isHidden ? -100 : 0,
+        opacity: isHidden ? 0 : 1,
+      }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: isHidden ? 'none' : 'auto' }}
     >
       <div className={`absolute inset-0 transition-opacity duration-500 backdrop-blur-xl border-b border-glass-border ${isScrolled ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundColor: "rgba(28,30,36,0.85)" }} />
       
@@ -62,15 +75,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-6">
-          <a href="tel:+919829277869" className="font-mono text-[10px] tracking-[0.2em] text-steel hover:text-amber transition-colors cursor-pointer">
-            +91-9829277869
-          </a>
           <MagneticButton>
             <Link
               href="/contact"
               className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
             >
-              Get a Quote
+              Contact Us
             </Link>
           </MagneticButton>
         </div>
@@ -125,6 +135,6 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

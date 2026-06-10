@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useLayoutEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -16,11 +15,9 @@ import { WhatsAppButton } from '../components/ui/WhatsAppButton';
 gsap.registerPlugin(ScrollTrigger);
 
 export function ClientLayoutProviders({ children }: { children: React.ReactNode }) {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    // Skip Lenis on touch devices — iOS Safari has its own momentum scroll
-    // that conflicts with Lenis and causes janky/erratic behavior.
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice) return;
 
@@ -50,25 +47,25 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
-      ) : (
-        <div key="main-layout" className="min-h-[100svh] relative flex flex-col pt-16 md:pt-0">
-          <ScrollProgress />
-          <div className="hidden md:block">
-            <CustomCursor />
-          </div>
-          <div className="noise-bg pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-overlay"></div>
-          <AmbientBackground />
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <WhatsAppButton />
+    <>
+      {/* Preloader overlay — sits ON TOP of everything, fades out when hero video is playing */}
+      <Preloader onComplete={() => setIsLoaded(true)} />
+
+      {/* Main layout — always rendered, hero video starts immediately */}
+      <div className="min-h-[100svh] relative flex flex-col pt-16 md:pt-0">
+        <ScrollProgress />
+        <div className="hidden md:block">
+          <CustomCursor />
         </div>
-      )}
-    </AnimatePresence>
+        <div className="noise-bg pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-overlay"></div>
+        <AmbientBackground />
+        <Navbar />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </>
   );
 }

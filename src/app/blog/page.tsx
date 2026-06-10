@@ -32,7 +32,7 @@ export default function BlogPage() {
         {featuredPost && (
           <div className="lg:col-span-7 flex flex-col">
             <Link href={`/blog/${featuredPost.slug}`} className="group flex-1">
-              <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 h-full flex flex-col justify-between bg-charcoal/40 relative overflow-hidden">
+              <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 h-full flex flex-col justify-between relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[120px] pointer-events-none"
                      style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
                 
@@ -65,7 +65,7 @@ export default function BlogPage() {
         <div className="lg:col-span-5 flex flex-col gap-8">
           {otherPosts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-              <div className="blob-card p-8 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 bg-charcoal/40 relative overflow-hidden">
+              <div className="blob-card p-8 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 relative overflow-hidden">
                 <div className="flex items-center gap-6 font-mono text-[10px] tracking-widest uppercase text-steel/60 mb-4">
                   <span className="px-2.5 py-0.5 bg-white/5 text-steel border border-glass-border rounded-full">{post.category}</span>
                   <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{post.date}</span>

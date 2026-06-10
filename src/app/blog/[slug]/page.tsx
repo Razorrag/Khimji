@@ -103,7 +103,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* CTA Box */}
-        <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border bg-charcoal/50 flex flex-col md:flex-row items-center justify-between gap-8 mt-20 relative overflow-hidden">
+        <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border flex flex-col md:flex-row items-center justify-between gap-8 mt-20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-[100px] pointer-events-none"
                style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
           <div className="relative z-10 text-center md:text-left">

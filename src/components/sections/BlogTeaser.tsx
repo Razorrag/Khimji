@@ -47,7 +47,7 @@ export function BlogTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="group flex flex-col justify-between blob-card p-8 rounded-2xl border border-glass-border hover:border-amber/40 transition-all duration-500 bg-charcoal/20 hover:bg-charcoal/30 h-full"
+              className="group flex flex-col justify-between blob-card p-8 rounded-2xl border border-glass-border hover:border-amber/40 transition-all duration-500 h-full"
             >
               <div>
                 {/* Meta details */}

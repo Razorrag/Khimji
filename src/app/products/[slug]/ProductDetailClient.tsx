@@ -11,7 +11,7 @@ const PRODUCT_DB: Record<string, any> = {
     desc: "Premium quality GI wire tailored for fencing, farming, and general engineering applications.",
     longDesc: "Our Hot Dip Galvanized Mild Steel Wire is manufactured using advanced continuous hot-dip galvanizing technology. This ensures a uniform, thick coating of zinc that provides exceptional corrosion resistance even in harsh environments. Designed for superior tensile strength and ductility.",
     standard: "IS 280",
-    img: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=2000",
+    img: "/1.png",
     specs: {
       "Size Range": "1.25 mm to 4.00 mm",
       "Zinc Coating": "As per IS standards (Heavy/Medium)",
@@ -36,7 +36,7 @@ const PRODUCT_DB: Record<string, any> = {
     desc: "Soft and pliable wire perfect for tying, binding, and construction needs.",
     longDesc: "Manufactured from high-quality low-carbon steel, this wire undergoes rigorous annealing and galvanization processes. The result is a highly flexible, pliable wire that resists breaking under strain while maintaining excellent protective properties against rust.",
     standard: "IS 280 / IS 12753",
-    img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2000",
+    img: "/2.png",
     specs: {
       "Size Range": "0.90 mm to 5.00 mm",
       "Tensile Strength": "Soft (Below 450 N/mm²)",
@@ -61,7 +61,7 @@ const PRODUCT_DB: Record<string, any> = {
     desc: "High-protection armouring wire engineered for the electrical transmission industry.",
     longDesc: "Specifically designed for the heavy electrification sector, our formed wire provides mechanical protection to power and communication cables. It shields internal conductors from physical crushing, rodent attacks, and environmental degradation.",
     standard: "IS 3975",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000",
+    img: "/3.png",
     specs: {
       "Standard Compliance": "IS 3975:1999",
       "Tolerance": "Strict dimensional accuracy",
@@ -288,7 +288,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
                 <p className="font-sans text-sm text-steel font-light">Contact our sales team for pricing and availability.</p>
               </div>
               <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center whitespace-nowrap">
-                Request Quote
+                Contact Us
               </Link>
             </div>
           </motion.div>
@@ -313,7 +313,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
           
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
             {TECHNICAL_TABLES[slug].map((table, tIdx) => (
-               <div key={tIdx} className="blob-card p-8 rounded-2xl border border-glass-border bg-charcoal/10 flex flex-col justify-between">
+               <div key={tIdx} className="blob-card p-8 rounded-2xl border border-glass-border flex flex-col justify-between">
                 <div>
                   <h4 className="font-bebas text-2xl text-cream tracking-wider mb-2">{table.title}</h4>
                   <p className="font-sans text-xs text-steel/60 font-light mb-6">{table.subtitle}</p>
