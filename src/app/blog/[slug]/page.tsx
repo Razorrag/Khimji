@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       
-      <article className="pt-40 pb-24 px-[5vw] max-w-[900px] mx-auto min-h-screen">
+      <article className="pt-40 pb-24 px-[5vw] max-w-[900px] mx-auto min-h-[100svh]">
         {/* Back Link */}
         <div className="mb-12 flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-steel/60">
           <Link href="/blog" className="hover:text-amber transition-colors flex items-center gap-1.5">
@@ -93,10 +93,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* Content Container */}
-        <div 
-          className="prose-custom font-sans font-light text-steel/90 text-base md:text-lg leading-relaxed mb-20"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <div className="overflow-x-auto -mx-[5vw] px-[5vw]">
+          <div 
+            className="prose-custom font-sans font-light text-steel/90 text-base md:text-lg leading-relaxed mb-20 min-w-0"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        </div>
 
         {/* CTA Box */}
         <div className="glass-panel p-8 md:p-12 rounded-2xl border border-glass-border bg-charcoal/50 flex flex-col md:flex-row items-center justify-between gap-8 mt-20 relative overflow-hidden">

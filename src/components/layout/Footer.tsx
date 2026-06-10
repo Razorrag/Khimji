@@ -96,7 +96,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Strip */}
-        <div className="pt-8 border-t border-glass-border flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-[9px] md:text-[10px] uppercase tracking-widest text-steel/60 text-center md:text-left">
+        <div className="pt-8 border-t border-glass-border flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-[10px] md:text-[10px] uppercase tracking-widest text-steel/60 text-center md:text-left">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <span>© {new Date().getFullYear()} Khemji Wire & Wire Pvt. Ltd. All Rights Reserved.</span>
             <div className="flex items-center gap-4 justify-center">

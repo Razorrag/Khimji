@@ -54,7 +54,7 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
       {isLoading ? (
         <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
       ) : (
-        <div key="main-layout" className="min-h-screen relative flex flex-col pt-16 md:pt-0">
+        <div key="main-layout" className="min-h-[100svh] relative flex flex-col pt-16 md:pt-0">
           <ScrollProgress />
           <div className="hidden md:block">
             <CustomCursor />

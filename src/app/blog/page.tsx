@@ -15,7 +15,7 @@ export default function BlogPage() {
   const otherPosts = BLOG_POSTS.slice(1);
 
   return (
-    <div className="pt-40 pb-24 px-[5vw] max-w-[1280px] mx-auto min-h-screen">
+    <div className="pt-40 pb-24 px-[5vw] max-w-[1280px] mx-auto min-h-[100svh]">
       <div className="mb-20">
         <h1 className="font-bebas text-7xl md:text-[100px] text-cream mb-4 uppercase tracking-wider leading-[0.85]">
           <SplitText text="The Wire" />

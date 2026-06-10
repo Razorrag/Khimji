@@ -131,14 +131,15 @@ export function Hero() {
               Mastering the art of High-Tensile Galvanized Steel Wire manufacturing for global infrastructure standards.
             </motion.p>
             
-            <motion.div 
+            <motion.button 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 1.4 }}
               className="hidden lg:flex items-center justify-center w-16 h-16 rounded-full border border-glass-border hover:border-amber hover:bg-amber/10 transition-colors cursor-pointer group"
+              aria-label="Play video"
             >
               <Play className="w-5 h-5 text-cream group-hover:text-amber transition-colors ml-1" />
-            </motion.div>
+            </motion.button>
           </div>
 
           <motion.div 
@@ -156,10 +157,10 @@ export function Hero() {
             </MagneticButton>
 
             <MagneticButton>
-              <Link href="/products" className="group flex items-center gap-4 font-mono text-[11px] tracking-[0.2em] uppercase text-cream hover:text-amber transition-colors py-4 px-2">
+              <Link href="/products" className="group flex items-center gap-4 font-mono text-[11px] tracking-[0.2em] uppercase text-cream hover:text-amber transition-colors py-4 px-2 cursor-pointer">
                 <span>View Catalogue</span>
                 <motion.div
-                  className="w-10 h-10 rounded-full border border-glass-border flex items-center justify-center group-hover:border-amber transition-colors"
+                  className="w-11 h-11 rounded-full border border-glass-border flex items-center justify-center group-hover:border-amber transition-colors"
                   whileHover={{ x: 5 }}
                 >
                   <ArrowRight className="w-4 h-4" />

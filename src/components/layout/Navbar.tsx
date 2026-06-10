@@ -78,7 +78,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-cream p-2 z-50 relative"
+          className="md:hidden text-cream p-3 z-50 relative min-w-[44px] min-h-[44px] flex items-center justify-center"
           onClick={() => setIsOpen(true)}
           aria-label="Open navigation menu"
         >

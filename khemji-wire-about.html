@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Us | Khemji Wire & Wire Pvt. Ltd.</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --orange: #E8621A;
+    --orange-light: #F47B35;
+    --orange-glow: rgba(232,98,26,0.13);
+    --dark: #1A1A1A;
+    --darker: #111111;
+    --grey: #242424;
+    --grey-mid: #4A4A4A;
+    --grey-light: #8A8A8A;
+    --off-white: #F5F2EE;
+    --steel: #C8C4BE;
+    --white: #FFFFFF;
+    --border: rgba(255,255,255,0.07);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; background: var(--darker); color: var(--off-white); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(17,17,17,0.94); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,98,26,0.18);
+    height: 68px;
+  }
+  .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
+  .nav-logo .brand { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--white); letter-spacing: 0.04em; text-transform: uppercase; }
+  .nav-logo .tagline-nav { font-size: 0.58rem; font-weight: 400; color: var(--orange); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2px; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--orange); }
+  .nav-cta { background: var(--orange); color: var(--white) !important; padding: 8px 20px; font-weight: 600 !important; }
+  .nav-cta:hover { background: var(--orange-light) !important; }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    padding: 140px 7% 80px;
+    background:
+      linear-gradient(180deg, rgba(232,98,26,0.06) 0%, transparent 50%),
+      repeating-linear-gradient(-55deg, transparent, transparent 4px, rgba(232,98,26,0.025) 4px, rgba(232,98,26,0.025) 5px),
+      var(--darker);
+    border-bottom: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .page-hero::after {
+    content: 'ABOUT';
+    position: absolute; right: 4%; bottom: -20px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 11rem; font-weight: 800;
+    color: rgba(255,255,255,0.025); pointer-events: none; letter-spacing: 0.1em;
+    line-height: 1;
+  }
+  .breadcrumb {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--grey-light); margin-bottom: 22px;
+  }
+  .breadcrumb span { color: var(--orange); }
+  .breadcrumb-sep { color: var(--grey-mid); }
+  .page-hero-label {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .page-hero-label::before { content: ''; width: 28px; height: 1px; background: var(--orange); }
+  .page-hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    font-weight: 800; text-transform: uppercase; line-height: 0.95;
+    color: var(--white); max-width: 700px;
+  }
+  .page-hero h1 em { font-style: normal; color: var(--orange); }
+  .page-hero-sub {
+    font-size: 1rem; font-weight: 300; line-height: 1.8;
+    color: var(--steel); max-width: 560px; margin-top: 24px;
+  }
+
+  /* ─── SHARED ─── */
+  .section-label {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 28px; height: 1px; background: var(--orange); }
+  .section-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 3vw, 3rem); font-weight: 800;
+    text-transform: uppercase; line-height: 1.05; color: var(--white);
+  }
+  .section-heading em { font-style: normal; color: var(--orange); }
+  .section-body { font-size: 0.95rem; line-height: 1.85; color: var(--steel); font-weight: 300; }
+
+  .btn-primary {
+    background: var(--orange); color: var(--white);
+    padding: 13px 30px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none; display: inline-block;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+  .btn-outline {
+    color: var(--off-white); padding: 12px 28px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1px solid rgba(245,242,238,0.25); text-decoration: none; display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ─── STORY / TIMELINE ─── */
+  .story-section {
+    padding: 90px 7%;
+    background: var(--dark);
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 90px; align-items: start;
+  }
+  .story-left { position: sticky; top: 100px; }
+  .story-intro { font-size: 1.05rem; line-height: 1.9; color: var(--steel); font-weight: 300; margin-top: 20px; }
+  .story-intro strong { color: var(--off-white); font-weight: 500; }
+
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px; background: linear-gradient(180deg, var(--orange), rgba(232,98,26,0.1));
+  }
+  .tl-item { position: relative; padding: 0 0 44px 32px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -6px; top: 6px;
+    width: 13px; height: 13px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .tl-year {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 6px;
+  }
+  .tl-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .tl-text { font-size: 0.85rem; line-height: 1.7; color: var(--grey-light); }
+
+  /* ─── VISION & MISSION ─── */
+  .vm-section {
+    padding: 90px 7%;
+    background: var(--darker);
+    position: relative; overflow: hidden;
+  }
+  .vm-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255,255,255,0.012) 80px, rgba(255,255,255,0.012) 81px);
+    pointer-events: none;
+  }
+  .vm-header { text-align: center; margin-bottom: 60px; }
+  .vm-header .section-label { justify-content: center; }
+  .vm-header .section-label::before { display: none; }
+  .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+  .vm-card {
+    background: var(--dark); padding: 52px 48px;
+    position: relative; overflow: hidden;
+  }
+  .vm-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--orange); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .vm-card:hover::after { transform: scaleX(1); }
+  .vm-icon {
+    width: 56px; height: 56px;
+    background: var(--orange-glow); border: 1px solid rgba(232,98,26,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 28px;
+  }
+  .vm-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.8rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--white); margin-bottom: 18px;
+  }
+  .vm-text { font-size: 0.95rem; line-height: 1.85; color: var(--steel); font-weight: 300; }
+  .vm-text strong { color: var(--off-white); font-weight: 500; }
+
+  /* ─── FOUNDER & DIRECTOR ─── */
+  .leadership-section {
+    padding: 90px 7%;
+    background: var(--grey);
+  }
+  .leadership-header { margin-bottom: 60px; }
+  .leadership-grid { display: flex; flex-direction: column; gap: 2px; }
+
+  .leader-card {
+    background: var(--dark);
+    display: grid; grid-template-columns: 300px 1fr; gap: 0;
+    overflow: hidden;
+    transition: background 0.25s;
+  }
+  .leader-card:hover { background: #1e1e1e; }
+  .leader-card.reverse { grid-template-columns: 1fr 300px; }
+
+  .leader-portrait {
+    background: var(--grey);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 48px 32px;
+    border-right: 1px solid var(--border);
+    position: relative; overflow: hidden;
+  }
+  .leader-card.reverse .leader-portrait {
+    border-right: none; border-left: 1px solid var(--border);
+    order: 2;
+  }
+  .leader-portrait::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(232,98,26,0.025) 3px, rgba(232,98,26,0.025) 4px);
+  }
+  .portrait-circle {
+    width: 120px; height: 120px;
+    background: linear-gradient(135deg, var(--grey-mid), var(--dark));
+    border: 2px solid rgba(232,98,26,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 800;
+    color: var(--orange); margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .leader-designation {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); text-align: center; position: relative; z-index: 1;
+  }
+  .leader-name-portrait {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--white); text-align: center; margin-bottom: 6px;
+    position: relative; z-index: 1;
+  }
+
+  .leader-content { padding: 48px 52px; }
+  .leader-tag {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 10px;
+  }
+  .leader-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+    text-transform: uppercase; color: var(--white);
+    margin-bottom: 22px; line-height: 1.1;
+  }
+  .leader-bio { font-size: 0.92rem; line-height: 1.85; color: var(--steel); font-weight: 300; margin-bottom: 30px; }
+  .leader-bio p + p { margin-top: 14px; }
+
+  .leader-quote {
+    background: rgba(232,98,26,0.07);
+    border-left: 3px solid var(--orange);
+    padding: 22px 28px;
+    margin-top: 24px;
+  }
+  .leader-quote blockquote {
+    font-family: 'Lora', serif; font-style: italic; font-size: 1.0rem; line-height: 1.75;
+    color: var(--off-white);
+  }
+  .leader-quote cite {
+    display: block; margin-top: 12px;
+    font-family: 'Barlow', sans-serif; font-style: normal;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  /* ─── CORE VALUES ─── */
+  .values-section {
+    padding: 90px 7%;
+    background: var(--darker);
+  }
+  .values-header { margin-bottom: 56px; max-width: 600px; }
+  .values-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    background: var(--border);
+  }
+  .value-card {
+    background: var(--dark); padding: 40px 30px;
+    position: relative; overflow: hidden;
+    transition: background 0.2s;
+  }
+  .value-card:hover { background: #1e1e1e; }
+  .value-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--orange); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .value-card:hover::before { transform: scaleX(1); }
+  .value-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 800;
+    color: rgba(232,98,26,0.1); line-height: 1; margin-bottom: 20px;
+  }
+  .value-icon-wrap {
+    width: 44px; height: 44px; background: var(--orange-glow);
+    border: 1px solid rgba(232,98,26,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 18px;
+  }
+  .value-name {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .value-desc { font-size: 0.82rem; line-height: 1.72; color: var(--grey-light); }
+
+  /* ─── TEAM / WORKFORCE ─── */
+  .team-section {
+    padding: 90px 7%;
+    background: var(--dark);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .team-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); margin-top: 40px; }
+  .team-stat {
+    background: var(--grey); padding: 30px 24px;
+  }
+  .team-stat-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2.6rem; font-weight: 800;
+    color: var(--orange); line-height: 1; margin-bottom: 6px;
+  }
+  .team-stat-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-light); }
+  .team-right { position: relative; }
+  .team-pillars { display: flex; flex-direction: column; gap: 2px; }
+  .team-pillar {
+    background: var(--grey); padding: 22px 28px;
+    display: flex; align-items: center; gap: 20px;
+    transition: background 0.2s;
+  }
+  .team-pillar:hover { background: #2a2a2a; }
+  .pillar-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .pillar-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); margin-bottom: 4px;
+  }
+  .pillar-desc { font-size: 0.8rem; color: var(--grey-light); line-height: 1.55; }
+
+  /* ─── CERTIFICATIONS ─── */
+  .cert-section {
+    padding: 90px 7%;
+    background: var(--darker);
+  }
+  .cert-header { margin-bottom: 56px; }
+  .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); margin-bottom: 56px; }
+  .cert-card {
+    background: var(--dark); padding: 40px 36px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .cert-card:hover { background: #1e1e1e; }
+  .cert-logo {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2.5rem; font-weight: 800;
+    color: var(--orange); margin-bottom: 14px; letter-spacing: 0.04em;
+  }
+  .cert-name {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--white); margin-bottom: 10px;
+  }
+  .cert-desc { font-size: 0.83rem; line-height: 1.72; color: var(--grey-light); margin-bottom: 16px; }
+  .cert-tag {
+    display: inline-block; padding: 5px 14px;
+    border: 1px solid rgba(232,98,26,0.35); background: rgba(232,98,26,0.07);
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange);
+  }
+
+  .reg-strip {
+    background: var(--dark); border: 1px solid var(--border);
+    padding: 32px 40px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .reg-item { }
+  .reg-key { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--grey-light); margin-bottom: 6px; }
+  .reg-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--white); letter-spacing: 0.05em; }
+
+  /* ─── FACILITY ─── */
+  .facility-section {
+    padding: 90px 7%;
+    background: var(--grey);
+    position: relative; overflow: hidden;
+  }
+  .facility-section::after {
+    content: 'FACTORY';
+    position: absolute; right: -30px; bottom: -30px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 9rem; font-weight: 800;
+    color: rgba(255,255,255,0.02); pointer-events: none; letter-spacing: 0.08em;
+  }
+  .facility-header { margin-bottom: 56px; }
+  .facility-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+  .facility-visual {
+    background:
+      linear-gradient(135deg, rgba(232,98,26,0.08) 0%, transparent 60%),
+      repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(232,98,26,0.03) 4px, rgba(232,98,26,0.03) 5px),
+      var(--dark);
+    padding: 56px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 320px;
+  }
+  .facility-svg { width: 100%; max-width: 380px; }
+  .facility-details { display: flex; flex-direction: column; gap: 2px; }
+  .facility-row {
+    background: var(--dark); padding: 22px 28px;
+    display: grid; grid-template-columns: 1fr 1.5fr;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .facility-row:hover { border-color: var(--orange); background: #1e1e1e; }
+  .fac-key { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-light); padding-top: 2px; }
+  .fac-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1.0rem; font-weight: 700; color: var(--off-white); line-height: 1.35; }
+
+  /* ─── CTA ─── */
+  .cta-banner {
+    background: var(--orange); padding: 70px 7%;
+    display: flex; justify-content: space-between; align-items: center; gap: 40px;
+  }
+  .cta-heading { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; text-transform: uppercase; color: var(--white); line-height: 1.05; margin-bottom: 8px; }
+  .cta-sub { font-size: 0.95rem; color: rgba(255,255,255,0.75); font-weight: 300; }
+  .btn-white { background: var(--white); color: var(--orange); padding: 14px 36px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; transition: background 0.2s, transform 0.15s; }
+  .btn-white:hover { background: var(--off-white); transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer { background: #0D0D0D; padding: 60px 7% 30px; border-top: 1px solid rgba(232,98,26,0.15); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px; margin-bottom: 50px; }
+  .footer-brand .brand-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--white); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .footer-brand .tagline-foot { font-size: 0.62rem; letter-spacing: 0.2em; color: var(--orange); text-transform: uppercase; margin-bottom: 16px; }
+  .footer-brand p { font-size: 0.82rem; line-height: 1.7; color: var(--grey-light); max-width: 280px; }
+  .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .footer-col ul { list-style: none; }
+  .footer-col li { font-size: 0.8rem; color: var(--grey-light); padding: 5px 0; }
+  .footer-col a { color: var(--grey-light); text-decoration: none; }
+  .footer-col a:hover { color: var(--orange); }
+  .footer-contact-item { display: flex; gap: 10px; align-items: flex-start; font-size: 0.78rem; color: var(--grey-light); margin-bottom: 10px; line-height: 1.5; }
+  .contact-icon { color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-bottom p { font-size: 0.73rem; color: var(--grey-light); }
+  .footer-ids { display: flex; gap: 18px; }
+  .footer-ids span { font-size: 0.66rem; color: rgba(255,255,255,0.28); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+  .page-hero > * { animation: fadeUp 0.65s ease both; }
+  .page-hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .page-hero > *:nth-child(2) { animation-delay: 0.2s; }
+  .page-hero > *:nth-child(3) { animation-delay: 0.32s; }
+  .page-hero > *:nth-child(4) { animation-delay: 0.44s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="brand">Khemji Wire & Wire Pvt. Ltd.</span>
+    <span class="tagline-nav">Precision in Every Strand</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="quality.html">Quality</a></li>
+    <li><a href="industries.html">Industries</a></li>
+    <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="breadcrumb">Home <span class="breadcrumb-sep">›</span> <span>About Us</span></div>
+  <div class="page-hero-label">Our Story</div>
+  <h1>Built on <em>Trust.</em><br/>Driven by <em>Purpose.</em></h1>
+  <p class="page-hero-sub">
+    For over three decades, Khemji Wire & Wire Pvt. Ltd. has stood for one thing above all — the integrity of every product we make and every promise we keep.
+  </p>
+</section>
+
+<!-- OUR STORY / TIMELINE -->
+<section class="story-section" id="story">
+  <div class="story-left">
+    <div class="section-label">Our Journey</div>
+    <h2 class="section-heading">From <em>Humble</em><br/>Beginnings to<br/>Industry <em>Trust</em></h2>
+    <p class="story-intro">
+      What began as a single entrepreneur's vision in 1988 has grown into one of Rajasthan's respected wire manufacturing enterprises. Rooted in <strong>integrity, craftsmanship, and customer commitment</strong>, our journey is a testament to what consistent effort can build — one strand at a time.
+    </p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1988</div>
+      <div class="tl-title">Foundation</div>
+      <div class="tl-text">Shri Om Prakash Agarwal establishes Khemji Wire Industries in Jaipur with a clear vision: to build a manufacturing enterprise rooted in quality and honest business. Operations begin with limited resources but limitless determination.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">Early 1990s</div>
+      <div class="tl-title">Building the Foundation</div>
+      <div class="tl-text">The company steadily builds its customer base across Rajasthan, earning a reputation for reliable supply and consistent wire quality. Customer trust becomes the company's most valuable asset.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2000s</div>
+      <div class="tl-title">Expansion & Modernization</div>
+      <div class="tl-text">Under the growing leadership of Mahesh Agarwal, the company expands manufacturing capabilities, upgrades machinery, and begins supplying to infrastructure and power sector contractors beyond Rajasthan.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">Incorporation</div>
+      <div class="tl-title">Private Limited Registration</div>
+      <div class="tl-text">Khemji Wire & Wire Pvt. Ltd. is formally incorporated under the Companies Act (CIN: U51101RJ1988PTC004356), marking a significant milestone in the company's institutional growth and governance.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">BIS Certification</div>
+      <div class="tl-title">IS:280 & IS:3975 Certified</div>
+      <div class="tl-text">Bureau of Indian Standards certifications for Mild Steel Wire (IS:280) and Formed Wire (IS:3975) validate the company's commitment to manufacturing excellence and open doors to government and large infrastructure contracts.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">Present</div>
+      <div class="tl-title">UDYAM Registered MSME</div>
+      <div class="tl-text">Registered as UDYAM-RJ-17-0030256, the company continues to grow — supplying HOT DIP Galvanized Wire, MS Wire, and Formed Wire across India from its RIICO Industrial Area facility in Jaipur.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION & MISSION -->
+<section class="vm-section" id="vision-mission">
+  <div class="vm-header">
+    <div class="section-label">Our Direction</div>
+    <h2 class="section-heading">Vision & <em>Mission</em></h2>
+  </div>
+  <div class="vm-grid">
+    <div class="vm-card">
+      <div class="vm-icon">🔭</div>
+      <div class="vm-title">Our Vision</div>
+      <p class="vm-text">
+        To be the <strong>most trusted wire manufacturer in India</strong> — recognized for the consistent quality of our products, the reliability of our supply, and the integrity of our business conduct.
+        <br/><br/>
+        We envision Khemji Wire as a brand synonymous with precision and dependability — from the infrastructure projects that shape India's future to the everyday industrial applications that keep industries running.
+        <br/><br/>
+        Our goal is to grow not just in scale, but in purpose — advancing manufacturing standards, supporting skilled employment, and contributing to India's industrial self-reliance.
+      </p>
+    </div>
+    <div class="vm-card">
+      <div class="vm-icon">🎯</div>
+      <div class="vm-title">Our Mission</div>
+      <p class="vm-text">
+        To <strong>deliver superior quality wire products</strong> through innovation, reliability, and customer-focused solutions — while contributing to the growth of industry and infrastructure across India.
+        <br/><br/>
+        We are committed to manufacturing every product to BIS standards, ensuring each coil, spool, and formed wire that leaves our facility meets the expectations of the engineers, contractors, and businesses who depend on it.
+        <br/><br/>
+        We achieve this through disciplined processes, ethical partnerships, continuous improvement, and an unwavering respect for the trust our customers place in us.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER & DIRECTOR -->
+<section class="leadership-section" id="leadership">
+  <div class="leadership-header">
+    <div class="section-label">Our Leadership</div>
+    <h2 class="section-heading">The People Behind<br/><em>Khemji Wire</em></h2>
+  </div>
+  <div class="leadership-grid">
+
+    <!-- Founder -->
+    <div class="leader-card">
+      <div class="leader-portrait">
+        <div class="portrait-circle">OA</div>
+        <div class="leader-name-portrait">Om Prakash Agarwal</div>
+        <div class="leader-designation">Founder</div>
+      </div>
+      <div class="leader-content">
+        <div class="leader-tag">Founder · Khemji Wire Industries</div>
+        <div class="leader-title">Shri Om Prakash<br/>Agarwal</div>
+        <div class="leader-bio">
+          <p>Shri Om Prakash Agarwal founded Khemji Wire Industries with a clear vision, unwavering determination, and a strong belief in the power of hard work. Starting from scratch with limited resources but limitless dedication, he built the foundation of the company through perseverance, integrity, and a commitment to delivering quality products.</p>
+          <p>His entrepreneurial journey reflects the spirit of transforming challenges into opportunities. Through years of consistent effort, disciplined business practices, and a customer-centric approach, he established Khemji Wire Industries as a trusted manufacturer in the wire industry.</p>
+          <p>The values instilled by him — quality, reliability, ethical business conduct, and continuous improvement — remain at the core of the organization. His inspiring journey from humble beginnings to building a respected industrial enterprise continues to motivate the company's growth and future aspirations.</p>
+        </div>
+        <div class="leader-quote">
+          <blockquote>"Success is built not by resources alone, but by vision, hard work, and the courage to pursue excellence."</blockquote>
+          <cite>— Om Prakash Agarwal, Founder</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- Director -->
+    <div class="leader-card reverse">
+      <div class="leader-content">
+        <div class="leader-tag">Director · Khemji Wire & Wire Pvt. Ltd.</div>
+        <div class="leader-title">Shri Mahesh<br/>Agarwal</div>
+        <div class="leader-bio">
+          <p>Shri Mahesh Agarwal serves as the Director of Khemji Wire Industries and plays a key role in driving the company's growth, modernization, and strategic development. Under his leadership, the company has expanded its manufacturing capabilities while maintaining a strong commitment to quality, innovation, and customer service.</p>
+          <p>With extensive experience in the steel wire and galvanizing sector, he has successfully guided the organization towards operational excellence and sustainable growth. His forward-looking approach, combined with a deep understanding of industry requirements, continues to strengthen the company's position in domestic and emerging markets.</p>
+          <p>His vision for the company encompasses not just product excellence but also building long-term relationships with customers, distributors, and infrastructure partners across India.</p>
+        </div>
+        <div class="leader-quote">
+          <blockquote>"Our mission is to deliver superior quality wire products through innovation, reliability, and customer-focused solutions while contributing to the growth of industry and infrastructure."</blockquote>
+          <cite>— Mahesh Agarwal, Director</cite>
+        </div>
+      </div>
+      <div class="leader-portrait">
+        <div class="portrait-circle">MA</div>
+        <div class="leader-name-portrait">Mahesh Agarwal</div>
+        <div class="leader-designation">Director</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="values-section" id="values">
+  <div class="values-header">
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-heading">Our Core <em>Values</em></h2>
+    <p class="section-body" style="margin-top:16px; max-width:520px;">These are not words on a wall — they are the principles instilled by our founder and practiced in every decision, every batch, every delivery.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <div class="value-num">01</div>
+      <div class="value-icon-wrap">🏆</div>
+      <div class="value-name">Quality First</div>
+      <div class="value-desc">Every product we manufacture is held to the same standard — BIS certified, tensile-tested, and consistent. Quality is not a checkbox; it is our identity.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">02</div>
+      <div class="value-icon-wrap">🤝</div>
+      <div class="value-name">Integrity</div>
+      <div class="value-desc">Honest business practices, transparent dealings, and ethical conduct in every transaction — with customers, suppliers, and partners alike.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">03</div>
+      <div class="value-icon-wrap">⚡</div>
+      <div class="value-name">Reliability</div>
+      <div class="value-desc">Our customers depend on us for consistent supply, on-time delivery, and products that perform exactly as expected — every single time.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">04</div>
+      <div class="value-icon-wrap">🔄</div>
+      <div class="value-name">Continuous Improvement</div>
+      <div class="value-desc">We invest in better processes, better machinery, and better knowledge — because standing still in manufacturing means falling behind.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM / WORKFORCE -->
+<section class="team-section" id="team">
+  <div>
+    <div class="section-label">Our People</div>
+    <h2 class="section-heading">The <em>Workforce</em><br/>Behind Every Strand</h2>
+    <p class="section-body" style="margin-top:18px;">
+      Khemji Wire's strength lies in its people — skilled workers, experienced supervisors, and a committed management team who share the same belief: that quality is everyone's responsibility.
+      <br/><br/>
+      From the production floor to dispatch, each team member upholds the standards our customers have come to rely on. We invest in training, safety, and workplace discipline to ensure our output reflects the best of our capabilities.
+    </p>
+    <div class="team-stats">
+      <div class="team-stat">
+        <div class="team-stat-num">35+</div>
+        <div class="team-stat-label">Years of Operations</div>
+      </div>
+      <div class="team-stat">
+        <div class="team-stat-num">MSME</div>
+        <div class="team-stat-label">UDYAM Registered Unit</div>
+      </div>
+      <div class="team-stat">
+        <div class="team-stat-num">RIICO</div>
+        <div class="team-stat-label">Industrial Area, Jaipur</div>
+      </div>
+      <div class="team-stat">
+        <div class="team-stat-num">PAN India</div>
+        <div class="team-stat-label">Supply Network</div>
+      </div>
+    </div>
+  </div>
+  <div class="team-right">
+    <div class="team-pillars">
+      <div class="team-pillar">
+        <div class="pillar-icon">🏭</div>
+        <div>
+          <div class="pillar-title">Production Team</div>
+          <div class="pillar-desc">Skilled operators managing wire drawing, annealing, and hot-dip galvanizing lines — trained for precision and consistency.</div>
+        </div>
+      </div>
+      <div class="team-pillar">
+        <div class="pillar-icon">🔬</div>
+        <div>
+          <div class="pillar-title">Quality Control</div>
+          <div class="pillar-desc">Dedicated QC personnel conducting dimensional, tensile, and coating tests on every production batch before dispatch.</div>
+        </div>
+      </div>
+      <div class="team-pillar">
+        <div class="pillar-icon">📦</div>
+        <div>
+          <div class="pillar-title">Dispatch & Logistics</div>
+          <div class="pillar-desc">Efficient packing, documentation, and coordination for timely delivery across Rajasthan and pan-India destinations.</div>
+        </div>
+      </div>
+      <div class="team-pillar">
+        <div class="pillar-icon">💼</div>
+        <div>
+          <div class="pillar-title">Sales & Customer Service</div>
+          <div class="pillar-desc">Experienced team managing B2B relationships, order processing, and technical support for distributors and contractors.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section" id="certifications">
+  <div class="cert-header">
+    <div class="section-label">Standards & Compliance</div>
+    <h2 class="section-heading">Certifications &<br/><em>Registrations</em></h2>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-logo">IS:280</div>
+      <div class="cert-name">BIS Certified — Mild Steel Wire</div>
+      <div class="cert-desc">Bureau of Indian Standards certification for Mild Steel Wire. Covers tensile strength, elongation, and dimensional tolerances as per Indian national standards.</div>
+      <span class="cert-tag">Bureau of Indian Standards</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-logo">IS:3975</div>
+      <div class="cert-name">BIS Certified — Formed Wire</div>
+      <div class="cert-desc">BIS certification for Mild Steel Stay Wires and Formed Wire products used in power, telecom, and infrastructure applications.</div>
+      <span class="cert-tag">Bureau of Indian Standards</span>
+    </div>
+    <div class="cert-card">
+      <div class="cert-logo">UDYAM</div>
+      <div class="cert-name">MSME Registration</div>
+      <div class="cert-desc">Registered Micro, Small & Medium Enterprise under the Government of India's UDYAM portal. Eligible for government tenders, MSME benefits, and priority sector supply.</div>
+      <span class="cert-tag">Govt. of India · MSME Ministry</span>
+    </div>
+  </div>
+  <div class="reg-strip">
+    <div class="reg-item">
+      <div class="reg-key">CIN</div>
+      <div class="reg-val">U51101RJ1988PTC004356</div>
+    </div>
+    <div class="reg-item">
+      <div class="reg-key">GSTIN</div>
+      <div class="reg-val">08AAECA7760L1ZA</div>
+    </div>
+    <div class="reg-item">
+      <div class="reg-key">PAN</div>
+      <div class="reg-val">AAECA7760L</div>
+    </div>
+    <div class="reg-item">
+      <div class="reg-key">UDYAM No.</div>
+      <div class="reg-val">UDYAM-RJ-17-0030256</div>
+    </div>
+  </div>
+</section>
+
+<!-- MANUFACTURING FACILITY -->
+<section class="facility-section" id="facility">
+  <div class="facility-header">
+    <div class="section-label">Our Infrastructure</div>
+    <h2 class="section-heading">Manufacturing <em>Facility</em></h2>
+  </div>
+  <div class="facility-grid">
+    <div class="facility-visual">
+      <svg class="facility-svg" viewBox="0 0 380 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Factory outline -->
+        <rect x="20" y="100" width="340" height="140" stroke="rgba(232,98,26,0.3)" stroke-width="1.5" fill="rgba(232,98,26,0.04)"/>
+        <!-- Roof -->
+        <polyline points="20,100 100,50 190,80 280,50 360,100" stroke="rgba(232,98,26,0.5)" stroke-width="1.5" fill="none"/>
+        <!-- Chimney -->
+        <rect x="300" y="55" width="18" height="50" stroke="rgba(232,98,26,0.4)" stroke-width="1" fill="rgba(232,98,26,0.05)"/>
+        <!-- Smoke -->
+        <path d="M309 55 C309 40 315 35 309 25 C303 15 315 8 309 0" stroke="rgba(232,98,26,0.2)" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
+        <!-- Doors -->
+        <rect x="160" y="180" width="60" height="60" stroke="rgba(232,98,26,0.35)" stroke-width="1" fill="rgba(232,98,26,0.05)"/>
+        <!-- Windows -->
+        <rect x="50" y="120" width="40" height="30" stroke="rgba(232,98,26,0.25)" stroke-width="1" fill="rgba(232,98,26,0.05)"/>
+        <rect x="110" y="120" width="40" height="30" stroke="rgba(232,98,26,0.25)" stroke-width="1" fill="rgba(232,98,26,0.05)"/>
+        <rect x="230" y="120" width="40" height="30" stroke="rgba(232,98,26,0.25)" stroke-width="1" fill="rgba(232,98,26,0.05)"/>
+        <rect x="290" y="120" width="40" height="30" stroke="rgba(232,98,26,0.25)" stroke-width="1" fill="rgba(232,98,26,0.05)"/>
+        <!-- Ground -->
+        <line x1="0" y1="240" x2="380" y2="240" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <!-- Label -->
+        <text x="190" y="258" fill="rgba(232,98,26,0.5)" font-family="'Barlow Condensed'" font-size="10" text-anchor="middle" letter-spacing="0.15em">F-153, RIICO INDUSTRIAL AREA · SARNA DOONGAR · JAIPUR</text>
+      </svg>
+    </div>
+    <div class="facility-details">
+      <div class="facility-row">
+        <div class="fac-key">Location</div>
+        <div class="fac-val">F-153, RIICO Industrial Area, Sarna Doongar, Jaipur, Rajasthan</div>
+      </div>
+      <div class="facility-row">
+        <div class="fac-key">Industrial Zone</div>
+        <div class="fac-val">RIICO — Rajasthan Industrial & Investment Corporation Zone</div>
+      </div>
+      <div class="facility-row">
+        <div class="fac-key">Core Processes</div>
+        <div class="fac-val">Wire Drawing · Annealing · Hot Dip Galvanizing · Wire Forming</div>
+      </div>
+      <div class="facility-row">
+        <div class="fac-key">Product Output</div>
+        <div class="fac-val">HDG Wire, MS Wire (Bright & Black Annealed), Formed & Stay Wires</div>
+      </div>
+      <div class="facility-row">
+        <div class="fac-key">Quality Infrastructure</div>
+        <div class="fac-val">In-house testing for tensile strength, elongation & zinc coating weight</div>
+      </div>
+      <div class="facility-row">
+        <div class="fac-key">Dispatch Connectivity</div>
+        <div class="fac-val">Road & rail access for pan-India logistics from Jaipur</div>
+      </div>
+      <div class="facility-row">
+        <div class="fac-key">Operational Since</div>
+        <div class="fac-val">1988 — Over 35 years of continuous production</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div>
+    <div class="cta-heading">Partner with a<br/>Manufacturer You Can Trust</div>
+    <div class="cta-sub">Explore our product range or get in touch with our team for pricing and availability.</div>
+  </div>
+  <div style="display:flex; gap:14px; flex-wrap:wrap;">
+    <a href="products.html" class="btn-white">View Products</a>
+    <a href="contact.html" class="btn-white" style="background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.4);">Contact Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="brand-name">Khemji Wire & Wire Pvt. Ltd.</div>
+      <div class="tagline-foot">Precision in Every Strand</div>
+      <p>IS-certified manufacturer of galvanized and mild steel wire products from Jaipur, Rajasthan — serving industry and infrastructure since 1988.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li>Hot Dip Galvanized Wire</li>
+        <li>Mild Steel Wire</li>
+        <li>Formed Wire Products</li>
+        <li>Stay Wire</li>
+        <li>Binding Wire</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="#">Quality & Certifications</a></li>
+        <li><a href="#">Industries Served</a></li>
+        <li><a href="#">Product Catalogue</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item"><span class="contact-icon">📍</span><span>F-153, RIICO Industrial Area, Sarna Doongar, Jaipur, Rajasthan – 302012</span></div>
+      <div class="footer-contact-item"><span class="contact-icon">📧</span><span>info@khemjiwire.com</span></div>
+      <div class="footer-contact-item"><span class="contact-icon">🪪</span><span>GSTIN: 08AAECA7760L1ZA</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Khemji Wire & Wire Pvt. Ltd. · CIN: U51101RJ1988PTC004356</p>
+    <div class="footer-ids">
+      <span>PAN: AAECA7760L</span>
+      <span>UDYAM: UDYAM-RJ-17-0030256</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

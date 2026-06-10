@@ -21,7 +21,7 @@ export function FAQClient() {
   };
 
   return (
-    <div className="pt-40 pb-24 px-[5vw] max-w-[1000px] mx-auto min-h-screen">
+    <div className="pt-40 pb-24 px-[5vw] max-w-[1000px] mx-auto min-h-[100svh]">
       <div className="mb-16">
         <h1 className="font-bebas text-6xl md:text-[100px] text-cream mb-6 tracking-wider uppercase leading-[0.85]">
           <SplitText text="FREQUENTLY" /> <br/>

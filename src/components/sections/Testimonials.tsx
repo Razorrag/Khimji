@@ -121,7 +121,7 @@ export function Testimonials() {
                   setActiveIdx(idx);
                   startTimer();
                 }}
-                className="w-10 h-3 flex items-center justify-center group"
+                className="w-12 h-11 flex items-center justify-center group cursor-pointer"
                 aria-label={`Go to slide ${idx + 1}`}
               >
                 <div className={`h-1 rounded-full transition-all duration-500 ${

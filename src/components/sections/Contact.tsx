@@ -154,7 +154,7 @@ export function Contact() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative group">
-                  <input type="tel" name="phone" id="phone" required value={formData.phone} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Phone" />
+                  <input type="tel" name="phone" id="phone" required value={formData.phone} onChange={handleChange} inputMode="tel" className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Phone" />
                   <label htmlFor="phone" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Phone</label>
                   <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
                 </div>

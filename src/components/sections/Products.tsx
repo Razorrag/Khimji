@@ -95,7 +95,7 @@ export function Products() {
       </div>
 
       {/* Desktop view (Scrolling Text / Sticky Image) */}
-      <div className="hidden md:flex relative max-w-[1400px] mx-auto min-h-screen">
+      <div className="hidden md:flex relative max-w-[1400px] mx-auto min-h-[100svh]">
         
         {/* Left Panel (Scrolling Content) */}
         <div ref={leftPanelRef} className="w-1/2 pl-[5vw] pr-12 pb-[20vh] relative z-10">

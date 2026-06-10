@@ -183,10 +183,19 @@ export function IndiaMap() {
                       key={`node-${dest.city}`}
                       transform={`translate(${dest.x}, ${dest.y})`}
                       className="cursor-pointer group/node"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`View logistics to ${dest.city}`}
                       onMouseEnter={() => setActiveRoute(dest)}
                       onMouseLeave={() => setActiveRoute(null)}
                       onClick={() => setActiveRoute(activeRoute?.city === dest.city ? null : dest)}
                       onTouchStart={() => setActiveRoute(activeRoute?.city === dest.city ? null : dest)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setActiveRoute(activeRoute?.city === dest.city ? null : dest);
+                        }
+                      }}
                     >
                       {/* Hover Hotspot area */}
                       <circle r="25" fill="transparent" />

@@ -164,7 +164,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center pt-20">
+      <div className="min-h-[100svh] flex items-center justify-center pt-20">
         <div className="text-center">
            <h1 className="font-bebas text-5xl text-cream mb-4">Product Not Found</h1>
            <Link href="/products" className="text-amber hover:text-cream transition-colors font-mono uppercase tracking-widest text-xs">
