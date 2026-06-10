@@ -55,7 +55,7 @@ export function ProductsCatalogue() {
             onMouseLeave={() => setHoveredIdx(null)}
             onTouchStart={() => setHoveredIdx(idx)}
           >
-            <div className="glass-panel p-2 rounded-2xl border border-glass-border overflow-hidden h-full flex flex-col hover:border-amber/50 transition-colors">
+            <div className="blob-card p-2 rounded-2xl border border-glass-border overflow-hidden h-full flex flex-col hover:border-amber/50 transition-colors">
               <div className="aspect-[4/3] w-full rounded-xl overflow-hidden relative bg-obsidian">
                  <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent z-10" />
                  <img 

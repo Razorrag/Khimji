@@ -12,7 +12,8 @@ export function BlogTeaser() {
   return (
     <section className="relative py-32 bg-transparent overflow-hidden border-t border-glass-border">
       {/* Background glow */}
-      <div className="absolute bottom-10 right-[10%] w-[350px] h-[350px] bg-amber/5 blur-[90px] rounded-full pointer-events-none" />
+       <div className="absolute bottom-10 right-[10%] w-[350px] h-[350px] blur-[90px] rounded-full pointer-events-none"
+            style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
 
       <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
         
@@ -31,7 +32,7 @@ export function BlogTeaser() {
               <SplitText text="INDUSTRY KNOWLEDGE" />
             </h2>
           </div>
-          <Link href="/blog" className="group font-mono text-[11px] uppercase tracking-widest text-amber hover:text-cream transition-colors flex items-center gap-3 pb-2 border-b border-amber/30 hover:border-cream/30">
+           <Link href="/blog" className="glass-btn font-mono text-[11px] uppercase tracking-widest px-8 py-4 inline-flex items-center justify-center gap-3 group">
             Read All Articles
             <ArrowRightIcon />
           </Link>
@@ -46,12 +47,13 @@ export function BlogTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="group flex flex-col justify-between glass-panel p-8 rounded-2xl border border-glass-border hover:border-amber/40 transition-all duration-500 bg-charcoal/20 hover:bg-charcoal/30 h-full"
+              className="group flex flex-col justify-between blob-card p-8 rounded-2xl border border-glass-border hover:border-amber/40 transition-all duration-500 bg-charcoal/20 hover:bg-charcoal/30 h-full"
             >
               <div>
                 {/* Meta details */}
                 <div className="flex items-center justify-between font-mono text-[10px] text-steel/60 mb-6">
-                  <span className="text-amber/80 font-semibold uppercase tracking-wider bg-amber/5 px-2 py-0.5 rounded border border-amber/10">{post.category}</span>
+                  <span className="font-semibold uppercase tracking-wider px-2 py-0.5 rounded"
+                        style={{ color: "rgba(249,115,22,0.8)", backgroundColor: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.1)" }}>{post.category}</span>
                   <span>{post.readTime} read</span>
                 </div>
 

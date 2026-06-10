@@ -191,7 +191,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
              transition={{ duration: 0.8 }}
-             className="aspect-[4/3] w-full rounded-2xl overflow-hidden glass-panel border border-glass-border shadow-2xl relative"
+             className="aspect-[4/3] w-full rounded-2xl overflow-hidden blob-card border border-glass-border relative"
           >
             <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent z-10" />
             <img 
@@ -212,7 +212,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
              initial={{ opacity: 0, y: 20 }}
              animate={{ opacity: 1, y: 0 }}
              transition={{ duration: 0.8, delay: 0.2 }}
-             className="glass-panel p-8 rounded-2xl border border-glass-border"
+             className="blob-card p-8 rounded-2xl border border-glass-border"
           >
             <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-6">Technical Specifications</h3>
             <div className="flex flex-col gap-4 font-sans text-sm text-steel">
@@ -251,7 +251,8 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {product.features.map((feature: string, idx: number) => (
                 <li key={idx} className="flex items-start gap-3 text-sm text-cream font-light">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-amber/10 border border-amber/30 flex items-center justify-center shrink-0">
+                  <div className="mt-1 w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                       style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)" }}>
                     <Check className="w-3 h-3 text-amber" />
                   </div>
                   <span className="leading-relaxed">{feature}</span>
@@ -269,7 +270,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-6">Applications</h3>
             <div className="flex flex-wrap gap-3">
               {product.applications.map((app: string, idx: number) => (
-                <span key={idx} className="font-mono text-[10px] tracking-widest uppercase px-4 py-2 border border-glass-border rounded-sm text-steel bg-obsidian/30">
+                <span key={idx} className="font-mono text-[10px] tracking-widest uppercase px-4 py-2 border border-glass-border rounded-full text-steel bg-obsidian/30">
                   {app}
                 </span>
               ))}
@@ -281,12 +282,12 @@ export function ProductDetailClient({ slug }: { slug: string }) {
              animate={{ opacity: 1, y: 0 }}
              transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <div className="glass-panel p-8 rounded-2xl border border-glass-border flex flex-col sm:flex-row items-center justify-between gap-6">
+             <div className="blob-card p-8 rounded-2xl border border-glass-border flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <h4 className="font-mono text-xs text-cream tracking-widest uppercase mb-2">Ready to order?</h4>
                 <p className="font-sans text-sm text-steel font-light">Contact our sales team for pricing and availability.</p>
               </div>
-              <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-amber text-obsidian font-mono text-xs tracking-widest uppercase font-bold rounded-full hover:bg-cream transition-colors whitespace-nowrap">
+              <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center whitespace-nowrap">
                 Request Quote
               </Link>
             </div>
@@ -312,7 +313,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
           
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
             {TECHNICAL_TABLES[slug].map((table, tIdx) => (
-              <div key={tIdx} className="glass-panel p-8 rounded-2xl border border-glass-border bg-charcoal/10 flex flex-col justify-between">
+               <div key={tIdx} className="blob-card p-8 rounded-2xl border border-glass-border bg-charcoal/10 flex flex-col justify-between">
                 <div>
                   <h4 className="font-bebas text-2xl text-cream tracking-wider mb-2">{table.title}</h4>
                   <p className="font-sans text-xs text-steel/60 font-light mb-6">{table.subtitle}</p>

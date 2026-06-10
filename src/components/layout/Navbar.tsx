@@ -34,12 +34,12 @@ export function Navbar() {
         isScrolled ? 'py-4' : 'py-8'
       }`}
     >
-      <div className={`absolute inset-0 transition-opacity duration-500 bg-charcoal/80 backdrop-blur-xl border-b border-glass-border/50 shadow-2xl ${isScrolled ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute inset-0 transition-opacity duration-500 backdrop-blur-xl border-b border-glass-border ${isScrolled ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundColor: "rgba(28,30,36,0.85)" }} />
       
       <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
         <MagneticButton className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
-             <img src="/tab logo just logo.png" alt="Khemji Wire Logo" className="h-8 md:h-11 w-auto object-contain" />
+             <img src="/tab logo just logo.png" alt="Khemji Wire Logo" className="h-10 md:h-14 w-auto object-contain" />
              <div className="flex flex-col">
                <span className="font-bebas text-2xl text-cream tracking-wider leading-none">KHEMJI</span>
                <span className="font-mono text-[9px] font-medium text-steel tracking-widest leading-none mt-1">WIRE & WIRE</span>
@@ -68,11 +68,9 @@ export function Navbar() {
           <MagneticButton>
             <Link
               href="/contact"
-              className="inline-flex relative group overflow-hidden rounded-full font-mono text-[10px] tracking-[0.2em] uppercase"
+              className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
             >
-              <div className="absolute inset-0 bg-transparent border border-amber/30 rounded-full group-hover:border-amber transition-colors duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-r from-amber to-amber-dim translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
-              <span className="relative px-6 py-3 text-cream font-medium group-hover:text-obsidian transition-colors duration-500">Get a Quote</span>
+              Get a Quote
             </Link>
           </MagneticButton>
         </div>
@@ -103,6 +101,9 @@ export function Navbar() {
             >
               <X className="w-8 h-8" />
             </button>
+            <div className="mb-12">
+              <img src="/tab logo just logo.png" alt="Khemji Wire" className="h-16 w-auto object-contain" />
+            </div>
             <nav className="flex flex-col items-center gap-8">
               {[...links, { label: 'Blog', href: '/blog' }, { label: 'FAQ', href: '/faq' }, { label: 'Contact', href: '/contact' }].map((link, i) => (
                 <Link

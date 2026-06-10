@@ -32,12 +32,14 @@ export default function BlogPage() {
         {featuredPost && (
           <div className="lg:col-span-7 flex flex-col">
             <Link href={`/blog/${featuredPost.slug}`} className="group flex-1">
-              <div className="glass-panel p-8 md:p-12 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 h-full flex flex-col justify-between bg-charcoal/40 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-amber/5 rounded-full blur-[120px] pointer-events-none" />
+              <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 h-full flex flex-col justify-between bg-charcoal/40 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[120px] pointer-events-none"
+                     style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
                 
                 <div>
                   <div className="flex items-center gap-6 font-mono text-[10px] tracking-widest uppercase text-steel/60 mb-6">
-                    <span className="px-3 py-1 bg-amber/10 text-amber border border-amber/20 rounded-full">{featuredPost.category}</span>
+                    <span className="px-3 py-1 text-amber border rounded-full"
+                          style={{ backgroundColor: "rgba(249,115,22,0.1)", borderColor: "rgba(249,115,22,0.2)" }}>{featuredPost.category}</span>
                     <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" />{featuredPost.date}</span>
                     <span className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" />{featuredPost.readTime}</span>
                   </div>
@@ -63,7 +65,7 @@ export default function BlogPage() {
         <div className="lg:col-span-5 flex flex-col gap-8">
           {otherPosts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-              <div className="glass-panel p-8 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 bg-charcoal/40 relative overflow-hidden">
+              <div className="blob-card p-8 rounded-2xl border border-glass-border hover:border-amber/50 transition-all duration-500 bg-charcoal/40 relative overflow-hidden">
                 <div className="flex items-center gap-6 font-mono text-[10px] tracking-widest uppercase text-steel/60 mb-4">
                   <span className="px-2.5 py-0.5 bg-white/5 text-steel border border-glass-border rounded-full">{post.category}</span>
                   <span className="flex items-center gap-1.5"><Calendar className="w-3 h-3" />{post.date}</span>

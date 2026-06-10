@@ -43,10 +43,10 @@ export function FAQClient() {
                 setActiveTab(tab);
                 setOpenIndex(null); // Close active accordion
               }}
-              className={`font-mono text-xs uppercase tracking-widest px-5 py-3 rounded-full border transition-all duration-300 whitespace-nowrap ${
+              className={`font-mono text-xs uppercase tracking-widest whitespace-nowrap transition-all duration-300 ${
                 isActive
-                  ? "bg-amber text-obsidian border-amber font-bold"
-                  : "bg-charcoal/40 text-steel border-glass-border hover:border-amber/50 hover:text-cream"
+                  ? "blob-btn font-mono text-xs tracking-widest uppercase font-bold px-5 py-3 inline-flex items-center justify-center"
+                  : "glass-btn font-mono text-xs tracking-widest uppercase px-5 py-3 inline-flex items-center justify-center"
               }`}
             >
               {tab}
@@ -66,7 +66,7 @@ export function FAQClient() {
                   className="w-full flex items-center justify-between py-6 text-left group"
                   onClick={() => handleToggle(i)}
                 >
-                  <span className={`font-bebas text-2xl md:text-3xl tracking-wide transition-colors duration-300 ${isOpen ? 'text-amber' : 'text-cream group-hover:text-amber/80'}`}>
+                   <span className={`font-bebas text-2xl md:text-3xl tracking-wide transition-colors duration-300 ${isOpen ? 'text-amber' : 'text-cream'}`}>
                     {faq.q}
                   </span>
                   <motion.div

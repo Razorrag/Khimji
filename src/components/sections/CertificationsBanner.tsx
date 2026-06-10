@@ -6,11 +6,6 @@ import { SplitText } from '../ui/SplitText';
 export function CertificationsBanner() {
   return (
     <section className="relative py-32 bg-transparent overflow-hidden border-t border-glass-border">
-      {/* Abstract Grid Glow Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
-      
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber/5 blur-[120px] rounded-full pointer-events-none" />
-
       <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
         
         {/* Header */}
@@ -40,7 +35,7 @@ export function CertificationsBanner() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="group relative glass-panel p-8 md:p-12 rounded-3xl border border-glass-border hover:border-amber/40 transition-all duration-500 bg-charcoal/20 flex flex-col justify-between"
+            className="group relative blob-card p-8 md:p-12 rounded-3xl border border-glass-border hover:border-amber/40 transition-all duration-500 flex flex-col justify-between"
           >
             {/* Stamp BG Watermark */}
             <div className="absolute right-6 top-6 font-bebas text-[120px] text-amber/[0.03] select-none pointer-events-none leading-none group-hover:text-amber/[0.05] transition-colors duration-500">
@@ -61,7 +56,8 @@ export function CertificationsBanner() {
                   <p className="font-sans text-steel font-medium text-sm">Mild Steel Wire for General Engineering</p>
                 </div>
                 {/* ISI Mark Mock SVG */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-xl border border-amber/20 bg-amber/5 flex items-center justify-center p-2 group-hover:bg-amber/10 group-hover:border-amber/40 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center p-2 group-hover:bg-amber/10 group-hover:border-amber/40 transition-all duration-300"
+                     style={{ backgroundColor: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.2)" }}>
                   <svg viewBox="0 0 100 100" className="w-12 h-12 text-amber" fill="currentColor">
                     <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" strokeWidth="6" rx="4" />
                     <text x="50" y="45" fontFamily="sans-serif" fontWeight="900" fontSize="26" textAnchor="middle" fill="currentColor">ISI</text>
@@ -94,7 +90,8 @@ export function CertificationsBanner() {
 
             <div className="font-mono text-[10px] text-steel/50 flex justify-between items-center mt-auto border-t border-glass-border/30 pt-4">
               <span>LICENSE REF: CM/L-8300142981</span>
-              <span className="text-amber/70 font-semibold group-hover:text-amber transition-colors">COMPLIANT</span>
+              <span className="font-semibold group-hover:text-amber transition-colors"
+                    style={{ color: "rgba(249,115,22,0.7)" }}>COMPLIANT</span>
             </div>
           </motion.div>
 
@@ -104,7 +101,7 @@ export function CertificationsBanner() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="group relative glass-panel p-8 md:p-12 rounded-3xl border border-glass-border hover:border-amber/40 transition-all duration-500 bg-charcoal/20 flex flex-col justify-between"
+            className="group relative blob-card p-8 md:p-12 rounded-3xl border border-glass-border hover:border-amber/40 transition-all duration-500 flex flex-col justify-between"
           >
             {/* Stamp BG Watermark */}
             <div className="absolute right-6 top-6 font-bebas text-[120px] text-amber/[0.03] select-none pointer-events-none leading-none group-hover:text-amber/[0.05] transition-colors duration-500">
@@ -125,7 +122,8 @@ export function CertificationsBanner() {
                   <p className="font-sans text-steel font-medium text-sm">Mild Steel Wires for Cable Armouring</p>
                 </div>
                 {/* ISI Mark Mock SVG */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-xl border border-amber/20 bg-amber/5 flex items-center justify-center p-2 group-hover:bg-amber/10 group-hover:border-amber/40 transition-all duration-300">
+                <div className="flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center p-2 group-hover:bg-amber/10 group-hover:border-amber/40 transition-all duration-300"
+                     style={{ backgroundColor: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.2)" }}>
                   <svg viewBox="0 0 100 100" className="w-12 h-12 text-amber" fill="currentColor">
                     <rect x="10" y="10" width="80" height="80" fill="none" stroke="currentColor" strokeWidth="6" rx="4" />
                     <text x="50" y="45" fontFamily="sans-serif" fontWeight="900" fontSize="26" textAnchor="middle" fill="currentColor">ISI</text>
@@ -158,7 +156,8 @@ export function CertificationsBanner() {
 
             <div className="font-mono text-[10px] text-steel/50 flex justify-between items-center mt-auto border-t border-glass-border/30 pt-4">
               <span>LICENSE REF: CM/L-8300143092</span>
-              <span className="text-amber/70 font-semibold group-hover:text-amber transition-colors">COMPLIANT</span>
+              <span className="font-semibold group-hover:text-amber transition-colors"
+                    style={{ color: "rgba(249,115,22,0.7)" }}>COMPLIANT</span>
             </div>
           </motion.div>
 

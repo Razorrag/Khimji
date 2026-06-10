@@ -98,7 +98,8 @@ export function Testimonials() {
               </blockquote>
               
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-amber/10 border border-amber/30 flex items-center justify-center font-bebas text-lg text-amber select-none">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center font-bebas text-lg text-amber select-none"
+                     style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)" }}>
                   {current.initials}
                 </div>
                 <div className="text-left">

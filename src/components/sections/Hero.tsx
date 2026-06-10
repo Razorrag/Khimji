@@ -1,218 +1,201 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import type { ReactNode, MouseEvent } from 'react';
-import { motion, useSpring, useTransform } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import gsap from "gsap";
-import { SplitText } from "../ui/SplitText";
-import { MagneticButton } from "../ui/MagneticButton";
+import { HeroVideo } from "../ui/HeroVideo";
 
-export function Hero() {
-  const wireLineRef = useRef<SVGPathElement>(null);
-  const desktopVideoRef = useRef<HTMLVideoElement>(null);
-  const mobileVideoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    // Initial wire draw animation
-    if (wireLineRef.current) {
-      const length = wireLineRef.current.getTotalLength();
-      gsap.set(wireLineRef.current, { strokeDasharray: length, strokeDashoffset: length });
-      gsap.to(wireLineRef.current, {
-        strokeDashoffset: 0,
-        duration: 1.5,
-        ease: "power3.inOut",
-        delay: 0.2
-      });
-    }
-
-    // Only preload the video matching the current viewport
-    const isMobile = window.innerWidth < 768;
-    if (mobileVideoRef.current) mobileVideoRef.current.preload = isMobile ? 'auto' : 'none';
-    if (desktopVideoRef.current) desktopVideoRef.current.preload = isMobile ? 'none' : 'auto';
-  }, []);
+function CornerBracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
+  const base = "absolute w-16 h-16 md:w-24 md:h-24 pointer-events-none z-[6]";
+  const pos = {
+    tl: "top-6 left-6 md:top-10 md:left-10",
+    tr: "top-6 right-6 md:top-10 md:right-10",
+    bl: "bottom-6 left-6 md:bottom-10 md:left-10",
+    br: "bottom-6 right-6 md:bottom-10 md:right-10",
+  }[position];
+  const border = {
+    tl: "border-t border-l border-white/20",
+    tr: "border-t border-r border-white/20",
+    bl: "border-b border-l border-white/20",
+    br: "border-b border-r border-white/20",
+  }[position];
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-20 overflow-hidden bg-transparent">
-      
-      {/* Background with Ambient Gradient (Already in App.tsx) + Static image overlay */}
-      <div className="absolute inset-0 z-0 flex items-center justify-end overflow-hidden">
-        <motion.div 
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+      className={`${base} ${pos} ${border}`}
+    />
+  );
+}
+
+function ScrollIndicator() {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 2, duration: 1 }}
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[6] flex flex-col items-center gap-3"
+    >
+      <span className="font-mono text-[9px] text-white/30 tracking-[0.3em] uppercase">Scroll</span>
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        className="w-[1px] h-8 bg-gradient-to-b from-white/40 to-transparent"
+      />
+    </motion.div>
+  );
+}
+
+export function Hero() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const contentY = useTransform(scrollYProgress, [0, 0.5], ["0%", "-5%"]);
+  const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const overlayOpacity = useTransform(scrollYProgress, [0.3, 0.8], [0, 0.7]);
+  const frameOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+
+  return (
+    <div ref={heroRef} className="relative h-[150vh]">
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-obsidian">
+        
+        {/* Video */}
+        <motion.div
+          style={{ y: videoY, scale: videoScale }}
+          className="absolute inset-0 w-full h-full origin-center"
+        >
+          <HeroVideo />
+        </motion.div>
+
+        {/* Multi-layer dark overlay */}
+        <div className="absolute inset-0 z-[1] pointer-events-none">
+          <div className="absolute inset-0 bg-obsidian/60" />
+          <div className="absolute inset-0" style={{
+            background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(18,20,24,0.6) 100%)"
+          }} />
+        </div>
+
+        {/* Scroll-driven darken */}
+        <motion.div
+          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 bg-obsidian pointer-events-none z-[1]"
+        />
+
+        {/* Bottom gradient blend */}
+        <div
+          className="absolute bottom-0 inset-x-0 h-[300px] z-[2] pointer-events-none"
+          style={{
+            background: "linear-gradient(to bottom, transparent 0%, rgba(18,20,24,0.5) 40%, rgba(18,20,24,0.9) 70%, #121418 100%)"
+          }}
+        />
+
+        {/* Corner brackets */}
+        <motion.div style={{ opacity: frameOpacity }}>
+          <CornerBracket position="tl" />
+          <CornerBracket position="tr" />
+          <CornerBracket position="bl" />
+          <CornerBracket position="br" />
+        </motion.div>
+
+        {/* Vertical side text */}
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0 w-full h-full"
+          transition={{ delay: 1.8, duration: 1 }}
+          style={{ opacity: frameOpacity }}
+          className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 z-[6]"
         >
-          {/* Desktop/Laptop Video */}
-          <video
-            ref={desktopVideoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover hidden md:block"
-            style={{ 
-              filter: 'brightness(0.55) contrast(1.15) saturate(1.1)'
-            }}
-            aria-hidden="true"
-          >
-            <source src="/landscape.mp4" type="video/mp4" />
-          </video>
-          {/* Mobile Video */}
-          <video
-            ref={mobileVideoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover block md:hidden"
-            style={{ 
-              filter: 'brightness(0.55) contrast(1.15) saturate(1.1)'
-            }}
-            aria-hidden="true"
-          >
-            <source src="/portrait.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-obsidian/50 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/30" />
+          <div className="font-mono text-[9px] text-white/20 tracking-[0.4em] uppercase" style={{ writingMode: "vertical-rl" }}>
+            EST. 1988 · JAIPUR · INDIA
+          </div>
         </motion.div>
-      </div>
 
-      {/* SVG Wire draw graphic spanning the screen */}
-      <div className="absolute top-[35%] left-0 w-full h-[2px] z-0 overflow-hidden opacity-30" aria-hidden="true">
-        <svg fill="none" preserveAspectRatio="none" className="w-full h-[80px] -mt-[39px]">
-          <path 
-            ref={wireLineRef}
-            d="M0 40 Q 25% 10, 50% 40 T 100% 40" 
-            stroke="#F97316" 
-            strokeWidth="1" 
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-      </div>
+        {/* Content — centered */}
+        <motion.div
+          style={{ opacity: contentOpacity, y: contentY }}
+          className="absolute inset-0 z-[5] flex items-center justify-center"
+        >
+          <div className="text-center w-full mx-auto px-[5vw]">
+            
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="inline-flex items-center gap-3 mb-10"
+            >
+              <span className="w-8 h-[1px] bg-amber" />
+              <span className="font-mono text-[10px] sm:text-xs text-amber tracking-[0.3em] uppercase">Galvanized Iron Wire</span>
+              <span className="w-8 h-[1px] bg-amber" />
+            </motion.div>
 
-      <div className="max-w-[1280px] w-full mx-auto px-[5vw] relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
-        
-        {/* Left Column - Typography & CTAs */}
-        <div className="flex flex-col justify-center col-span-1 lg:col-span-8">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-            className="inline-flex items-center gap-3 mb-8"
-          >
-            <span className="w-12 h-[1px] bg-amber/80" />
-            <span className="font-mono text-[10px] sm:text-xs text-amber tracking-[0.25em] uppercase">Forging The Future · Since 2008</span>
-          </motion.div>
+            {/* Tagline — Line 1 */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="font-bebas text-white mb-2"
+              style={{
+                fontSize: "clamp(52px, 11vw, 130px)",
+                lineHeight: 0.88,
+              }}
+            >
+              PRECISION IN EVERY STRAND
+            </motion.h1>
 
-          <h1 className="font-bebas text-[clamp(42px,12vw,140px)] flex flex-col uppercase tracking-wider leading-[0.85] text-cream">
-            <span className="metallic-text drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-              <SplitText text="PRECISION" delayOffset={0.6} />
-            </span>
-            <div className="flex items-center gap-4 lg:ml-12">
-              <span className="text-steel opacity-80"><SplitText text="IN" delayOffset={0.7} /></span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber to-amber-dim drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]">
-                <SplitText text="EVERY" delayOffset={0.8} />
-              </span>
-            </div>
-            <span className="metallic-text">
-              <SplitText text="STRAND." delayOffset={0.9} />
-            </span>
-          </h1>
+            {/* Tagline — Line 2 */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="font-bebas text-amber mb-10"
+              style={{
+                fontSize: "clamp(52px, 11vw, 130px)",
+                lineHeight: 0.88,
+              }}
+            >
+              STRENGTH IN EVERY CONNECTION
+            </motion.h1>
 
-          <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center mt-12 lg:ml-12 border-l-2 border-glass-border pl-6 lg:border-none lg:pl-0">
-            <motion.p 
+            {/* Buttons */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="font-sans font-light text-base lg:text-lg text-steel/80 max-w-[400px] leading-relaxed"
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-wrap items-center justify-center gap-4"
             >
-              Mastering the art of High-Tensile Galvanized Steel Wire manufacturing for global infrastructure standards.
-            </motion.p>
-            
-            <motion.button 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="hidden lg:flex items-center justify-center w-16 h-16 rounded-full border border-glass-border hover:border-amber hover:bg-amber/10 transition-colors cursor-pointer group"
-              aria-label="Play video"
-            >
-              <Play className="w-5 h-5 text-cream group-hover:text-amber transition-colors ml-1" />
-            </motion.button>
+              <Link
+                href="/contact"
+                className="blob-btn font-mono text-[11px] tracking-[0.2em] uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
+              >
+                Request a Quote
+              </Link>
+
+              <Link
+                href="/products"
+                className="glass-btn font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 inline-flex items-center gap-3"
+              >
+                <span>View Products</span>
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </motion.div>
           </div>
+        </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
-            className="flex flex-wrap items-center gap-8 mt-16"
-          >
-            <MagneticButton>
-              <Link href="/contact" className="relative group overflow-hidden rounded-full font-mono text-[11px] tracking-[0.2em] uppercase flex items-center justify-center shadow-[0_8px_20px_rgba(234,88,12,0.3)] min-w-[200px]">
-                <div className="absolute inset-0 bg-amber transition-transform duration-500" />
-                <div className="absolute inset-0 bg-cream translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
-                <span className="relative px-8 py-5 text-obsidian font-bold transition-colors">Request a Quote</span>
-              </Link>
-            </MagneticButton>
+        {/* Scroll indicator */}
+        <ScrollIndicator />
 
-            <MagneticButton>
-              <Link href="/products" className="group flex items-center gap-4 font-mono text-[11px] tracking-[0.2em] uppercase text-cream hover:text-amber transition-colors py-4 px-2 cursor-pointer">
-                <span>View Catalogue</span>
-                <motion.div
-                  className="w-11 h-11 rounded-full border border-glass-border flex items-center justify-center group-hover:border-amber transition-colors"
-                  whileHover={{ x: 5 }}
-                >
-                  <ArrowRight className="w-4 h-4" />
-                </motion.div>
-              </Link>
-            </MagneticButton>
-          </motion.div>
-        </div>
-
-        {/* Right Column - Data Visualization / Interactive Elements */}
-        <div className="hidden lg:flex col-span-4 relative flex-col justify-center pb-20 items-end">
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.6 }}
-            className="glass-panel p-8 rounded-2xl w-full max-w-[320px] backdrop-blur-xl border-amber/20 shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
-            style={{ transformStyle: 'preserve-3d', transform: 'perspective(1000px) rotateY(-5deg)' }}
-          >
-            {/* Spinning Wire Coil SVG visual */}
-            <div className="absolute -top-12 -right-8 w-32 h-32 opacity-20 pointer-events-none animate-[spin_20s_linear_infinite]">
-              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1" className="text-amber">
-                 <circle cx="50" cy="50" r="40" strokeDasharray="4 4" />
-                 <circle cx="50" cy="50" r="30" strokeDasharray="3 3" />
-                 <circle cx="50" cy="50" r="20" strokeDasharray="2 2" />
-              </svg>
-            </div>
-
-            <div className="flex justify-between items-end mb-6 relative z-10">
-              <div className="font-bebas text-6xl text-cream leading-none">700<span className="text-amber">+</span></div>
-              <div className="font-mono text-[10px] text-steel uppercase tracking-widest text-right leading-relaxed">Metric Tons<br/>Monthly</div>
-            </div>
-            
-            <div className="space-y-4 relative z-10">
-              <div>
-                <div className="flex justify-between text-[10px] font-mono tracking-widest text-steel mb-2 uppercase">
-                  <span>Production Yield</span>
-                  <span className="text-amber">99.9%</span>
-                </div>
-                <div className="w-full h-[2px] bg-glass-border rounded-full overflow-hidden">
-                  <motion.div 
-                    initial={{ width: 0 }}
-                    animate={{ width: "99.9%" }}
-                    transition={{ duration: 1.5, delay: 2.0, ease: "easeOut" }}
-                    className="h-full bg-amber" 
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
       </div>
-
-    </section>
+    </div>
   );
 }

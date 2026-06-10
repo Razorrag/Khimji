@@ -131,9 +131,10 @@ export function Contact() {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <div className="p-8 md:p-14 relative border border-glass-border/50 rounded-2xl overflow-hidden glass-panel shadow-2xl bg-charcoal/30">
+          <div className="blob-card p-8 md:p-14 relative border border-glass-border/50 rounded-2xl overflow-hidden bg-charcoal/30">
             {/* Soft amber glow inside form */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber/5 rounded-full blur-[100px] pointer-events-none" />
+             <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
+                  style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
             
             <h3 className="font-bebas text-4xl text-cream mb-12 tracking-wide relative z-10 border-b border-glass-border pb-4">Request a Quote</h3>
             
@@ -186,7 +187,7 @@ export function Contact() {
               <MagneticButton 
                 type="submit"
                 disabled={isSubmitting}
-                className="group/btn mt-6 relative overflow-hidden font-mono text-xs tracking-[0.2em] uppercase bg-charcoal text-amber border border-amber/30 hover:border-amber transition-colors py-5 flex items-center justify-center rounded-sm"
+                className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group/btn mt-6 relative overflow-hidden transition-colors"
               >
                 {/* Button shine */}
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber/10 to-transparent -translate-x-[200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
@@ -213,11 +214,13 @@ export function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-charcoal/95 backdrop-blur-sm border border-amber/30 text-center px-6 rounded-2xl"
+                  className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-charcoal/95 backdrop-blur-sm text-center px-6 rounded-2xl"
+                  style={{ border: "1px solid rgba(249,115,22,0.3)" }}
                   role="alert"
                   aria-live="polite"
                 >
-                  <div className="w-16 h-16 rounded-full border border-amber/50 flex items-center justify-center mb-6 text-amber">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-amber"
+                       style={{ border: "1px solid rgba(249,115,22,0.5)" }}>
                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 13l4 4L19 7" /></svg>
                   </div>
                   <h3 className="font-bebas text-4xl text-cream mb-4 tracking-wide">Request Received</h3>

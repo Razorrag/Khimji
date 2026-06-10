@@ -16,7 +16,7 @@ export function WhatsAppButton() {
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            className="glass-panel p-4 rounded-2xl border border-glass-border flex flex-col gap-2 max-w-[220px] pointer-events-auto"
+            className="blob-card p-4 rounded-2xl border border-glass-border flex flex-col gap-2 max-w-[220px] pointer-events-auto"
           >
             <p className="font-mono text-[9px] text-steel uppercase tracking-widest mb-2">Quick Enquiry</p>
             {[

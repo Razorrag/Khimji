@@ -31,7 +31,8 @@ export function IndiaMap() {
   return (
     <section className="relative py-32 bg-transparent overflow-hidden border-t border-glass-border">
       {/* Glow Effects */}
-      <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[400px] h-[400px] bg-amber/5 blur-[100px] rounded-full pointer-events-none" />
+       <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[400px] h-[400px] blur-[100px] rounded-full pointer-events-none"
+            style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
 
       <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
         
@@ -58,7 +59,7 @@ export function IndiaMap() {
             </p>
 
             {/* Interactive Logistics Info Card */}
-            <div className="glass-panel p-6 rounded-2xl border border-glass-border bg-charcoal/20 min-h-[160px] flex flex-col justify-between">
+             <div className="blob-card p-6 rounded-2xl border border-glass-border bg-charcoal/20 min-h-[160px] flex flex-col justify-between">
               {activeRoute ? (
                 <motion.div
                   key={activeRoute.city}
@@ -84,7 +85,8 @@ export function IndiaMap() {
                 </motion.div>
               ) : (
                 <div className="flex flex-col justify-center items-center text-center h-full py-4">
-                  <div className="text-amber/40 mb-3">
+                  <div className="mb-3"
+                       style={{ color: "rgba(249,115,22,0.4)" }}>
                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                     </svg>
@@ -98,11 +100,13 @@ export function IndiaMap() {
 
             {/* General Highlights */}
             <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="border-l border-amber/30 pl-4 py-2">
+               <div className="pl-4 py-2"
+                    style={{ borderLeft: "1px solid rgba(249,115,22,0.3)" }}>
                 <span className="block font-bebas text-xl text-cream">24 - 48 HRS</span>
                 <span className="block font-mono text-[9px] text-steel/50 uppercase">North & West India</span>
               </div>
-              <div className="border-l border-amber/30 pl-4 py-2">
+               <div className="pl-4 py-2"
+                    style={{ borderLeft: "1px solid rgba(249,115,22,0.3)" }}>
                 <span className="block font-bebas text-xl text-cream">72 HRS MAX</span>
                 <span className="block font-mono text-[9px] text-steel/50 uppercase">South & East Ports</span>
               </div>

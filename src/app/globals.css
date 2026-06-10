@@ -217,6 +217,105 @@
     border-color: rgba(249, 115, 22, 0.3);
   }
 
+  /* Blob gradient — flowing amber/orange from the reference image */
+  .blob-btn {
+    background: linear-gradient(135deg, #F97316 0%, #FB923C 30%, #FDBA74 60%, #F97316 100%);
+    background-size: 200% 200%;
+    animation: blobShift 4s ease-in-out infinite;
+    color: #121418;
+    border-radius: 9999px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .blob-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%, rgba(255,255,255,0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .blob-btn:hover::before {
+    opacity: 1;
+  }
+
+  .blob-btn:hover {
+    box-shadow: 0 0 40px rgba(249, 115, 22, 0.4), 0 8px 32px rgba(249, 115, 22, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Glass secondary button */
+  .glass-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+    color: #FAFAFA;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .glass-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(249, 115, 22, 0.4);
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.1);
+    transform: translateY(-2px);
+  }
+
+  /* Card with blob gradient background */
+  .blob-card {
+    background: linear-gradient(135deg, rgba(28,30,36,0.95) 0%, rgba(18,20,24,0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .blob-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    opacity: 0.08;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+
+  .blob-card:hover::before {
+    opacity: 0.15;
+  }
+
+  .blob-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(249,115,22,0) 0%, rgba(249,115,22,0.2) 50%, rgba(249,115,22,0) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .blob-card:hover::after {
+    opacity: 1;
+  }
+
+  .blob-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 4px 20px rgba(249,115,22,0.1);
+    border-color: rgba(249, 115, 22, 0.3);
+  }
+
   .metallic-text {
     background: linear-gradient(to right, #ffffff 0%, #a1a9b8 50%, #ffffff 100%);
     -webkit-background-clip: text;
@@ -245,4 +344,10 @@
 @keyframes marquee {
   0% { transform: translateX(0%); }
   100% { transform: translateX(-50%); }
+}
+
+@keyframes blobShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }

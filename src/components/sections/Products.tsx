@@ -70,25 +70,29 @@ export function Products() {
           <h2 className="font-bebas text-6xl text-cream"><SplitText text="OUR PRODUCTS" /></h2>
         </div>
         {PRODUCTS.map((prod, i) => (
-          <div key={i} className="flex flex-col gap-6">
+            <div key={i} className="flex flex-col gap-6">
             <h3 className="font-bebas text-4xl text-cream">{prod.ordinal}. {prod.name}</h3>
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
               <img src={prod.img} alt={prod.name} loading="lazy" className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700" />
             </div>
-            <div className="glass-panel p-6 rounded-xl border border-glass-border">
+            <div className="blob-card p-6">
               <div className="flex flex-col gap-2 font-mono text-xs text-steel mb-4">
                 {Object.entries(prod.specs).map(([k, v]) => (
-                  <div className="flex justify-between border-b border-glass-border/50 pb-2" key={k}>
-                    <span className="uppercase text-steel/70">{k}</span>
+                  <div className="flex justify-between border-b pb-2" style={{ borderColor: "rgba(255,255,255,0.08)" }} key={k}>
+                    <span className="uppercase" style={{ color: "rgba(203,213,225,0.7)" }}>{k}</span>
                     <span className="text-amber">{v}</span>
                   </div>
                 ))}
               </div>
               <div className="flex flex-wrap gap-2 mt-6">
                 {prod.apps.map(app => (
-                  <span key={app} className="text-[9px] font-mono px-2 py-1 bg-charcoal text-steel border border-glass-border uppercase tracking-widest">{app}</span>
+                  <span key={app} className="text-[9px] font-mono px-3 py-1.5 rounded-full text-steel border uppercase tracking-widest" style={{ backgroundColor: "rgba(28,30,36,0.8)", borderColor: "rgba(255,255,255,0.08)" }}>{app}</span>
                 ))}
               </div>
+              <a href="#contact" className="blob-btn font-mono text-[11px] tracking-widest uppercase font-bold flex items-center justify-center gap-3 w-full px-6 py-3 mt-6">
+                <span>Request Quote</span>
+                <span>→</span>
+              </a>
             </div>
           </div>
         ))}
@@ -137,25 +141,23 @@ export function Products() {
                   </div>
 
                   <div className={`transition-all duration-700 transform ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                    <div className="glass-panel p-10 rounded-2xl border border-glass-border shadow-2xl bg-charcoal/80 backdrop-blur-xl group hover:border-amber/50 transition-colors">
+                    <div className="blob-card p-10 group">
                       <div className="flex flex-col gap-5 font-mono text-xs text-steel mb-10">
                         {Object.entries(prod.specs).map(([k, v]) => (
-                          <div key={k} className="flex justify-between items-end border-b border-glass-border/50 pb-3 group-hover:border-glass-border transition-colors">
-                            <span className="uppercase text-[10px] tracking-widest text-steel/60">{k}</span>
+                          <div key={k} className="flex justify-between items-end border-b pb-3" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                            <span className="uppercase text-[10px] tracking-widest" style={{ color: "rgba(203,213,225,0.6)" }}>{k}</span>
                             <span className="text-cream text-sm relative">{v}</span>
                           </div>
                         ))}
                       </div>
                       <div className="flex flex-wrap gap-3 mb-10">
                         {prod.apps.map(app => (
-                          <span key={app} className="text-[10px] font-mono px-3 py-1.5 bg-obsidian text-steel rounded-sm border border-glass-border uppercase tracking-widest">{app}</span>
+                          <span key={app} className="text-[10px] font-mono px-3 py-1.5 rounded-full text-steel border uppercase tracking-widest" style={{ backgroundColor: "rgba(18,20,24,0.8)", borderColor: "rgba(255,255,255,0.08)" }}>{app}</span>
                         ))}
                       </div>
-                      <a href="#contact" className="group/btn relative overflow-hidden font-mono text-[11px] tracking-widest uppercase flex items-center justify-between w-full pb-4 border-b border-amber/30 hover:border-amber transition-colors text-cream">
-                        <span className="font-bold tracking-[0.2em] group-hover/btn:text-amber transition-colors">Request Quote</span>
-                        <div className="w-8 h-8 rounded-full border border-glass-border flex items-center justify-center group-hover/btn:border-amber group-hover/btn:bg-amber transition-all">
-                           <span className="transform group-hover/btn:translate-x-1 group-hover/btn:text-obsidian transition-all">→</span>
-                        </div>
+                      <a href="#contact" className="blob-btn font-mono text-[11px] tracking-widest uppercase font-bold flex items-center justify-center gap-3 w-full px-6 py-4">
+                        <span>Request Quote</span>
+                        <span>→</span>
                       </a>
                     </div>
                   </div>

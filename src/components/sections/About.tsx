@@ -56,10 +56,10 @@ export function About() {
   const yContent = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
-    <section ref={containerRef} id="about" className="relative overflow-hidden selection:bg-amber/30 bg-transparent">
+    <section ref={containerRef} id="about" className="relative overflow-hidden bg-transparent">
 
       {/* ───── Hero ───── */}
-      <div className="relative pt-40 pb-20 bg-gradient-to-b from-obsidian via-charcoal/40 to-obsidian">
+      <div className="relative pt-40 pb-20 bg-transparent">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export function About() {
           >
             <ol className="flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-steel">
               <li><a href="/" className="hover:text-amber transition-colors">Home</a></li>
-              <li className="text-amber/40">/</li>
+              <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
               <li className="text-cream">About Us</li>
             </ol>
           </motion.nav>
@@ -102,7 +102,8 @@ export function About() {
               className="hidden lg:flex flex-col items-center justify-center"
             >
               <div className="relative w-64 h-64">
-                <div className="absolute inset-0 rounded-full border-2 border-amber/20 animate-[spin_20s_linear_infinite]" />
+                <div className="absolute inset-0 rounded-full animate-[spin_20s_linear_infinite]"
+                     style={{ border: "2px solid rgba(249,115,22,0.2)" }} />
                 <div className="absolute inset-3 rounded-full border border-glass-border" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
@@ -204,7 +205,8 @@ export function About() {
               whileInView={{ opacity: 1, width: "100%" }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
-              className="h-[1px] bg-amber/50 max-w-[100px] mb-6 block"
+              className="h-[1px] max-w-[100px] mb-6 block"
+              style={{ backgroundColor: "rgba(249,115,22,0.5)" }}
             />
             <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">About Company</h3>
             <h2 className="font-bebas text-[clamp(48px,6vw,90px)] leading-[0.85] text-cream mb-10 border-l-[3px] border-amber pl-6 py-2 uppercase min-h-[160px]">
@@ -246,14 +248,15 @@ export function About() {
 
             <motion.a 
               href="#products" 
-              className="group mt-16 flex items-center gap-4 w-fit px-6 py-4 rounded-full border border-glass-border hover:border-amber hover:bg-glass-panel transition-all duration-300"
+              className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group mt-16 w-fit"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}
             >
               <span className="font-mono text-xs text-amber tracking-widest uppercase">
                 Explore Our Products
               </span>
-              <span className="w-8 h-8 rounded-full bg-amber/10 group-hover:bg-amber flex items-center justify-center transition-colors">
+              <span className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                    style={{ backgroundColor: "rgba(249,115,22,0.1)" }}>
                 <span className="text-amber group-hover:text-obsidian transition-colors">→</span>
               </span>
             </motion.a>
@@ -262,7 +265,7 @@ export function About() {
       </div>
 
       {/* ───── Vision & Mission ───── */}
-      <div className="py-32 bg-gradient-to-b from-charcoal/30 to-transparent relative border-t border-glass-border">
+      <div className="py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -283,7 +286,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="glass-panel p-10 md:p-14 rounded-2xl relative overflow-hidden group"
+              className="blob-card p-10 md:p-14 rounded-2xl relative overflow-hidden group"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0" />
               <h3 className="font-bebas text-3xl text-amber mb-6 tracking-wider uppercase">Our Vision</h3>
@@ -291,7 +294,8 @@ export function About() {
                 To build a manufacturing organization known for trust, quality, and long-term customer relationships while contributing to India&apos;s growing infrastructure and industrial sector.
               </p>
               <div className="mt-8 flex items-center gap-4">
-                <div className="w-12 h-[1px] bg-amber/50" />
+                <div className="w-12 h-[1px]"
+                     style={{ backgroundColor: "rgba(249,115,22,0.5)" }} />
                 <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Trusted Since 1988</span>
               </div>
             </motion.div>
@@ -301,7 +305,7 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="glass-panel p-10 md:p-14 rounded-2xl relative overflow-hidden group"
+              className="blob-card p-10 md:p-14 rounded-2xl relative overflow-hidden group"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0" />
               <h3 className="font-bebas text-3xl text-amber mb-6 tracking-wider uppercase">Our Mission</h3>
@@ -309,7 +313,8 @@ export function About() {
                 To deliver high-quality galvanized wire products with exceptional customer service, maintaining the highest standards of manufacturing excellence while fostering long-term partnerships.
               </p>
               <div className="mt-8 flex items-center gap-4">
-                <div className="w-12 h-[1px] bg-amber/50" />
+                <div className="w-12 h-[1px]"
+                     style={{ backgroundColor: "rgba(249,115,22,0.5)" }} />
                 <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Quality First</span>
               </div>
             </motion.div>
@@ -340,10 +345,11 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="glass-panel rounded-2xl overflow-hidden group"
+              className="blob-card rounded-2xl overflow-hidden group"
             >
               <div className="relative h-64 bg-gradient-to-br from-charcoal to-obsidian flex items-center justify-center overflow-hidden">
-                <div className="w-32 h-32 rounded-full bg-amber/10 border-2 border-amber/30 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full flex items-center justify-center"
+                     style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "2px solid rgba(249,115,22,0.3)" }}>
                   <span className="font-bebas text-5xl text-cream pt-1">OA</span>
                 </div>
                 <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-obsidian to-transparent" />
@@ -351,7 +357,8 @@ export function About() {
               <div className="p-8 md:p-10">
                 <h3 className="font-bebas text-3xl text-cream tracking-wider uppercase mb-1">Mr. Om Prakash Agarwal</h3>
                 <p className="font-mono text-[10px] text-amber tracking-widest uppercase mb-6">Founder & Chairman</p>
-                <blockquote className="font-playfair italic text-lg text-steel/90 border-l-2 border-amber/40 pl-6 mb-6">
+                <blockquote className="font-playfair italic text-lg text-steel/90 pl-6 mb-6"
+                            style={{ borderLeft: "2px solid rgba(249,115,22,0.4)" }}>
                   &ldquo;Quality is never an accident — it is always the result of intelligent effort. We build trust through every wire we produce.&rdquo;
                 </blockquote>
                 <ul className="space-y-3 font-sans text-sm text-steel/80">
@@ -369,10 +376,11 @@ export function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="glass-panel rounded-2xl overflow-hidden group"
+              className="blob-card rounded-2xl overflow-hidden group"
             >
               <div className="relative h-64 bg-gradient-to-br from-charcoal to-obsidian flex items-center justify-center overflow-hidden">
-                <div className="w-32 h-32 rounded-full bg-amber/10 border-2 border-amber/30 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full flex items-center justify-center"
+                     style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "2px solid rgba(249,115,22,0.3)" }}>
                   <span className="font-bebas text-5xl text-cream pt-1">MA</span>
                 </div>
                 <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-obsidian to-transparent" />
@@ -380,7 +388,8 @@ export function About() {
               <div className="p-8 md:p-10">
                 <h3 className="font-bebas text-3xl text-cream tracking-wider uppercase mb-1">Mr. Mahesh Chand Agarwal</h3>
                 <p className="font-mono text-[10px] text-amber tracking-widest uppercase mb-6">Director</p>
-                <blockquote className="font-playfair italic text-lg text-steel/90 border-l-2 border-amber/40 pl-6 mb-6">
+                <blockquote className="font-playfair italic text-lg text-steel/90 pl-6 mb-6"
+                            style={{ borderLeft: "2px solid rgba(249,115,22,0.4)" }}>
                   &ldquo;Excellence in manufacturing is not just about meeting standards — it&apos;s about setting them. Every batch tells our story.&rdquo;
                 </blockquote>
                 <ul className="space-y-3 font-sans text-sm text-steel/80">
@@ -396,7 +405,7 @@ export function About() {
       </div>
 
       {/* ───── Core Values ───── */}
-      <div className="py-32 bg-gradient-to-b from-charcoal/30 to-transparent relative border-t border-glass-border">
+      <div className="py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -419,9 +428,10 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="glass-panel p-8 rounded-2xl text-center group"
+                className="blob-card p-8 rounded-2xl text-center group"
               >
-                <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-amber/10 flex items-center justify-center group-hover:bg-amber/20 transition-colors">
+                <div className="w-14 h-14 mx-auto mb-6 rounded-full flex items-center justify-center group-hover:bg-amber/20 transition-colors"
+                     style={{ backgroundColor: "rgba(249,115,22,0.1)" }}>
                   <svg className="w-7 h-7 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
                   </svg>
@@ -483,7 +493,7 @@ export function About() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-square rounded-2xl overflow-hidden bg-charcoal shadow-2xl">
+             <div className="aspect-square rounded-2xl overflow-hidden bg-charcoal">
               <img
                 src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200"
                 alt="Khemji Wire Manufacturing Facility"
@@ -492,7 +502,7 @@ export function About() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="glass-panel rounded-xl p-6">
+                 <div className="blob-card rounded-xl p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
                     <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Facility Highlights</span>
@@ -515,7 +525,7 @@ export function About() {
       </div>
 
       {/* ───── Certifications ───── */}
-      <div className="py-32 bg-gradient-to-b from-charcoal/30 to-transparent relative border-t border-glass-border">
+      <div className="py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -532,7 +542,7 @@ export function About() {
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
             {[
-              { name: 'IS:280', desc: 'Galvanized Steel Wire' },
+              { name: 'IS:280', desc: 'Galvanized Iron Wire' },
               { name: 'IS:3975', desc: 'Steel Wire for Armouring' },
               { name: 'UDYAM', desc: 'MSME Registration' },
             ].map((cert, i) => (
@@ -555,7 +565,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="glass-panel rounded-xl p-6 md:p-8"
+            className="blob-card rounded-xl p-6 md:p-8"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               {[
@@ -582,7 +592,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="glass-panel rounded-2xl p-12 md:p-20 text-center relative overflow-hidden"
+            className="blob-card rounded-2xl p-12 md:p-20 text-center relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-amber/5 via-transparent to-amber/5" />
             <div className="relative z-10">
@@ -596,13 +606,13 @@ export function About() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
                   href="/products"
-                  className="px-8 py-4 bg-amber text-obsidian font-mono text-xs tracking-widest uppercase rounded-full hover:bg-amber-dim transition-colors"
+                  className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
                 >
                   View Products
                 </a>
                 <a
                   href="/contact"
-                  className="px-8 py-4 border border-glass-border text-cream font-mono text-xs tracking-widest uppercase rounded-full hover:border-amber hover:text-amber transition-colors"
+                  className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center"
                 >
                   Contact Us
                 </a>

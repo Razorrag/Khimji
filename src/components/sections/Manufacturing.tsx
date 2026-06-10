@@ -90,8 +90,7 @@ export function Manufacturing() {
 
   return (
     <section id="manufacturing" className="relative py-32 bg-transparent overflow-hidden" ref={containerRef}>
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 mesh-bg opacity-50 z-0" />
+      {/* Ambient canvas shows through — no competing background */}
       
       <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
         <div className="text-center mb-24 lg:mb-12">
@@ -158,7 +157,8 @@ export function Manufacturing() {
                 </div>
 
                 {/* Node Circle */}
-                <div className="w-16 h-16 rounded-full glass-panel flex items-center justify-center relative z-10 border border-amber/30 transition-colors shadow-[0_0_30px_rgba(15,23,42,0.1)] bg-charcoal">
+                <div className="w-16 h-16 rounded-full blob-card flex items-center justify-center relative z-10 transition-colors shadow-[0_0_30px_rgba(15,23,42,0.1)] bg-charcoal"
+                     style={{ border: "1px solid rgba(249,115,22,0.3)" }}>
                   <div className="w-3 h-3 rounded-full bg-amber shadow-[0_0_10px_#EA580C]" />
                 </div>
               </div>

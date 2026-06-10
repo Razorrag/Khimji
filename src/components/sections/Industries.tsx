@@ -94,7 +94,8 @@ export function Industries() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group flex flex-col md:flex-row md:items-center justify-between p-8 bg-charcoal/80 backdrop-blur-md hover:bg-glass-panel border border-glass-border hover:border-amber/50 transition-all duration-300 rounded-xl relative z-10 overflow-hidden shadow-xl"
+                className="group flex flex-col md:flex-row md:items-center justify-between p-8 backdrop-blur-md hover:bg-glass-panel border border-glass-border hover:border-amber/50 transition-all duration-300 rounded-xl relative z-10 overflow-hidden"
+                style={{ backgroundColor: "rgba(30,32,38,0.8)" }}
               >
                 {/* Shine effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[1.5s] ease-in-out pointer-events-none" />

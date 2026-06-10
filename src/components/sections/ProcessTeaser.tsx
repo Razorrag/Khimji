@@ -33,7 +33,7 @@ export function ProcessTeaser() {
               <span className="text-steel"><SplitText text="STRAND" delayOffset={0.2} /></span>
             </h2>
           </div>
-          <Link href="/manufacturing" className="group font-mono text-[11px] uppercase tracking-widest text-amber hover:text-cream transition-colors flex items-center gap-3 pb-2 border-b border-amber/30 hover:border-cream/30">
+           <Link href="/manufacturing" className="glass-btn font-mono text-[11px] uppercase tracking-widest px-8 py-4 inline-flex items-center justify-center gap-3 group">
             See Full Journey
             <ArrowRightIcon />
           </Link>
@@ -55,8 +55,9 @@ export function ProcessTeaser() {
               className="group flex flex-col items-center text-center relative z-10"
             >
               {/* Card Container */}
-              <div className="w-full glass-panel p-6 rounded-2xl border border-glass-border group-hover:border-amber/50 transition-all duration-500 bg-charcoal/30 flex flex-col items-center h-full">
-                <span className="font-mono text-[10px] text-amber/60 font-semibold mb-4 self-start bg-amber/5 px-2.5 py-0.5 rounded-full border border-amber/10">{step.num}</span>
+               <div className="w-full blob-card p-6 rounded-2xl border border-glass-border group-hover:border-amber/50 transition-all duration-500 bg-charcoal/30 flex flex-col items-center h-full">
+                 <span className="font-mono text-[10px] text-amber/60 font-semibold mb-4 self-start px-2.5 py-0.5 rounded-full"
+                       style={{ backgroundColor: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.1)" }}>{step.num}</span>
                 <span className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300 select-none">{step.icon}</span>
                 <h4 className="font-bebas text-2xl text-cream mb-2 tracking-wide leading-none group-hover:text-amber transition-colors">{step.label}</h4>
                 <p className="font-sans text-[11px] text-steel/70 font-light mt-1 leading-normal max-w-[120px]">{step.desc}</p>

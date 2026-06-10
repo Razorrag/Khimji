@@ -15,7 +15,8 @@ function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], dir
       >
         {content.map((item, i) => (
           <span key={i} className="font-mono text-[10px] md:text-xs text-steel/50 uppercase tracking-[0.2em] md:tracking-[0.3em] font-medium flex items-center">
-            {item} <span className="text-amber/40 mx-4 md:mx-6 text-xs">◆</span>
+            {item} <span className="mx-4 md:mx-6 text-xs"
+                          style={{ color: "rgba(249,115,22,0.4)" }}>◆</span>
           </span>
         ))}
       </div>
@@ -25,9 +26,9 @@ function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], dir
 
 export function MarqueeBanner() {
   return (
-    <section className="bg-obsidian border-y border-glass-border overflow-hidden py-4 md:py-8 flex flex-col gap-2 relative pointer-events-none select-none">
-       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-obsidian to-transparent z-10" />
-       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-obsidian to-transparent z-10" />
+    <section className="border-y border-glass-border overflow-hidden py-4 md:py-8 flex flex-col gap-2 relative z-10 pointer-events-none select-none bg-obsidian">
+       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[var(--color-obsidian)] to-transparent z-10" />
+       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[var(--color-obsidian)] to-transparent z-10" />
        
        <style dangerouslySetInnerHTML={{__html: `
          @keyframes marquee-left {

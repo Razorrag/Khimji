@@ -77,7 +77,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             The Gazette
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-steel/30" />
-          <span className="text-amber/80 font-bold truncate max-w-[200px] md:max-w-none">{post.category}</span>
+          <span className="font-bold truncate max-w-[200px] md:max-w-none"
+                style={{ color: "rgba(249,115,22,0.8)" }}>{post.category}</span>
         </div>
 
         {/* Title */}
@@ -87,7 +88,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {/* Post Meta */}
         <div className="flex flex-wrap items-center gap-6 font-mono text-[10px] md:text-xs tracking-widest uppercase text-steel/60 mb-16">
-          <span className="px-3 py-1 bg-amber/10 text-amber border border-amber/20 rounded-full">{post.category}</span>
+          <span className="px-3 py-1 text-amber border rounded-full"
+                style={{ backgroundColor: "rgba(249,115,22,0.1)", borderColor: "rgba(249,115,22,0.2)" }}>{post.category}</span>
           <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" />{post.date}</span>
           <span className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" />{post.readTime}</span>
         </div>
@@ -101,15 +103,16 @@ export default async function BlogPostPage({ params }: PageProps) {
         </div>
 
         {/* CTA Box */}
-        <div className="glass-panel p-8 md:p-12 rounded-2xl border border-glass-border bg-charcoal/50 flex flex-col md:flex-row items-center justify-between gap-8 mt-20 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-48 h-48 bg-amber/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border bg-charcoal/50 flex flex-col md:flex-row items-center justify-between gap-8 mt-20 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-[100px] pointer-events-none"
+               style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
           <div className="relative z-10 text-center md:text-left">
             <h4 className="font-mono text-xs text-amber tracking-widest uppercase mb-3">Need Technical Advice?</h4>
             <p className="font-sans text-sm text-steel leading-relaxed max-w-[400px]">
               Our engineers can guide you through IS 280 & IS 3975 specifications for your bulk requirements.
             </p>
           </div>
-          <Link href="/contact" className="relative z-10 inline-flex items-center justify-center px-8 py-4 bg-amber text-obsidian font-mono text-xs tracking-widest uppercase font-bold rounded-full hover:bg-cream transition-colors whitespace-nowrap shadow-[0_4px_15px_rgba(249,115,22,0.2)]">
+          <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center relative z-10 whitespace-nowrap">
             Consult An Engineer
           </Link>
         </div>
