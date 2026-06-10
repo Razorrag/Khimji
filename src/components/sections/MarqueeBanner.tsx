@@ -1,23 +1,24 @@
 "use client";
 
-import { motion } from 'framer-motion';
-
 function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], direction?: number, speed?: number }) {
+  // Triple the content to ensure standard screens are fully covered without gaps during translate3d transitions
   const content = [...items, ...items, ...items];
+  const animName = direction === 1 ? "marquee-left" : "marquee-right";
 
   return (
     <div className="overflow-hidden whitespace-nowrap py-3 md:py-4 flex flex-nowrap items-center">
-      <motion.div
-        animate={{ x: direction === 1 ? [0, '-33.33%'] : ['-33.33%', 0] }}
-        transition={{ repeat: Infinity, duration: speed, ease: 'linear' }}
+      <div
         className="inline-flex gap-8 md:gap-12 min-w-max"
+        style={{
+          animation: `${animName} ${speed}s linear infinite`,
+        }}
       >
         {content.map((item, i) => (
           <span key={i} className="font-mono text-[10px] md:text-xs text-steel/50 uppercase tracking-[0.2em] md:tracking-[0.3em] font-medium flex items-center">
             {item} <span className="text-amber/40 mx-4 md:mx-6 text-xs">◆</span>
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -28,20 +29,31 @@ export function MarqueeBanner() {
        <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-obsidian to-transparent z-10" />
        <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-obsidian to-transparent z-10" />
        
+       <style dangerouslySetInnerHTML={{__html: `
+         @keyframes marquee-left {
+           0% { transform: translate3d(0, 0, 0); }
+           100% { transform: translate3d(-33.3333%, 0, 0); }
+         }
+         @keyframes marquee-right {
+           0% { transform: translate3d(-33.3333%, 0, 0); }
+           100% { transform: translate3d(0, 0, 0); }
+         }
+       `}} />
+       
        <MarqueeRow 
          items={["IS 280 CERTIFIED", "700+ MT MONTHLY", "JAIPUR RAJASTHAN", "GLOBAL STANDARDS", "HOT DIP GALVANIZED"]} 
          direction={1} 
-         speed={30}
+         speed={25}
        />
        <MarqueeRow 
          items={["गुणवत्ता", "QUALITY", "विश्वास", "TRUST", "परिशुद्धता", "PRECISION"]} 
          direction={-1} 
-         speed={45}
+         speed={35}
        />
        <MarqueeRow 
          items={["CABLE MANUFACTURERS", "POWER SECTOR", "INFRASTRUCTURE", "AGRICULTURE CO-OPS", "FENCING CONTRACTORS"]} 
          direction={1} 
-         speed={35}
+         speed={30}
        />
     </section>
   );

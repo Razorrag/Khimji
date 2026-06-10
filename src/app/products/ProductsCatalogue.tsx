@@ -53,6 +53,7 @@ export function ProductsCatalogue() {
             className="group block relative"
             onMouseEnter={() => setHoveredIdx(idx)}
             onMouseLeave={() => setHoveredIdx(null)}
+            onTouchStart={() => setHoveredIdx(idx)}
           >
             <div className="glass-panel p-2 rounded-2xl border border-glass-border overflow-hidden h-full flex flex-col hover:border-amber/50 transition-colors">
               <div className="aspect-[4/3] w-full rounded-xl overflow-hidden relative bg-obsidian">
@@ -60,6 +61,7 @@ export function ProductsCatalogue() {
                  <img 
                    src={prod.img} 
                    alt={prod.name} 
+                   loading="lazy"
                    className="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700" 
                  />
                  <div className="absolute bottom-4 left-4 z-20 px-3 py-1 bg-amber text-obsidian font-mono text-[10px] tracking-widest uppercase rounded flex items-center gap-2">

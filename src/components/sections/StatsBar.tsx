@@ -3,7 +3,7 @@
 import { AnimatedStat } from '../ui/AnimatedStat';
 import { motion } from 'framer-motion';
 
-function RingStat({ value, max = 100, suffix, label }: { value: number; max?: number; suffix?: string; label: string }) {
+function RingStat({ value, max = 100, suffix, label, displayValue }: { value: number; max?: number; suffix?: string; label: string; displayValue?: string }) {
   const radius = 50;
   const circumference = 2 * Math.PI * radius;  
   const strokeDashoffset = circumference - (Math.min(value, max) / max) * circumference;
@@ -24,8 +24,13 @@ function RingStat({ value, max = 100, suffix, label }: { value: number; max?: nu
             viewport={{ once: true, margin: "-10%" }}
           />
         </svg>
-        <div className="font-bebas text-4xl text-cream absolute">
-          {value}{suffix && <span className="text-amber text-2xl">{suffix}</span>}
+        <div className="font-bebas text-4xl text-cream absolute flex items-baseline">
+          {displayValue ? displayValue : (
+            <>
+              {value}
+              {suffix && <span className="text-amber text-2xl">{suffix}</span>}
+            </>
+          )}
         </div>
       </div>
       <div className="font-mono text-[10px] sm:text-xs text-steel uppercase tracking-widest max-w-[120px] mx-auto">
@@ -37,8 +42,7 @@ function RingStat({ value, max = 100, suffix, label }: { value: number; max?: nu
 
 export function StatsBar() {
   return (
-    <section className="relative py-32 bg-obsidian border-b border-glass-border overflow-hidden">
-      <div className="absolute inset-0 mesh-bg opacity-30 mix-blend-screen pointer-events-none" />
+    <section className="relative py-32 bg-transparent border-b border-glass-border overflow-hidden">
       
       <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
         <div className="text-center mb-20">
@@ -53,7 +57,9 @@ export function StatsBar() {
           <RingStat value={15} max={20} suffix="+" label="Years Est." />
           <RingStat value={99} max={100} suffix=".9%" label="Yield" />
           <RingStat value={450} max={500} suffix="°C" label="Zinc Bath" />
-          <RingStat value={0} max={100} suffix=".01" label="Tolerance (mm)" />
+          <div className="col-span-2 md:col-span-1 flex justify-center w-full">
+            <RingStat value={98} max={100} displayValue="±0.01" label="Tolerance (mm)" />
+          </div>
         </div>
       </div>
     </section>

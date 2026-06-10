@@ -52,7 +52,7 @@ export function Navbar() {
             <div key={link.label} className="relative group py-2">
               <Link
                 href={link.href}
-                className={`font-sans text-[11px] uppercase tracking-[0.2em] transition-colors relative ${pathname.startsWith(link.href) ? 'text-amber' : 'text-steel hover:text-cream'}`}
+                className={`font-sans text-[11px] uppercase tracking-[0.2em] transition-colors relative cursor-pointer ${pathname.startsWith(link.href) ? 'text-amber' : 'text-steel hover:text-cream'}`}
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-amber origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
@@ -62,7 +62,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-6">
-          <a href="tel:+919829277869" className="font-mono text-[10px] tracking-[0.2em] text-steel hover:text-amber transition-colors">
+          <a href="tel:+919829277869" className="font-mono text-[10px] tracking-[0.2em] text-steel hover:text-amber transition-colors cursor-pointer">
             +91-9829277869
           </a>
           <MagneticButton>
@@ -80,6 +80,7 @@ export function Navbar() {
         <button
           className="md:hidden text-cream p-2 z-50 relative"
           onClick={() => setIsOpen(true)}
+          aria-label="Open navigation menu"
         >
           <Menu className="w-6 h-6" />
         </button>
@@ -92,10 +93,13 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 glass-panel bg-obsidian/95 backdrop-blur-3xl flex flex-col items-center justify-center"
+            style={{ paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
           >
             <button
-              className="absolute top-8 right-[5vw] text-cream p-4"
+              className="text-cream p-4"
+              style={{ position: 'absolute', top: 'calc(1.5rem + env(safe-area-inset-top, 0px))', right: '5vw' }}
               onClick={() => setIsOpen(false)}
+              aria-label="Close navigation menu"
             >
               <X className="w-8 h-8" />
             </button>

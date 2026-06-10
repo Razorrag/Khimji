@@ -73,7 +73,7 @@ export function Products() {
           <div key={i} className="flex flex-col gap-6">
             <h3 className="font-bebas text-4xl text-cream">{prod.ordinal}. {prod.name}</h3>
             <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-xl">
-              <img src={prod.img} alt={prod.name} className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700" />
+              <img src={prod.img} alt={prod.name} loading="lazy" className="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700" />
             </div>
             <div className="glass-panel p-6 rounded-xl border border-glass-border">
               <div className="flex flex-col gap-2 font-mono text-xs text-steel mb-4">
@@ -166,7 +166,7 @@ export function Products() {
         </div>
 
         {/* Right Panel (Sticky Image) */}
-        <div className="w-1/2 h-screen sticky top-0 right-0 overflow-hidden ml-auto flex items-center justify-center p-12 lg:p-24 perspective-1000">
+        <div className="w-1/2 h-[100svh] sticky top-0 right-0 overflow-hidden ml-auto flex items-center justify-center p-12 lg:p-24 perspective-1000">
           <div className="relative w-full h-[80vh] rounded-3xl overflow-hidden glass-panel border border-glass-border shadow-2xl">
             {PRODUCTS.map((prod, i) => (
               <div 
@@ -178,6 +178,7 @@ export function Products() {
                 <motion.img 
                   src={prod.img} 
                   alt={prod.name} 
+                  loading="lazy"
                   className="w-full h-full object-cover filter grayscale contrast-125 brightness-110"
                   animate={{
                      scale: activeIndex === i ? 1.05 : 1.1,

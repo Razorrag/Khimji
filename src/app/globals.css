@@ -20,11 +20,15 @@
     background-color: var(--color-obsidian);
     color: var(--color-cream);
     overflow-x: hidden;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    overscroll-behavior: none;
   }
 
   html {
     scroll-behavior: smooth;
     cursor: none;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
   }
 
   @media (pointer: fine) {
@@ -37,6 +41,66 @@
     html {
       cursor: auto;
     }
+  }
+
+  /* Prevent iOS Safari zoom on input focus (inputs < 16px trigger zoom) */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Visible focus states for keyboard navigation */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #F97316;
+    outline-offset: 2px;
+  }
+
+  /* Fix iOS Safari select appearance */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg fill='none' viewBox='0 0 24 24' stroke='%2394a3b8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1em;
+    padding-right: 2.5em;
+  }
+
+  /* Prevent textarea resize on iOS */
+  textarea {
+    resize: none;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .liquid-metal-text,
+    .metallic-text {
+      animation: none !important;
+    }
+  }
+
+  /* On touch devices, make hover-dependent animations always visible */
+  @media (hover: none) and (pointer: coarse) {
+    .group:hover .group-hover\:translate-y-0 { transform: translateY(0); }
+    .group:hover .group-hover\:opacity-100 { opacity: 1; }
+    .group:hover .group-hover\:scale-100 { transform: scale(1); }
+    .group:hover .group-hover\:text-amber { color: #F97316; }
+    .group:hover .group-hover\:border-amber { border-color: #F97316; }
+    .group\/btn:hover .group-hover\/btn\:text-amber { color: #F97316; }
+    .group\/btn:hover .group-hover\/btn\:translate-x-1 { transform: translateX(0.25rem); }
+    .group\/node:hover .group-hover\/node\:opacity-100 { opacity: 1; }
   }
 
   /* Hide default scrollbar entirely since we use ScrollProgress */

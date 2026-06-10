@@ -4,76 +4,102 @@ import { useState } from 'react';
 import { SplitText } from '@/components/ui/SplitText';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import { ALL_FAQS } from '@/lib/faq-data';
 
-const FAQS = [
-  {
-    q: "What certifications do your galvanized wire products hold?",
-    a: "Our products strictly adhere to IS 280 and IS 3975 standards. We conduct in-house mass-of-zinc and uniformity testing to guarantee highest compliance."
-  },
-  {
-    q: "Can you manufacture custom wire gauges?",
-    a: "Yes, we utilize computerized cold-draw machines capable of drawing wire precisely from 0.90 mm to 5.00 mm based on client specifications."
-  },
-  {
-    q: "What makes your Hot Dip Galvanized Wire superior?",
-    a: "We employ a continuous hot-dip setup that guarantees an ultra-smooth, uniform zinc finish. This drastically improves resistance to atmospheric corrosion compared to standard galvanizing methods."
-  },
-  {
-    q: "What is your typical production turnaround time?",
-    a: "With a 700+ MT monthly capacity across our advanced drawing lines, standard orders dispatch within 7-10 business days."
-  },
-  {
-    q: "Do you offer nationwide shipping in India?",
-    a: "Absolutely. We supply large-scale infrastructure and electrical transmission projects PAN India, assuring secure logistics."
-  }
-];
+const TABS = ["All", "Products", "Ordering", "Quality", "Technical"];
 
 export function FAQClient() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [activeTab, setActiveTab] = useState("All");
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const filteredFaqs = ALL_FAQS.filter(
+    (faq) => activeTab === "All" || faq.group === activeTab
+  );
+
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <div className="pt-40 pb-24 px-[5vw] max-w-[1000px] mx-auto min-h-screen">
-      <h1 className="font-bebas text-6xl md:text-[100px] text-cream mb-6 tracking-wider uppercase leading-[0.85]">
-        <SplitText text="FREQUENTLY" /> <br/>
-        <span className="text-amber"><SplitText text="ASKED" delayOffset={0.2} /></span>
-      </h1>
-      <p className="font-sans text-steel text-lg font-light mb-20 max-w-[500px]">Technical specifications, ordering processes, and methodology clarifications.</p>
-      
-      <div className="flex flex-col border-t border-glass-border">
-        {FAQS.map((faq, i) => (
-          <div key={i} className="border-b border-glass-border overflow-hidden">
-            <button 
-              className="w-full flex items-center justify-between py-8 text-left group"
-              onClick={() => setOpenIndex(openIndex === i ? null : i)}
+      <div className="mb-16">
+        <h1 className="font-bebas text-6xl md:text-[100px] text-cream mb-6 tracking-wider uppercase leading-[0.85]">
+          <SplitText text="FREQUENTLY" /> <br/>
+          <span className="text-amber"><SplitText text="ASKED" delayOffset={0.2} /></span>
+        </h1>
+        <p className="font-sans text-steel text-base md:text-lg font-light max-w-[600px] leading-relaxed border-l-[3px] border-amber pl-6 py-1">
+          Technical specifications, ordering processes, standard requirements, and quality validations. Filter by category below.
+        </p>
+      </div>
+
+      {/* Categories Tabs */}
+      <div className="flex gap-3 overflow-x-auto pb-6 mb-12 scrollbar-none border-b border-glass-border/30 -mx-[5vw] px-[5vw] md:mx-0 md:px-0">
+        {TABS.map((tab) => {
+          const isActive = activeTab === tab;
+          return (
+            <button
+              key={tab}
+              onClick={() => {
+                setActiveTab(tab);
+                setOpenIndex(null); // Close active accordion
+              }}
+              className={`font-mono text-xs uppercase tracking-widest px-5 py-3 rounded-full border transition-all duration-300 whitespace-nowrap ${
+                isActive
+                  ? "bg-amber text-obsidian border-amber font-bold"
+                  : "bg-charcoal/40 text-steel border-glass-border hover:border-amber/50 hover:text-cream"
+              }`}
             >
-              <span className={`font-bebas text-3xl tracking-wide transition-colors duration-300 ${openIndex === i ? 'text-amber' : 'text-cream group-hover:text-amber/80'}`}>
-                 {faq.q}
-              </span>
-              <motion.div 
-                animate={{ rotate: openIndex === i ? 45 : 0 }} 
-                transition={{ duration: 0.3 }}
-                className="w-10 h-10 rounded-full border border-glass-border flex items-center justify-center shrink-0 ml-6 group-hover:border-amber transition-colors"
-              >
-                <Plus className={`w-5 h-5 ${openIndex === i ? 'text-amber' : 'text-cream'}`} />
-              </motion.div>
+              {tab}
             </button>
-            
-            <AnimatePresence>
-              {openIndex === i && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+          );
+        })}
+      </div>
+
+      {/* Accodions list */}
+      <div className="flex flex-col border-t border-glass-border/30 min-h-[400px]">
+        {filteredFaqs.length > 0 ? (
+          filteredFaqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div key={i} className="border-b border-glass-border/30 overflow-hidden">
+                <button
+                  className="w-full flex items-center justify-between py-6 text-left group"
+                  onClick={() => handleToggle(i)}
                 >
-                  <div className="pb-8 pr-12 font-sans text-steel font-light leading-relaxed">
-                    {faq.a}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <span className={`font-bebas text-2xl md:text-3xl tracking-wide transition-colors duration-300 ${isOpen ? 'text-amber' : 'text-cream group-hover:text-amber/80'}`}>
+                    {faq.q}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 45 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-8 h-8 rounded-full border border-glass-border flex items-center justify-center shrink-0 ml-4 group-hover:border-amber transition-colors"
+                  >
+                    <Plus className={`w-4 h-4 ${isOpen ? 'text-amber' : 'text-cream'}`} />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="pb-6 pr-8 font-sans text-sm md:text-base text-steel leading-relaxed font-light">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })
+        ) : (
+          <div className="py-20 text-center font-mono text-xs text-steel/60 uppercase tracking-widest">
+            No results found.
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

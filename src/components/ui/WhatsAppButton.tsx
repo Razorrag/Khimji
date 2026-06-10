@@ -7,7 +7,7 @@ export function WhatsAppButton() {
   const [isExpanded, setIsExpanded] = useState(false);
   
   return (
-    <div className="fixed bottom-6 right-6 z-[9990] flex flex-col items-end gap-3 pointer-events-none">
+    <div className="fixed bottom-6 right-6 z-[9990] flex flex-col items-end gap-3 pointer-events-none" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
       
       {/* Expanded: Quick message templates */}
       <AnimatePresence>

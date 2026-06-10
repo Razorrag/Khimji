@@ -177,6 +177,7 @@ export function ManufacturingClient() {
                           <img 
                             src={step.img} 
                             alt={step.title}
+                            loading="lazy"
                             className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                           />
                         </div>
@@ -203,7 +204,7 @@ export function ManufacturingClient() {
                           
                           {/* Mobile-only image */}
                           <div className="w-full aspect-video rounded-xl overflow-hidden border border-glass-border relative md:hidden my-2">
-                             <img src={step.img} alt={step.title} className="w-full h-full object-cover filter grayscale contrast-125" />
+                             <img src={step.img} alt={step.title} loading="lazy" className="w-full h-full object-cover filter grayscale contrast-125" />
                           </div>
 
                           <div className="glass-panel p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg mb-4 md:mb-0">
@@ -221,6 +222,7 @@ export function ManufacturingClient() {
                            <img 
                              src={step.img} 
                              alt={step.title}
+                             loading="lazy"
                              className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                            />
                          </div>

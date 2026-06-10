@@ -83,6 +83,82 @@ const PRODUCT_DB: Record<string, any> = {
   }
 };
 
+const TECHNICAL_TABLES: Record<string, { title: string; subtitle: string; headers: string[]; rows: string[][] }[]> = {
+  'hot-dip-galvanized-wire': [
+    {
+      title: "IS 280 Zinc Coating Classes (g/m²)",
+      subtitle: "Mandatory mass of zinc coating for different wire diameters as per Indian Standards.",
+      headers: ["Wire Diameter (mm)", "Heavy Coated (Class A)", "Medium Coated (Class B)", "Light Coated (Class C)"],
+      rows: [
+        ["1.25 mm – 1.60 mm", "150 – 190 g/m²", "100 g/m²", "60 g/m²"],
+        ["1.61 mm – 2.00 mm", "220 – 240 g/m²", "115 g/m²", "70 g/m²"],
+        ["2.01 mm – 2.50 mm", "240 – 260 g/m²", "125 g/m²", "80 g/m²"],
+        ["2.51 mm – 3.15 mm", "260 – 280 g/m²", "135 g/m²", "90 g/m²"],
+        ["3.16 mm – 4.00 mm", "280 – 300 g/m²", "150 g/m²", "100 g/m²"]
+      ]
+    },
+    {
+      title: "Tensile Strength Classification",
+      subtitle: "Mechanical grade designations based on ultimate tensile strength (UTS).",
+      headers: ["Grade / Temper", "Tensile Range (N/mm²)", "Elongation (Min %)", "Typical Applications"],
+      rows: [
+        ["Soft (Annealed)", "300 – 450 N/mm²", "15%", "Binding wire, light weaving, tying"],
+        ["Half-Hard", "450 – 550 N/mm²", "10%", "Barbed wire, vineyard trellises"],
+        ["Hard Draw", "550 – 850 N/mm²", "8%", "Chain link fence, high tension fencing"]
+      ]
+    }
+  ],
+  'low-carbon-galvanized-wire': [
+    {
+      title: "Binding Wire SWG to Diameter & Run Length",
+      subtitle: "Standard wire gauges (SWG) used on construction sites and their equivalent yields.",
+      headers: ["Standard Wire Gauge (SWG)", "Diameter (mm)", "Approx. Length per 1 Kg", "Tying Strength Capacity"],
+      rows: [
+        ["16 SWG", "1.60 mm", "≈ 64 meters", "High (Slab joints, column foundation mats)"],
+        ["18 SWG", "1.20 mm", "≈ 113 meters", "Medium (Standard beam and slab rebar)"],
+        ["20 SWG", "0.90 mm", "≈ 200 meters", "Light (Stirrup positioning, mesh tying)"],
+        ["22 SWG", "0.71 mm", "≈ 320 meters", "Extra-Light (Precise detailing, craft binding)"]
+      ]
+    },
+    {
+      title: "Mechanical & Metallurgical Checklist",
+      subtitle: "Quality tolerance verification metrics for low carbon structural binding wire.",
+      headers: ["Parameter", "Target Specification", "Tolerance Limit", "Testing Standards"],
+      rows: [
+        ["Carbon Content", "0.08% – 0.12%", "Max 0.15%", "Spectrometer analysis"],
+        ["Elongation %", "Min 15%", "No upper limit", "Inline tensile test (IS 1608)"],
+        ["Wrapping Test", "8 turns around self-diameter", "No fractures/peeling", "Mandrel wrapping test"],
+        ["Diameter Tolerance", "±0.02 mm to ±0.03 mm", "Max ±0.04 mm", "Digital micrometer verification"]
+      ]
+    }
+  ],
+  'formed-wire-cable-armouring': [
+    {
+      title: "IS 3975 Cable Armouring Size & Resistance Table",
+      subtitle: "Standard round and flat formed wire dimensions with mandatory electrical resistance thresholds.",
+      headers: ["Armour Type & Size", "Zinc Mass (Min)", "CuSO₄ Dips (Min)", "Max Resistivity at 20°C"],
+      rows: [
+        ["Round Wire (1.40 mm)", "180 g/m²", "3 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
+        ["Round Wire (1.60 mm)", "190 g/m²", "3 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
+        ["Round Wire (2.00 mm)", "200 g/m²", "4 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
+        ["Round Wire (2.50 mm)", "210 g/m²", "4 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
+        ["Round Wire (3.15 mm)", "220 g/m²", "4 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
+        ["Flat Formed (4.0 x 0.8 mm)", "180 g/m²", "3 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"]
+      ]
+    },
+    {
+      title: "Submersion & Adhesion Testing Criteria",
+      subtitle: "Mandatory quality checks for high-voltage cable protection substrates.",
+      headers: ["Quality Check", "Testing Agent/Method", "Failure Threshold", "Safety Goal"],
+      rows: [
+        ["Copper Sulfate Dip Test", "0.1N copper sulfate soln", "Copper deposition before 3 dips", "Guarantees zero bare steel spots"],
+        ["Torsion Integrity", "Reverse torsion test", "Fracture under 15 cycles", "Ensures zero wire breakage during winding"],
+        ["Zinc Stripping", "Antimony chloride & HCl", "Weight under spec minimum", "Guarantees 25+ years rust protection"]
+      ]
+    }
+  ]
+};
+
 export function ProductDetailClient({ slug }: { slug: string }) {
   const product = PRODUCT_DB[slug];
 
@@ -121,6 +197,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             <img 
               src={product.img} 
               alt={product.name} 
+              loading="lazy"
               className="w-full h-full object-cover filter grayscale contrast-125"
             />
             <div className="absolute bottom-6 left-6 z-20">
@@ -218,6 +295,56 @@ export function ProductDetailClient({ slug }: { slug: string }) {
         </div>
 
       </div>
+
+      {/* Full-width Technical Specifications & Compliance Tables Section */}
+      {TECHNICAL_TABLES[slug] && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-24 pt-16 border-t border-glass-border"
+        >
+          <div className="mb-12">
+            <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-4">Industrial Compliance Databanks</h3>
+            <h2 className="font-bebas text-4xl md:text-5xl text-cream tracking-wide">Technical Tolerance & Testing Metrics</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+            {TECHNICAL_TABLES[slug].map((table, tIdx) => (
+              <div key={tIdx} className="glass-panel p-8 rounded-2xl border border-glass-border bg-charcoal/10 flex flex-col justify-between">
+                <div>
+                  <h4 className="font-bebas text-2xl text-cream tracking-wider mb-2">{table.title}</h4>
+                  <p className="font-sans text-xs text-steel/60 font-light mb-6">{table.subtitle}</p>
+                  
+                  <div className="overflow-x-auto -mx-2 px-2 pb-2">
+                    <table className="w-full border-collapse text-left text-xs font-sans text-steel min-w-[500px]">
+                      <thead>
+                        <tr className="border-b border-glass-border">
+                          {table.headers.map((header, hIdx) => (
+                            <th key={hIdx} className="pb-3 font-semibold text-cream uppercase tracking-wider text-[10px] pr-4 whitespace-nowrap">{header}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {table.rows.map((row, rIdx) => (
+                          <tr key={rIdx} className="border-b border-glass-border/30 last:border-0 hover:bg-white/5 transition-colors">
+                            {row.map((cell, cIdx) => (
+                              <td key={cIdx} className="py-3.5 pr-4 font-light text-steel/95 first:font-medium first:text-cream">
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
     </div>
   );

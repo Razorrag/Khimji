@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import { motion, useSpring } from 'framer-motion';
 
 export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
 
   const springX = useSpring(0, { stiffness: 500, damping: 28, mass: 0.1 });
   const springY = useSpring(0, { stiffness: 500, damping: 28, mass: 0.1 });
@@ -16,8 +16,11 @@ export function CustomCursor() {
   const slowSpringY = useSpring(0, { stiffness: 250, damping: 20, mass: 0.5 });
 
   useEffect(() => {
+    const coarse = window.matchMedia('(pointer: coarse)').matches;
+    setIsTouchDevice(coarse);
+    if (coarse) return;
+
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
       springX.set(e.clientX - 6);
       springY.set(e.clientY - 6);
       slowSpringX.set(e.clientX - 16);
@@ -61,14 +64,10 @@ export function CustomCursor() {
     };
   }, [isVisible, springX, springY, slowSpringX, slowSpringY]);
 
-  // Hide on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null;
-  }
+  if (isTouchDevice) return null;
 
   return (
     <>
-      {/* Inner Dot */}
       <motion.div
         className="fixed top-0 left-0 w-3 h-3 bg-amber rounded-full pointer-events-none z-[9999] hidden md:block" 
         style={{ x: springX, y: springY }}
@@ -78,8 +77,6 @@ export function CustomCursor() {
         }}
         transition={{ scale: { type: 'spring', stiffness: 300, damping: 20 } }}
       />
-      
-      {/* Outer Ring */}
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 border border-amber/30 rounded-full pointer-events-none z-[9998] hidden md:block"
         style={{ x: slowSpringX, y: slowSpringY }}

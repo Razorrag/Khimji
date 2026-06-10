@@ -98,8 +98,8 @@ export function Contact() {
                 Direct Lines
               </h4>
               <div className="font-sans text-xl text-cream font-light flex flex-col gap-2">
-                <a href="tel:+919829277869" className="hover:text-amber hover:translate-x-2 transition-all">+91-9829277869</a>
-                <a href="tel:+911412954144" className="hover:text-amber hover:translate-x-2 transition-all">+91-141-2954144</a>
+                <a href="tel:+919829277869" className="hover:text-amber hover:translate-x-2 transition-all cursor-pointer">+91-9829277869</a>
+                <a href="tel:+911412954144" className="hover:text-amber hover:translate-x-2 transition-all cursor-pointer">+91-141-2954144</a>
               </div>
             </motion.div>
 
@@ -115,8 +115,8 @@ export function Contact() {
                 Digital Mail
               </h4>
               <div className="font-sans text-xl text-cream font-light flex flex-col gap-2">
-                <a href="mailto:khemjiwire@gmail.com" className="hover:text-amber hover:translate-x-2 transition-all">khemjiwire@gmail.com</a>
-                <a href="mailto:info@khemjiwire.in" className="hover:text-amber hover:translate-x-2 transition-all">info@khemjiwire.in</a>
+                <a href="mailto:khemjiwire@gmail.com" className="hover:text-amber hover:translate-x-2 transition-all cursor-pointer">khemjiwire@gmail.com</a>
+                <a href="mailto:info@khemjiwire.in" className="hover:text-amber hover:translate-x-2 transition-all cursor-pointer">info@khemjiwire.in</a>
               </div>
             </motion.div>
 
@@ -137,7 +137,7 @@ export function Contact() {
             
             <h3 className="font-bebas text-4xl text-cream mb-12 tracking-wide relative z-10 border-b border-glass-border pb-4">Request a Quote</h3>
             
-            <form onSubmit={handleSubmit} className="flex flex-col gap-10 relative z-10">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10 relative z-10" aria-label="Request a quote form">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative group">
                   <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Name" />
@@ -167,21 +167,18 @@ export function Contact() {
               </div>
 
               <div className="relative mt-2 group">
-                <select name="product" id="product" value={formData.product} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors appearance-none cursor-pointer">
+                <select name="product" id="product" value={formData.product} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-3 text-cream font-sans focus:outline-none focus:border-amber transition-colors cursor-pointer">
                   <option value="" disabled className="bg-charcoal text-steel">Select a Product</option>
                   {products.map(prod => (
                     <option key={prod} value={prod} className="bg-charcoal text-cream">{prod}</option>
                   ))}
                 </select>
                 <label htmlFor="product" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest">Product Interested</label>
-                <div className="absolute right-0 top-3 pointer-events-none text-steel peer-focus:text-amber transition-colors">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
-                </div>
                 <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
               </div>
 
               <div className="relative mt-4 group">
-                <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent resize-none" placeholder="Message"></textarea>
+                <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" style={{ resize: 'none' }} placeholder="Message"></textarea>
                 <label htmlFor="message" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Message Details</label>
                 <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
               </div>
@@ -217,6 +214,8 @@ export function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-charcoal/95 backdrop-blur-sm border border-amber/30 text-center px-6 rounded-2xl"
+                  role="alert"
+                  aria-live="polite"
                 >
                   <div className="w-16 h-16 rounded-full border border-amber/50 flex items-center justify-center mb-6 text-amber">
                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 13l4 4L19 7" /></svg>

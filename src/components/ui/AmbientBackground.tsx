@@ -9,6 +9,13 @@ export function AmbientBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    // Disable WebGL on mobile/touch devices to save battery and improve performance
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) {
+      canvas.style.backgroundColor = '#060608';
+      return;
+    }
+
     const gl = (canvas.getContext('webgl', { alpha: false, antialias: false, depth: false }) || 
                 canvas.getContext('experimental-webgl', { alpha: false, antialias: false, depth: false })) as WebGLRenderingContext | null;
     

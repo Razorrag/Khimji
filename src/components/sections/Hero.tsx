@@ -11,6 +11,8 @@ import { MagneticButton } from "../ui/MagneticButton";
 
 export function Hero() {
   const wireLineRef = useRef<SVGPathElement>(null);
+  const desktopVideoRef = useRef<HTMLVideoElement>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Initial wire draw animation
@@ -24,6 +26,11 @@ export function Hero() {
         delay: 0.2
       });
     }
+
+    // Only preload the video matching the current viewport
+    const isMobile = window.innerWidth < 768;
+    if (mobileVideoRef.current) mobileVideoRef.current.preload = isMobile ? 'auto' : 'none';
+    if (desktopVideoRef.current) desktopVideoRef.current.preload = isMobile ? 'none' : 'auto';
   }, []);
 
   return (
@@ -39,6 +46,7 @@ export function Hero() {
         >
           {/* Desktop/Laptop Video */}
           <video
+            ref={desktopVideoRef}
             autoPlay
             muted
             loop
@@ -47,11 +55,13 @@ export function Hero() {
             style={{ 
               filter: 'brightness(0.55) contrast(1.15) saturate(1.1)'
             }}
+            aria-hidden="true"
           >
             <source src="/landscape.mp4" type="video/mp4" />
           </video>
           {/* Mobile Video */}
           <video
+            ref={mobileVideoRef}
             autoPlay
             muted
             loop
@@ -60,6 +70,7 @@ export function Hero() {
             style={{ 
               filter: 'brightness(0.55) contrast(1.15) saturate(1.1)'
             }}
+            aria-hidden="true"
           >
             <source src="/portrait.mp4" type="video/mp4" />
           </video>

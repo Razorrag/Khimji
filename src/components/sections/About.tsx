@@ -61,6 +61,7 @@ export function About() {
               style={{ y: yImage, scale: 1.1 }}
               src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200" 
               alt="Khemji Wire Manufacturing Facility" 
+              loading="lazy"
               className="w-full h-[120%] object-cover filter grayscale contrast-125 brightness-110 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-[1.5s]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,24,0.8)] via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
