@@ -10,20 +10,11 @@ import { MagneticButton } from '../ui/MagneticButton';
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      // Hide navbar when inside #products section
-      const productsEl = document.getElementById('products');
-      if (productsEl) {
-        const rect = productsEl.getBoundingClientRect();
-        const inProducts = rect.top <= 80 && rect.bottom > 80;
-        setIsHidden(inProducts);
-      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -40,19 +31,13 @@ export function Navbar() {
   return (
     <motion.header
       className="fixed top-0 inset-x-0 z-50 transition-all duration-500 p-2"
-      animate={{
-        y: isHidden ? -100 : 0,
-        opacity: isHidden ? 0 : 1,
-      }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      style={{ pointerEvents: isHidden ? 'none' : 'auto' }}
     >
       <div className={`absolute inset-0 transition-opacity duration-500 backdrop-blur-xl border-b border-glass-border ${isScrolled ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundColor: "rgba(28,30,36,0.85)" }} />
       
       <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
         <MagneticButton className="flex items-center gap-3 -ml-6">
           <Link href="/" className="flex items-center gap-3">
-             <img src="/logo.png" alt="Khemji Wire Logo" className="h-14 md:h-20 w-auto object-contain" />
+             <img src="/logo.png" alt="Khemji Wire Logo" className="h-14 md:h-20 lg:h-24 w-auto object-contain" />
           </Link>
         </MagneticButton>
 
@@ -74,7 +59,7 @@ export function Navbar() {
           <MagneticButton>
             <Link
               href="/contact"
-              className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
+              className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
             >
               Contact Us
             </Link>

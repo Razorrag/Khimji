@@ -141,34 +141,34 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-10 relative z-10" aria-label="Request a quote form">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative group">
-                  <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Name" />
-                  <label htmlFor="name" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Name</label>
-                  <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
+                  <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Name" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
+                  <label htmlFor="name" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Name</label>
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
                 </div>
                 
                 <div className="relative group">
-                  <input type="text" name="company" id="company" value={formData.company} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Company" />
-                  <label htmlFor="company" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Company</label>
-                  <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
+                  <input type="text" name="company" id="company" value={formData.company} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Company" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
+                  <label htmlFor="company" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Company</label>
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="relative group">
-                  <input type="tel" name="phone" id="phone" required value={formData.phone} onChange={handleChange} inputMode="tel" className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Phone" />
-                  <label htmlFor="phone" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Phone</label>
-                  <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
+                  <input type="tel" name="phone" id="phone" required value={formData.phone} onChange={handleChange} inputMode="tel" className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Phone" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
+                  <label htmlFor="phone" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Phone</label>
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
                 </div>
                 
                 <div className="relative group">
-                  <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" placeholder="Email" />
-                  <label htmlFor="email" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Email</label>
-                  <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
+                  <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Email" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
+                  <label htmlFor="email" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Email</label>
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
                 </div>
               </div>
 
               <div className="relative mt-2 group">
-                <select name="product" id="product" value={formData.product} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-3 text-cream font-sans focus:outline-none focus:border-amber transition-colors cursor-pointer">
+                <select name="product" id="product" value={formData.product} onChange={handleChange} className="peer w-full py-3 px-3 text-cream font-sans focus:outline-none transition-all cursor-pointer border-0 border-b" style={{ backgroundColor: 'rgba(28,30,36,0.6)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }}>
                   <option value="" disabled className="bg-charcoal text-steel">Select a Product</option>
                   {products.map(prod => (
                     <option key={prod} value={prod} className="bg-charcoal text-cream">{prod}</option>
@@ -179,15 +179,15 @@ export function Contact() {
               </div>
 
               <div className="relative mt-4 group">
-                <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="peer w-full bg-transparent border-b border-glass-border py-2 text-cream font-sans focus:outline-none focus:border-amber transition-colors placeholder-transparent" style={{ resize: 'none' }} placeholder="Message"></textarea>
-                <label htmlFor="message" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel peer-placeholder-shown:top-2 peer-focus:-top-4 peer-focus:text-amber cursor-text">Message Details</label>
-                <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
+                <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px', resize: 'none' }} placeholder="Message" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'}></textarea>
+                <label htmlFor="message" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Message Details</label>
+                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
               </div>
 
               <MagneticButton 
                 type="submit"
                 disabled={isSubmitting}
-                className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group/btn mt-6 relative overflow-hidden transition-colors"
+                className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group/btn mt-6 relative overflow-hidden transition-colors"
               >
                 {/* Button shine */}
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber/10 to-transparent -translate-x-[200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
@@ -201,7 +201,7 @@ export function Contact() {
                   ) : (
                     <>
                       Init Transmission 
-                      <span className="transform group-hover/btn:translate-x-1 transition-transform">→</span>
+                      <span className="transform group-hover/btn:translate-x-1 transition-transform">\u2192</span>
                     </>
                   )}
                 </span>

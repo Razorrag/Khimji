@@ -49,7 +49,7 @@ function IndustryCard({ ind, index }: { ind: typeof INDUSTRIES[0]; index: number
           </h3>
 
           {/* Description */}
-          <p className="font-sans text-[11px] md:text-xs text-steel/50 leading-relaxed group-hover:text-steel/70 transition-colors duration-500">
+          <p className="font-sans text-[11px] md:text-xs text-cream/55 leading-relaxed group-hover:text-steel/70 transition-colors duration-500">
             {ind.desc}
           </p>
 
@@ -70,10 +70,10 @@ export function Industries() {
       <div className="max-w-[1200px] mx-auto px-[5vw] relative z-10">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+        <div className="mb-10 md:mb-12">
           <ScrollReveal direction="up" delay={0.1}>
             <div>
-              <div className="flex items-center gap-3 mb-5">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="h-[2px] w-12 bg-amber" />
                 <span className="font-mono text-[10px] text-amber/60 tracking-[0.3em] uppercase">Sectors We Serve</span>
               </div>
@@ -83,23 +83,10 @@ export function Industries() {
               </h2>
             </div>
           </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={0.2}>
-            <div className="flex flex-col items-end text-right">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-mono text-[10px] text-steel/40 tracking-[0.3em] uppercase">Industries</span>
-                <div className="w-1.5 h-1.5 rounded-full bg-amber step-dot-pulse" />
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-bebas text-4xl md:text-5xl text-amber leading-none">30+</span>
-                <span className="font-mono text-[10px] text-steel/40 tracking-wider uppercase">Sectors</span>
-              </div>
-            </div>
-          </ScrollReveal>
         </div>
 
         {/* Industry cards grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
           {INDUSTRIES.map((ind, i) => (
             <IndustryCard key={ind.name} ind={ind} index={i} />
           ))}

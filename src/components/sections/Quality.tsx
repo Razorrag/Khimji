@@ -330,7 +330,7 @@ export function Quality() {
                 With BIS certifications and rigorous in-house testing, we ensure every product meets the highest standards.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center">
+                <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center">
                   Request Test Certificate
                 </Link>
                 <Link href="/manufacturing" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center">

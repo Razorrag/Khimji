@@ -52,11 +52,12 @@ export function IndustriesWeServe() {
       <div className="max-w-[1200px] mx-auto px-[5vw] relative z-10">
 
         {/* Header */}
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-5">
+        <div className="mb-12 md:mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-[2px] w-10 bg-amber" />
             <span className="font-mono text-[10px] text-amber tracking-[0.3em] uppercase">Industries We Serve</span>
           </div>
-          <h2 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase mb-4">
+          <h2 className="font-bebas text-[clamp(40px,5.5vw,72px)] leading-[0.85] text-cream uppercase">
             Trusted Across<br/>
             <span className="text-amber">Sectors</span>
           </h2>
@@ -101,7 +102,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
               </h3>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="font-bebas text-xl text-amber">{industry.stat}</span>
-                <span className="font-mono text-[10px] md:text-xs text-steel/60 tracking-wider">{industry.statLabel}</span>
+                <span className="font-mono text-[10px] md:text-xs text-cream/50 tracking-wider">{industry.statLabel}</span>
               </div>
             </div>
           </div>
@@ -118,7 +119,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
         <div className="lg:col-span-3">
           <div className="flex flex-wrap gap-2">
             {industry.tags.map((tag) => (
-              <span key={tag} className="font-mono text-[10px] md:text-xs px-2.5 py-1 rounded-full border border-amber/25 text-amber/70 bg-amber/[0.05]">
+              <span key={tag} className="font-mono text-[10px] md:text-xs px-2.5 py-1 rounded-full border border-amber/40 text-amber bg-amber/[0.08]">
                 {tag}
               </span>
             ))}

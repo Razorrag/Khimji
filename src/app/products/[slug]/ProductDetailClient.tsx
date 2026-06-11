@@ -287,7 +287,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
                 <h4 className="font-mono text-xs text-cream tracking-widest uppercase mb-2">Ready to order?</h4>
                 <p className="font-sans text-sm text-steel font-light">Contact our sales team for pricing and availability.</p>
               </div>
-              <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center whitespace-nowrap">
+               <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center whitespace-nowrap">
                 Contact Us
               </Link>
             </div>

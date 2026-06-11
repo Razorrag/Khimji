@@ -45,7 +45,7 @@ export function FAQClient() {
               }}
               className={`font-mono text-xs uppercase tracking-widest whitespace-nowrap transition-all duration-300 ${
                 isActive
-                  ? "blob-btn font-mono text-xs tracking-widest uppercase font-bold px-5 py-3 inline-flex items-center justify-center"
+                  ? "blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-5 py-3 inline-flex items-center justify-center"
                   : "glass-btn font-mono text-xs tracking-widest uppercase px-5 py-3 inline-flex items-center justify-center"
               }`}
             >

@@ -156,7 +156,7 @@
      ───────────────────────────────────────────── */
   .textured-text-primary {
     color: var(--color-cream);
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: url("/download (1).jpg") center/cover no-repeat;
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -166,7 +166,7 @@
 
   .textured-text-amber {
     color: var(--color-amber);
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: url("/download (1).jpg") center/cover no-repeat;
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -178,7 +178,7 @@
   .textured-text-amber-tint {
     position: relative;
     color: var(--color-amber);
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: url("/download (1).jpg") center/cover no-repeat;
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -197,10 +197,57 @@
     pointer-events: none;
   }
 
+  /* Button text shade texture — silver/grey with amber swirl */
+  .textured-text-silver {
+    color: var(--color-cream);
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textureShine 18s ease-in-out infinite;
+  }
+
+  /* Hero text texture — uses button text shade */
+  .hero-text-texture {
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textureShine 18s ease-in-out infinite;
+  }
+
+  /* Amber-tinted silver texture variant */
+  .textured-text-silver-amber {
+    position: relative;
+    color: var(--color-amber);
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textureShine 20s ease-in-out infinite;
+  }
+  .textured-text-silver-amber::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.35) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+
   /* High contrast / reduced motion fallback */
   @media (prefers-reduced-motion: reduce) {
     .textured-text-primary,
-    .textured-text-amber {
+    .textured-text-amber,
+    .textured-text-silver,
+    .textured-text-silver-amber,
+    .hero-text-texture {
       animation: none !important;
       background-size: 100% 100%;
     }
@@ -412,15 +459,15 @@
 
   /* Glass secondary button */
   .glass-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
     color: #FAFAFA;
     backdrop-filter: blur(12px);
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    animation: subtleFloat 8s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
 
   .glass-btn::before {
@@ -438,13 +485,13 @@
   }
 
   .glass-btn:hover::before {
-    opacity: 0.12;
+    opacity: 0.15;
   }
 
   .glass-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(249, 115, 22, 0.4);
-    box-shadow: 0 0 30px rgba(249, 115, 22, 0.15), 0 0 60px rgba(249, 115, 22, 0.05);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(249, 115, 22, 0.5);
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.2), 0 8px 32px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
   }
 
@@ -976,4 +1023,87 @@ section {
    ───────────────────────────────────────────── */
 section + section {
   position: relative;
+}
+
+/* ─────────────────────────────────────────────
+   FLOW ARROW ANIMATIONS
+   ───────────────────────────────────────────── */
+@keyframes flowH {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -14; }
+}
+@keyframes flowV {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -14; }
+}
+
+/* ─────────────────────────────────────────────
+   AMBIENT DRIFT (CSS background fallback)
+   ───────────────────────────────────────────── */
+@keyframes ambientDrift {
+  0%   { filter: brightness(1); }
+  50%  { filter: brightness(1.08); }
+  100% { filter: brightness(0.95); }
+}
+
+/* ─────────────────────────────────────────────
+   PROCESS STEP CARD
+   ───────────────────────────────────────────── */
+.process-step-card {
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+.process-step-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ─────────────────────────────────────────────
+   FIX: Body background for mobile dark sections
+   ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .industrial-grid-bg {
+    background-image:
+      linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   REMOVE BLUR from hero text (Safari fix)
+   ───────────────────────────────────────────── */
+.hero-headline {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+/* ─────────────────────────────────────────────
+   WHY CHOOSE US / INDUSTRIES - 2 col mobile
+   ───────────────────────────────────────────── */
+@media (max-width: 639px) {
+  .grid-2col-mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   CONTACT FORM - Input field visibility
+   ───────────────────────────────────────────── */
+.form-input-field {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.form-input-field:focus {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-bottom-color: #F97316;
+  outline: none;
+}
+
+/* ─────────────────────────────────────────────
+   FOUNDER SECTION - Fix divider text on mobile
+   ───────────────────────────────────────────── */
+.founder-divider-text {
+  background-color: rgba(8, 5, 2, 0.97);
+  padding: 0 24px;
 }

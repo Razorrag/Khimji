@@ -1,5 +1,8 @@
 "use client";
 
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+
 function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], direction?: number, speed?: number }) {
   // Triple the content to ensure standard screens are fully covered without gaps during translate3d transitions
   const content = [...items, ...items, ...items];
@@ -25,8 +28,17 @@ function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], dir
 }
 
 export function MarqueeBanner() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
+
   return (
-    <section className="overflow-hidden py-2 md:py-3 flex flex-col gap-1 relative z-10 pointer-events-none select-none">
+    <motion.section
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : {}}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden py-2 md:py-3 flex flex-col gap-1 relative z-10 pointer-events-none select-none"
+    >
        
        <style dangerouslySetInnerHTML={{__html: `
          @keyframes marquee-left {
@@ -54,6 +66,6 @@ export function MarqueeBanner() {
          direction={1} 
          speed={30}
        />
-    </section>
+    </motion.section>
   );
 }

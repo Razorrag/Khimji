@@ -133,6 +133,19 @@ export function ManufacturingClient() {
     <div ref={containerRef}>
       {/* Hero */}
       <section className="relative pt-36 pb-20 overflow-hidden bg-transparent border-b border-glass-border">
+        
+        {/* Background industrial image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1920"
+            alt=""
+            className="w-full h-full object-cover filter grayscale opacity-20"
+            style={{ objectPosition: 'center 40%' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-obsidian/95 via-obsidian/80 to-obsidian/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/70" />
+        </div>
+
         <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +335,7 @@ export function ManufacturingClient() {
                Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
              </p>
              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-               <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300">
+                <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300">
                  <span className="relative z-10">Contact Us</span>
                  <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
                </Link>

@@ -14,10 +14,10 @@ function CornerBracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
     br: "bottom-6 right-6 md:bottom-10 md:right-10",
   }[position];
   const border = {
-    tl: "border-t border-l border-white/20",
-    tr: "border-t border-r border-white/20",
-    bl: "border-b border-l border-white/20",
-    br: "border-b border-r border-white/20",
+    tl: "border-t border-l border-cream/20",
+    tr: "border-t border-r border-cream/20",
+    bl: "border-b border-l border-cream/20",
+    br: "border-b border-r border-cream/20",
   }[position];
 
   return (
@@ -57,10 +57,10 @@ export function Hero() {
           <HeroVideo />
         </motion.div>
 
-        {/* Multi-layer dark overlay */}
+        {/* Dark overlay */}
         <div className="absolute inset-0 z-[1] pointer-events-none">
           <div className="absolute inset-0" style={{
-            background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(18,20,24,0.4) 100%)"
+            background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(8,5,2,0.4) 100%)"
           }} />
         </div>
 
@@ -74,7 +74,7 @@ export function Hero() {
         <div
           className="absolute bottom-0 inset-x-0 h-[250px] z-[2] pointer-events-none"
           style={{
-            background: "linear-gradient(to bottom, transparent 0%, rgba(18,20,24,0.4) 40%, rgba(18,20,24,0.85) 70%, #121418 100%)"
+            background: "linear-gradient(to bottom, transparent 0%, rgba(8,5,2,0.5) 40%, rgba(8,5,2,0.9) 70%, #080502 100%)"
           }}
         />
 
@@ -94,7 +94,7 @@ export function Hero() {
           style={{ opacity: frameOpacity }}
           className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 z-[6]"
         >
-          <div className="font-mono text-[9px] text-white/20 tracking-[0.4em] uppercase" style={{ writingMode: "vertical-rl" }}>
+          <div className="font-mono text-[9px] text-cream/40 tracking-[0.4em] uppercase" style={{ writingMode: "vertical-rl" }}>
             EST. 1988 · JAIPUR · INDIA
           </div>
         </motion.div>
@@ -123,10 +123,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="font-bebas textured-text-primary mb-2"
+              className="font-bebas text-white mb-2 select-none"
               style={{
-                fontSize: "clamp(52px, 11vw, 130px)",
-                lineHeight: 0.88,
+                fontSize: "clamp(38px, 8.5vw, 110px)",
+                lineHeight: 0.9,
               }}
             >
               PRECISION IN EVERY STRAND
@@ -137,10 +137,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="font-bebas textured-text-amber-tint mb-10"
+              className="font-bebas text-white mb-10 select-none"
               style={{
-                fontSize: "clamp(52px, 11vw, 130px)",
-                lineHeight: 0.88,
+                fontSize: "clamp(38px, 8.5vw, 110px)",
+                lineHeight: 0.9,
               }}
             >
               STRENGTH IN EVERY CONNECTION
@@ -155,14 +155,14 @@ export function Hero() {
             >
               <Link
                 href="/contact"
-                className="blob-btn font-mono text-[11px] tracking-[0.2em] uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
+                className="blob-btn-product font-mono text-[11px] tracking-[0.2em] uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
               >
                 Contact Us
               </Link>
 
               <a
                 href="/contact?enquiry=catalogue"
-                className="glass-btn glass-btn-download font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 inline-flex items-center gap-3 group/dl"
+                className="glass-btn font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 inline-flex items-center gap-3 group/dl"
               >
                 <span>Download Catalogue</span>
                 <svg className="w-4 h-4 group-hover/dl:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

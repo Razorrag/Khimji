@@ -308,7 +308,7 @@ export function About() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {coreValues.map((value, i) => (
               <motion.div
                 key={value.title}
@@ -316,7 +316,7 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="blob-card p-8 rounded-2xl text-center group relative overflow-hidden"
+                className="blob-card p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl text-center group relative overflow-hidden"
               >
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                 <div className="font-bebas text-5xl text-amber/10 leading-none mb-4 select-none">{value.num}</div>
@@ -555,7 +555,7 @@ export function About() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/products"
-                  className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
+                  className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
                 >
                   View Products
                 </Link>

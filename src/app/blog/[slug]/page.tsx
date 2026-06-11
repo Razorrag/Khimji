@@ -112,7 +112,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               Our engineers can guide you through IS 280 & IS 3975 specifications for your bulk requirements.
             </p>
           </div>
-          <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center relative z-10 whitespace-nowrap">
+          <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center relative z-10 whitespace-nowrap">
             Consult An Engineer
           </Link>
         </div>
