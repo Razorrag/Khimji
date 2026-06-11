@@ -146,14 +146,14 @@ export function QualityAssurance() {
   const quoteY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
-    <section ref={sectionRef} className="relative py-20 md:py-32 overflow-hidden industrial-grid-bg">
+    <section ref={sectionRef} className="relative py-12 md:py-20 overflow-hidden industrial-grid-bg">
       {/* Top amber accent */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber/30 to-transparent" />
 
       <div className="max-w-[1200px] mx-auto px-[5vw] relative z-10">
 
         {/* Header */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-16">
+        <div ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-10">
           <div className="max-w-[600px]">
             <div className="flex items-center gap-3 mb-5">
               <div className="h-[2px] w-12 bg-amber" />
@@ -164,20 +164,59 @@ export function QualityAssurance() {
               <span className="text-amber">Trust</span>
             </h2>
             <p className="font-sans text-sm text-steel/80 leading-relaxed">
-              At Khemji Wire & Wire Pvt. Ltd., quality is not a department \u2014 it&apos;s built into every metre of wire we produce.
+              At Khemji Wire & Wire Pvt. Ltd., quality is not a department - it&apos;s built into every metre of wire we produce.
             </p>
+            <div className="flex lg:hidden items-center gap-4 mt-6">
+              <div className="cert-seal">
+                <div className="text-center">
+                  <div className="font-bebas text-lg text-amber leading-none">BIS</div>
+                  <div className="font-mono text-[7px] text-steel/50 tracking-wider mt-1">CERTIFIED</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                {['IS 280', 'IS 3975'].map((cert) => (
+                  <div key={cert} className="cert-seal">
+                    <div className="text-center">
+                      <div className="font-bebas text-base text-amber leading-none">{cert}</div>
+                      <div className="font-mono text-[6px] text-steel/40 tracking-wider mt-1">COMPLIANT</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Animated cert badge */}
+          {/* BIS Certified connected to IS standards */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
             animate={isHeaderInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="cert-seal flex-shrink-0"
+            className="flex-shrink-0 hidden lg:flex flex-col items-center mt-4"
           >
-            <div className="text-center">
-              <div className="font-bebas text-2xl text-amber leading-none">BIS</div>
-              <div className="font-mono text-[8px] text-steel/50 tracking-wider mt-1">CERTIFIED</div>
+            <div className="cert-seal">
+              <div className="text-center">
+                <div className="font-bebas text-2xl text-amber leading-none">BIS</div>
+                <div className="font-mono text-[8px] text-steel/50 tracking-wider mt-1">CERTIFIED</div>
+              </div>
+            </div>
+            <div className="w-[1px] h-8 bg-amber/40" />
+            <div className="flex items-center gap-6">
+              <div className="w-16 md:w-24 h-[1px] bg-amber/40" />
+              {['IS 280', 'IS 3975'].map((cert, i) => (
+                <motion.div
+                  key={cert}
+                  className="cert-seal"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={isHeaderInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="text-center">
+                    <div className="font-bebas text-lg text-amber leading-none">{cert}</div>
+                    <div className="font-mono text-[7px] text-steel/40 tracking-wider mt-1">COMPLIANT</div>
+                  </div>
+                </motion.div>
+              ))}
+              <div className="w-16 md:w-24 h-[1px] bg-amber/40" />
             </div>
           </motion.div>
         </div>
@@ -189,24 +228,6 @@ export function QualityAssurance() {
           ))}
         </div>
 
-        {/* ISI Certification seals */}
-        <div className="flex flex-wrap items-center justify-center gap-8 mt-16">
-          {['IS 280', 'IS 3975'].map((cert, i) => (
-            <motion.div
-              key={cert}
-              className="cert-seal"
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="text-center">
-                <div className="font-bebas text-lg text-amber leading-none">{cert}</div>
-                <div className="font-mono text-[7px] text-steel/40 tracking-wider mt-1">COMPLIANT</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   );

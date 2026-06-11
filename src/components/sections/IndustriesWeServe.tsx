@@ -48,13 +48,12 @@ const INDUSTRIES = [
 
 export function IndustriesWeServe() {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden">
+    <section className="relative py-12 md:py-20 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-[5vw] relative z-10">
 
         {/* Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-5">
-            <div className="h-[2px] w-12 bg-amber" />
             <span className="font-mono text-[10px] text-amber tracking-[0.3em] uppercase">Industries We Serve</span>
           </div>
           <h2 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase mb-4">
@@ -93,8 +92,8 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
         {/* Number + Name */}
-        <div className={`lg:col-span-4 ${isEven ? '' : 'lg:text-right'}`}>
-          <div className={`flex items-center gap-4 ${isEven ? '' : 'lg:justify-end'}`}>
+        <div className="lg:col-span-4">
+          <div className="flex items-center gap-4">
             <span className="font-bebas text-5xl md:text-6xl text-white/[0.06] leading-none select-none">{industry.id}</span>
             <div>
               <h3 className="font-bebas text-2xl md:text-3xl text-cream tracking-wide group-hover:text-amber transition-colors duration-500">
@@ -102,7 +101,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
               </h3>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="font-bebas text-xl text-amber">{industry.stat}</span>
-                <span className="font-mono text-[9px] text-steel/60 tracking-wider">{industry.statLabel}</span>
+                <span className="font-mono text-[10px] md:text-xs text-steel/60 tracking-wider">{industry.statLabel}</span>
               </div>
             </div>
           </div>
@@ -117,9 +116,9 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
 
         {/* Tags */}
         <div className="lg:col-span-3">
-          <div className={`flex flex-wrap gap-2 ${isEven ? '' : 'lg:justify-end'}`}>
+          <div className="flex flex-wrap gap-2">
             {industry.tags.map((tag) => (
-              <span key={tag} className="font-mono text-[9px] px-2.5 py-1 rounded-full border border-amber/25 text-amber/70 bg-amber/[0.05]">
+              <span key={tag} className="font-mono text-[10px] md:text-xs px-2.5 py-1 rounded-full border border-amber/25 text-amber/70 bg-amber/[0.05]">
                 {tag}
               </span>
             ))}

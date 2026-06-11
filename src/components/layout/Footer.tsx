@@ -15,7 +15,7 @@ export function Footer() {
           {/* Logo + Tagline + Socials */}
           <div className="flex flex-col lg:col-span-4">
             <Link href="/" className="flex items-center gap-3 mb-5">
-              <img src="/logo.png" alt="Khemji Wire Logo" className="h-14 md:h-16 w-auto object-contain" />
+              <img src="/logo.png" alt="Khemji Wire Logo" className="h-16 md:h-24 w-auto object-contain" />
             </Link>
             <p className="font-sans text-[13px] text-steel/70 leading-relaxed mb-6 max-w-[280px]">
               Precision in Every Strand. Strength in Every Connection.
@@ -63,7 +63,7 @@ export function Footer() {
                 </Link>
               ))}
               <Link href="/products" className="font-mono text-[10px] tracking-widest uppercase text-amber/70 hover:text-amber transition-colors w-fit mt-2">
-                View All Products \u2192
+                View All Products
               </Link>
             </nav>
           </div>

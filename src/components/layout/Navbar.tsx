@@ -50,9 +50,9 @@ export function Navbar() {
       <div className={`absolute inset-0 transition-opacity duration-500 backdrop-blur-xl border-b border-glass-border ${isScrolled ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundColor: "rgba(28,30,36,0.85)" }} />
       
       <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
-        <MagneticButton className="flex items-center gap-3">
+        <MagneticButton className="flex items-center gap-3 -ml-6">
           <Link href="/" className="flex items-center gap-3">
-             <img src="/logo.png" alt="Khemji Wire Logo" className="h-10 md:h-14 w-auto object-contain" />
+             <img src="/logo.png" alt="Khemji Wire Logo" className="h-14 md:h-20 w-auto object-contain" />
           </Link>
         </MagneticButton>
 
@@ -108,7 +108,7 @@ export function Navbar() {
               <X className="w-8 h-8" />
             </button>
             <div className="mb-12">
-              <img src="/logo.png" alt="Khemji Wire" className="h-16 w-auto object-contain" />
+              <img src="/logo.png" alt="Khemji Wire" className="h-24 w-auto object-contain" />
             </div>
             <nav className="flex flex-col items-center gap-8">
               {[...links, { label: 'Blog', href: '/blog' }, { label: 'FAQ', href: '/faq' }, { label: 'Contact', href: '/contact' }].map((link, i) => (

@@ -109,42 +109,30 @@ export function About() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Left sticky */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="lg:sticky lg:top-32 lg:self-start"
-            >
-              <p className="font-sans text-base lg:text-lg text-cream/80 leading-relaxed">
-                What began as a single entrepreneur&apos;s vision in 1988 has grown into one of Rajasthan&apos;s respected wire manufacturing enterprises. Rooted in <strong className="text-cream font-medium">integrity, craftsmanship, and customer commitment</strong>, our journey is a testament to what consistent effort can build — one strand at a time.
-              </p>
-            </motion.div>
+          <div className="relative">
+            {/* Center vertical line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-glass-border -translate-x-1/2" />
 
-            {/* Right timeline */}
-            <div className="relative">
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-glass-border" />
-
-              {timeline.map((item, i) => (
+            {timeline.map((item, i) => {
+              const isLeft = i % 2 === 0;
+              return (
                 <motion.div
                   key={item.year}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.7, delay: 0.1 * i }}
-                  className="relative mb-14 last:mb-0"
+                  className={`relative mb-14 last:mb-0 md:w-1/2 ${isLeft ? 'md:mr-auto md:pr-12 md:text-right' : 'md:ml-auto md:pl-12'}`}
                 >
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber border-2 border-obsidian z-10" />
-                  <div className="pl-14 md:pl-0 md:w-1/2 md:pr-12 md:text-right">
+                  <div className="pl-14 md:pl-0">
                     <div className="font-bebas text-3xl text-amber mb-2">{item.year}</div>
                     <h3 className="font-bebas text-xl text-cream mb-3 tracking-wider uppercase">{item.title}</h3>
                     <p className="font-sans text-sm text-cream/70 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>
