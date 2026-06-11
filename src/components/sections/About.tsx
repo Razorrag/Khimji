@@ -2,64 +2,55 @@
 
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { SplitText } from '../ui/SplitText';
-
-const StatCounter = ({ value, label, suffix = "" }: { value: number; label: string; suffix?: string }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <div ref={ref} className="glass-panel p-3 md:p-6 flex flex-col items-center justify-center text-center backdrop-blur-xl">
-      <div className="font-bebas text-3xl md:text-5xl text-cream mb-1 md:mb-2 flex items-center">
-        {isInView ? (
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            {value}
-          </motion.span>
-        ) : (
-          <span className="opacity-0">{value}</span>
-        )}
-        <span className="text-amber ml-1">{suffix}</span>
-      </div>
-      <div className="font-mono text-[10px] md:text-[10px] text-steel tracking-[0.1em] md:tracking-widest uppercase line-clamp-2 md:line-clamp-none">{label}</div>
-    </div>
-  );
-};
+import Link from 'next/link';
 
 const timeline = [
-  { year: '1988', title: 'The Foundation', description: 'A small manufacturing unit with a clear vision — produce high-quality galvanized wire for India\'s growing industries. This marked the beginning of a journey built on trust and craftsmanship.' },
-  { year: '1990s', title: 'Building the Brand', description: 'Expanded operations, introduced advanced machinery, and built a reputation for quality and timely delivery across North India.' },
-  { year: '2000s', title: 'Growing Reputation', description: 'Became a preferred supplier to major cable and infrastructure companies, winning clients through consistent product quality.' },
-  { year: '2008', title: 'Incorporation', description: 'Formed as a private limited company to scale operations and meet growing demand with enhanced quality standards.' },
-  { year: '2015', title: 'BIS Certification', description: 'Achieved BIS Standard certification for core product lines — a milestone reflecting uncompromising quality control.' },
-  { year: 'Present', title: 'Trusted Partner', description: 'Today, we serve 200+ clients across India with an expanded product range, advanced manufacturing, and a commitment to customer satisfaction.' },
+  { year: '1988', title: 'Foundation', description: 'Shri Om Prakash Agarwal establishes Khemji Wire Industries in Jaipur with a clear vision: to build a manufacturing enterprise rooted in quality and honest business. Operations begin with limited resources but limitless determination.' },
+  { year: 'Early 1990s', title: 'Building the Foundation', description: 'The company steadily builds its customer base across Rajasthan, earning a reputation for reliable supply and consistent wire quality. Customer trust becomes the company\'s most valuable asset.' },
+  { year: '2000s', title: 'Expansion & Modernization', description: 'Under the growing leadership of Mahesh Agarwal, the company expands manufacturing capabilities, upgrades machinery, and begins supplying to infrastructure and power sector contractors beyond Rajasthan.' },
+  { year: 'Incorporation', title: 'Private Limited Registration', description: 'Khemji Wire & Wire Pvt. Ltd. is formally incorporated under the Companies Act (CIN: U51101RJ1988PTC004356), marking a significant milestone in the company\'s institutional growth and governance.' },
+  { year: 'BIS Certification', title: 'IS:280 & IS:3975 Certified', description: 'Bureau of Indian Standards certifications for Mild Steel Wire (IS:280) and Formed Wire (IS:3975) validate the company\'s commitment to manufacturing excellence and open doors to government and large infrastructure contracts.' },
+  { year: 'Present', title: 'UDYAM Registered MSME', description: 'Registered as UDYAM-RJ-17-0030256, the company continues to grow — supplying HOT DIP Galvanized Wire, MS Wire, and Formed Wire across India from its RIICO Industrial Area facility in Jaipur.' },
 ];
 
 const coreValues = [
-  { title: 'Quality', description: 'Every wire that leaves our facility meets the highest industry standards. We maintain strict quality control at every stage of production.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { title: 'Integrity', description: 'We conduct business with honesty, transparency, and ethical practices — building trust with every client and partner.', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { title: 'Reliability', description: 'On-time delivery, consistent product quality, and responsive service — dependability you can count on.', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { title: 'Continuous Improvement', description: 'We constantly upgrade technology, processes, and skills to stay ahead of industry standards and customer expectations.', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+  { num: '01', title: 'Quality First', description: 'Every product we manufacture is held to the same standard — BIS certified, tensile-tested, and consistent. Quality is not a checkbox; it is our identity.', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { num: '02', title: 'Integrity', description: 'Honest business practices, transparent dealings, and ethical conduct in every transaction — with customers, suppliers, and partners alike.', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { num: '03', title: 'Reliability', description: 'Our customers depend on us for consistent supply, on-time delivery, and products that perform exactly as expected — every single time.', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { num: '04', title: 'Continuous Improvement', description: 'We invest in better processes, better machinery, and better knowledge — because standing still in manufacturing means falling behind.', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+];
+
+const certifications = [
+  { code: 'IS:280', name: 'BIS Certified — Mild Steel Wire', desc: 'Bureau of Indian Standards certification for Mild Steel Wire. Covers tensile strength, elongation, and dimensional tolerances as per Indian national standards.', tag: 'Bureau of Indian Standards' },
+  { code: 'IS:3975', name: 'BIS Certified — Formed Wire', desc: 'BIS certification for Mild Steel Stay Wires and Formed Wire products used in power, telecom, and infrastructure applications.', tag: 'Bureau of Indian Standards' },
+  { code: 'UDYAM', name: 'MSME Registration', desc: 'Registered Micro, Small & Medium Enterprise under the Government of India\'s UDYAM portal. Eligible for government tenders, MSME benefits, and priority sector supply.', tag: 'Govt. of India · MSME Ministry' },
+];
+
+const facilityDetails = [
+  { label: 'Location', value: 'F-153, RIICO Industrial Area, Sarna Doongar, Jaipur, Rajasthan' },
+  { label: 'Industrial Zone', value: 'RIICO — Rajasthan Industrial & Investment Corporation Zone' },
+  { label: 'Core Processes', value: 'Wire Drawing · Annealing · Hot Dip Galvanizing · Wire Forming' },
+  { label: 'Product Output', value: 'HDG Wire, MS Wire (Bright & Black Annealed), Formed & Stay Wires' },
+  { label: 'Quality Infrastructure', value: 'In-house testing for tensile strength, elongation & zinc coating weight' },
+  { label: 'Dispatch Connectivity', value: 'Road & rail access for pan-India logistics from Jaipur' },
+  { label: 'Operational Since', value: '1988 — Over 35 years of continuous production' },
+];
+
+const teamPillars = [
+  { icon: '🏭', title: 'Production Team', desc: 'Skilled operators managing wire drawing, annealing, and hot-dip galvanizing lines — trained for precision and consistency.' },
+  { icon: '🔬', title: 'Quality Control', desc: 'Dedicated QC personnel conducting dimensional, tensile, and coating tests on every production batch before dispatch.' },
+  { icon: '📦', title: 'Dispatch & Logistics', desc: 'Efficient packing, documentation, and coordination for timely delivery across Rajasthan and pan-India destinations.' },
+  { icon: '💼', title: 'Sales & Customer Service', desc: 'Experienced team managing B2B relationships, order processing, and technical support for distributors and contractors.' },
 ];
 
 export function About() {
   const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const yContent = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
 
   return (
     <section ref={containerRef} id="about" className="relative overflow-hidden bg-transparent">
 
-      {/* ───── Hero ───── */}
-      <div className="relative pt-40 pb-20 bg-transparent">
+      {/* ───── Page Hero ───── */}
+      <div className="relative pt-36 pb-20 bg-transparent">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
@@ -74,51 +65,36 @@ export function About() {
             </ol>
           </motion.nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-center">
-            <div>
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="font-bebas text-[clamp(56px,8vw,120px)] leading-[0.85] text-cream mb-6"
-              >
-                Built on <span className="text-amber">Trust.</span><br />
-                Driven by <span className="text-amber">Purpose.</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-sans text-base lg:text-lg text-steel/90 max-w-[540px]"
-              >
-                For over 35 years, Khemji Wire & Wire Pvt. Ltd. has been at the forefront of galvanized steel wire manufacturing — building trust, delivering quality, and contributing to India&apos;s industrial growth.
-              </motion.p>
-            </div>
-
+          <div className="max-w-[800px]">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="hidden lg:flex flex-col items-center justify-center"
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "60px" }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="h-[2px] bg-amber mb-6"
+            />
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="font-bebas text-[clamp(56px,8vw,120px)] leading-[0.85] text-cream mb-6"
             >
-              <div className="relative w-64 h-64">
-                <div className="absolute inset-0 rounded-full animate-[spin_20s_linear_infinite]"
-                     style={{ border: "2px solid rgba(249,115,22,0.2)" }} />
-                <div className="absolute inset-3 rounded-full border border-glass-border" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="font-bebas text-7xl text-amber leading-none">35+</div>
-                    <div className="font-mono text-[10px] text-cream tracking-widest uppercase mt-1">Years of Trust</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+              Built on <span className="text-amber">Trust.</span><br />
+              Driven by <span className="text-amber">Purpose.</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-sans text-base lg:text-lg text-cream/80 max-w-[600px] leading-relaxed"
+            >
+              For over three decades, Khemji Wire & Wire Pvt. Ltd. has stood for one thing above all — the integrity of every product we make and every promise we keep.
+            </motion.p>
           </div>
         </div>
       </div>
 
       {/* ───── Our Story / Timeline ───── */}
-      <div className="py-32 bg-transparent relative">
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -129,152 +105,61 @@ export function About() {
           >
             <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Journey</h3>
             <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
-              35 Years of <span className="text-amber">Excellence</span>
+              From <span className="text-amber">Humble</span> Beginnings to Industry <span className="text-amber">Trust</span>
             </h2>
           </motion.div>
 
-          <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-glass-border" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Left sticky */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:sticky lg:top-32 lg:self-start"
+            >
+              <p className="font-sans text-base lg:text-lg text-cream/80 leading-relaxed">
+                What began as a single entrepreneur&apos;s vision in 1988 has grown into one of Rajasthan&apos;s respected wire manufacturing enterprises. Rooted in <strong className="text-cream font-medium">integrity, craftsmanship, and customer commitment</strong>, our journey is a testament to what consistent effort can build — one strand at a time.
+              </p>
+            </motion.div>
 
-            {timeline.map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: 0.1 * i }}
-                className={`relative flex flex-col md:flex-row items-start gap-8 mb-16 last:mb-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-              >
-                <div className={`w-full md:w-1/2 ${i % 2 === 0 ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
-                  <div className="font-bebas text-3xl text-amber mb-2">{item.year}</div>
-                  <h3 className="font-bebas text-2xl text-cream mb-3 tracking-wider uppercase">{item.title}</h3>
-                  <p className="font-sans text-sm text-steel/90 leading-relaxed">{item.description}</p>
-                </div>
+            {/* Right timeline */}
+            <div className="relative">
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-glass-border" />
 
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber border-2 border-obsidian z-10" />
-
-                <div className="w-full md:w-1/2 hidden md:block" />
-              </motion.div>
-            ))}
+              {timeline.map((item, i) => (
+                <motion.div
+                  key={item.year}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.7, delay: 0.1 * i }}
+                  className="relative mb-14 last:mb-0"
+                >
+                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber border-2 border-obsidian z-10" />
+                  <div className="pl-14 md:pl-0 md:w-1/2 md:pr-12 md:text-right">
+                    <div className="font-bebas text-3xl text-amber mb-2">{item.year}</div>
+                    <h3 className="font-bebas text-xl text-cream mb-3 tracking-wider uppercase">{item.title}</h3>
+                    <p className="font-sans text-sm text-cream/70 leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ───── About Company (Enhanced) ───── */}
-      <div className="py-32 bg-transparent relative">
-        <div className="max-w-[1280px] mx-auto px-[5vw] grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
-          <motion.div
-            initial={{ x: -60, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, margin: "-20%" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
-          >
-            <div className="aspect-[4/5] rounded-2xl overflow-hidden relative group shadow-2xl bg-charcoal">
-              <motion.img 
-                style={{ y: yImage, scale: 1.1 }}
-                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200" 
-                alt="Khemji Wire Manufacturing Facility" 
-                loading="lazy"
-                className="w-full h-[120%] object-cover filter grayscale contrast-125 brightness-110 group-hover:grayscale-0 group-hover:contrast-100 transition-all duration-[1.5s]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(18,20,24,0.8)] via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
-              <div className="absolute inset-x-0 bottom-0 p-8 pt-20 bg-gradient-to-t from-obsidian to-transparent">
-                 <h4 className="font-bebas text-3xl text-cream tracking-wider">Facility & Excellence</h4>
-                 <p className="font-mono text-xs text-amber mt-2 uppercase tracking-widest">Jaipur, India</p>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-8 -right-8 w-[calc(100%+2rem)] grid grid-cols-3 gap-4">
-              <StatCounter value={700} suffix="+" label="MT Capacity" />
-              <StatCounter value={1988} label="Est. Year" />
-              <StatCounter value={200} suffix="+" label="Clients" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            style={{ y: yContent }}
-            initial={{ x: 60, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true, margin: "-20%" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col pt-10 md:pt-0"
-          >
-            <motion.div 
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 1, width: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="h-[1px] max-w-[100px] mb-6 block"
-              style={{ backgroundColor: "rgba(249,115,22,0.5)" }}
-            />
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">About Company</h3>
-            <h2 className="font-bebas text-[clamp(48px,6vw,90px)] leading-[0.85] text-cream mb-10 border-l-[3px] border-amber pl-6 py-2 uppercase min-h-[160px]">
-              <SplitText text="KHEMJI WIRE" delayOffset={0.1} /> <br />
-              <span className="text-steel"><SplitText text="& WIRE PVT. LTD." delayOffset={0.3} /></span>
-            </h2>
-            <div className="space-y-6 font-sans font-light text-base lg:text-lg text-steel/90 max-w-[480px]">
-               <p>
-                Founded in 1988 by Mr. Om Prakash Agarwal, Khemji Wire & Wire Pvt. Ltd. has emerged as a trusted manufacturer of galvanized steel wire solutions catering to the cable, infrastructure, and industrial sectors.
-              </p>
-              <p>
-                With a commitment to quality manufacturing and customer satisfaction, we produce wire products that meet stringent Indian standards and industrial performance requirements.
-              </p>
-            </div>
-
-            <div className="mt-10 grid gap-3 font-mono text-[10px] lg:text-xs uppercase tracking-widest text-cream">
-              {['Founded in 1988 — 35+ Years of Trust', 'Manufacturing Capacity: 700+ MT', 'IS Standard Compliant Products', 'Specialized in Cable Armouring Wire', 'Custom Manufacturing Capability'].map((item, i) => (
-                <motion.div 
-                  key={i} 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                  className="flex items-center gap-4 group"
-                >
-                  <div className="w-8 h-[1px] bg-glass-border relative overflow-hidden">
-                    <motion.div 
-                      initial={{ x: "-100%" }}
-                      whileInView={{ x: "0%" }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.8, delay: 0.6 + i * 0.1 }}
-                      className="absolute inset-0 bg-amber" 
-                    />
-                  </div>
-                  <span>{item}</span>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.a 
-              href="#products" 
-              className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group mt-16 w-fit"
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="font-mono text-xs text-amber tracking-widest uppercase">
-                Explore Our Products
-              </span>
-              <span className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-                    style={{ backgroundColor: "rgba(249,115,22,0.1)" }}>
-                <span className="text-amber group-hover:text-obsidian transition-colors">→</span>
-              </span>
-            </motion.a>
-          </motion.div>
-        </div>
-      </div>
-
       {/* ───── Vision & Mission ───── */}
-      <div className="py-32 bg-transparent relative border-t border-glass-border">
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-20 text-center"
+            className="mb-16 text-center"
           >
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Purpose</h3>
+            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Direction</h3>
             <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
               Vision & <span className="text-amber">Mission</span>
             </h2>
@@ -289,15 +174,18 @@ export function About() {
               className="blob-card p-10 md:p-14 rounded-2xl relative overflow-hidden group"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0" />
-              <h3 className="font-bebas text-3xl text-amber mb-6 tracking-wider uppercase">Our Vision</h3>
-              <p className="font-sans text-base lg:text-lg text-steel/90 leading-relaxed">
-                To build a manufacturing organization known for trust, quality, and long-term customer relationships while contributing to India&apos;s growing infrastructure and industrial sector.
-              </p>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="w-12 h-[1px]"
-                     style={{ backgroundColor: "rgba(249,115,22,0.5)" }} />
-                <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Trusted Since 1988</span>
+              <div className="w-14 h-14 rounded-lg bg-amber/10 border border-amber/25 flex items-center justify-center mb-8">
+                <svg className="w-7 h-7 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                </svg>
               </div>
+              <h3 className="font-bebas text-3xl text-cream mb-6 tracking-wider uppercase">Our Vision</h3>
+              <p className="font-sans text-base lg:text-lg text-cream/80 leading-relaxed mb-6">
+                To be the <strong className="text-cream font-medium">most trusted wire manufacturer in India</strong> — recognized for the consistent quality of our products, the reliability of our supply, and the integrity of our business conduct.
+              </p>
+              <p className="font-sans text-sm text-cream/60 leading-relaxed">
+                We envision Khemji Wire as a brand synonymous with precision and dependability — from the infrastructure projects that shape India&apos;s future to the everyday industrial applications that keep industries running. Our goal is to grow not just in scale, but in purpose — advancing manufacturing standards, supporting skilled employment, and contributing to India&apos;s industrial self-reliance.
+              </p>
             </motion.div>
 
             <motion.div
@@ -308,37 +196,40 @@ export function About() {
               className="blob-card p-10 md:p-14 rounded-2xl relative overflow-hidden group"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0" />
-              <h3 className="font-bebas text-3xl text-amber mb-6 tracking-wider uppercase">Our Mission</h3>
-              <p className="font-sans text-base lg:text-lg text-steel/90 leading-relaxed">
-                To deliver high-quality galvanized wire products with exceptional customer service, maintaining the highest standards of manufacturing excellence while fostering long-term partnerships.
-              </p>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="w-12 h-[1px]"
-                     style={{ backgroundColor: "rgba(249,115,22,0.5)" }} />
-                <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Quality First</span>
+              <div className="w-14 h-14 rounded-lg bg-amber/10 border border-amber/25 flex items-center justify-center mb-8">
+                <svg className="w-7 h-7 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
               </div>
+              <h3 className="font-bebas text-3xl text-cream mb-6 tracking-wider uppercase">Our Mission</h3>
+              <p className="font-sans text-base lg:text-lg text-cream/80 leading-relaxed mb-6">
+                To <strong className="text-cream font-medium">deliver superior quality wire products</strong> through innovation, reliability, and customer-focused solutions — while contributing to the growth of industry and infrastructure across India.
+              </p>
+              <p className="font-sans text-sm text-cream/60 leading-relaxed">
+                We are committed to manufacturing every product to BIS standards, ensuring each coil, spool, and formed wire that leaves our facility meets the expectations of the engineers, contractors, and businesses who depend on it. We achieve this through disciplined processes, ethical partnerships, continuous improvement, and an unwavering respect for the trust our customers place in us.
+              </p>
             </motion.div>
           </div>
         </div>
       </div>
 
       {/* ───── Leadership ───── */}
-      <div className="py-32 bg-transparent relative border-t border-glass-border">
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-20 text-center"
+            className="mb-16"
           >
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Team</h3>
+            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Leadership</h3>
             <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
-              Leadership <span className="text-amber">Team</span>
+              The People Behind <span className="text-amber">Khemji Wire</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex flex-col gap-8">
             {/* Founder */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -347,26 +238,29 @@ export function About() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="blob-card rounded-2xl overflow-hidden group"
             >
-              <div className="relative h-64 bg-gradient-to-br from-charcoal to-obsidian flex items-center justify-center overflow-hidden">
-                <div className="w-32 h-32 rounded-full flex items-center justify-center"
-                     style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "2px solid rgba(249,115,22,0.3)" }}>
-                  <span className="font-bebas text-5xl text-cream pt-1">OA</span>
+              <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-0">
+                <div className="relative bg-gradient-to-br from-charcoal to-obsidian flex flex-col items-center justify-center p-10 border-r border-glass-border">
+                  <div className="w-32 h-32 rounded-full flex items-center justify-center mb-4"
+                       style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "2px solid rgba(249,115,22,0.3)" }}>
+                    <span className="font-bebas text-5xl text-amber">OA</span>
+                  </div>
+                  <div className="font-bebas text-xl text-cream tracking-wider uppercase text-center">Om Prakash Agarwal</div>
+                  <div className="font-mono text-[10px] text-amber tracking-widest uppercase mt-1">Founder</div>
                 </div>
-                <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-obsidian to-transparent" />
-              </div>
-              <div className="p-8 md:p-10">
-                <h3 className="font-bebas text-3xl text-cream tracking-wider uppercase mb-1">Mr. Om Prakash Agarwal</h3>
-                <p className="font-mono text-[10px] text-amber tracking-widest uppercase mb-6">Founder & Chairman</p>
-                <blockquote className="font-playfair italic text-lg text-steel/90 pl-6 mb-6"
-                            style={{ borderLeft: "2px solid rgba(249,115,22,0.4)" }}>
-                  &ldquo;Quality is never an accident — it is always the result of intelligent effort. We build trust through every wire we produce.&rdquo;
-                </blockquote>
-                <ul className="space-y-3 font-sans text-sm text-steel/80">
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Founded Khemji Wire in 1988 with a vision to serve India&apos;s industrial growth</li>
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Pioneered quality standards in galvanized wire manufacturing</li>
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Built a reputation for integrity, trust, and customer relationships</li>
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Passionate about contributing to India&apos;s industrial development</li>
-                </ul>
+                <div className="p-8 md:p-10">
+                  <div className="font-mono text-[10px] text-amber tracking-widest uppercase mb-3">Founder · Khemji Wire Industries</div>
+                  <h3 className="font-bebas text-3xl text-cream tracking-wider uppercase mb-6">Shri Om Prakash Agarwal</h3>
+                  <div className="font-sans text-sm text-cream/70 leading-relaxed space-y-4 mb-8">
+                    <p>Shri Om Prakash Agarwal founded Khemji Wire Industries with a clear vision, unwavering determination, and a strong belief in the power of hard work. Starting from scratch with limited resources but limitless dedication, he built the foundation of the company through perseverance, integrity, and a commitment to delivering quality products.</p>
+                    <p>His entrepreneurial journey reflects the spirit of transforming challenges into opportunities. Through years of consistent effort, disciplined business practices, and a customer-centric approach, he established Khemji Wire Industries as a trusted manufacturer in the wire industry.</p>
+                    <p>The values instilled by him — quality, reliability, ethical business conduct, and continuous improvement — remain at the core of the organization.</p>
+                  </div>
+                  <blockquote className="font-playfair italic text-lg text-cream/90 pl-6"
+                              style={{ borderLeft: "3px solid rgba(249,115,22,0.5)" }}>
+                    &ldquo;Success is built not by resources alone, but by vision, hard work, and the courage to pursue excellence.&rdquo;
+                    <cite className="block mt-3 font-sans not-italic text-[11px] font-semibold tracking-wider uppercase text-amber">— Om Prakash Agarwal, Founder</cite>
+                  </blockquote>
+                </div>
               </div>
             </motion.div>
 
@@ -378,26 +272,29 @@ export function About() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="blob-card rounded-2xl overflow-hidden group"
             >
-              <div className="relative h-64 bg-gradient-to-br from-charcoal to-obsidian flex items-center justify-center overflow-hidden">
-                <div className="w-32 h-32 rounded-full flex items-center justify-center"
-                     style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "2px solid rgba(249,115,22,0.3)" }}>
-                  <span className="font-bebas text-5xl text-cream pt-1">MA</span>
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-0">
+                <div className="p-8 md:p-10 order-2 lg:order-1">
+                  <div className="font-mono text-[10px] text-amber tracking-widest uppercase mb-3">Director · Khemji Wire & Wire Pvt. Ltd.</div>
+                  <h3 className="font-bebas text-3xl text-cream tracking-wider uppercase mb-6">Shri Mahesh Agarwal</h3>
+                  <div className="font-sans text-sm text-cream/70 leading-relaxed space-y-4 mb-8">
+                    <p>Shri Mahesh Agarwal serves as the Director of Khemji Wire Industries and plays a key role in driving the company&apos;s growth, modernization, and strategic development. Under his leadership, the company has expanded its manufacturing capabilities while maintaining a strong commitment to quality, innovation, and customer service.</p>
+                    <p>With extensive experience in the steel wire and galvanizing sector, he has successfully guided the organization towards operational excellence and sustainable growth. His forward-looking approach, combined with a deep understanding of industry requirements, continues to strengthen the company&apos;s position in domestic and emerging markets.</p>
+                    <p>His vision for the company encompasses not just product excellence but also building long-term relationships with customers, distributors, and infrastructure partners across India.</p>
+                  </div>
+                  <blockquote className="font-playfair italic text-lg text-cream/90 pl-6"
+                              style={{ borderLeft: "3px solid rgba(249,115,22,0.5)" }}>
+                    &ldquo;Our mission is to deliver superior quality wire products through innovation, reliability, and customer-focused solutions while contributing to the growth of industry and infrastructure.&rdquo;
+                    <cite className="block mt-3 font-sans not-italic text-[11px] font-semibold tracking-wider uppercase text-amber">— Mahesh Agarwal, Director</cite>
+                  </blockquote>
                 </div>
-                <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-obsidian to-transparent" />
-              </div>
-              <div className="p-8 md:p-10">
-                <h3 className="font-bebas text-3xl text-cream tracking-wider uppercase mb-1">Mr. Mahesh Chand Agarwal</h3>
-                <p className="font-mono text-[10px] text-amber tracking-widest uppercase mb-6">Director</p>
-                <blockquote className="font-playfair italic text-lg text-steel/90 pl-6 mb-6"
-                            style={{ borderLeft: "2px solid rgba(249,115,22,0.4)" }}>
-                  &ldquo;Excellence in manufacturing is not just about meeting standards — it&apos;s about setting them. Every batch tells our story.&rdquo;
-                </blockquote>
-                <ul className="space-y-3 font-sans text-sm text-steel/80">
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Leading operational excellence and strategic growth initiatives</li>
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Driving process optimization and technology upgrades</li>
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Ensuring quality standards remain uncompromised</li>
-                  <li className="flex items-start gap-3"><span className="text-amber mt-1">▹</span> Expanding market reach across India and international markets</li>
-                </ul>
+                <div className="relative bg-gradient-to-br from-charcoal to-obsidian flex flex-col items-center justify-center p-10 border-l border-glass-border order-1 lg:order-2">
+                  <div className="w-32 h-32 rounded-full flex items-center justify-center mb-4"
+                       style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "2px solid rgba(249,115,22,0.3)" }}>
+                    <span className="font-bebas text-5xl text-amber">MA</span>
+                  </div>
+                  <div className="font-bebas text-xl text-cream tracking-wider uppercase text-center">Mahesh Agarwal</div>
+                  <div className="font-mono text-[10px] text-amber tracking-widest uppercase mt-1">Director</div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -405,19 +302,22 @@ export function About() {
       </div>
 
       {/* ───── Core Values ───── */}
-      <div className="py-32 bg-transparent relative border-t border-glass-border">
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-20 text-center"
+            className="mb-16"
           >
             <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">What We Stand For</h3>
-            <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
-              Core <span className="text-amber">Values</span>
+            <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream mb-4">
+              Our Core <span className="text-amber">Values</span>
             </h2>
+            <p className="font-sans text-sm text-cream/60 max-w-[520px] leading-relaxed">
+              These are not words on a wall — they are the principles instilled by our founder and practiced in every decision, every batch, every delivery.
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -428,134 +328,123 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="blob-card p-8 rounded-2xl text-center group"
+                className="blob-card p-8 rounded-2xl text-center group relative overflow-hidden"
               >
-                <div className="w-14 h-14 mx-auto mb-6 rounded-full flex items-center justify-center group-hover:bg-amber/20 transition-colors"
-                     style={{ backgroundColor: "rgba(249,115,22,0.1)" }}>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="font-bebas text-5xl text-amber/10 leading-none mb-4 select-none">{value.num}</div>
+                <div className="w-14 h-14 mx-auto mb-6 rounded-lg bg-amber/10 border border-amber/25 flex items-center justify-center group-hover:bg-amber/20 transition-colors">
                   <svg className="w-7 h-7 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
                   </svg>
                 </div>
                 <h3 className="font-bebas text-xl text-cream tracking-wider uppercase mb-3">{value.title}</h3>
-                <p className="font-sans text-sm text-steel/80 leading-relaxed">{value.description}</p>
+                <p className="font-sans text-sm text-cream/70 leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ───── Manufacturing Facility ───── */}
-      <div className="py-32 bg-transparent relative border-t border-glass-border">
-        <div className="max-w-[1280px] mx-auto px-[5vw] grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Infrastructure</h3>
-            <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream mb-8">
-              Manufacturing <span className="text-amber">Facility</span>
-            </h2>
+      {/* ───── Team / Workforce ───── */}
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
+        <div className="max-w-[1280px] mx-auto px-[5vw]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our People</h3>
+              <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream mb-8">
+                The <span className="text-amber">Workforce</span> Behind Every Strand
+              </h2>
+              <p className="font-sans text-base text-cream/80 leading-relaxed mb-10">
+                Khemji Wire&apos;s strength lies in its people — skilled workers, experienced supervisors, and a committed management team who share the same belief: that quality is everyone&apos;s responsibility. From the production floor to dispatch, each team member upholds the standards our customers have come to rely on.
+              </p>
 
-            <div className="space-y-6">
-              {[
-                { label: 'Location', value: 'Jaipur, Rajasthan, India' },
-                { label: 'Industrial Zone', value: 'RIICO Industrial Area' },
-                { label: 'Key Processes', value: 'Drawing, Galvanizing, Annealing' },
-                { label: 'Monthly Output', value: '700+ MT of GI Wire' },
-                { label: 'Quality Control', value: 'In-house Lab, IS Standard Testing' },
-                { label: 'Dispatch', value: 'PAN India Logistics Network' },
-                { label: 'Established', value: '1988' },
-              ].map((item, i) => (
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { num: '35+', label: 'Years of Operations' },
+                  { num: 'MSME', label: 'UDYAM Registered Unit' },
+                  { num: 'RIICO', label: 'Industrial Area, Jaipur' },
+                  { num: 'PAN India', label: 'Supply Network' },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                    className="blob-card p-5 rounded-xl text-center"
+                  >
+                    <div className="font-bebas text-2xl text-amber leading-none mb-1">{stat.num}</div>
+                    <div className="font-mono text-[9px] text-cream/60 tracking-wider uppercase">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col gap-4"
+            >
+              {teamPillars.map((pillar, i) => (
                 <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
+                  key={pillar.title}
+                  initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 * i }}
-                  className="flex items-start gap-4"
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  className="blob-card p-6 rounded-xl flex items-center gap-5 group hover:border-amber/20 transition-colors"
                 >
-                  <div className="w-2 h-2 rounded-full bg-amber mt-2 flex-shrink-0" />
+                  <div className="text-2xl flex-shrink-0">{pillar.icon}</div>
                   <div>
-                    <span className="font-mono text-[10px] text-amber tracking-widest uppercase">{item.label}</span>
-                    <p className="font-sans text-sm text-cream/90 mt-1">{item.value}</p>
+                    <h4 className="font-bebas text-lg text-cream tracking-wider uppercase mb-1">{pillar.title}</h4>
+                    <p className="font-sans text-[12px] text-cream/60 leading-relaxed">{pillar.desc}</p>
                   </div>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-             <div className="aspect-square rounded-2xl overflow-hidden bg-charcoal">
-              <img
-                src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200"
-                alt="Khemji Wire Manufacturing Facility"
-                loading="lazy"
-                className="w-full h-full object-cover filter grayscale contrast-125 brightness-90"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                 <div className="blob-card rounded-xl p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                    <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Facility Highlights</span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <div className="font-bebas text-2xl text-cream">700+</div>
-                      <div className="font-mono text-[9px] text-steel tracking-widest uppercase">MT/Month</div>
-                    </div>
-                    <div>
-                      <div className="font-bebas text-2xl text-cream">1988</div>
-                      <div className="font-mono text-[9px] text-steel tracking-widest uppercase">Established</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
 
       {/* ───── Certifications ───── */}
-      <div className="py-32 bg-transparent relative border-t border-glass-border">
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mb-16 text-center"
+            className="mb-16"
           >
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Quality Assurance</h3>
+            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Standards & Compliance</h3>
             <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
-              Our <span className="text-amber">Certifications</span>
+              Certifications & <span className="text-amber">Registrations</span>
             </h2>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-            {[
-              { name: 'IS:280', desc: 'Galvanized Iron Wire' },
-              { name: 'IS:3975', desc: 'Steel Wire for Armouring' },
-              { name: 'UDYAM', desc: 'MSME Registration' },
-            ].map((cert, i) => (
+            {certifications.map((cert, i) => (
               <motion.div
-                key={cert.name}
+                key={cert.code}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="certification-stamp text-center"
+                className="blob-card p-8 rounded-2xl text-center group"
               >
-                {cert.name}
-                <p className="font-mono text-[9px] text-steel/70 mt-1 tracking-wider">{cert.desc}</p>
+                <div className="font-bebas text-4xl text-amber mb-4 tracking-wider">{cert.code}</div>
+                <h4 className="font-bebas text-lg text-cream tracking-wider uppercase mb-3">{cert.name}</h4>
+                <p className="font-sans text-[12px] text-cream/60 leading-relaxed mb-5">{cert.desc}</p>
+                <span className="inline-block px-4 py-1.5 border border-amber/30 bg-amber/[0.07] font-mono text-[9px] font-semibold tracking-wider uppercase text-amber">
+                  {cert.tag}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -569,10 +458,10 @@ export function About() {
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
               {[
-                { label: 'CIN', value: 'U27219RJ2008PTC026566' },
-                { label: 'GSTIN', value: '08AABCK0105A1ZY' },
-                { label: 'PAN', value: 'AABCK0105A' },
-                { label: 'UDYAM No.', value: 'UDYAM-RJ-06-0001234' },
+                { label: 'CIN', value: 'U51101RJ1988PTC004356' },
+                { label: 'GSTIN', value: '08AAECA7760L1ZA' },
+                { label: 'PAN', value: 'AAECA7760L' },
+                { label: 'UDYAM No.', value: 'UDYAM-RJ-17-0030256' },
               ].map((item) => (
                 <div key={item.label}>
                   <div className="font-mono text-[9px] text-amber tracking-widest uppercase mb-2">{item.label}</div>
@@ -584,15 +473,87 @@ export function About() {
         </div>
       </div>
 
+      {/* ───── Manufacturing Facility ───── */}
+      <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
+        <div className="max-w-[1280px] mx-auto px-[5vw]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-16"
+          >
+            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Infrastructure</h3>
+            <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
+              Manufacturing <span className="text-amber">Facility</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-charcoal relative">
+                <img
+                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200"
+                  alt="Khemji Wire Manufacturing Facility"
+                  loading="lazy"
+                  className="w-full h-full object-cover filter grayscale contrast-125 brightness-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="blob-card rounded-xl p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
+                      <span className="font-mono text-[10px] text-amber tracking-widest uppercase">F-153, RIICO Industrial Area · Sarna Doongar · Jaipur</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-col gap-4"
+            >
+              {facilityDetails.map((item, i) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 * i }}
+                  className="blob-card p-5 rounded-xl flex items-start gap-5 border-l-2 border-transparent hover:border-amber transition-colors"
+                >
+                  <div className="w-2 h-2 rounded-full bg-amber mt-2 flex-shrink-0" />
+                  <div>
+                    <span className="font-mono text-[10px] text-amber tracking-widest uppercase">{item.label}</span>
+                    <p className="font-sans text-sm text-cream/80 mt-1">{item.value}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       {/* ───── CTA Banner ───── */}
-      <div className="py-32 bg-transparent relative">
+      <div className="py-24 md:py-32 bg-transparent relative">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="blob-card rounded-2xl p-12 md:p-20 text-center relative overflow-hidden"
+            className="rounded-2xl p-12 md:p-20 text-center relative overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.05) 50%, rgba(249,115,22,0.1) 100%)', border: '1px solid rgba(249,115,22,0.2)' }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-amber/5 via-transparent to-amber/5" />
             <div className="relative z-10">
@@ -600,22 +561,22 @@ export function About() {
                 Partner with a Manufacturer<br />
                 You Can <span className="text-amber">Trust</span>
               </h2>
-              <p className="font-sans text-base lg:text-lg text-steel/80 max-w-[540px] mx-auto mb-10">
-                With 35+ years of experience, IS-certified quality, and a commitment to customer satisfaction — we&apos;re ready to be your trusted wire manufacturing partner.
+              <p className="font-sans text-base lg:text-lg text-cream/70 max-w-[540px] mx-auto mb-10">
+                Explore our product range or get in touch with our team for pricing and availability.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a
+                <Link
                   href="/products"
                   className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
                 >
                   View Products
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/contact"
                   className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center"
                 >
                   Contact Us
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

@@ -103,24 +103,24 @@ function TestCard({ test, index }: { test: typeof TESTS[0]; index: number }) {
   return (
     <motion.div
       ref={ref}
-      className="blob-card p-5 md:p-6 group relative"
+      className="blob-card p-7 md:p-8 group relative flex flex-col"
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="w-12 h-12 rounded-full border border-amber/25 bg-amber/[0.06] flex items-center justify-center text-amber mb-4 group-hover:border-amber/50 group-hover:bg-amber/10 transition-all duration-500">
+      <div className="w-14 h-14 rounded-full border border-amber/25 bg-amber/[0.06] flex items-center justify-center text-amber mb-5 group-hover:border-amber/50 group-hover:bg-amber/10 transition-all duration-500">
         {test.icon}
       </div>
-      <div className="font-bebas text-3xl md:text-4xl text-amber leading-none mb-2 text-glow-amber">
+      <div className="font-bebas text-4xl md:text-5xl text-amber leading-none mb-3 text-glow-amber">
         <AnimatedCounter value={test.metric} isInView={isInView} />
       </div>
-      <h4 className="font-bebas text-lg text-cream tracking-wide mb-2 group-hover:text-amber transition-colors duration-500">
+      <h4 className="font-bebas text-xl text-cream tracking-wide mb-3 group-hover:text-amber transition-colors duration-500">
         {test.name}
       </h4>
-      <p className="font-sans text-[11px] text-steel/50 leading-relaxed mb-3">
+      <p className="font-sans text-[12px] text-steel/70 leading-relaxed mb-4 flex-1">
         {test.desc}
       </p>
-      <p className="font-mono text-[9px] text-steel/35 leading-relaxed">
+      <p className="font-mono text-[10px] text-steel/50 leading-relaxed">
         {test.detail}
       </p>
       <motion.div
@@ -163,7 +163,7 @@ export function QualityAssurance() {
               Quality You Can<br/>
               <span className="text-amber">Trust</span>
             </h2>
-            <p className="font-sans text-sm text-steel/60 leading-relaxed">
+            <p className="font-sans text-sm text-steel/80 leading-relaxed">
               At Khemji Wire & Wire Pvt. Ltd., quality is not a department \u2014 it&apos;s built into every metre of wire we produce.
             </p>
           </div>
@@ -183,7 +183,7 @@ export function QualityAssurance() {
         </div>
 
         {/* Test cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {TESTS.map((test, i) => (
             <TestCard key={test.name} test={test} index={i} />
           ))}

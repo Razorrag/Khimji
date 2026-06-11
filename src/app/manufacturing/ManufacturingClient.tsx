@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useLayoutEffect } from 'react';
-import { SplitText } from '@/components/ui/SplitText';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -10,52 +10,67 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROCESS_STEPS = [
   {
-    title: "Annealing",
-    desc: "The cold-drawn MS wire is passed through an annealing furnace (often a molten lead bath, fluidized sand bed, or tube furnace) operating at high temperatures.",
-    purpose: "Drawing makes wire hard and brittle. Annealing relieves internal stresses, restores ductility, and softens it so it can be easily bent or woven later in its life cycle.",
-    img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2000"
+    title: "Wire Drawing",
+    desc: "Raw MS wire rod pulled through tungsten carbide dies, reducing diameter to target gauge while hardening the wire.",
+    purpose: "Drawing achieves the precise diameter and surface finish required. Each die reduces the wire gauge progressively to meet exact specifications.",
+    temp: "Cold Process",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
   },
   {
-    title: "Rinsing (Water Quenching)",
-    desc: "The wire immediately passes through a water bath or high-pressure spray system.",
-    purpose: "This rapidly cools the wire down from the high annealing temperatures and washes away any residual carryover from the annealing medium (like lead or sand).",
-    img: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=2000"
+    title: "Surface Cleaning",
+    desc: "Wire surface mechanically descaled and cleaned to remove oxides, loose scale, and contaminants before chemical treatment.",
+    purpose: "Mechanical descaling ensures the wire surface is clean and uniform, preparing it for effective chemical pickling and zinc adhesion.",
+    temp: "Mechanical",
+    img: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=2000"
   },
   {
     title: "Pickling",
-    desc: "The wire is submerged in an acid bath—typically dilute Hydrochloric Acid (HCl) or Sulfuric Acid (H2SO4)—at a controlled concentration and temperature.",
-    purpose: "This is a critical chemical cleaning step. The acid strips away all rust, mill scale, and metallic oxides from the surface of the MS wire. Zinc will not bond to oxidized steel.",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
-  },
-  {
-    title: "Rinsing (Post-Pickling)",
-    desc: "The wire goes through another highly agitated water wash.",
-    purpose: "This stops the chemical reaction by washing off the acid. It prevents 'carryover' of iron salts and acid into the flux tank, which would contaminate the flux.",
-    img: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=2000"
+    desc: "Acid bath (dilute HCl) strips all rust, mill scale, and metallic oxides. Zinc cannot bond to oxidized steel.",
+    purpose: "This is a critical chemical cleaning step. The acid strips away all rust, mill scale, and metallic oxides from the surface of the MS wire.",
+    temp: "HCl Bath",
+    img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=2000"
   },
   {
     title: "Fluxing",
-    desc: "The wire is passed through a hot chemical solution, usually a mixture of Zinc Ammonium Chloride. This is often followed by a drying plate or hot air blower to dry the flux onto the wire.",
+    desc: "Zinc Ammonium Chloride flux solution prevents re-oxidation and catalyzes the metallurgical bonding of molten zinc.",
     purpose: "Fluxing prevents the bare steel from re-oxidizing before it hits the zinc bath, and acts as a catalyst to promote the metallurgical bonding of molten zinc to the steel.",
-    img: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2000"
+    temp: "ZnCl₂",
+    img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=2000"
   },
   {
-    title: "Galvanizing (Zinc Bath)",
-    desc: "The fluxed wire is immersed in a molten zinc bath maintained at approximately 450°C to 460°C.",
+    title: "Hot Dip Galvanizing",
+    desc: "Wire passes through molten zinc bath at 450–460°C. Metallurgical reaction forms bonded zinc-iron alloy layers for lasting protection.",
     purpose: "A metallurgical reaction occurs as the wire travels through the molten zinc, forming a series of tightly bonded zinc-iron alloy layers topped by a layer of pure zinc.",
-    img: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&q=80&w=2000"
+    temp: "450–460°C",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=2000"
   },
   {
-    title: "Cleaning & Wiping",
-    desc: "As the wire exits the zinc bath, it passes through a wiping mechanism. Depending on desired coating weight, plants use charcoal, asbestos pads, sand, or nitrogen gas.",
-    purpose: "Wiping removes excess liquid zinc and ensures a smooth, uniform coating thickness across the wire. This dictates whether the wire has a 'commercial' or 'heavy' coating.",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
+    title: "Cooling",
+    desc: "Freshly galvanized wire is rapidly cooled and quenched to solidify the zinc coating and stabilize the surface.",
+    purpose: "Rapid cooling solidifies the zinc coating, locking in the metallurgical bond and ensuring uniform coating thickness across the wire.",
+    temp: "Water Bath",
+    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=2000"
   },
   {
-    title: "Bundling (Coiling)",
-    desc: "The finished GI wire is pulled through a take-up frame (coiler or spooler) at high speeds.",
-    purpose: "The machinery winds the continuous wire into neat coils or onto large spools for storage, transport, and final delivery.",
-    img: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=2000"
+    title: "Testing",
+    desc: "Diameter, tensile strength, zinc coating weight, and dip test verified per batch before any product leaves the facility.",
+    purpose: "Every batch undergoes comprehensive QC testing — dimensional accuracy, tensile strength, coating weight, and surface quality — before dispatch clearance.",
+    temp: "QC Lab",
+    img: "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    title: "Packing",
+    desc: "Finished wire wound into precise coils of 25–150 kg, wrapped in Hessian cloth and wire-bound for safe transport.",
+    purpose: "Proper packing protects the zinc coating during transit and ensures the wire arrives at the customer site in perfect condition.",
+    temp: "Coiling",
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000"
+  },
+  {
+    title: "Dispatch",
+    desc: "Batch-tagged coils dispatched with Material Test Certificate via trusted freight partners across India.",
+    purpose: "Each dispatched coil comes with its batch test certificate, providing customers with full traceability and quality assurance documentation.",
+    temp: "PAN India",
+    img: "https://images.unsplash.com/photo-1586528116475-4e39890ceae2?auto=format&fit=crop&q=80&w=2000"
   }
 ];
 
@@ -117,7 +132,7 @@ export function ManufacturingClient() {
   return (
     <div ref={containerRef}>
       {/* Hero */}
-      <section className="relative pt-40 pb-24 overflow-hidden bg-transparent border-b border-glass-border">
+      <section className="relative pt-36 pb-20 overflow-hidden bg-transparent border-b border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
@@ -138,16 +153,16 @@ export function ManufacturingClient() {
                 initial={{ width: 0 }}
                 animate={{ width: "60px" }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="h-[1px] bg-amber mb-6"
+                className="h-[2px] bg-amber mb-6"
               />
               <h1 className="font-bebas text-[clamp(48px,10vw,140px)] text-cream uppercase leading-[0.85] mb-6">
-                <SplitText text="The Wire" />
+                The Wire
                 <br/>
-                <span className="text-amber"><SplitText text="Galvanizing" delayOffset={0.2} /></span>
+                <span className="text-amber">Galvanizing</span>
                 <br/>
                 <span className="text-outline-amber">Process</span>
               </h1>
-              <p className="font-sans text-lg md:text-xl text-steel/80 font-light max-w-[600px] leading-relaxed mt-8">
+              <p className="font-sans text-lg md:text-xl text-cream/80 font-light max-w-[600px] leading-relaxed mt-8">
                 A continuous wire galvanizing plant transforms drawn Mild Steel (MS) wire into corrosion-resistant galvanized iron (GI) wire through a rigorous, sequential surface treatment and coating process. 
               </p>
             </div>
@@ -161,18 +176,18 @@ export function ManufacturingClient() {
               <div className="blob-card p-6 rounded-2xl border border-glass-border">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                  <span className="font-mono text-[10px] text-amber tracking-widest uppercase">8-Step Process</span>
+                  <span className="font-mono text-[10px] text-amber tracking-widest uppercase">9-Step Process</span>
                 </div>
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-3 gap-2">
                   {PROCESS_STEPS.map((_, i) => (
                     <div key={i} className="w-full aspect-square rounded-lg bg-charcoal/50 border border-glass-border flex items-center justify-center">
-                      <span className="font-mono text-[10px] text-steel/60">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="font-mono text-[10px] text-cream/60">{String(i + 1).padStart(2, '0')}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 flex items-center gap-2">
                   <div className="w-8 h-[1px] bg-amber/50" />
-                  <span className="font-mono text-[9px] text-steel/50 tracking-widest uppercase">Raw Material to Dispatch</span>
+                  <span className="font-mono text-[9px] text-cream/50 tracking-widest uppercase">Raw Material to Dispatch</span>
                 </div>
               </div>
             </motion.div>
@@ -227,15 +242,17 @@ export function ManufacturingClient() {
                         <div className="flex flex-col gap-5 w-full hidden md:flex">
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs text-amber font-bold tracking-widest">{stepNum}</span>
-                            <div className="w-8 h-[1px]"
-                        style={{ backgroundColor: "rgba(249,115,22,0.5)" }} />
+                            <div className="w-8 h-[1px] bg-amber/50" />
+                            {step.temp && (
+                              <span className="font-mono text-[9px] text-amber/50 border border-amber/20 rounded-full px-2 py-0.5">{step.temp}</span>
+                            )}
                           </div>
                           <h2 className="font-bebas text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
                           <div className="blob-card p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg">
                             <h4 className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-amber"></span> The Process</h4>
-                            <p className="font-sans text-steel text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
-                            <h4 className="font-mono text-[10px] text-steel/60 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-steel/40"></span> The Purpose</h4>
-                            <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
+                            <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
+                            <h4 className="font-mono text-[10px] text-cream/50 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-cream/30"></span> The Purpose</h4>
+                            <p className="font-sans text-cream/70 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
                           </div>
                         </div>
                       )}
@@ -247,8 +264,10 @@ export function ManufacturingClient() {
                         <div className="flex flex-col gap-4 md:gap-5 w-full">
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs text-amber font-bold tracking-widest">{stepNum}</span>
-                            <div className="w-8 h-[1px]"
-                        style={{ backgroundColor: "rgba(249,115,22,0.5)" }} />
+                            <div className="w-8 h-[1px] bg-amber/50" />
+                            {step.temp && (
+                              <span className="font-mono text-[9px] text-amber/50 border border-amber/20 rounded-full px-2 py-0.5">{step.temp}</span>
+                            )}
                           </div>
                           <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
                           
@@ -259,10 +278,10 @@ export function ManufacturingClient() {
 
                           <div className="blob-card p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg mb-4 md:mb-0">
                             <h4 className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-amber"></span> The Process</h4>
-                            <p className="font-sans text-steel text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
+                            <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
                             
-                            <h4 className="font-mono text-[10px] text-steel/60 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-steel/40"></span> The Purpose</h4>
-                            <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
+                            <h4 className="font-mono text-[10px] text-cream/50 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-cream/30"></span> The Purpose</h4>
+                            <p className="font-sans text-cream/70 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
                           </div>
                         </div>
                       ) : (
@@ -299,13 +318,18 @@ export function ManufacturingClient() {
              transition={{ duration: 0.8 }}
            >
              <h2 className="font-bebas text-5xl md:text-7xl text-cream mb-6">Experience <span className="text-amber">Precision</span></h2>
-             <p className="font-sans text-steel text-lg font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+             <p className="font-sans text-cream/70 text-lg font-light leading-relaxed mb-10 max-w-2xl mx-auto">
                Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
              </p>
-              <a href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300">
-               <span className="relative z-10">Contact Us</span>
-               <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
-             </a>
+             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+               <Link href="/contact" className="blob-btn font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300">
+                 <span className="relative z-10">Contact Us</span>
+                 <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
+               </Link>
+               <Link href="/quality" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center">
+                 View Quality Standards
+               </Link>
+             </div>
            </motion.div>
         </div>
       </section>

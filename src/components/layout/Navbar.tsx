@@ -52,11 +52,7 @@ export function Navbar() {
       <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
         <MagneticButton className="flex items-center gap-3">
           <Link href="/" className="flex items-center gap-3">
-             <img src="/tab logo just logo.png" alt="Khemji Wire Logo" className="h-10 md:h-14 w-auto object-contain" />
-             <div className="flex flex-col">
-               <span className="font-bebas text-2xl text-cream tracking-wider leading-none">KHEMJI</span>
-               <span className="font-mono text-[9px] font-medium text-steel tracking-widest leading-none mt-1">WIRE & WIRE</span>
-             </div>
+             <img src="/logo.png" alt="Khemji Wire Logo" className="h-10 md:h-14 w-auto object-contain" />
           </Link>
         </MagneticButton>
 
@@ -112,7 +108,7 @@ export function Navbar() {
               <X className="w-8 h-8" />
             </button>
             <div className="mb-12">
-              <img src="/tab logo just logo.png" alt="Khemji Wire" className="h-16 w-auto object-contain" />
+              <img src="/logo.png" alt="Khemji Wire" className="h-16 w-auto object-contain" />
             </div>
             <nav className="flex flex-col items-center gap-8">
               {[...links, { label: 'Blog', href: '/blog' }, { label: 'FAQ', href: '/faq' }, { label: 'Contact', href: '/contact' }].map((link, i) => (

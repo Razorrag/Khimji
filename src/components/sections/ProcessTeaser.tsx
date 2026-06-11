@@ -95,40 +95,29 @@ export function ProcessTeaser() {
       <div className="max-w-[1400px] mx-auto px-[5vw] relative z-10">
 
         {/* Header row */}
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-8">
-          <div className="max-w-[500px]">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="h-[2px] w-12 bg-amber" />
-              <span className="font-mono text-[10px] text-amber/60 tracking-[0.3em] uppercase">How It&apos;s Made</span>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="h-[2px] w-8 bg-amber" />
+              <span className="font-mono text-[10px] text-amber tracking-[0.3em] uppercase">How It&apos;s Made</span>
             </div>
-            <h2 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase mb-4">
-              The Wire<br/>
-              <span className="text-amber">Journey</span>
+            <h2 className="font-bebas text-[clamp(32px,5vw,56px)] leading-[0.85] text-cream uppercase">
+              The Wire <span className="text-amber">Journey</span>
             </h2>
-            <p className="font-sans text-sm text-steel/60 leading-relaxed mb-6">
-              From raw wire to reliable performance \u2014 engineered through 9 precise stages.
-            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <div className="flex items-baseline gap-2">
+              <span className="font-bebas text-4xl text-amber leading-none">09</span>
+              <span className="font-mono text-[9px] text-cream/50 tracking-wider uppercase">Steps</span>
+            </div>
             <Link
               href="/manufacturing"
-              className="blob-btn font-mono text-[10px] tracking-widest uppercase font-bold px-6 py-3 inline-flex items-center gap-2 group"
+              className="blob-btn font-mono text-[9px] tracking-widest uppercase font-bold px-5 py-2.5 inline-flex items-center gap-2 group"
             >
               <span>Explore Full Journey</span>
               <span className="group-hover:translate-x-1 transition-transform duration-300">\u2192</span>
             </Link>
-          </div>
-
-          <div className="flex flex-col items-end text-right lg:mt-8">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-[10px] text-steel/40 tracking-[0.3em] uppercase">Full Process</span>
-              <div className="w-1.5 h-1.5 rounded-full bg-amber step-dot-pulse" />
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="font-bebas text-5xl md:text-6xl text-amber leading-none">09</span>
-              <span className="font-mono text-[10px] text-steel/40 tracking-wider uppercase">Steps</span>
-            </div>
-            <p className="font-mono text-[9px] text-steel/30 tracking-wider mt-1">
-              Precision in every stage
-            </p>
           </div>
         </div>
 
@@ -149,7 +138,7 @@ export function ProcessTeaser() {
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
-              className="snap-start flex-shrink-0 w-[85vw] md:w-[40vw] lg:w-[30vw] h-[55vh] md:h-[65vh] relative rounded-2xl overflow-hidden border border-glass-border group"
+              className="snap-start flex-shrink-0 w-[75vw] sm:w-[55vw] md:w-[32vw] lg:w-[22vw] h-[45vh] md:h-[50vh] relative rounded-xl overflow-hidden border border-glass-border group"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -167,19 +156,19 @@ export function ProcessTeaser() {
               </div>
 
               {/* Step content at bottom */}
-              <div className="absolute bottom-0 inset-x-0 p-6 md:p-8 z-10">
+              <div className="absolute bottom-0 inset-x-0 p-4 md:p-5 z-10">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="font-mono text-[10px] text-amber tracking-widest">{step.num}</span>
                   {step.temp && (
                     <span className="font-mono text-[9px] text-amber/50 border border-amber/20 rounded-full px-2 py-0.5">{step.temp}</span>
                   )}
                 </div>
-                <h4 className="font-bebas text-3xl md:text-4xl text-cream tracking-wide group-hover:text-amber transition-colors duration-500">{step.label}</h4>
-                <p className="font-sans text-xs md:text-sm text-steel/70 mt-2 leading-relaxed">{step.desc}</p>
+                <h4 className="font-bebas text-2xl md:text-2xl text-cream tracking-wide group-hover:text-amber transition-colors duration-500">{step.label}</h4>
+                <p className="font-sans text-[11px] md:text-xs text-steel/80 mt-2 leading-relaxed line-clamp-3">{step.desc}</p>
               </div>
 
               {/* Step number watermark */}
-              <div className="absolute top-4 right-6 font-bebas text-[80px] text-white/[0.04] leading-none select-none">{step.num}</div>
+              <div className="absolute top-3 right-4 font-bebas text-[60px] text-white/[0.04] leading-none select-none">{step.num}</div>
 
               {/* Hover amber bottom line */}
               <div className="absolute bottom-0 inset-x-0 h-1 bg-amber scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />

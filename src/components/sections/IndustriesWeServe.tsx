@@ -55,7 +55,7 @@ export function IndustriesWeServe() {
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-5">
             <div className="h-[2px] w-12 bg-amber" />
-            <span className="font-mono text-[10px] text-amber/60 tracking-[0.3em] uppercase">Industries We Serve</span>
+            <span className="font-mono text-[10px] text-amber tracking-[0.3em] uppercase">Industries We Serve</span>
           </div>
           <h2 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase mb-4">
             Trusted Across<br/>
@@ -102,7 +102,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
               </h3>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="font-bebas text-xl text-amber">{industry.stat}</span>
-                <span className="font-mono text-[9px] text-steel/40 tracking-wider">{industry.statLabel}</span>
+                <span className="font-mono text-[9px] text-steel/60 tracking-wider">{industry.statLabel}</span>
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
 
         {/* Description */}
         <div className="lg:col-span-5">
-          <p className="font-sans text-sm text-steel/60 leading-relaxed">
+          <p className="font-sans text-sm text-steel/80 leading-relaxed">
             {industry.detail}
           </p>
         </div>
@@ -119,7 +119,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
         <div className="lg:col-span-3">
           <div className={`flex flex-wrap gap-2 ${isEven ? '' : 'lg:justify-end'}`}>
             {industry.tags.map((tag) => (
-              <span key={tag} className="font-mono text-[9px] px-2.5 py-1 rounded-full border border-amber/15 text-amber/50 bg-amber/[0.03]">
+              <span key={tag} className="font-mono text-[9px] px-2.5 py-1 rounded-full border border-amber/25 text-amber/70 bg-amber/[0.05]">
                 {tag}
               </span>
             ))}
