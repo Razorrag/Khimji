@@ -138,7 +138,7 @@ export function AmbientBackground() {
     function resize() {
       if (!canvas) return;
       // Cap scale for very high DPI displays to improve rendering performance
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5); 
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.2);
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;

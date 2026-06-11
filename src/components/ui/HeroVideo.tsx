@@ -29,7 +29,8 @@ export function HeroVideo() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/hero-poster.jpg"
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-center"
       >

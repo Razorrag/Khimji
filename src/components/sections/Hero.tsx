@@ -123,13 +123,14 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 1.65, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ textShadow: "0 0 80px rgba(249,115,22,0.15)" }}
               className="font-bebas text-white mb-2"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
               }}
             >
-              PRECISION IN EVERY STRAND
+              <span className="hero-text-shimmer">PRECISION IN EVERY STRAND</span>
             </motion.h1>
 
             {/* Tagline — Line 2 */}
@@ -137,13 +138,14 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ textShadow: "0 0 80px rgba(249,115,22,0.15)" }}
               className="font-bebas textured-text-amber mb-10"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
               }}
             >
-              STRENGTH IN EVERY CONNECTION
+              <span className="hero-text-shimmer">STRENGTH IN EVERY CONNECTION</span>
             </motion.h1>
 
             {/* Buttons */}
@@ -160,15 +162,15 @@ export function Hero() {
                 Contact Us
               </Link>
 
-              <Link
-                href="/products"
-                className="glass-btn font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 inline-flex items-center gap-3"
+              <a
+                href="/contact?enquiry=catalogue"
+                className="glass-btn glass-btn-download font-mono text-[11px] tracking-[0.2em] uppercase px-8 py-4 inline-flex items-center gap-3 group/dl"
               >
-                <span>View Products</span>
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <span>Download Catalogue</span>
+                <svg className="w-4 h-4 group-hover/dl:translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-              </Link>
+              </a>
             </motion.div>
           </div>
         </motion.div>

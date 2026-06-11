@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -17,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function ClientLayoutProviders({ children }: { children: React.ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const pathname = usePathname();
 
   useLayoutEffect(() => {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -29,6 +31,8 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
     lenis.on('scroll', ScrollTrigger.update);
@@ -45,6 +49,24 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
         lenis.raf(time * 1000);
       });
     };
+  }, []);
+
+  // Cleanup ScrollTrigger on route change
+  useEffect(() => {
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, [pathname]);
+
+  // Safari bfcache: refresh ScrollTrigger when navigating back
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        ScrollTrigger.refresh();
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
   }, []);
 
   return (
