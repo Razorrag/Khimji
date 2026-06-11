@@ -24,7 +24,7 @@ function CornerBracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
     <motion.div
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`${base} ${pos} ${border}`}
     />
   );
@@ -57,7 +57,7 @@ export function Hero() {
           <HeroVideo />
         </motion.div>
 
-        {/* Multi-layer dark overlay — lighter since gradients provide the mood */}
+        {/* Multi-layer dark overlay */}
         <div className="absolute inset-0 z-[1] pointer-events-none">
           <div className="absolute inset-0" style={{
             background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(18,20,24,0.4) 100%)"
@@ -90,7 +90,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.0, duration: 1 }}
+          transition={{ delay: 1.0, duration: 1 }}
           style={{ opacity: frameOpacity }}
           className="hidden lg:block absolute left-8 top-1/2 -translate-y-1/2 z-[6]"
         >
@@ -110,7 +110,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.5 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="inline-flex items-center gap-3 mb-10"
             >
               <span className="w-8 h-[1px] bg-amber" />
@@ -122,37 +122,35 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 1.65, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ textShadow: "0 0 80px rgba(249,115,22,0.15)" }}
-              className="font-bebas text-white mb-2"
+              transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="font-bebas text-white mb-2 hero-text-shimmer"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
               }}
             >
-              <span className="hero-text-shimmer">PRECISION IN EVERY STRAND</span>
+              PRECISION IN EVERY STRAND
             </motion.h1>
 
             {/* Tagline — Line 2 */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ textShadow: "0 0 80px rgba(249,115,22,0.15)" }}
-              className="font-bebas textured-text-amber mb-10"
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="font-bebas text-amber mb-10 hero-text-shimmer"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
               }}
             >
-              <span className="hero-text-shimmer">STRENGTH IN EVERY CONNECTION</span>
+              STRENGTH IN EVERY CONNECTION
             </motion.h1>
 
             {/* Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 2.1 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-wrap items-center justify-center gap-4"
             >
               <Link
