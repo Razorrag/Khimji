@@ -66,7 +66,7 @@ function ReasonCard({ reason, index }: { reason: typeof REASONS[0]; index: numbe
             initial={{ opacity: 0, x: -20 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: index * 0.08 + 0.2 }}
-            className="font-mono text-[11px] text-amber font-bold tracking-widest"
+            className="font-mono text-[12px] md:text-[13px] text-amber font-bold tracking-widest"
           >
             {reason.num}
           </motion.span>
@@ -74,26 +74,26 @@ function ReasonCard({ reason, index }: { reason: typeof REASONS[0]; index: numbe
             initial={{ opacity: 0, scale: 0, rotate: -180 }}
             animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
             transition={{ duration: 0.6, delay: index * 0.08 + 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="w-10 h-10 rounded-xl border border-amber/30 bg-amber/10 flex items-center justify-center text-amber"
+            className="w-11 h-11 md:w-12 md:h-12 rounded-xl border border-amber/30 bg-amber/10 flex items-center justify-center text-amber"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 md:w-6 h-5 md:h-6">
               <path d={reason.icon} />
             </svg>
           </motion.div>
         </div>
 
         {/* Headline */}
-        <h3 className="font-bebas text-lg md:text-xl text-cream tracking-wide mb-1 leading-tight">
+        <h3 className="font-bebas text-xl md:text-2xl lg:text-[26px] text-cream tracking-wide mb-1.5 leading-tight">
           {reason.headline}
         </h3>
 
         {/* Metric */}
-        <p className="font-mono text-[9px] md:text-[10px] text-amber tracking-wider mb-3 uppercase font-semibold">
+        <p className="font-mono text-[10px] md:text-xs text-amber tracking-wider mb-3 uppercase font-semibold">
           {reason.metric}
         </p>
 
         {/* Description */}
-        <p className="font-sans text-[11px] md:text-xs text-cream/60 leading-relaxed">
+        <p className="font-sans text-[13px] md:text-sm text-cream/70 leading-relaxed">
           {reason.desc}
         </p>
       </div>

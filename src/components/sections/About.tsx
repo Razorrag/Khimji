@@ -126,9 +126,9 @@ export function About() {
                 >
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-amber border-2 border-obsidian z-10" />
                   <div className="pl-14 md:pl-0">
-                    <div className="font-bebas text-3xl text-amber mb-2">{item.year}</div>
-                    <h3 className="font-bebas text-xl text-cream mb-3 tracking-wider uppercase">{item.title}</h3>
-                    <p className="font-sans text-sm text-cream/70 leading-relaxed">{item.description}</p>
+                    <div className="font-bebas text-3xl md:text-5xl text-amber mb-2">{item.year}</div>
+                    <h3 className="font-bebas text-xl md:text-2xl text-cream mb-3 tracking-wider uppercase">{item.title}</h3>
+                    <p className="font-sans text-sm md:text-base text-cream/70 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
               );

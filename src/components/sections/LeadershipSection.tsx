@@ -42,7 +42,7 @@ function AnimatedPoint({ point, index, baseDelay }: { point: string; index: numb
       transition={{ duration: 0.5, delay: baseDelay + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="w-1.5 h-1.5 rounded-full bg-amber mt-1.5 flex-shrink-0" />
-      <p className="font-sans text-xs text-cream/60 leading-relaxed">{point}</p>
+      <p className="font-sans text-[13px] md:text-sm text-cream/70 leading-relaxed">{point}</p>
     </motion.div>
   );
 }
@@ -138,27 +138,27 @@ function LeaderBlock({ leader, index }: { leader: typeof LEADERS[0]; index: numb
           initial={{ scale: 0, rotate: -90 }}
           animate={isInView ? { scale: 1, rotate: 0 } : {}}
           transition={{ duration: 0.6, delay: index * 0.2 + 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-14 h-14 rounded-full border border-amber/30 flex items-center justify-center flex-shrink-0"
+          className="w-14 h-14 md:w-16 md:h-16 rounded-full border border-amber/30 flex items-center justify-center flex-shrink-0"
         >
-          <span className="font-bebas text-xl text-amber">{leader.initials}</span>
+          <span className="font-bebas text-xl md:text-2xl text-amber">{leader.initials}</span>
         </motion.div>
         <div>
-          <h3 className="font-bebas text-2xl md:text-3xl text-cream tracking-wide leading-tight">
+          <h3 className="font-bebas text-2xl md:text-3xl lg:text-4xl text-cream tracking-wide leading-tight">
             {leader.name}
           </h3>
-          <span className="font-mono text-[9px] text-amber/70 tracking-[0.2em] uppercase">
+          <span className="font-mono text-[10px] md:text-xs text-amber/70 tracking-[0.2em] uppercase">
             {leader.title}
           </span>
         </div>
       </div>
 
       {/* Goal */}
-      <p className="font-sans text-sm text-cream/70 leading-relaxed mb-5 pl-[70px]">
+      <p className="font-sans text-sm md:text-base text-cream/80 leading-relaxed mb-5 pl-[70px] md:pl-[80px]">
         {leader.goal}
       </p>
 
       {/* Points */}
-      <div className="flex flex-col gap-2.5 pl-[70px]">
+      <div className="flex flex-col gap-2.5 pl-[70px] md:pl-[80px]">
         {leader.points.map((point, pi) => (
           <AnimatedPoint key={pi} point={point} index={pi} baseDelay={index * 0.2 + 0.4} />
         ))}
