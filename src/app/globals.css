@@ -152,25 +152,49 @@
   /* ─────────────────────────────────────────────
      STEP 1 — TEXTURED TYPOGRAPHY
      Image-masked text using /button text shade.jpg
+     Fallback: color provides solid text if image fails
      ───────────────────────────────────────────── */
   .textured-text-primary {
+    color: var(--color-cream);
     background: url("/button text shade.jpg") center/cover no-repeat;
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent;
     animation: textureShine 18s ease-in-out infinite;
   }
 
   .textured-text-amber {
+    color: var(--color-amber);
     background: url("/button text shade.jpg") center/cover no-repeat;
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent;
     animation: textureShine 20s ease-in-out infinite;
+  }
+
+  /* Amber-tinted texture variant — layers an amber color on top of the metallic texture */
+  .textured-text-amber-tint {
+    position: relative;
+    color: var(--color-amber);
+    background: url("/button text shade.jpg") center/cover no-repeat;
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textureShine 20s ease-in-out infinite;
+  }
+  .textured-text-amber-tint::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(249,115,22,0.15) 0%, rgba(249,115,22,0.35) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    mix-blend-mode: color;
+    pointer-events: none;
   }
 
   /* High contrast / reduced motion fallback */
@@ -851,35 +875,6 @@ section {
   .step-dot-pulse {
     animation: none !important;
   }
-}
-
-/* ─────────────────────────────────────────────
-   HERO TEXT SHIMMER — hover sweep effect
-   ───────────────────────────────────────────── */
-.hero-text-shimmer {
-  position: relative;
-  display: inline-block;
-  cursor: default;
-}
-.hero-text-shimmer::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-  background-size: 300% 100%;
-  background-position: 200% 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-.hero-text-shimmer:hover::after {
-  opacity: 1;
-  animation: heroTextShimmer 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-}
-@keyframes heroTextShimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
 }
 
 /* ─────────────────────────────────────────────

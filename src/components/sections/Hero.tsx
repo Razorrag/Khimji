@@ -123,7 +123,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="font-bebas text-white mb-2 hero-text-shimmer"
+              className="font-bebas textured-text-primary mb-2"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
@@ -137,7 +137,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="font-bebas text-amber mb-10 hero-text-shimmer"
+              className="font-bebas textured-text-amber-tint mb-10"
               style={{
                 fontSize: "clamp(52px, 11vw, 130px)",
                 lineHeight: 0.88,
