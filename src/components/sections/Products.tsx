@@ -121,7 +121,7 @@ function FullScreenProduct({ prod, index }: { prod: typeof PRODUCTS[0]; index: n
                 <span key={app} className="text-[9px] font-mono px-2.5 py-1 rounded-full text-white/50 border border-white/8 uppercase tracking-wider">{app}</span>
               ))}
             </div>
-            <Link href="/contact" className="blob-btn font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 w-full px-5 py-3">
+            <Link href="/contact" className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 w-full px-5 py-3">
               <span>Contact Us</span>
               <span>→</span>
             </Link>

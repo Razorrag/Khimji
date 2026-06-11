@@ -1,117 +1,108 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { SplitText } from '../ui/SplitText';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ScrollReveal } from '../ui/ScrollReveal';
 
 const INDUSTRIES = [
-  { name: "Cable Manufacturers", desc: "Armouring & shielding wires." },
-  { name: "Power Sector", desc: "Transmission & distribution networks." },
-  { name: "Infrastructure", desc: "Bridges, tunnels & structural binding." },
-  { name: "Industrial", desc: "Heavy machinery & component manufacturing." },
-  { name: "Construction", desc: "High-tensile reinforcement & fencing." },
-  { name: "Agriculture", desc: "Perimeter fencing & structural support." }
+  { name: "Cable Manufacturers", desc: "Armouring & shielding wires.", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+  { name: "Power Sector", desc: "Transmission & distribution networks.", icon: "M13 2L3 14h9l-1 8 10-12h-9l1-8z" },
+  { name: "Infrastructure", desc: "Bridges, tunnels & structural binding.", icon: "M3 21h18M3 21V7l9-4 9 4v14M9 21V11h6v10" },
+  { name: "Industrial", desc: "Heavy machinery & component manufacturing.", icon: "M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83" },
+  { name: "Construction", desc: "High-tensile reinforcement & fencing.", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0H5m14 0h2m-16 0H3m4-10h2m4 0h2m-6 4h2m4 0h2" },
+  { name: "Agriculture", desc: "Perimeter fencing & structural support.", icon: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
 ];
 
-const STRENGTHS = [
-  { title: "Industry Standards Compliance", desc: "Our products are rigorously tested and certified to comply with IS 280 and IS 3975 standards." },
-  { title: "Large Manufacturing Capacity", desc: "Equipped with advanced machinery to support a monthly production capability of 700+ MT." },
-  { title: "Reliable Delivery", desc: "Optimized logistics and supply chain ensuring timely dispatch and supply consistency nationwide." },
-  { title: "Custom Solutions", desc: "Flexible manufacturing processes to deliver products tailored to distinct customer specifications." },
-  { title: "Strong Industry Experience", desc: "Established in 2008, bringing over 15 years of domain expertise to every strand we produce." }
-];
+function IndustryCard({ ind, index }: { ind: typeof INDUSTRIES[0]; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
 
-export function Industries() {
   return (
-    <section id="industries" className="relative py-32 bg-transparent border-t border-glass-border">
-      <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
-        
-        {/* Industries / Applications */}
-        <div className="mb-32">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div>
-              <motion.div 
-                 initial={{ width: 0 }}
-                 whileInView={{ width: "60px" }}
-                 transition={{ duration: 0.8 }}
-                 className="h-[1px] bg-amber mb-6"
-              />
-              <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Sectors We Serve</h3>
-              <h2 className="font-bebas text-[clamp(48px,6vw,90px)] text-cream leading-[0.85] uppercase">
-                <SplitText text="GLOBAL" /> <br/>
-                <span className="text-steel"><SplitText text="APPLICATIONS" delayOffset={0.2} /></span>
-              </h2>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="group relative"
+    >
+      <div className="industry-card relative rounded-2xl p-5 md:p-6 overflow-hidden border border-white/[0.06] transition-all duration-500 group-hover:border-amber/20 h-full">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-charcoal/60 via-obsidian/80 to-charcoal/40 pointer-events-none" />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 100%, rgba(249,115,22,0.08) 0%, transparent 70%)' }} />
+
+        <div className="relative z-10">
+          {/* Number + Icon row */}
+          <div className="flex items-center justify-between mb-4">
+            <span className="font-mono text-[10px] text-amber/50 font-bold tracking-wider">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div className="w-10 h-10 rounded-full border border-amber/20 bg-amber/[0.05] flex items-center justify-center text-amber/70 group-hover:border-amber/40 group-hover:text-amber transition-all duration-500">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4" strokeLinecap="round" strokeLinejoin="round">
+                <path d={ind.icon} />
+              </svg>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-16">
-            {INDUSTRIES.map((ind, i) => (
-              <motion.div
-                key={ind.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="group border-t border-glass-border pt-6 relative bg-obsidian/30 sm:bg-transparent rounded-lg sm:rounded-none p-4 sm:p-0"
-              >
-                {/* Visual Wire Connector */}
-                <div className="absolute top-0 left-0 w-full h-[1px] overflow-hidden">
-                  <motion.div 
-                    initial={{ x: "-100%" }}
-                    whileInView={{ x: "0%" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 + i * 0.1 }}
-                    className="w-full h-full bg-gradient-to-r from-amber via-transparent to-transparent opacity-50"
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bebas text-3xl text-cream tracking-wide group-hover:text-amber transition-colors">{ind.name}</h3>
-                  <span className="font-mono text-xs text-steel/30 group-hover:text-amber/50 transition-colors">0{i+1}</span>
-                </div>
-                <p className="font-sans font-light text-steel leading-relaxed">{ind.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          {/* Name */}
+          <h3 className="font-bebas text-xl md:text-2xl tracking-wide text-cream mb-2 group-hover:text-amber transition-colors duration-500">
+            {ind.name}
+          </h3>
+
+          {/* Description */}
+          <p className="font-sans text-[11px] md:text-xs text-steel/50 leading-relaxed group-hover:text-steel/70 transition-colors duration-500">
+            {ind.desc}
+          </p>
+
+          {/* Bottom line accent */}
+          <div className="mt-4 h-[1px] w-0 group-hover:w-full bg-gradient-to-r from-amber/40 to-transparent transition-all duration-700" />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export function Industries() {
+  return (
+    <section id="industries" className="relative py-20 md:py-28 bg-transparent border-t border-glass-border">
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-amber/[0.02] rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-[1200px] mx-auto px-[5vw] relative z-10">
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+          <ScrollReveal direction="up" delay={0.1}>
+            <div>
+              <div className="flex items-center gap-3 mb-5">
+                <div className="h-[2px] w-12 bg-amber" />
+                <span className="font-mono text-[10px] text-amber/60 tracking-[0.3em] uppercase">Sectors We Serve</span>
+              </div>
+              <h2 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase">
+                Global<br/>
+                <span className="text-amber">Applications</span>
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={0.2}>
+            <div className="flex flex-col items-end text-right">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="font-mono text-[10px] text-steel/40 tracking-[0.3em] uppercase">Industries</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-amber step-dot-pulse" />
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="font-bebas text-4xl md:text-5xl text-amber leading-none">30+</span>
+                <span className="font-mono text-[10px] text-steel/40 tracking-wider uppercase">Sectors</span>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
 
-        {/* Why Choose Us */}
-        <div className="pt-32 border-t border-glass-border">
-          <div className="mb-20 text-center md:text-left">
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Strengths</h3>
-            <h2 className="font-bebas text-[clamp(48px,6vw,90px)] text-cream leading-[0.85] uppercase">
-             <SplitText text="WHY CHOOSE" /> <span className="text-amber"><SplitText text="US" delayOffset={0.2} /></span>
-            </h2>
-          </div>
-          
-          <div className="flex flex-col gap-6 relative">
-            {/* Visual background wire running down */}
-            <div className="absolute left-[39px] md:left-[39px] top-0 bottom-0 w-[2px] bg-glass-border hidden md:block" />
-            
-            {STRENGTHS.map((strength, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group flex flex-col md:flex-row md:items-center justify-between p-8 backdrop-blur-md hover:bg-glass-panel border border-glass-border hover:border-amber/50 transition-all duration-300 rounded-xl relative z-10 overflow-hidden"
-                style={{ backgroundColor: "rgba(30,32,38,0.8)" }}
-              >
-                {/* Shine effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-[1.5s] ease-in-out pointer-events-none" />
-                
-                <div className="flex items-center gap-8 md:w-1/2 mb-4 md:mb-0 relative z-10">
-                  <div className="w-4 h-4 rounded-full border-2 border-amber bg-charcoal group-hover:bg-amber transition-colors shadow-[0_0_10px_transparent] group-hover:shadow-[0_0_15px_rgba(234,88,12,0.6)] flex items-center justify-center">
-                     <div className="w-1 h-1 rounded-full bg-cream group-hover:bg-obsidian transition-colors" />
-                  </div>
-                  <h4 className="font-bebas text-3xl lg:text-4xl text-cream tracking-wide">{strength.title}</h4>
-                </div>
-                <div className="md:w-1/2 pl-12 md:pl-0 relative z-10">
-                  <p className="font-sans text-sm text-steel font-light leading-relaxed border-l border-glass-border/50 pl-6 group-hover:border-amber/50 transition-colors uppercase tracking-wider">{strength.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        {/* Industry cards grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+          {INDUSTRIES.map((ind, i) => (
+            <IndustryCard key={ind.name} ind={ind} index={i} />
+          ))}
         </div>
 
       </div>

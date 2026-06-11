@@ -57,11 +57,10 @@ export function Hero() {
           <HeroVideo />
         </motion.div>
 
-        {/* Multi-layer dark overlay */}
+        {/* Multi-layer dark overlay — lighter since gradients provide the mood */}
         <div className="absolute inset-0 z-[1] pointer-events-none">
-          <div className="absolute inset-0 bg-obsidian/60" />
           <div className="absolute inset-0" style={{
-            background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(18,20,24,0.6) 100%)"
+            background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 0%, rgba(18,20,24,0.4) 100%)"
           }} />
         </div>
 
@@ -73,9 +72,9 @@ export function Hero() {
 
         {/* Bottom gradient blend */}
         <div
-          className="absolute bottom-0 inset-x-0 h-[300px] z-[2] pointer-events-none"
+          className="absolute bottom-0 inset-x-0 h-[250px] z-[2] pointer-events-none"
           style={{
-            background: "linear-gradient(to bottom, transparent 0%, rgba(18,20,24,0.5) 40%, rgba(18,20,24,0.9) 70%, #121418 100%)"
+            background: "linear-gradient(to bottom, transparent 0%, rgba(18,20,24,0.4) 40%, rgba(18,20,24,0.85) 70%, #121418 100%)"
           }}
         />
 

@@ -11,6 +11,7 @@ import { AmbientBackground } from '../components/ui/AmbientBackground';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 import { WhatsAppButton } from '../components/ui/WhatsAppButton';
+import { MobileBackground } from '../components/ui/MobileBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,6 +49,9 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
 
   return (
     <>
+      {/* Mobile fallback background image */}
+      <MobileBackground />
+
       {/* Preloader overlay — sits ON TOP of everything, fades out when hero video is playing */}
       <Preloader onComplete={() => setIsLoaded(true)} />
 
