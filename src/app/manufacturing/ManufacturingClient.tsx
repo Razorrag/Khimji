@@ -94,6 +94,7 @@ export function ManufacturingClient() {
       }
 
       const steps = gsap.utils.toArray<HTMLElement>('.process-step-item');
+      const mm = gsap.matchMedia();
       
       steps.forEach((step) => {
         const nodeOuter = step.querySelector('.process-node-outer');
@@ -115,14 +116,29 @@ export function ManufacturingClient() {
         });
 
         if (contentLeft && contentRight) {
-          gsap.fromTo(contentLeft, 
-            { x: -60, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: step, start: "top 65%" } }
-          );
-          gsap.fromTo(contentRight, 
-            { x: 60, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.1, scrollTrigger: { trigger: step, start: "top 65%" } }
-          );
+          // Desktop Animations
+          mm.add("(min-width: 768px)", () => {
+            gsap.fromTo(contentLeft, 
+              { x: -60, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: step, start: "top 65%" } }
+            );
+            gsap.fromTo(contentRight, 
+              { x: 60, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.1, scrollTrigger: { trigger: step, start: "top 65%" } }
+            );
+          });
+
+          // Mobile Animations
+          mm.add("(max-width: 767px)", () => {
+            gsap.fromTo(contentLeft, 
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: step, start: "top 75%" } }
+            );
+            gsap.fromTo(contentRight, 
+              { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", delay: 0.1, scrollTrigger: { trigger: step, start: "top 75%" } }
+            );
+          });
         }
       });
     }, containerRef);
@@ -242,7 +258,8 @@ export function ManufacturingClient() {
                     {/* Left Column */}
                     <div className={`content-left w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 lg:pr-20 flex items-center ${!isEven ? 'md:justify-end' : 'md:justify-start'}`}>
                       {isEven ? (
-                        <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative group-hover:border-amber/30 border border-glass-border transition-colors duration-500 hidden md:block">
+                        /* Image on Left (for Even steps) */
+                        <div className="w-full aspect-video md:aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden relative group-hover:border-amber/30 border border-glass-border transition-colors duration-500">
                           <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent z-10" />
                           <img 
                             src={step.img} 
@@ -252,7 +269,8 @@ export function ManufacturingClient() {
                           />
                         </div>
                       ) : (
-                        <div className="flex flex-col gap-5 w-full hidden md:flex">
+                        /* Text on Left (for Odd steps) */
+                        <div className="flex flex-col gap-4 md:gap-5 w-full">
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs text-amber font-bold tracking-widest">{stepNum}</span>
                             <div className="w-8 h-[1px] bg-amber/50" />
@@ -260,8 +278,8 @@ export function ManufacturingClient() {
                               <span className="font-mono text-[9px] text-amber/50 border border-amber/20 rounded-full px-2 py-0.5">{step.temp}</span>
                             )}
                           </div>
-                          <h2 className="font-bebas text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
-                          <div className="blob-card p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg">
+                          <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
+                          <div className="blob-card p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg">
                             <h4 className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-amber"></span> The Process</h4>
                             <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
                             <h4 className="font-mono text-[10px] text-cream/50 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-cream/30"></span> The Purpose</h4>
@@ -272,8 +290,9 @@ export function ManufacturingClient() {
                     </div>
 
                     {/* Right Column */}
-                    <div className={`content-right w-full md:w-1/2 pl-[60px] md:pl-12 lg:pl-20 flex items-center mt-0 ${isEven ? 'md:justify-start' : 'md:justify-end'}`}>
+                    <div className={`content-right w-full md:w-1/2 pl-[60px] md:pl-12 lg:pl-20 flex items-center mt-6 md:mt-0 ${isEven ? 'md:justify-start' : 'md:justify-end'}`}>
                       {isEven ? (
+                        /* Text on Right (for Even steps) */
                         <div className="flex flex-col gap-4 md:gap-5 w-full">
                           <div className="flex items-center gap-3">
                             <span className="font-mono text-xs text-amber font-bold tracking-widest">{stepNum}</span>
@@ -283,30 +302,24 @@ export function ManufacturingClient() {
                             )}
                           </div>
                           <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
-                          
-                          {/* Mobile-only image */}
-                          <div className="w-full aspect-video rounded-xl overflow-hidden border border-glass-border relative md:hidden my-2">
-                             <img src={step.img} alt={step.title} loading="lazy" className="w-full h-full object-cover filter grayscale contrast-110 brightness-90" />
-                          </div>
-
-                          <div className="blob-card p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg mb-4 md:mb-0">
+                          <div className="blob-card p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg">
                             <h4 className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-amber"></span> The Process</h4>
                             <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
-                            
                             <h4 className="font-mono text-[10px] text-cream/50 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-cream/30"></span> The Purpose</h4>
                             <p className="font-sans text-cream/70 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
                           </div>
                         </div>
                       ) : (
-                         <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden relative group-hover:border-amber/30 border border-glass-border transition-colors duration-500 hidden md:block">
-                           <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent z-10" />
-                           <img 
-                             src={step.img} 
-                             alt={step.title}
-                             loading="lazy"
-                             className="w-full h-full object-cover filter grayscale contrast-110 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
-                           />
-                         </div>
+                        /* Image on Right (for Odd steps) */
+                        <div className="w-full aspect-video md:aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden relative group-hover:border-amber/30 border border-glass-border transition-colors duration-500">
+                          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent z-10" />
+                          <img 
+                            src={step.img} 
+                            alt={step.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover filter grayscale contrast-110 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
+                          />
+                        </div>
                       )}
                     </div>
 

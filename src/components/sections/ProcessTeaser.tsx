@@ -57,7 +57,7 @@ export function ProcessTeaser() {
         </motion.div>
 
         {/* Clean, Simple & Sober Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 md:gap-6">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
@@ -65,30 +65,30 @@ export function ProcessTeaser() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-20px' }}
               transition={{ duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative p-6 rounded-xl border border-glass-border bg-white/[0.01] hover:bg-amber/[0.02] hover:border-amber/20 transition-all duration-400 flex flex-col justify-between min-h-[170px]"
+              className={`group relative p-3.5 sm:p-5 md:p-6 rounded-xl border border-glass-border bg-white/[0.01] hover:bg-amber/[0.02] hover:border-amber/20 transition-all duration-400 flex flex-col justify-between min-h-[140px] sm:min-h-[160px] md:min-h-[170px] ${i === 8 ? "col-span-2 lg:col-span-1" : ""}`}
             >
               {/* Card Header */}
-              <div className="flex items-start justify-between mb-4">
-                <span className="font-mono text-3xl leading-none text-white/5 group-hover:text-amber/15 font-bold transition-all duration-400">
+              <div className="flex items-start justify-between mb-2 sm:mb-4">
+                <span className="font-mono text-2xl md:text-3xl leading-none text-white/5 group-hover:text-amber/15 font-bold transition-all duration-400">
                   {step.num}
                 </span>
-                <span className="font-mono text-[9px] px-2 py-0.5 rounded border border-white/10 text-white/40 bg-white/[0.02] tracking-wider uppercase font-semibold">
+                <span className="font-mono text-[8px] md:text-[9px] px-1.5 py-0.5 md:px-2 md:py-0.5 rounded border border-white/10 text-white/40 bg-white/[0.02] tracking-wider uppercase font-semibold">
                   {step.temp}
                 </span>
               </div>
 
               {/* Title & Icon */}
-              <div className="flex items-start gap-4 mt-auto">
-                <div className="w-10 h-10 rounded-lg border border-white/10 bg-white/[0.03] flex items-center justify-center text-white/60 group-hover:text-amber group-hover:border-amber/30 transition-all duration-400 flex-shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+              <div className="flex flex-col sm:flex-row items-start gap-2.5 sm:gap-4 mt-auto">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg border border-white/10 bg-white/[0.03] flex items-center justify-center text-white/60 group-hover:text-amber group-hover:border-amber/30 transition-all duration-400 flex-shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 md:w-5 md:h-5">
                     <path d={step.icon} />
                   </svg>
                 </div>
                 <div className="min-w-0">
-                  <h3 className="font-bebas text-lg md:text-xl text-cream tracking-wide group-hover:text-white transition-colors uppercase leading-snug">
+                  <h3 className="font-bebas text-base sm:text-lg md:text-xl text-cream tracking-wide group-hover:text-white transition-colors uppercase leading-snug">
                     {step.label}
                   </h3>
-                  <p className="font-sans text-[12px] text-cream/50 group-hover:text-cream/60 transition-colors mt-1 leading-relaxed">
+                  <p className="font-sans text-[10px] sm:text-[11px] md:text-[12px] text-cream/50 group-hover:text-cream/60 transition-colors mt-0.5 sm:mt-1 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>

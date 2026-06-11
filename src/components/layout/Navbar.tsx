@@ -37,7 +37,7 @@ export function Navbar() {
       <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
         <MagneticButton className="flex items-center gap-3 -ml-6">
           <Link href="/" className="flex items-center gap-3">
-             <img src="/logo.png" alt="Khemji Wire Logo" className="h-14 md:h-20 lg:h-24 w-auto object-contain" />
+             <img src="/logo.png" alt="Khemji Wire Logo" className="h-20 lg:h-24 w-auto object-contain" />
           </Link>
         </MagneticButton>
 

@@ -308,7 +308,7 @@ export function About() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {coreValues.map((value, i) => (
               <motion.div
                 key={value.title}
@@ -316,17 +316,19 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="blob-card p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl text-center group relative overflow-hidden"
+                className="blob-card p-3.5 sm:p-6 md:p-8 rounded-xl md:rounded-2xl text-center group relative overflow-hidden flex flex-col justify-between"
               >
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                <div className="font-bebas text-5xl text-amber/10 leading-none mb-4 select-none">{value.num}</div>
-                <div className="w-14 h-14 mx-auto mb-6 rounded-lg bg-amber/10 border border-amber/25 flex items-center justify-center group-hover:bg-amber/20 transition-colors">
-                  <svg className="w-7 h-7 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
-                  </svg>
+                <div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber to-amber/0 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="font-bebas text-3xl sm:text-5xl text-amber/10 leading-none mb-2 sm:mb-4 select-none">{value.num}</div>
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-6 rounded-lg bg-amber/10 border border-amber/25 flex items-center justify-center group-hover:bg-amber/20 transition-colors">
+                    <svg className="w-5 h-5 sm:w-7 sm:h-7 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={value.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="font-bebas text-lg sm:text-xl text-cream tracking-wider uppercase mb-1.5 sm:mb-3">{value.title}</h3>
+                  <p className="font-sans text-[11px] sm:text-sm text-cream/70 leading-relaxed">{value.description}</p>
                 </div>
-                <h3 className="font-bebas text-xl text-cream tracking-wider uppercase mb-3">{value.title}</h3>
-                <p className="font-sans text-sm text-cream/70 leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
           </div>

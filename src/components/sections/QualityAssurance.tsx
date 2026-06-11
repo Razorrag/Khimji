@@ -99,43 +99,49 @@ function AnimatedCounter({ value, isInView }: { value: string; isInView: boolean
   return <span>{display || value}</span>;
 }
 
-function TestCard({ test, index }: { test: typeof TESTS_ROW1[0]; index: number }) {
+function TestCard({ test, index, className }: { test: typeof TESTS_ROW1[0]; index: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-40px' });
 
   return (
     <motion.div
       ref={ref}
-      className="blob-card p-4 md:p-5 group relative flex flex-col"
+      className={`blob-card p-3 sm:p-4 md:p-5 group relative flex flex-col justify-between min-h-[150px] sm:min-h-auto ${className || ''}`}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Top row: icon + metric */}
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div className="w-9 h-9 rounded-lg border border-amber/20 bg-amber/[0.06] flex items-center justify-center text-amber group-hover:border-amber/40 group-hover:bg-amber/10 transition-all duration-400 flex-shrink-0">
-          {test.icon}
+      <div>
+        {/* Top row: icon + metric */}
+        <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-amber/20 bg-amber/[0.06] flex items-center justify-center text-amber group-hover:border-amber/40 group-hover:bg-amber/10 transition-all duration-400 flex-shrink-0">
+            <span className="[&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-5 sm:[&_svg]:h-5 animate-none">
+              {test.icon}
+            </span>
+          </div>
+          <div className="font-bebas text-lg sm:text-2xl md:text-3xl text-amber leading-none text-glow-amber text-right truncate">
+            <AnimatedCounter value={test.metric} isInView={isInView} />
+          </div>
         </div>
-        <div className="font-bebas text-2xl md:text-3xl text-amber leading-none text-glow-amber text-right">
-          <AnimatedCounter value={test.metric} isInView={isInView} />
-        </div>
+
+        {/* Name */}
+        <h4 className="font-bebas text-sm sm:text-base md:text-lg text-cream tracking-wide mb-1.5 group-hover:text-amber transition-colors duration-400">
+          {test.name}
+        </h4>
+
+        {/* Description */}
+        <p className="font-sans text-[10px] sm:text-[11px] md:text-xs text-steel/60 leading-relaxed mb-3">
+          {test.desc}
+        </p>
       </div>
 
-      {/* Name */}
-      <h4 className="font-bebas text-base md:text-lg text-cream tracking-wide mb-2 group-hover:text-amber transition-colors duration-400">
-        {test.name}
-      </h4>
-
-      {/* Description */}
-      <p className="font-sans text-[11px] md:text-xs text-steel/60 leading-relaxed mb-3 flex-1">
-        {test.desc}
-      </p>
-
-      {/* Detail line */}
-      <div className="pt-2 border-t border-white/[0.05]">
-        <p className="font-mono text-[9px] md:text-[10px] text-steel/40 leading-relaxed">
-          {test.detail}
-        </p>
+      <div>
+        {/* Detail line */}
+        <div className="pt-2 border-t border-white/[0.05]">
+          <p className="font-mono text-[8px] sm:text-[9px] md:text-[10px] text-steel/40 leading-relaxed">
+            {test.detail}
+          </p>
+        </div>
       </div>
 
       {/* Bottom accent line */}
@@ -213,14 +219,14 @@ export function QualityAssurance() {
         </div>
 
         {/* Row 1: 3 cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-4 md:mb-5">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 mb-3 md:mb-5">
           {TESTS_ROW1.map((test, i) => (
-            <TestCard key={test.name} test={test} index={i} />
+            <TestCard key={test.name} test={test} index={i} className={i === 2 ? "col-span-2 lg:col-span-1" : ""} />
           ))}
         </div>
 
         {/* Row 2: 2 cards centered */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-[740px] mx-auto">
+        <div className="grid grid-cols-2 gap-3 md:gap-5 max-w-[740px] mx-auto">
           {TESTS_ROW2.map((test, i) => (
             <TestCard key={test.name} test={test} index={i + 3} />
           ))}

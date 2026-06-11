@@ -95,7 +95,7 @@ function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; inde
         {/* Number + Name */}
         <div className="lg:col-span-4">
           <div className="flex items-center gap-4">
-            <span className="font-bebas text-5xl md:text-6xl text-white/[0.06] leading-none select-none">{industry.id}</span>
+            <span className="font-bebas text-5xl md:text-6xl text-white/20 leading-none select-none">{industry.id}</span>
             <div>
               <h3 className="font-bebas text-2xl md:text-3xl text-cream tracking-wide group-hover:text-amber transition-colors duration-500">
                 {industry.name}
