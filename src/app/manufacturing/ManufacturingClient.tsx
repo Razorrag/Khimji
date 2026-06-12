@@ -10,136 +10,93 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROCESS_STEPS = [
   {
-    title: "Wire Drawing",
-    desc: "Raw MS wire rod pulled through tungsten carbide dies, reducing diameter to target gauge while hardening the wire.",
-    purpose: "Drawing achieves the precise diameter and surface finish required. Each die reduces the wire gauge progressively to meet exact specifications.",
-    temp: "Cold Process",
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000"
+    title: "MS Wire Rod Coil",
+    desc: "High quality MS wire rod coils are selected as raw material for GI wire production.",
+    purpose: "Raw material selection ensures consistent carbon content, diameter uniformity, and surface quality — the foundation of every GI wire coil.",
+    temp: "Raw Material",
+    img: "/process/1.jpeg"
   },
   {
-    title: "Surface Cleaning",
-    desc: "Wire surface mechanically descaled and cleaned to remove oxides, loose scale, and contaminants before chemical treatment.",
-    purpose: "Mechanical descaling ensures the wire surface is clean and uniform, preparing it for effective chemical pickling and zinc adhesion.",
+    title: "Descaling Process",
+    desc: "Wire rod is cleaned through descaling process to remove scale, rust and impurities.",
+    purpose: "Mechanical descaling removes all oxide layer and surface contaminants, exposing clean steel for effective acid pickling and zinc bonding.",
     temp: "Mechanical",
-    img: "https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&q=80&w=2000"
+    img: "/process/2.jpeg"
   },
   {
-    title: "Pickling",
-    desc: "Acid bath (dilute HCl) strips all rust, mill scale, and metallic oxides. Zinc cannot bond to oxidized steel.",
-    purpose: "This is a critical chemical cleaning step. The acid strips away all rust, mill scale, and metallic oxides from the surface of the MS wire.",
-    temp: "HCl Bath",
-    img: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=2000"
+    title: "Wire Drawing Process",
+    desc: "Cleaned wire is drawn through a series of dies to reduce diameter and achieve the desired strength and size.",
+    purpose: "Progressive die drawing achieves precise diameter control and work-hardens the wire to meet target tensile strength specifications.",
+    temp: "Cold Process",
+    img: "/process/3.jpeg"
   },
   {
-    title: "Fluxing",
-    desc: "Zinc Ammonium Chloride flux solution prevents re-oxidation and catalyzes the metallurgical bonding of molten zinc.",
-    purpose: "Fluxing prevents the bare steel from re-oxidizing before it hits the zinc bath, and acts as a catalyst to promote the metallurgical bonding of molten zinc to the steel.",
-    temp: "ZnCl₂",
-    img: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=2000"
+    title: "Annealing Process",
+    desc: "Drawn wire is annealed in a controlled atmosphere to improve ductility and remove internal stresses.",
+    purpose: "Controlled atmosphere annealing restores ductility lost during drawing, relieves internal stresses, and prepares the wire for uniform zinc adhesion.",
+    temp: "Heat Treatment",
+    img: "/process/4.jpeg"
   },
   {
-    title: "Hot Dip Galvanizing",
-    desc: "Wire passes through molten zinc bath at 450–460°C. Metallurgical reaction forms bonded zinc-iron alloy layers for lasting protection.",
-    purpose: "A metallurgical reaction occurs as the wire travels through the molten zinc, forming a series of tightly bonded zinc-iron alloy layers topped by a layer of pure zinc.",
-    temp: "450–460°C",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=2000"
+    title: "Galvanizing Process",
+    desc: "Annealed wire is hot-dip galvanized in molten zinc to form a uniform, corrosion resistant zinc coating.",
+    purpose: "Molten zinc at 450\u2013460\u00B0C reacts with steel to form tightly bonded zinc-iron alloy layers, providing 25+ years of rust protection.",
+    temp: "450\u2013460\u00B0C",
+    img: "/process/5.jpeg"
   },
   {
-    title: "Cooling",
-    desc: "Freshly galvanized wire is rapidly cooled and quenched to solidify the zinc coating and stabilize the surface.",
-    purpose: "Rapid cooling solidifies the zinc coating, locking in the metallurgical bond and ensuring uniform coating thickness across the wire.",
-    temp: "Water Bath",
-    img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=2000"
+    title: "Cooling & Surface Finish",
+    desc: "Galvanized wire is cooled and passivated to enhance surface finish and increase corrosion resistance.",
+    purpose: "Rapid quenching solidifies the zinc coating, locks in the metallurgical bond, and passivation adds an extra protective chromate layer.",
+    temp: "Water Quench",
+    img: "/process/6.jpeg"
   },
   {
-    title: "Testing",
-    desc: "Diameter, tensile strength, zinc coating weight, and dip test verified per batch before any product leaves the facility.",
-    purpose: "Every batch undergoes comprehensive QC testing — dimensional accuracy, tensile strength, coating weight, and surface quality — before dispatch clearance.",
-    temp: "QC Lab",
-    img: "https://images.unsplash.com/photo-1581093458791-9d42e3c7e117?auto=format&fit=crop&q=80&w=2000"
-  },
-  {
-    title: "Packing",
-    desc: "Finished wire wound into precise coils of 25–150 kg, wrapped in Hessian cloth and wire-bound for safe transport.",
-    purpose: "Proper packing protects the zinc coating during transit and ensures the wire arrives at the customer site in perfect condition.",
-    temp: "Coiling",
-    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000"
-  },
-  {
-    title: "Dispatch",
-    desc: "Batch-tagged coils dispatched with Material Test Certificate via trusted freight partners across India.",
-    purpose: "Each dispatched coil comes with its batch test certificate, providing customers with full traceability and quality assurance documentation.",
-    temp: "PAN India",
-    img: "https://images.unsplash.com/photo-1586528116475-4e39890ceae2?auto=format&fit=crop&q=80&w=2000"
+    title: "Winding & Packing",
+    desc: "GI wire is wound into coils, checked for quality and packed securely for safe delivery.",
+    purpose: "Precise coiling into 25\u2013150 kg bundles with Hessian wrapping and wire binding ensures scratch-free transit and easy handling at site.",
+    temp: "Final Stage",
+    img: "/process/7.jpeg"
   }
 ];
 
+function ArrowRight() {
+  return (
+    <div className="flex items-center justify-center flex-shrink-0 w-5 lg:w-7 xl:w-9 self-start mt-[50px] xl:mt-[54px]">
+      <svg viewBox="0 0 36 10" fill="none" className="w-full h-2.5">
+        <path d="M0 5h28M24 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber/60" />
+      </svg>
+    </div>
+  );
+}
+
+function ArrowDown() {
+  return (
+    <div className="flex items-center justify-center py-2.5">
+      <svg viewBox="0 0 14 18" fill="none" className="w-3 h-4">
+        <path d="M7 0v12M2.5 8.5L7 13l4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber/60" />
+      </svg>
+    </div>
+  );
+}
+
 export function ManufacturingClient() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const fillLineRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    if (!containerRef.current) return;
     const ctx = gsap.context(() => {
-      if (fillLineRef.current) {
-        ScrollTrigger.create({
-          trigger: ".process-container",
-          start: "top 50%",
-          end: "bottom 70%",
-          scrub: 0.5,
-          animation: gsap.fromTo(fillLineRef.current, 
-            { scaleY: 0 }, 
-            { scaleY: 1, ease: "none", transformOrigin: "top" }
-          )
-        });
-      }
-
-      const steps = gsap.utils.toArray<HTMLElement>('.process-step-item');
-      const mm = gsap.matchMedia();
-      
-      steps.forEach((step) => {
-        const nodeOuter = step.querySelector('.process-node-outer');
-        const nodeInner = step.querySelector('.process-node-inner');
-        const contentLeft = step.querySelector('.content-left');
-        const contentRight = step.querySelector('.content-right');
-        
-        ScrollTrigger.create({
-          trigger: step,
-          start: "top 50%",
-          onEnter: () => {
-             gsap.to(nodeInner, { backgroundColor: "#F97316", color: "#1C1E24", boxShadow: "0 0 25px 5px rgba(249,115,22,0.6)", scale: 1.5, duration: 0.4, ease: "back.out(2)" });
-             gsap.to(nodeOuter, { borderColor: "#F97316", scale: 1.2, duration: 0.4, ease: "back.out(2)" });
-          },
-          onLeaveBack: () => {
-             gsap.to(nodeInner, { backgroundColor: "#F97316", color: "#1C1E24", boxShadow: "none", scale: 1, duration: 0.4 });
-             gsap.to(nodeOuter, { borderColor: "rgba(249,115,22,0.4)", scale: 1, duration: 0.4 });
+      gsap.utils.toArray<HTMLElement>('.mfg-step').forEach((step) => {
+        if (!step) return;
+        gsap.fromTo(step,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1, y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: step, start: 'top 88%' }
           }
-        });
-
-        if (contentLeft && contentRight) {
-          // Desktop Animations
-          mm.add("(min-width: 768px)", () => {
-            gsap.fromTo(contentLeft, 
-              { x: -60, opacity: 0 },
-              { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: step, start: "top 65%" } }
-            );
-            gsap.fromTo(contentRight, 
-              { x: 60, opacity: 0 },
-              { x: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.1, scrollTrigger: { trigger: step, start: "top 65%" } }
-            );
-          });
-
-          // Mobile Animations
-          mm.add("(max-width: 767px)", () => {
-            gsap.fromTo(contentLeft, 
-              { y: 30, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", scrollTrigger: { trigger: step, start: "top 75%" } }
-            );
-            gsap.fromTo(contentRight, 
-              { y: 30, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", delay: 0.1, scrollTrigger: { trigger: step, start: "top 75%" } }
-            );
-          });
-        }
+        );
       });
     }, containerRef);
     return () => ctx.revert();
@@ -147,21 +104,8 @@ export function ManufacturingClient() {
 
   return (
     <div ref={containerRef}>
-      {/* Hero */}
+      {/* ═══════════ HERO ═══════════ */}
       <section className="relative pt-36 pb-16 md:pb-20 overflow-hidden bg-transparent border-b border-glass-border">
-        
-        {/* Background industrial image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1920"
-            alt=""
-            className="w-full h-full object-cover filter grayscale opacity-20"
-            style={{ objectPosition: 'center 40%' }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-obsidian/95 via-obsidian/80 to-obsidian/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/70" />
-        </div>
-
         <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw] relative z-10">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
@@ -176,293 +120,138 @@ export function ManufacturingClient() {
             </ol>
           </motion.nav>
 
-          {/* Desktop layout */}
-          <div className="hidden md:grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-12 items-end">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
             <div>
-              <motion.div 
+              <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "60px" }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="h-[2px] bg-amber mb-6"
               />
-              <h1 className="font-bebas text-[clamp(48px,10vw,140px)] text-cream uppercase leading-[0.85] mb-6">
+              <h1 className="font-bebas text-[clamp(48px,10vw,100px)] text-cream uppercase leading-[0.85] mb-4">
                 The Wire
-                <br/>
+                <br />
                 <span className="text-amber">Galvanizing</span>
-                <br/>
+                <br />
                 <span className="text-outline-amber">Process</span>
               </h1>
-              <p className="font-sans text-lg md:text-xl text-cream/80 font-light max-w-[600px] leading-relaxed mt-8">
-                A continuous wire galvanizing plant transforms drawn Mild Steel (MS) wire into corrosion-resistant galvanized iron (GI) wire through a rigorous, sequential surface treatment and coating process. 
+              <p className="font-sans text-sm md:text-base text-white/70 font-light max-w-[500px] leading-relaxed">
+                From raw MS wire rod to corrosion-resistant GI wire through a rigorous 7-step galvanizing process.
               </p>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <div className="blob-card p-6 rounded-2xl border border-white/10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                  <span className="font-mono text-[10px] text-amber tracking-widest uppercase">9-Step Process</span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {PROCESS_STEPS.map((_, i) => (
-                    <div key={i} className="w-full aspect-square rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                      <span className="font-mono text-[11px] text-cream font-bold">{String(i + 1).padStart(2, '0')}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-4 flex items-center gap-2">
-                  <div className="w-8 h-[1px] bg-amber/60" />
-                  <span className="font-mono text-[9px] text-cream/60 tracking-widest uppercase">Raw Material to Dispatch</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Mobile layout */}
-          <div className="md:hidden">
-            <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: "40px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-[2px] bg-amber mb-4"
-            />
-            <h1 className="font-bebas text-[52px] text-cream uppercase leading-[0.85] mb-4">
-              The Wire
-              <br/>
-              <span className="text-amber">Galvanizing</span>
-              <br/>
-              <span className="text-outline-amber">Process</span>
-            </h1>
-            <p className="font-sans text-sm text-cream/80 font-light leading-relaxed mb-6">
-              From raw MS wire to corrosion-resistant GI wire through a rigorous 9-step galvanizing process.
-            </p>
-            {/* Compact 9-step grid on mobile */}
-            <div className="blob-card p-4 rounded-xl border border-white/10">
+            <div className="blob-card p-5 rounded-xl border border-white/10 flex-shrink-0">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
-                <span className="font-mono text-[10px] text-amber tracking-widest uppercase">9-Step Process</span>
+                <span className="font-mono text-[10px] text-amber tracking-widest uppercase">7-Step Process</span>
               </div>
-              <div className="grid grid-cols-3 gap-2">
-                {PROCESS_STEPS.map((step, i) => (
-                  <div key={i} className="aspect-square rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-1 p-1">
-                    <span className="font-mono text-[10px] text-cream font-bold">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="font-mono text-[7px] text-cream/70 text-center leading-tight">{step.title}</span>
+              <div className="grid grid-cols-7 gap-1.5">
+                {PROCESS_STEPS.map((_, i) => (
+                  <div key={i} className="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center">
+                    <span className="font-mono text-[9px] text-cream font-bold">{String(i + 1).padStart(2, '0')}</span>
                   </div>
                 ))}
               </div>
               <div className="mt-3 flex items-center gap-2">
                 <div className="w-6 h-[1px] bg-amber/60" />
-                <span className="font-mono text-[8px] text-cream/60 tracking-widest uppercase">Raw Material to Dispatch</span>
+                <span className="font-mono text-[8px] text-white/50 tracking-widest uppercase">Raw Material to Dispatch</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Animated Process Journey */}
-      <section className="py-16 md:py-24 lg:py-32 bg-transparent relative z-10">
-        <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw] relative">
-          
-          <div className="relative process-container pb-16 md:pb-20">
-            {/* Base Wire Track */}
-            <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-[1px] md:-translate-x-1/2 rounded-full" />
-            
-            {/* The Molten Zinc Wire drawing down */}
-            <div 
-              ref={fillLineRef} 
-              className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#F97316] via-[#FF8C00] to-transparent -translate-x-[1.5px] md:-translate-x-1/2 rounded-full z-10 shadow-[0_0_15px_rgba(249,115,22,0.6)]" 
-            />
+      {/* ═══════════ PROCESS FLOW ═══════════ */}
+      <section className="py-16 md:py-24 bg-transparent relative z-10">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw]">
 
-            {/* Mobile: Vertical card layout */}
-            <div className="md:hidden flex flex-col gap-10 relative z-20">
-              {PROCESS_STEPS.map((step, idx) => {
-                const stepNum = String(idx + 1).padStart(2, '0');
-                
-                return (
-                  <div key={idx} className="process-step-item w-full relative group">
-                    
-                    {/* The Node on the Wire */}
-                    <div className="absolute left-[20px] top-8 -translate-y-1/2 -translate-x-1/2 z-30">
-                       <div className="process-node-outer w-10 h-10 rounded-full bg-obsidian border-2 border-amber flex items-center justify-center p-0.5 shadow-[0_0_12px_rgba(249,115,22,0.4)]">
-                          <div className="process-node-inner w-full h-full rounded-full bg-amber transition-all duration-300 relative flex items-center justify-center text-obsidian font-mono text-[11px] font-bold">
-                            {stepNum}
-                          </div>
-                       </div>
-                    </div>
-
-                    {/* Mobile Card: Image + Text stacked */}
-                    <div className="content-left pl-14 w-full">
-                      <div className="rounded-2xl overflow-hidden border border-white/10 bg-black/40 shadow-xl">
-                        {/* Image */}
-                        <div className="w-full aspect-video relative overflow-hidden">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-                          <img 
-                            src={step.img} 
-                            alt={step.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover brightness-80 contrast-105 group-hover:brightness-95 group-hover:scale-105 transition-all duration-700"
-                          />
-                          {/* Step number overlay on image */}
-                          <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2">
-                            <span className="font-mono text-[11px] text-amber font-bold tracking-widest bg-black/70 px-2.5 py-1 rounded-md">{stepNum}</span>
-                            {step.temp && (
-                              <span className="font-mono text-[9px] text-amber border border-amber/40 rounded-md px-2 py-1 bg-black/70">{step.temp}</span>
-                            )}
-                          </div>
-                        </div>
-                        {/* Text content */}
-                        <div className="p-5">
-                          <h2 className="font-bebas text-[26px] text-cream tracking-wide mb-4">{step.title}</h2>
-                          <div className="space-y-4">
-                            <div>
-                              <h4 className="font-mono text-[10px] text-amber tracking-[0.15em] uppercase mb-2 flex items-center gap-2">
-                                <span className="w-2 h-[2px] bg-amber rounded-full"></span> The Process
-                              </h4>
-                              <p className="font-sans text-white/90 text-[14px] leading-relaxed">{step.desc}</p>
-                            </div>
-                            <div className="pt-3 border-t border-white/10">
-                              <h4 className="font-mono text-[10px] text-white/70 tracking-[0.15em] uppercase mb-2 flex items-center gap-2">
-                                <span className="w-2 h-[2px] bg-white/50 rounded-full"></span> The Purpose
-                              </h4>
-                              <p className="font-sans text-white/80 text-[14px] leading-relaxed">{step.purpose}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          {/* ── Desktop: Images Row + Cards Row ── */}
+          <div className="hidden lg:block">
+            {/* Images + Arrows */}
+            <div className="flex items-center">
+              {PROCESS_STEPS.map((step, i) => (
+                <div key={i} className="flex items-center flex-1 min-w-0">
+                  <div className="relative w-[110px] xl:w-[120px] h-[110px] xl:h-[120px] rounded-full overflow-hidden border-[2.5px] border-amber/70 shadow-[0_0_24px_rgba(249,115,22,0.12)] flex-shrink-0 mx-auto">
+                    <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                   </div>
-                );
-              })}
+                  {i < PROCESS_STEPS.length - 1 && <ArrowRight />}
+                </div>
+              ))}
             </div>
 
-            {/* Desktop: Alternating layout */}
-            <div className="hidden md:flex flex-col gap-16 lg:gap-28 relative z-20">
-              {PROCESS_STEPS.map((step, idx) => {
-                const isEven = idx % 2 === 0;
-                const stepNum = String(idx + 1).padStart(2, '0');
-                
-                return (
-                  <div key={idx} className="process-step-item w-full flex flex-col md:flex-row relative group">
-                    
-                    {/* The Node on the Wire */}
-                    <div className="absolute left-[20px] md:left-1/2 top-[30px] md:top-1/2 -translate-y-1/2 -translate-x-1/2 z-30">
-                       <div className="process-node-outer w-11 h-11 md:w-14 md:h-14 rounded-full bg-obsidian border-2 border-amber flex items-center justify-center p-1 shadow-[0_0_16px_rgba(249,115,22,0.35)]">
-                          <div className="process-node-inner w-full h-full rounded-full bg-amber transition-all duration-300 relative flex items-center justify-center text-obsidian font-mono text-xs md:text-sm font-bold">
-                            {stepNum}
-                          </div>
-                       </div>
-                    </div>
-
-                    {/* Left Column */}
-                    <div className={`content-left w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 lg:pr-20 flex items-center ${!isEven ? 'md:justify-end' : 'md:justify-start'}`}>
-                      {isEven ? (
-                        /* Image on Left (for Even steps) */
-                        <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden relative group-hover:border-amber/40 border border-white/10 transition-colors duration-500 shadow-xl">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                          <img 
-                            src={step.img} 
-                            alt={step.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover brightness-75 contrast-105 group-hover:brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                          />
-                        </div>
-                      ) : (
-                        /* Text on Left (for Odd steps) */
-                        <div className="flex flex-col gap-5 w-full">
-                          <div className="flex items-center gap-3">
-                            <span className="font-mono text-sm text-amber font-bold tracking-widest">{stepNum}</span>
-                            <div className="w-10 h-[1px] bg-amber/60" />
-                            {step.temp && (
-                              <span className="font-mono text-[10px] text-amber/70 border border-amber/25 rounded-full px-2.5 py-1">{step.temp}</span>
-                            )}
-                          </div>
-                          <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
-                          <div className="blob-card p-6 lg:p-8 rounded-2xl border border-white/10 group-hover:border-amber/30 transition-colors shadow-xl">
-                            <h4 className="font-mono text-[11px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-amber rounded-full"></span> The Process</h4>
-                            <p className="font-sans text-white/90 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
-                            <div className="pt-4 border-t border-white/10">
-                              <h4 className="font-mono text-[11px] text-white/70 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-white/50 rounded-full"></span> The Purpose</h4>
-                              <p className="font-sans text-white/80 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Right Column */}
-                    <div className={`content-right w-full md:w-1/2 pl-[60px] md:pl-12 lg:pl-20 flex items-center mt-6 md:mt-0 ${isEven ? 'md:justify-start' : 'md:justify-end'}`}>
-                      {isEven ? (
-                        /* Text on Right (for Even steps) */
-                        <div className="flex flex-col gap-5 w-full">
-                          <div className="flex items-center gap-3">
-                            <span className="font-mono text-sm text-amber font-bold tracking-widest">{stepNum}</span>
-                            <div className="w-10 h-[1px] bg-amber/60" />
-                            {step.temp && (
-                              <span className="font-mono text-[10px] text-amber/70 border border-amber/25 rounded-full px-2.5 py-1">{step.temp}</span>
-                            )}
-                          </div>
-                          <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
-                          <div className="blob-card p-6 lg:p-8 rounded-2xl border border-white/10 group-hover:border-amber/30 transition-colors shadow-xl">
-                            <h4 className="font-mono text-[11px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-amber rounded-full"></span> The Process</h4>
-                            <p className="font-sans text-white/90 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
-                            <div className="pt-4 border-t border-white/10">
-                              <h4 className="font-mono text-[11px] text-white/70 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-white/50 rounded-full"></span> The Purpose</h4>
-                              <p className="font-sans text-white/80 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        /* Image on Right (for Odd steps) */
-                        <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden relative group-hover:border-amber/40 border border-white/10 transition-colors duration-500 shadow-xl">
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-                          <img 
-                            src={step.img} 
-                            alt={step.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover brightness-75 contrast-105 group-hover:brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                          />
-                        </div>
-                      )}
-                    </div>
-
+            {/* Cards: Number + Title + Desc + Icon */}
+            <div className="flex items-stretch mt-6 gap-2.5 xl:gap-3">
+              {PROCESS_STEPS.map((step, i) => (
+                <div key={i} className="mfg-step flex-1 flex flex-col items-center text-center rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 xl:px-4 py-5 xl:py-6">
+                  <div className="w-9 h-9 rounded-full border-2 border-amber flex items-center justify-center bg-amber/15 mb-3">
+                    <span className="font-bebas text-sm text-amber leading-none">{String(i + 1).padStart(2, '0')}</span>
                   </div>
-                );
-              })}
+                  <h3 className="font-bebas text-[14px] xl:text-[16px] text-amber tracking-wide uppercase mb-2 leading-tight">{step.title}</h3>
+                  <p className="font-sans text-[10px] xl:text-[11px] text-white/80 leading-[1.75] mb-3 flex-1">{step.desc}</p>
+                  <div className="w-full pt-3 border-t border-white/[0.06]">
+                    <p className="font-sans text-[9px] xl:text-[10px] text-white/55 leading-[1.7]">{step.purpose}</p>
+                  </div>
+                  <div className="mt-3 font-mono text-[8px] text-amber/60 tracking-widest uppercase">{step.temp}</div>
+                </div>
+              ))}
             </div>
-            
-            {/* Glowing bottom terminus */}
-            <div className="absolute left-[20px] md:left-1/2 bottom-0 w-3 h-3 -translate-x-[6px] md:-translate-x-[6px] rounded-full bg-amber shadow-[0_0_20px_#F97316] z-10 animate-pulse" />
           </div>
+
+          {/* ── Mobile: Vertical Cards ── */}
+          <div className="flex lg:hidden flex-col">
+            {PROCESS_STEPS.map((step, i) => (
+              <div key={i}>
+                <div className="mfg-step flex items-center gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+                  <div className="relative w-[62px] h-[62px] rounded-full overflow-hidden border-[2px] border-amber/70 shadow-[0_0_14px_rgba(249,115,22,0.1)] flex-shrink-0">
+                    <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-5 h-5 rounded-full border-[1.5px] border-amber flex items-center justify-center bg-amber/15 flex-shrink-0">
+                        <span className="font-bebas text-[10px] text-amber leading-none">{String(i + 1).padStart(2, '0')}</span>
+                      </span>
+                      <h3 className="font-bebas text-[14px] text-amber tracking-wide uppercase leading-tight truncate">{step.title}</h3>
+                    </div>
+                    <p className="font-sans text-[11px] text-white/80 leading-[1.6] line-clamp-2 pl-7 mb-2">{step.desc}</p>
+                    <p className="font-sans text-[10px] text-white/50 leading-[1.5] line-clamp-2 pl-7">{step.purpose}</p>
+                    <div className="pl-7 mt-1.5">
+                      <span className="font-mono text-[8px] text-amber/60 tracking-widest uppercase">{step.temp}</span>
+                    </div>
+                  </div>
+                </div>
+                {i < PROCESS_STEPS.length - 1 && <ArrowDown />}
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
 
-      {/* CTA Footer */}
-      <section className="py-16 md:py-24 lg:py-32 bg-transparent border-t border-glass-border relative overflow-hidden">
+      {/* ═══════════ CTA ═══════════ */}
+      <section className="py-16 md:py-24 bg-transparent border-t border-glass-border relative overflow-hidden">
         <div className="max-w-[800px] mx-auto px-5 md:px-[5vw] text-center relative z-10">
-           <motion.div
-             initial={{ opacity: 0, y: 30 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.8 }}
-           >
-             <h2 className="font-bebas text-4xl md:text-5xl lg:text-7xl text-cream mb-4 md:mb-6">Experience <span className="text-amber">Precision</span></h2>
-             <p className="font-sans text-cream/70 text-base md:text-lg font-light leading-relaxed mb-8 md:mb-10 max-w-2xl mx-auto">
-                Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
-             </p>
-             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-                 <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300 w-full sm:w-auto">
-                  <span className="relative z-10">Contact Us</span>
-                  <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-                <Link href="/quality" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center w-full sm:w-auto">
-                  View Quality Standards
-                </Link>
-              </div>
-           </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="font-bebas text-4xl md:text-5xl lg:text-7xl text-cream mb-4 md:mb-6">Experience <span className="text-amber">Precision</span></h2>
+            <p className="font-sans text-white/70 text-base md:text-lg font-light leading-relaxed mb-8 md:mb-10 max-w-2xl mx-auto">
+              Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
+              <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300 w-full sm:w-auto">
+                <span className="relative z-10">Buy Now</span>
+                <span className="ml-3 transition-transform group-hover:translate-x-1">&rarr;</span>
+              </Link>
+              <Link href="/quality" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center w-full sm:w-auto">
+                View Quality Standards
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

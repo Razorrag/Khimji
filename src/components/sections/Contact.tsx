@@ -201,7 +201,7 @@ export function Contact() {
                   ) : (
                     <>
                       Init Transmission 
-                      <span className="transform group-hover/btn:translate-x-1 transition-transform">\u2192</span>
+                      <span className="transform group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
                     </>
                   )}
                 </span>

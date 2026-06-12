@@ -135,7 +135,7 @@ function FullScreenProduct({ prod, index }: { prod: typeof PRODUCTS[0]; index: n
                 <span>→</span>
               </Link>
               <Link href="/contact" className="font-mono text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 flex-1 px-5 py-3 border border-white/10 hover:border-amber/50 hover:text-amber transition-colors text-cream">
-                <span>Contact Us</span>
+                <span>Buy Now</span>
               </Link>
             </div>
           </div>

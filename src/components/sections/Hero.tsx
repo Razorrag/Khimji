@@ -111,11 +111,8 @@ export function Hero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="inline-flex items-center gap-3 mb-10"
+              className="mb-10"
             >
-              <span className="w-8 h-[1px] bg-amber" />
-              <span className="font-mono text-[10px] sm:text-xs text-amber tracking-[0.3em] uppercase">Galvanized Iron Wire</span>
-              <span className="w-8 h-[1px] bg-amber" />
             </motion.div>
 
             {/* Tagline — Line 1 */}
@@ -157,7 +154,7 @@ export function Hero() {
                 href="/contact"
                 className="blob-btn-product font-mono text-[11px] tracking-[0.2em] uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
               >
-                Contact Us
+                Buy Now
               </Link>
 
               <a

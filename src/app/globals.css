@@ -200,7 +200,7 @@
   /* Button text shade texture — silver/grey with amber swirl */
   .textured-text-silver {
     color: var(--color-cream);
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: linear-gradient(135deg, #888 0%, #ccc 25%, #999 50%, #ddd 75%, #aaa 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -210,7 +210,7 @@
 
   /* Hero text texture — uses button text shade */
   .hero-text-texture {
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: linear-gradient(135deg, #888 0%, #ccc 25%, #999 50%, #ddd 75%, #aaa 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -222,7 +222,7 @@
   .textured-text-silver-amber {
     position: relative;
     color: var(--color-amber);
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: linear-gradient(135deg, #888 0%, #ccc 25%, #999 50%, #ddd 75%, #aaa 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -475,7 +475,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: url("/button text shade.jpg") center/cover no-repeat;
+    background: linear-gradient(135deg, #888 0%, #ccc 25%, #999 50%, #ddd 75%, #aaa 100%);
     background-size: 200% 200%;
     opacity: 0;
     mix-blend-mode: overlay;

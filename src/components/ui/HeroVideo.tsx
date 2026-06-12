@@ -30,7 +30,7 @@ export function HeroVideo() {
         loop
         playsInline
         preload="metadata"
-        poster="/hero-poster.jpg"
+        poster="/mobile-bg.jpg"
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover object-center"
       >

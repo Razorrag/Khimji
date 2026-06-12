@@ -300,7 +300,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
                 <p className="font-sans text-xs md:text-sm text-white/50 font-light">Contact our sales team for pricing and availability.</p>
               </div>
               <Link href="/contact" className="blob-btn-product font-mono text-[10px] md:text-xs tracking-widest uppercase font-bold px-6 md:px-8 py-3 md:py-4 inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto">
-                Contact Us
+                Buy Now
               </Link>
             </div>
           </motion.div>
