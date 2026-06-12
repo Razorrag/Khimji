@@ -18,7 +18,7 @@ function ArrowRight() {
   return (
     <div className="flex items-center justify-center flex-shrink-0 w-5 lg:w-7 xl:w-9 self-start mt-[50px] xl:mt-[54px]">
       <svg viewBox="0 0 36 10" fill="none" className="w-full h-2.5">
-        <path d="M0 5h28M24 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber/50" />
+        <path d="M0 5h28M24 1l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber/60" />
       </svg>
     </div>
   );
@@ -28,7 +28,7 @@ function ArrowDown() {
   return (
     <div className="flex items-center justify-center py-2.5">
       <svg viewBox="0 0 14 18" fill="none" className="w-3 h-4">
-        <path d="M7 0v12M2.5 8.5L7 13l4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber/50" />
+        <path d="M7 0v12M2.5 8.5L7 13l4.5-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber/60" />
       </svg>
     </div>
   );
@@ -63,7 +63,7 @@ export function ProcessTeaser() {
           <div className="flex items-center gap-4 flex-shrink-0">
             <div className="text-right">
               <div className="font-bebas text-3xl text-amber leading-none">07</div>
-              <div className="font-mono text-[9px] text-steel/50 tracking-wider uppercase">Steps</div>
+              <div className="font-mono text-[9px] text-white/50 tracking-wider uppercase">Steps</div>
             </div>
             <Link
               href="/manufacturing"
@@ -85,38 +85,38 @@ export function ProcessTeaser() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="relative w-[100px] xl:w-[110px] h-[100px] xl:h-[110px] rounded-full overflow-hidden border-[2.5px] border-amber/70 shadow-[0_0_20px_rgba(249,115,22,0.1)] flex-shrink-0 mx-auto"
+                  className="relative w-[100px] xl:w-[115px] h-[100px] xl:h-[115px] rounded-full overflow-hidden border-[2.5px] border-amber/70 shadow-[0_0_24px_rgba(249,115,22,0.12)] flex-shrink-0 mx-auto"
                 >
                   <img src={step.img} alt={step.label} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </motion.div>
                 {i < STEPS.length - 1 && <ArrowRight />}
               </div>
             ))}
           </div>
 
-          {/* Cards row: number + title + desc + icon */}
-          <div className="flex items-stretch mt-5 gap-2 xl:gap-3">
+          {/* Cards row */}
+          <div className="flex items-stretch mt-6 gap-2.5 xl:gap-3">
             {STEPS.map((step) => (
-              <div key={step.num} className="flex-1 flex flex-col items-center text-center rounded-xl border border-white/[0.05] bg-white/[0.015] px-2 xl:px-3 py-4 xl:py-5">
+              <div key={step.num} className="flex-1 flex flex-col items-center text-center rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 xl:px-4 py-5 xl:py-6">
                 {/* Number */}
-                <div className="w-8 h-8 rounded-full border-[1.5px] border-amber flex items-center justify-center bg-amber/[0.08] mb-2.5">
-                  <span className="font-bebas text-[12px] text-amber leading-none">{step.num}</span>
+                <div className="w-9 h-9 rounded-full border-2 border-amber flex items-center justify-center bg-amber/15 mb-3">
+                  <span className="font-bebas text-sm text-amber leading-none">{step.num}</span>
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bebas text-[13px] xl:text-[15px] text-amber tracking-wide uppercase mb-1.5 leading-tight">
+                <h3 className="font-bebas text-[14px] xl:text-[16px] text-amber tracking-wide uppercase mb-2 leading-tight font-bold">
                   {step.label}
                 </h3>
 
                 {/* Description */}
-                <p className="font-sans text-[9px] xl:text-[10px] text-white/50 leading-[1.7] mb-4 flex-1">
+                <p className="font-sans text-[10px] xl:text-[11px] text-white/80 leading-[1.75] mb-5 flex-1">
                   {step.desc}
                 </p>
 
                 {/* Icon */}
-                <div className="w-9 h-9 rounded-lg border border-amber/15 bg-amber/[0.03] flex items-center justify-center text-amber/45">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                <div className="w-10 h-10 rounded-lg border border-amber/25 bg-amber/[0.07] flex items-center justify-center text-amber/80">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px]">
                     <path d={step.icon} />
                   </svg>
                 </div>
@@ -134,32 +134,32 @@ export function ProcessTeaser() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center gap-3.5 rounded-xl border border-white/[0.06] bg-white/[0.015] p-3.5"
+                className="flex items-center gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"
               >
                 {/* Image */}
-                <div className="relative w-[60px] h-[60px] rounded-full overflow-hidden border-[2px] border-amber/70 shadow-[0_0_12px_rgba(249,115,22,0.08)] flex-shrink-0">
+                <div className="relative w-[62px] h-[62px] rounded-full overflow-hidden border-[2px] border-amber/70 shadow-[0_0_14px_rgba(249,115,22,0.1)] flex-shrink-0">
                   <img src={step.img} alt={step.label} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5">
-                    <span className="w-5 h-5 rounded-full border border-amber/60 flex items-center justify-center bg-amber/[0.06] flex-shrink-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-5 h-5 rounded-full border-[1.5px] border-amber flex items-center justify-center bg-amber/15 flex-shrink-0">
                       <span className="font-bebas text-[10px] text-amber leading-none">{step.num}</span>
                     </span>
-                    <h3 className="font-bebas text-[13px] text-amber tracking-wide uppercase leading-tight truncate">
+                    <h3 className="font-bebas text-[14px] text-amber tracking-wide uppercase leading-tight truncate">
                       {step.label}
                     </h3>
                   </div>
-                  <p className="font-sans text-[9.5px] text-white/48 leading-[1.55] line-clamp-2 pl-7">
+                  <p className="font-sans text-[11px] text-white/80 leading-[1.6] line-clamp-2 pl-7">
                     {step.desc}
                   </p>
                 </div>
 
                 {/* Icon */}
-                <div className="w-8 h-8 rounded-lg border border-amber/15 bg-amber/[0.03] flex items-center justify-center text-amber/45 flex-shrink-0">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+                <div className="w-9 h-9 rounded-lg border border-amber/25 bg-amber/[0.07] flex items-center justify-center text-amber/80 flex-shrink-0">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                     <path d={step.icon} />
                   </svg>
                 </div>
