@@ -77,10 +77,10 @@ export function Industries() {
                 <div className="h-[2px] w-12 bg-amber" />
                 <span className="font-mono text-[10px] text-amber/60 tracking-[0.3em] uppercase">Sectors We Serve</span>
               </div>
-              <h2 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase">
+              <h1 className="font-bebas text-[clamp(44px,6vw,80px)] leading-[0.85] text-cream uppercase">
                 Global<br/>
                 <span className="text-amber">Applications</span>
-              </h2>
+              </h1>
             </div>
           </ScrollReveal>
         </div>

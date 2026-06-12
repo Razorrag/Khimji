@@ -3,7 +3,19 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Industries & Applications | Khemji Wire',
-  description: 'Certified wire solutions for cable armouring, power transmission, construction, agriculture, and nationwide infrastructure projects.',
+  description: 'Explore the diverse industries served by Khemji Wire & Wire Pvt. Ltd.: cable manufacturing, power sector, infrastructure, construction, agriculture & more.',
+  alternates: { canonical: 'https://www.khemjiwire.in/industries' },
+  openGraph: {
+    title: 'Industries & Applications | Khemji Wire & Wire Pvt. Ltd.',
+    description: 'Cable manufacturing, power sector, infrastructure, construction & agriculture — industries served by Khemji Wire.',
+    url: 'https://www.khemjiwire.in/industries',
+    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Khemji Wire Industries' }]
+  },
+  twitter: {
+    title: 'Industries & Applications | Khemji Wire',
+    description: 'Cable manufacturing, power sector, infrastructure, construction & agriculture.',
+    images: ['/logo.png']
+  }
 };
 
 export default function IndustriesPage() {

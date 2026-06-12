@@ -3,7 +3,19 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Khemji Wire',
-  description: 'Get in touch for pricing, samples, technical specifications, or to discuss a supply partnership with Khemji Wire.',
+  description: 'Get in touch with Khemji Wire & Wire Pvt. Ltd. for inquiries about GI wire, cable armouring wire, and formed wire. F-153, RIICO Industrial Area, Jaipur.',
+  alternates: { canonical: 'https://www.khemjiwire.in/contact' },
+  openGraph: {
+    title: 'Contact Us | Khemji Wire & Wire Pvt. Ltd.',
+    description: 'Contact Khemji Wire for GI wire, cable armouring & formed wire inquiries. F-153, RIICO Industrial Area, Jaipur.',
+    url: 'https://www.khemjiwire.in/contact',
+    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Contact Khemji Wire' }]
+  },
+  twitter: {
+    title: 'Contact Us | Khemji Wire',
+    description: 'Contact Khemji Wire for GI wire & cable armouring inquiries.',
+    images: ['/logo.png']
+  }
 };
 
 export default function ContactPage() {

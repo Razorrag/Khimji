@@ -130,13 +130,13 @@ function FullScreenProduct({ prod, index }: { prod: typeof PRODUCTS[0]; index: n
 
             {/* Buttons - stack on mobile, side-by-side on desktop */}
             <div className="flex flex-col md:flex-row gap-2.5 md:gap-4">
-              <Link href={`/products/${prod.slug}`} className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 flex-1 px-5 py-3">
+              <Link href="/products" className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 flex-1 px-5 py-3">
                 <span>View Specs</span>
                 <span>→</span>
               </Link>
-              <Link href="/contact" className="font-mono text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 flex-1 px-5 py-3 border border-white/10 hover:border-amber/50 hover:text-amber transition-colors text-cream">
+              <a href={`https://wa.me/919829277869?text=${encodeURIComponent(`I'm interested in *${prod.name}* from Khemji Wire. Please share pricing and availability.`)}`} target="_blank" rel="noreferrer" className="font-mono text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 flex-1 px-5 py-3 border border-white/10 hover:border-amber/50 hover:text-amber transition-colors text-cream">
                 <span>Buy Now</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

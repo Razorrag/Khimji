@@ -96,18 +96,32 @@ export function About() {
       {/* ───── Our Story / Timeline ───── */}
       <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-20"
-          >
-            <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Journey</h3>
-            <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
-              From <span className="text-amber">Humble</span> Beginnings to Industry <span className="text-amber">Trust</span>
-            </h2>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-start mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Journey</h3>
+              <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
+                From <span className="text-amber">Humble</span> Beginnings to Industry <span className="text-amber">Trust</span>
+              </h2>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative aspect-[4/3] rounded-2xl overflow-hidden"
+            >
+              <img src="/download (1).jpg" alt="Khemji Wire factory facility" loading="lazy" className="w-full h-full object-cover grayscale contrast-125 brightness-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4">
+                <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-obsidian/80 px-3 py-1.5 rounded">Est. 1988 · Jaipur</span>
+              </div>
+            </motion.div>
+          </div>
 
           <div className="relative">
             {/* Center vertical line */}
@@ -489,7 +503,7 @@ export function About() {
             >
               <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-charcoal relative">
                 <img
-                  src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200"
+                  src="/download (2).jpg"
                   alt="Khemji Wire Manufacturing Facility"
                   loading="lazy"
                   className="w-full h-full object-cover filter grayscale contrast-125 brightness-90"
@@ -561,12 +575,14 @@ export function About() {
                 >
                   View Products
                 </Link>
-                <Link
-                  href="/contact"
+                <a
+                  href="https://wa.me/919829277869?text=I'm%20interested%20in%20your%20products%20at%20Khemji%20Wire.%20Please%20share%20pricing%20and%20availability."
+                  target="_blank"
+                  rel="noreferrer"
                   className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center"
                 >
-                  Contact Us
-                </Link>
+                  Buy Now
+                </a>
               </div>
             </div>
           </motion.div>

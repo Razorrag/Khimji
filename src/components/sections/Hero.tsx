@@ -130,7 +130,7 @@ export function Hero() {
             </motion.h1>
 
             {/* Tagline — Line 2 */}
-            <motion.h1
+            <motion.h2
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -141,7 +141,7 @@ export function Hero() {
               }}
             >
               STRENGTH IN EVERY CONNECTION
-            </motion.h1>
+            </motion.h2>
 
             {/* Buttons */}
             <motion.div
@@ -150,12 +150,14 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-wrap items-center justify-center gap-4"
             >
-              <Link
-                href="/contact"
+              <a
+                href="https://wa.me/919829277869?text=I'm%20interested%20in%20your%20products%20at%20Khemji%20Wire.%20Please%20share%20pricing%20and%20availability."
+                target="_blank"
+                rel="noreferrer"
                 className="blob-btn-product font-mono text-[11px] tracking-[0.2em] uppercase font-bold px-8 py-4 inline-flex items-center justify-center"
               >
                 Buy Now
-              </Link>
+              </a>
 
               <a
                 href="/contact?enquiry=catalogue"

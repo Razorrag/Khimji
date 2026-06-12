@@ -311,9 +311,9 @@ function ProductDetails({ prod }: { prod: typeof PRODUCTS[0] }) {
                   <h4 className="font-mono text-[10px] md:text-xs text-cream tracking-widest uppercase mb-1">Ready to order?</h4>
                   <p className="font-sans text-[11px] md:text-xs text-white/40 font-light">Get the best price for this product.</p>
                 </div>
-                <Link href="/contact" className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold px-6 py-3 inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto">
+                <a href={`https://wa.me/919829277869?text=${encodeURIComponent(`I'm interested in *${prod.name}* from Khemji Wire. Please share pricing and availability.`)}`} target="_blank" rel="noreferrer" className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold px-6 py-3 inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto">
                   Buy Now
-                </Link>
+                </a>
               </div>
             </motion.div>
           </div>
@@ -424,10 +424,10 @@ export function ProductsCatalogue() {
               Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-              <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center w-full sm:w-auto">
+              <a href="https://wa.me/919829277869?text=I'm%20interested%20in%20your%20products%20at%20Khemji%20Wire.%20Please%20share%20pricing%20and%20availability." target="_blank" rel="noreferrer" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center w-full sm:w-auto">
                 <span>Buy Now</span>
                 <span className="ml-3">&rarr;</span>
-              </Link>
+              </a>
               <Link href="/quality" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center w-full sm:w-auto">
                 View Quality Standards
               </Link>

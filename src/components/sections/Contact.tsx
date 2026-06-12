@@ -19,21 +19,28 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Mock server action since supabase connection isn't provided
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate Supabase insert delay
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
+    const text = `*New Inquiry from Khemji Wire Website*
+*Name:* ${formData.name}
+*Company:* ${formData.company}
+*Phone:* ${formData.phone}
+*Email:* ${formData.email}
+*Product:* ${formData.product || 'Not specified'}
+*Message:* ${formData.message || 'Not specified'}`;
+
+    const url = `https://wa.me/919829277869?text=${encodeURIComponent(text)}`;
+
     setIsSubmitting(false);
     setIsSuccess(true);
-    
+
     setTimeout(() => {
       setIsSuccess(false);
       setFormData({ name: '', company: '', phone: '', email: '', product: '', message: '' });
-    }, 5000);
+      window.open(url, '_blank');
+    }, 800);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -59,10 +66,10 @@ export function Contact() {
              transition={{ duration: 0.8 }}
              className="h-[1px] bg-amber mb-6"
           />
-          <h2 className="font-bebas text-[clamp(48px,6vw,90px)] leading-[0.85] text-cream uppercase mb-8 tracking-wide">
+          <h1 className="font-bebas text-[clamp(48px,6vw,90px)] leading-[0.85] text-cream uppercase mb-8 tracking-wide">
             <SplitText text="LET'S BUILD" /> <br/>
             <span className="text-amber"><SplitText text="CONNECTIONS" delayOffset={0.2} /></span>
-          </h2>
+          </h1>
           
           <p className="font-sans font-light text-lg text-steel mb-20 max-w-[400px] leading-relaxed border-l-2 border-glass-border pl-6">
             Partner with us for reliable products, precise manufacturing, and unmatched industry quality.
@@ -129,102 +136,79 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative"
         >
-          <div className="blob-card p-8 md:p-14 relative border border-glass-border/50 rounded-2xl overflow-hidden">
-            {/* Soft amber glow inside form */}
-             <div className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[100px] pointer-events-none"
-                  style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
+          <div className="p-8 md:p-12 relative border border-white/10 rounded-2xl">
+            <h3 className="font-bebas text-3xl md:text-4xl text-cream mb-8 border-b border-white/10 pb-5">Send Inquiry</h3>
             
-            <h3 className="font-bebas text-4xl text-cream mb-12 tracking-wide relative z-10 border-b border-glass-border pb-4">Contact Us</h3>
-            
-            <form onSubmit={handleSubmit} className="flex flex-col gap-10 relative z-10" aria-label="Request a quote form">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="relative group">
-                  <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Name" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
-                  <label htmlFor="name" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Name</label>
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5" aria-label="Request a quote form">
+              
+              <div>
+                <label htmlFor="name" className="block font-mono text-[11px] uppercase text-cream/80 tracking-widest mb-2">Full Name <span className="text-amber">*</span></label>
+                <input type="text" name="name" id="name" required value={formData.name} onChange={handleChange} className="w-full px-4 py-3 rounded-lg text-cream font-sans text-sm focus:outline-none transition-all border" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)' }} onFocus={(e) => { e.target.style.borderColor = '#F97316'; e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'; }} onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'; }} />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label htmlFor="phone" className="block font-mono text-[11px] uppercase text-cream/80 tracking-widest mb-2">Phone <span className="text-amber">*</span></label>
+                  <input type="tel" name="phone" id="phone" required value={formData.phone} onChange={handleChange} inputMode="tel" className="w-full px-4 py-3 rounded-lg text-cream font-sans text-sm focus:outline-none transition-all border" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)' }} onFocus={(e) => { e.target.style.borderColor = '#F97316'; e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'; }} onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'; }} />
                 </div>
-                
-                <div className="relative group">
-                  <input type="text" name="company" id="company" value={formData.company} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Company" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
-                  <label htmlFor="company" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Company</label>
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
+                <div>
+                  <label htmlFor="email" className="block font-mono text-[11px] uppercase text-cream/80 tracking-widest mb-2">Email <span className="text-amber">*</span></label>
+                  <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="w-full px-4 py-3 rounded-lg text-cream font-sans text-sm focus:outline-none transition-all border" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)' }} onFocus={(e) => { e.target.style.borderColor = '#F97316'; e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'; }} onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'; }} />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="relative group">
-                  <input type="tel" name="phone" id="phone" required value={formData.phone} onChange={handleChange} inputMode="tel" className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Phone" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
-                  <label htmlFor="phone" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Phone</label>
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
-                </div>
-                
-                <div className="relative group">
-                  <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }} placeholder="Email" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'} />
-                  <label htmlFor="email" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Email</label>
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
-                </div>
+              <div>
+                <label htmlFor="company" className="block font-mono text-[11px] uppercase text-cream/80 tracking-widest mb-2">Company</label>
+                <input type="text" name="company" id="company" value={formData.company} onChange={handleChange} className="w-full px-4 py-3 rounded-lg text-cream font-sans text-sm focus:outline-none transition-all border" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)' }} onFocus={(e) => { e.target.style.borderColor = '#F97316'; e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'; }} onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'; }} />
               </div>
 
-              <div className="relative mt-2 group">
-                <select name="product" id="product" value={formData.product} onChange={handleChange} className="peer w-full py-3 px-3 text-cream font-sans focus:outline-none transition-all cursor-pointer border-0 border-b" style={{ backgroundColor: 'rgba(28,30,36,0.6)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px' }}>
-                  <option value="" disabled className="bg-charcoal text-steel">Select a Product</option>
+              <div>
+                <label htmlFor="product" className="block font-mono text-[11px] uppercase text-cream/80 tracking-widest mb-2">Product Interested In</label>
+                <select name="product" id="product" value={formData.product} onChange={handleChange} className="w-full px-4 py-3 rounded-lg text-cream font-sans text-sm focus:outline-none transition-all cursor-pointer border" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)' }} onFocus={(e) => e.target.style.borderColor = '#F97316'} onBlur={(e) => e.target.style.borderColor = 'rgba(255,255,255,0.15)'}>
+                  <option value="" disabled className="bg-obsidian text-white/40">Select a product</option>
                   {products.map(prod => (
-                    <option key={prod} value={prod} className="bg-charcoal text-cream">{prod}</option>
+                    <option key={prod} value={prod} className="bg-obsidian text-cream">{prod}</option>
                   ))}
                 </select>
-                <label htmlFor="product" className="absolute left-0 -top-4 font-mono text-[10px] uppercase text-amber tracking-widest">Product Interested</label>
-                <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-amber transition-all duration-300 peer-focus:w-full" />
               </div>
 
-              <div className="relative mt-4 group">
-                <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="peer w-full py-3 px-3 rounded-t text-cream font-sans focus:outline-none transition-all placeholder-transparent border-0 border-b" style={{ backgroundColor: 'rgba(255,255,255,0.04)', borderBottomWidth: '1px', borderBottomColor: 'rgba(255,255,255,0.15)', fontSize: '16px', resize: 'none' }} placeholder="Message" onFocus={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'} onBlur={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.04)'}></textarea>
-                <label htmlFor="message" className="absolute left-3 -top-5 font-mono text-[10px] uppercase text-amber tracking-widest transition-all peer-placeholder-shown:text-steel/60 peer-placeholder-shown:top-3 peer-placeholder-shown:left-3 peer-focus:-top-5 peer-focus:text-amber cursor-text">Message Details</label>
-                <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-amber transition-all duration-300 peer-focus:w-full rounded-full" />
+              <div>
+                <label htmlFor="message" className="block font-mono text-[11px] uppercase text-cream/80 tracking-widest mb-2">Message</label>
+                <textarea name="message" id="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-4 py-3 rounded-lg text-cream font-sans text-sm focus:outline-none transition-all border" style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.15)', resize: 'none' }} onFocus={(e) => { e.target.style.borderColor = '#F97316'; e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'; }} onBlur={(e) => { e.target.style.borderColor = 'rgba(255,255,255,0.15)'; e.target.style.backgroundColor = 'rgba(255,255,255,0.07)'; }}></textarea>
               </div>
 
-              <MagneticButton 
-                type="submit"
-                disabled={isSubmitting}
-                className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group/btn mt-6 relative overflow-hidden transition-colors"
-              >
-                {/* Button shine */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-amber/10 to-transparent -translate-x-[200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
-                
-                <span className="flex items-center gap-3 font-bold relative z-10 transition-colors">
-                  {isSubmitting ? (
-                    <>
-                      <svg className="animate-spin -ml-1 h-4 w-4 text-amber" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                      Sending
-                    </>
-                  ) : (
-                    <>
-                      Init Transmission 
-                      <span className="transform group-hover/btn:translate-x-1 transition-transform">&rarr;</span>
-                    </>
-                  )}
-                </span>
-              </MagneticButton>
+              <button type="submit" disabled={isSubmitting} className="w-full font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 rounded-lg border border-amber/60 text-amber hover:bg-amber hover:text-obsidian transition-all duration-300 mt-4 disabled:opacity-50">
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center gap-3">
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    Sending
+                  </span>
+                ) : (
+                  <span className="flex items-center justify-center gap-3">
+                    Submit Inquiry
+                    <span>&rarr;</span>
+                  </span>
+                )}
+              </button>
             </form>
 
             <AnimatePresence>
               {isSuccess && (
                 <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-charcoal/95 backdrop-blur-sm text-center px-6 rounded-2xl"
+                  className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-obsidian/95 text-center px-6 rounded-2xl"
                   style={{ border: "1px solid rgba(249,115,22,0.3)" }}
                   role="alert"
                   aria-live="polite"
                 >
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-amber"
-                       style={{ border: "1px solid rgba(249,115,22,0.5)" }}>
-                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 13l4 4L19 7" /></svg>
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-amber" style={{ border: "1px solid rgba(249,115,22,0.5)" }}>
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M5 13l4 4L19 7" /></svg>
                   </div>
                   <h3 className="font-bebas text-4xl text-cream mb-4 tracking-wide">Request Received</h3>
-                  <p className="font-sans text-steel max-w-[280px] font-light leading-relaxed">Thank you for reaching out. Our technical team will review your requirements and respond shortly.</p>
+                  <p className="font-sans text-white/60 max-w-[280px] font-light leading-relaxed">Thank you for reaching out. Our team will review your requirements and respond shortly.</p>
                 </motion.div>
               )}
             </AnimatePresence>
