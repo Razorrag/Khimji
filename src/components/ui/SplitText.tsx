@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 
-export const SplitText = ({ 
-  text, 
-  delayOffset = 0, 
-  className = "" 
-}: { 
-  text: string; 
+export const SplitText = ({
+  text,
+  delayOffset = 0,
+  className = ""
+}: {
+  text: string;
   delayOffset?: number;
   className?: string;
 }) => {

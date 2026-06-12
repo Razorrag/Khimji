@@ -12,22 +12,25 @@ const PRODUCTS = [
   {
     name: "Hot Dip Galvanized Mild Steel Wire",
     ordinal: "01",
-    specs: { "Size Range": "1.25 mm to 4.00 mm", "Zinc Coating": "As per IS standards", "UTS Range": "300–550", "Standard": "IS 280" },
-    apps: ["Industrial", "Fencing", "Binding", "Infrastructure"],
+    slug: "hot-dip-galvanized-wire",
+    specs: { "Raw Material": "Premium Low Carbon MS Wire Rod", "Diameter Range": "1.25 mm to 4.00 mm", "Tensile Strength": "300 – 550 MPa", "Standard": "IS 280:2006" },
+    apps: ["Corrosion Protected", "High Strength", "Excellent Flexibility", "Extended Durability"],
     img: "/1.png"
   },
   {
-    name: "Low Carbon Galvanized Steel Wire",
+    name: "Cable Armouring Round Wire",
     ordinal: "02",
-    specs: { "Surface": "Smooth finish", "Diameter": "Consistent", "Properties": "Reliable Mechanical", "Packaging": "Custom available" },
-    apps: ["Corrosion resistance", "Flexible"],
+    slug: "low-carbon-galvanized-wire",
+    specs: { "Size Range": "1.25 mm – 4.00 mm", "UTS": "300–500 MPa", "Resistivity": "14.5 Ohm-cm × 10⁻⁶ Max.", "Elongation": "10% Min.", "Standard": "IS 3975:1999" },
+    apps: ["Mechanical Protection", "High Strength", "Corrosion Resistant", "Long Lasting Performance"],
     img: "/2.png"
   },
   {
-    name: "Formed Wire for Cable Armouring",
+    name: "Cable Armouring Formed Wire (Strip)",
     ordinal: "03",
-    specs: { "Standard": "IS 3975", "Zinc Coating": "As per standards", "Resistivity": "Passed", "Dimensions": "Precision" },
-    apps: ["Cable armouring", "Electrical", "Infrastructure"],
+    slug: "formed-wire-cable-armouring",
+    specs: { "Size": "4.00 mm × 0.80 mm", "UTS": "300–500 MPa", "Resistivity": "14.5 Ohm-cm × 10⁻⁶ Max.", "Elongation": "10% Min.", "Standard": "IS 3975:1999" },
+    apps: ["Enhanced Protection", "Optimized Profile", "High Strength", "Corrosion Resistant"],
     img: "/3.png"
   }
 ];
@@ -121,10 +124,15 @@ function FullScreenProduct({ prod, index }: { prod: typeof PRODUCTS[0]; index: n
                 <span key={app} className="text-[9px] font-mono px-2.5 py-1 rounded-full text-white/50 border border-white/8 uppercase tracking-wider">{app}</span>
               ))}
             </div>
-            <Link href="/contact" className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 w-full px-5 py-3">
-              <span>Contact Us</span>
-              <span>→</span>
-            </Link>
+            <div className="flex gap-4">
+              <Link href={`/products/${prod.slug}`} className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 flex-1 px-5 py-3">
+                <span>View Specs</span>
+                <span>→</span>
+              </Link>
+              <Link href="/contact" className="font-mono text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 flex-1 px-5 py-3 border border-white/10 hover:border-amber/50 hover:text-amber transition-colors text-cream">
+                <span>Contact Us</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
