@@ -9,37 +9,41 @@ const PRODUCT_DB: Record<string, any> = {
   'hot-dip-galvanized-wire': {
     name: "Hot Dip Galvanized Mild Steel Wire",
     desc: "Premium quality GI wire tailored for fencing, farming, and general engineering applications.",
-    longDesc: "Our Hot Dip Galvanized Mild Steel Wire is manufactured using advanced continuous hot-dip galvanizing technology. This ensures a uniform, thick coating of zinc that provides exceptional corrosion resistance even in harsh environments. Designed for superior tensile strength and ductility.",
+    longDesc: "Our Hot Dip Galvanized Mild Steel Wire is manufactured using advanced continuous hot-dip galvanizing technology. This ensures a uniform, thick coating of zinc that provides exceptional corrosion resistance even in harsh environments. Designed for superior tensile strength and ductility, this wire is the backbone of India's fencing, agriculture, and construction industries.",
     standard: "IS 280",
     img: "/1.png",
     specs: {
       "Size Range": "1.25 mm to 4.00 mm",
       "Zinc Coating": "As per IS standards (Heavy/Medium)",
-      "UTS Range": "300–550 N/mm²",
-      "Tolerance": "±0.05 mm"
+      "UTS Range": "300-550 N/mm\u00B2",
+      "Tolerance": "\u00B10.05 mm"
     },
     features: [
       "Excellent atmospheric corrosion resistance",
       "Uniform zinc coating thickness",
       "High binding capacity",
-      "Smooth finish free from rough spots"
+      "Smooth finish free from rough spots",
+      "Consistent diameter across coils",
+      "Weather-proof for outdoor applications"
     ],
     applications: [
       "Agriculture and vineyard trellising",
       "Chain link fencing",
       "Wire mesh weaving",
-      "General tying and binding"
+      "General tying and binding",
+      "Barbed wire manufacturing",
+      "Highway crash barrier wiring"
     ]
   },
   'low-carbon-galvanized-wire': {
     name: "Low Carbon Galvanized Steel Wire",
     desc: "Soft and pliable wire perfect for tying, binding, and construction needs.",
-    longDesc: "Manufactured from high-quality low-carbon steel, this wire undergoes rigorous annealing and galvanization processes. The result is a highly flexible, pliable wire that resists breaking under strain while maintaining excellent protective properties against rust.",
+    longDesc: "Manufactured from high-quality low-carbon steel, this wire undergoes rigorous annealing and galvanization processes. The result is a highly flexible, pliable wire that resists breaking under strain while maintaining excellent protective properties against rust. Ideal for construction sites where easy handling and reliable binding strength are essential.",
     standard: "IS 280 / IS 12753",
     img: "/2.png",
     specs: {
       "Size Range": "0.90 mm to 5.00 mm",
-      "Tensile Strength": "Soft (Below 450 N/mm²)",
+      "Tensile Strength": "Soft (Below 450 N/mm\u00B2)",
       "Elongation": "10-15%",
       "Coil Weight": "25 kg to 100 kg"
     },
@@ -47,19 +51,23 @@ const PRODUCT_DB: Record<string, any> = {
       "High ductility and flexibility",
       "Easy to bend, twist, and tie",
       "Consistent diameter profiling",
-      "Optimal zinc adherence"
+      "Optimal zinc adherence",
+      "Minimal breakage during handling",
+      "Suitable for machine and hand tying"
     ],
     applications: [
       "Construction binding wire",
       "Packaging and bailing",
       "Handicrafts",
-      "Cable armouring substrate"
+      "Cable armouring substrate",
+      "Reinforced concrete tying",
+      "Hill slope stabilization mesh"
     ]
   },
   'formed-wire-cable-armouring': {
     name: "Formed Wire for Cable Armouring",
     desc: "High-protection armouring wire engineered for the electrical transmission industry.",
-    longDesc: "Specifically designed for the heavy electrification sector, our formed wire provides mechanical protection to power and communication cables. It shields internal conductors from physical crushing, rodent attacks, and environmental degradation.",
+    longDesc: "Specifically designed for the heavy electrification sector, our formed wire provides mechanical protection to power and communication cables. It shields internal conductors from physical crushing, rodent attacks, and environmental degradation. Manufactured to strict IS 3975 standards with verified electrical continuity and zinc mass compliance.",
     standard: "IS 3975",
     img: "/3.png",
     specs: {
@@ -72,13 +80,17 @@ const PRODUCT_DB: Record<string, any> = {
       "Passed rigorous mass-of-zinc tests",
       "Excellent electrical continuity",
       "Uniform dip test passed (no copper deposition)",
-      "High mechanical resilience"
+      "High mechanical resilience",
+      "Rodent and crush resistant",
+      "Long-term underground durability"
     ],
     applications: [
       "Underground power cables",
       "Telecommunication cables",
       "Submarine cables",
-      "Heavy industrial conduit protection"
+      "Heavy industrial conduit protection",
+      "HT/LT cable armouring",
+      "Solar farm cable protection"
     ]
   }
 };
@@ -86,25 +98,25 @@ const PRODUCT_DB: Record<string, any> = {
 const TECHNICAL_TABLES: Record<string, { title: string; subtitle: string; headers: string[]; rows: string[][] }[]> = {
   'hot-dip-galvanized-wire': [
     {
-      title: "IS 280 Zinc Coating Classes (g/m²)",
+      title: "IS 280 Zinc Coating Classes (g/m\u00B2)",
       subtitle: "Mandatory mass of zinc coating for different wire diameters as per Indian Standards.",
       headers: ["Wire Diameter (mm)", "Heavy Coated (Class A)", "Medium Coated (Class B)", "Light Coated (Class C)"],
       rows: [
-        ["1.25 mm – 1.60 mm", "150 – 190 g/m²", "100 g/m²", "60 g/m²"],
-        ["1.61 mm – 2.00 mm", "220 – 240 g/m²", "115 g/m²", "70 g/m²"],
-        ["2.01 mm – 2.50 mm", "240 – 260 g/m²", "125 g/m²", "80 g/m²"],
-        ["2.51 mm – 3.15 mm", "260 – 280 g/m²", "135 g/m²", "90 g/m²"],
-        ["3.16 mm – 4.00 mm", "280 – 300 g/m²", "150 g/m²", "100 g/m²"]
+        ["1.25 mm \u2013 1.60 mm", "150 \u2013 190 g/m\u00B2", "100 g/m\u00B2", "60 g/m\u00B2"],
+        ["1.61 mm \u2013 2.00 mm", "220 \u2013 240 g/m\u00B2", "115 g/m\u00B2", "70 g/m\u00B2"],
+        ["2.01 mm \u2013 2.50 mm", "240 \u2013 260 g/m\u00B2", "125 g/m\u00B2", "80 g/m\u00B2"],
+        ["2.51 mm \u2013 3.15 mm", "260 \u2013 280 g/m\u00B2", "135 g/m\u00B2", "90 g/m\u00B2"],
+        ["3.16 mm \u2013 4.00 mm", "280 \u2013 300 g/m\u00B2", "150 g/m\u00B2", "100 g/m\u00B2"]
       ]
     },
     {
       title: "Tensile Strength Classification",
       subtitle: "Mechanical grade designations based on ultimate tensile strength (UTS).",
-      headers: ["Grade / Temper", "Tensile Range (N/mm²)", "Elongation (Min %)", "Typical Applications"],
+      headers: ["Grade / Temper", "Tensile Range (N/mm\u00B2)", "Elongation (Min %)", "Typical Applications"],
       rows: [
-        ["Soft (Annealed)", "300 – 450 N/mm²", "15%", "Binding wire, light weaving, tying"],
-        ["Half-Hard", "450 – 550 N/mm²", "10%", "Barbed wire, vineyard trellises"],
-        ["Hard Draw", "550 – 850 N/mm²", "8%", "Chain link fence, high tension fencing"]
+        ["Soft (Annealed)", "300 \u2013 450 N/mm\u00B2", "15%", "Binding wire, light weaving, tying"],
+        ["Half-Hard", "450 \u2013 550 N/mm\u00B2", "10%", "Barbed wire, vineyard trellises"],
+        ["Hard Draw", "550 \u2013 850 N/mm\u00B2", "8%", "Chain link fence, high tension fencing"]
       ]
     }
   ],
@@ -114,10 +126,10 @@ const TECHNICAL_TABLES: Record<string, { title: string; subtitle: string; header
       subtitle: "Standard wire gauges (SWG) used on construction sites and their equivalent yields.",
       headers: ["Standard Wire Gauge (SWG)", "Diameter (mm)", "Approx. Length per 1 Kg", "Tying Strength Capacity"],
       rows: [
-        ["16 SWG", "1.60 mm", "≈ 64 meters", "High (Slab joints, column foundation mats)"],
-        ["18 SWG", "1.20 mm", "≈ 113 meters", "Medium (Standard beam and slab rebar)"],
-        ["20 SWG", "0.90 mm", "≈ 200 meters", "Light (Stirrup positioning, mesh tying)"],
-        ["22 SWG", "0.71 mm", "≈ 320 meters", "Extra-Light (Precise detailing, craft binding)"]
+        ["16 SWG", "1.60 mm", "\u2248 64 meters", "High (Slab joints, column foundation mats)"],
+        ["18 SWG", "1.20 mm", "\u2248 113 meters", "Medium (Standard beam and slab rebar)"],
+        ["20 SWG", "0.90 mm", "\u2248 200 meters", "Light (Stirrup positioning, mesh tying)"],
+        ["22 SWG", "0.71 mm", "\u2248 320 meters", "Extra-Light (Precise detailing, craft binding)"]
       ]
     },
     {
@@ -125,10 +137,10 @@ const TECHNICAL_TABLES: Record<string, { title: string; subtitle: string; header
       subtitle: "Quality tolerance verification metrics for low carbon structural binding wire.",
       headers: ["Parameter", "Target Specification", "Tolerance Limit", "Testing Standards"],
       rows: [
-        ["Carbon Content", "0.08% – 0.12%", "Max 0.15%", "Spectrometer analysis"],
+        ["Carbon Content", "0.08% \u2013 0.12%", "Max 0.15%", "Spectrometer analysis"],
         ["Elongation %", "Min 15%", "No upper limit", "Inline tensile test (IS 1608)"],
         ["Wrapping Test", "8 turns around self-diameter", "No fractures/peeling", "Mandrel wrapping test"],
-        ["Diameter Tolerance", "±0.02 mm to ±0.03 mm", "Max ±0.04 mm", "Digital micrometer verification"]
+        ["Diameter Tolerance", "\u00B10.02 mm to \u00B10.03 mm", "Max \u00B10.04 mm", "Digital micrometer verification"]
       ]
     }
   ],
@@ -136,14 +148,14 @@ const TECHNICAL_TABLES: Record<string, { title: string; subtitle: string; header
     {
       title: "IS 3975 Cable Armouring Size & Resistance Table",
       subtitle: "Standard round and flat formed wire dimensions with mandatory electrical resistance thresholds.",
-      headers: ["Armour Type & Size", "Zinc Mass (Min)", "CuSO₄ Dips (Min)", "Max Resistivity at 20°C"],
+      headers: ["Armour Type & Size", "Zinc Mass (Min)", "CuSO\u2084 Dips (Min)", "Max Resistivity at 20\u00B0C"],
       rows: [
-        ["Round Wire (1.40 mm)", "180 g/m²", "3 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
-        ["Round Wire (1.60 mm)", "190 g/m²", "3 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
-        ["Round Wire (2.00 mm)", "200 g/m²", "4 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
-        ["Round Wire (2.50 mm)", "210 g/m²", "4 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
-        ["Round Wire (3.15 mm)", "220 g/m²", "4 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"],
-        ["Flat Formed (4.0 x 0.8 mm)", "180 g/m²", "3 dips of 1 min", "14.5 x 10⁻⁸ Ω·m (Max)"]
+        ["Round Wire (1.40 mm)", "180 g/m\u00B2", "3 dips of 1 min", "14.5 x 10\u207B\u2078 \u03A9\u00B7m (Max)"],
+        ["Round Wire (1.60 mm)", "190 g/m\u00B2", "3 dips of 1 min", "14.5 x 10\u207B\u2078 \u03A9\u00B7m (Max)"],
+        ["Round Wire (2.00 mm)", "200 g/m\u00B2", "4 dips of 1 min", "14.5 x 10\u207B\u2078 \u03A9\u00B7m (Max)"],
+        ["Round Wire (2.50 mm)", "210 g/m\u00B2", "4 dips of 1 min", "14.5 x 10\u207B\u2078 \u03A9\u00B7m (Max)"],
+        ["Round Wire (3.15 mm)", "220 g/m\u00B2", "4 dips of 1 min", "14.5 x 10\u207B\u2078 \u03A9\u00B7m (Max)"],
+        ["Flat Formed (4.0 x 0.8 mm)", "180 g/m\u00B2", "3 dips of 1 min", "14.5 x 10\u207B\u2078 \u03A9\u00B7m (Max)"]
       ]
     },
     {
@@ -168,7 +180,7 @@ export function ProductDetailClient({ slug }: { slug: string }) {
         <div className="text-center">
           <h1 className="font-bebas text-5xl text-cream mb-4">Product Not Found</h1>
           <Link href="/products" className="text-amber hover:text-cream transition-colors font-mono uppercase tracking-widest text-xs">
-            ← Back to Catalogue
+            Back to Catalogue
           </Link>
         </div>
       </div>
@@ -176,32 +188,32 @@ export function ProductDetailClient({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="pt-32 pb-20 max-w-[1280px] mx-auto px-[5vw]">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-20 max-w-[1280px] mx-auto px-5 md:px-[5vw]">
 
-      <Link href="/products" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-steel hover:text-amber transition-colors mb-12">
+      <Link href="/products" className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-white/40 hover:text-amber transition-colors mb-8 md:mb-12">
         <ArrowLeft className="w-4 h-4" />
         Back to Catalogue
       </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24">
 
         {/* Left: Image & Quick Specs */}
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 md:gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="aspect-[4/3] w-full rounded-2xl overflow-hidden blob-card border border-glass-border relative"
+            className="aspect-[4/3] w-full rounded-2xl overflow-hidden border border-white/10 relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
             <img
               src={product.img}
               alt={product.name}
               loading="lazy"
-              className="w-full h-full object-cover filter grayscale contrast-125"
+              className="w-full h-full object-cover brightness-75 contrast-110"
             />
-            <div className="absolute bottom-6 left-6 z-20">
-              <div className="px-4 py-2 bg-amber text-obsidian font-mono text-xs tracking-widest uppercase rounded flex items-center gap-2">
+            <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 z-20">
+              <div className="px-3 py-1.5 md:px-4 md:py-2 bg-amber text-obsidian font-mono text-[10px] md:text-xs tracking-widest uppercase rounded flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-obsidian rounded-full animate-pulse" />
                 Certified: {product.standard}
               </div>
@@ -212,14 +224,14 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="blob-card p-8 rounded-2xl border border-glass-border"
+            className="blob-card p-5 md:p-8 rounded-2xl border border-white/10"
           >
-            <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-6">Technical Specifications</h3>
-            <div className="flex flex-col gap-4 font-sans text-sm text-steel">
+            <h3 className="font-mono text-[10px] md:text-xs text-amber tracking-widest uppercase mb-4 md:mb-6">Technical Specifications</h3>
+            <div className="flex flex-col gap-3 md:gap-4">
               {Object.entries(product.specs).map(([key, value]) => (
-                <div key={key} className="flex justify-between items-center py-2 border-b border-glass-border/30 last:border-0 last:pb-0">
-                  <span className="uppercase text-[10px] tracking-widest text-steel/60">{key}</span>
-                  <span className="text-cream text-right">{value as string}</span>
+                <div key={key} className="flex justify-between items-start gap-4 py-2 border-b border-white/5 last:border-0 last:pb-0">
+                  <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.1em] text-white/50 shrink-0">{key}</span>
+                  <span className="font-mono text-xs md:text-sm text-cream font-medium text-right">{value as string}</span>
                 </div>
               ))}
             </div>
@@ -227,16 +239,16 @@ export function ProductDetailClient({ slug }: { slug: string }) {
         </div>
 
         {/* Right: Content */}
-        <div className="flex flex-col justify-start pt-4">
+        <div className="flex flex-col justify-start pt-0 lg:pt-4">
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-bebas text-5xl md:text-7xl text-cream mb-6 uppercase tracking-wider leading-[0.9]">
+            <h1 className="font-bebas text-4xl md:text-5xl lg:text-7xl text-cream mb-4 md:mb-6 uppercase tracking-wider leading-[0.9]">
               <SplitText text={product.name} />
             </h1>
-            <p className="font-sans text-lg text-steel/90 font-light leading-relaxed mb-8">
+            <p className="font-sans text-base md:text-lg text-white/70 font-light leading-relaxed mb-6 md:mb-8">
               {product.longDesc}
             </p>
           </motion.div>
@@ -245,14 +257,14 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-12"
+            className="mb-8 md:mb-12"
           >
-            <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-6">Key Features</h3>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h3 className="font-mono text-[10px] md:text-xs text-amber tracking-widest uppercase mb-4 md:mb-6">Key Features</h3>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               {product.features.map((feature: string, idx: number) => (
-                <li key={idx} className="flex items-start gap-3 text-sm text-cream font-light">
-                  <div className="mt-1 w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: "rgba(249,115,22,0.1)", border: "1px solid rgba(249,115,22,0.3)" }}>
+                <li key={idx} className="flex items-start gap-2.5 md:gap-3 text-sm text-cream/90 font-light">
+                  <div className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                    style={{ backgroundColor: "rgba(249,115,22,0.15)", border: "1px solid rgba(249,115,22,0.4)" }}>
                     <Check className="w-3 h-3 text-amber" />
                   </div>
                   <span className="leading-relaxed">{feature}</span>
@@ -265,12 +277,12 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-16"
+            className="mb-10 md:mb-16"
           >
-            <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-6">Applications</h3>
-            <div className="flex flex-wrap gap-3">
+            <h3 className="font-mono text-[10px] md:text-xs text-amber tracking-widest uppercase mb-4 md:mb-6">Applications</h3>
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {product.applications.map((app: string, idx: number) => (
-                <span key={idx} className="font-mono text-[10px] tracking-widest uppercase px-4 py-2 border border-glass-border rounded-full text-steel bg-obsidian/30">
+                <span key={idx} className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase px-3 md:px-4 py-1.5 md:py-2 border border-white/10 rounded-full text-white/60 bg-white/5">
                   {app}
                 </span>
               ))}
@@ -282,12 +294,12 @@ export function ProductDetailClient({ slug }: { slug: string }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <div className="blob-card p-8 rounded-2xl border border-glass-border flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div>
-                <h4 className="font-mono text-xs text-cream tracking-widest uppercase mb-2">Ready to order?</h4>
-                <p className="font-sans text-sm text-steel font-light">Contact our sales team for pricing and availability.</p>
+            <div className="blob-card p-5 md:p-8 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 md:gap-6">
+              <div className="text-center sm:text-left">
+                <h4 className="font-mono text-[10px] md:text-xs text-cream tracking-widest uppercase mb-2">Ready to order?</h4>
+                <p className="font-sans text-xs md:text-sm text-white/50 font-light">Contact our sales team for pricing and availability.</p>
               </div>
-              <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center whitespace-nowrap">
+              <Link href="/contact" className="blob-btn-product font-mono text-[10px] md:text-xs tracking-widest uppercase font-bold px-6 md:px-8 py-3 md:py-4 inline-flex items-center justify-center whitespace-nowrap w-full sm:w-auto">
                 Contact Us
               </Link>
             </div>
@@ -304,34 +316,34 @@ export function ProductDetailClient({ slug }: { slug: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-24 pt-16 border-t border-glass-border"
+          className="mt-16 md:mt-24 pt-12 md:pt-16 border-t border-white/10"
         >
-          <div className="mb-12">
-            <h3 className="font-mono text-xs text-amber tracking-widest uppercase mb-4">Industrial Compliance Databanks</h3>
-            <h2 className="font-bebas text-4xl md:text-5xl text-cream tracking-wide">Technical Tolerance & Testing Metrics</h2>
+          <div className="mb-8 md:mb-12">
+            <h3 className="font-mono text-[10px] md:text-xs text-amber tracking-widest uppercase mb-3 md:mb-4">Industrial Compliance Databanks</h3>
+            <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">Technical Tolerance & Testing Metrics</h2>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 md:gap-12">
             {TECHNICAL_TABLES[slug].map((table, tIdx) => (
-              <div key={tIdx} className="blob-card p-8 rounded-2xl border border-glass-border flex flex-col justify-between">
+              <div key={tIdx} className="blob-card p-5 md:p-8 rounded-2xl border border-white/10 flex flex-col justify-between">
                 <div>
-                  <h4 className="font-bebas text-2xl text-cream tracking-wider mb-2">{table.title}</h4>
-                  <p className="font-sans text-xs text-steel/60 font-light mb-6">{table.subtitle}</p>
+                  <h4 className="font-bebas text-xl md:text-2xl text-cream tracking-wider mb-2">{table.title}</h4>
+                  <p className="font-sans text-[11px] md:text-xs text-white/40 font-light mb-4 md:mb-6">{table.subtitle}</p>
 
                   <div className="overflow-x-auto -mx-2 px-2 pb-2">
-                    <table className="w-full border-collapse text-left text-xs font-sans text-steel min-w-[500px]">
+                    <table className="w-full border-collapse text-left text-[11px] md:text-xs font-sans text-white/60 min-w-[400px]">
                       <thead>
-                        <tr className="border-b border-glass-border">
+                        <tr className="border-b border-white/10">
                           {table.headers.map((header, hIdx) => (
-                            <th key={hIdx} className="pb-3 font-semibold text-cream uppercase tracking-wider text-[10px] pr-4 whitespace-nowrap">{header}</th>
+                            <th key={hIdx} className="pb-2 md:pb-3 font-semibold text-cream uppercase tracking-wider text-[9px] md:text-[10px] pr-3 md:pr-4 whitespace-nowrap">{header}</th>
                           ))}
                         </tr>
                       </thead>
                       <tbody>
                         {table.rows.map((row, rIdx) => (
-                          <tr key={rIdx} className="border-b border-glass-border/30 last:border-0 hover:bg-white/5 transition-colors">
+                          <tr key={rIdx} className="border-b border-white/5 last:border-0 hover:bg-white/5 transition-colors">
                             {row.map((cell, cIdx) => (
-                              <td key={cIdx} className="py-3.5 pr-4 font-light text-steel/95 first:font-medium first:text-cream">
+                              <td key={cIdx} className="py-2.5 md:py-3.5 pr-3 md:pr-4 font-light text-white/70 first:font-medium first:text-cream">
                                 {cell}
                               </td>
                             ))}

@@ -20,6 +20,15 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
   const links = [
     { label: 'About', href: '/about' },
     { label: 'Products', href: '/products', hasDropdown: true },
@@ -28,16 +37,18 @@ export function Navbar() {
     { label: 'Industries', href: '/industries' },
   ];
 
+  const allLinks = [...links, { label: 'Blog', href: '/blog' }, { label: 'FAQ', href: '/faq' }, { label: 'Contact', href: '/contact' }];
+
   return (
     <motion.header
       className="fixed top-0 inset-x-0 z-50 transition-all duration-500 p-2"
     >
       <div className={`absolute inset-0 transition-opacity duration-500 backdrop-blur-xl border-b border-glass-border ${isScrolled ? 'opacity-100' : 'opacity-0'}`} style={{ backgroundColor: "rgba(28,30,36,0.85)" }} />
       
-      <div className="max-w-[1280px] mx-auto px-[5vw] flex items-center justify-between relative z-10">
-        <MagneticButton className="flex items-center gap-3 -ml-6">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-[5vw] flex items-center justify-between relative z-10">
+        <MagneticButton className="flex items-center gap-3 -ml-2 md:-ml-6">
           <Link href="/" className="flex items-center gap-3">
-             <img src="/logo.png" alt="Khemji Wire Logo" className="h-20 lg:h-24 w-auto object-contain" />
+             <img src="/logo.png" alt="Khemji Wire Logo" className="h-14 md:h-20 lg:h-24 w-auto object-contain" />
           </Link>
         </MagneticButton>
 
@@ -67,7 +78,7 @@ export function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-cream p-3 z-50 relative min-w-[44px] min-h-[44px] flex items-center justify-center"
+          className="md:hidden text-cream p-2 z-[60] relative min-w-[44px] min-h-[44px] flex items-center justify-center"
           onClick={() => setIsOpen(true)}
           aria-label="Open navigation menu"
         >
@@ -81,38 +92,55 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 glass-panel bg-obsidian/95 backdrop-blur-3xl flex flex-col items-center justify-center"
-            style={{ paddingTop: 'env(safe-area-inset-top, 0px)', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[55] bg-obsidian/98 backdrop-blur-2xl flex flex-col"
           >
-            <button
-              className="text-cream p-4"
-              style={{ position: 'absolute', top: 'calc(1.5rem + env(safe-area-inset-top, 0px))', right: '5vw' }}
-              onClick={() => setIsOpen(false)}
-              aria-label="Close navigation menu"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <div className="mb-12">
-              <img src="/logo.png" alt="Khemji Wire" className="h-24 w-auto object-contain" />
+            {/* Top bar with logo + close */}
+            <div className="flex items-center justify-between px-5 pt-4 pb-4 border-b border-white/5">
+              <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center">
+                <img src="/logo.png" alt="Khemji Wire" className="h-14 w-auto object-contain" />
+              </Link>
+              <button
+                className="text-cream/60 hover:text-cream p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close navigation menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-            <nav className="flex flex-col items-center gap-8">
-              {[...links, { label: 'Blog', href: '/blog' }, { label: 'FAQ', href: '/faq' }, { label: 'Contact', href: '/contact' }].map((link, i) => (
+
+            {/* Menu links */}
+            <nav className="flex-1 flex flex-col justify-center items-center gap-1 px-8 py-6 overflow-y-auto">
+              {allLinks.map((link, i) => (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="font-bebas text-5xl tracking-wider text-cream hover:text-amber transition-colors"
+                  className={`w-full text-center font-bebas text-[32px] tracking-wide transition-colors py-2.5 ${pathname.startsWith(link.href) ? 'text-amber' : 'text-cream/70 hover:text-amber'}`}
                 >
                   <motion.span
-                    initial={{ y: 20, opacity: 0 }}
+                    initial={{ y: 10, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.05 }}
+                    transition={{ delay: i * 0.03, duration: 0.25 }}
+                    className="block"
                   >
                     {link.label}
                   </motion.span>
                 </Link>
               ))}
             </nav>
+
+            {/* Bottom CTA */}
+            <div className="px-6 pb-6 pt-4 border-t border-white/5">
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="blob-btn-product font-mono text-[11px] tracking-widest uppercase font-bold px-6 py-3.5 flex items-center justify-center gap-2 w-full"
+              >
+                <span>Contact Us</span>
+                <span>→</span>
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

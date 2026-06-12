@@ -46,7 +46,7 @@ export function Hero() {
   const frameOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   return (
-    <div ref={heroRef} className="relative h-[150vh]">
+    <div ref={heroRef} className="relative h-[150vh] -mt-16 md:mt-0">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-obsidian">
         
         {/* Video */}

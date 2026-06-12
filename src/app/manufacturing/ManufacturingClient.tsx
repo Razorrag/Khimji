@@ -106,12 +106,12 @@ export function ManufacturingClient() {
           trigger: step,
           start: "top 50%",
           onEnter: () => {
-             gsap.to(nodeInner, { backgroundColor: "#F97316", boxShadow: "0 0 25px 5px rgba(249,115,22,0.6)", scale: 1.5, duration: 0.4, ease: "back.out(2)" });
+             gsap.to(nodeInner, { backgroundColor: "#F97316", color: "#1C1E24", boxShadow: "0 0 25px 5px rgba(249,115,22,0.6)", scale: 1.5, duration: 0.4, ease: "back.out(2)" });
              gsap.to(nodeOuter, { borderColor: "#F97316", scale: 1.2, duration: 0.4, ease: "back.out(2)" });
           },
           onLeaveBack: () => {
-             gsap.to(nodeInner, { backgroundColor: "#475569", boxShadow: "none", scale: 1, duration: 0.4 });
-             gsap.to(nodeOuter, { borderColor: "rgba(255,255,255,0.1)", scale: 1, duration: 0.4 });
+             gsap.to(nodeInner, { backgroundColor: "#F97316", color: "#1C1E24", boxShadow: "none", scale: 1, duration: 0.4 });
+             gsap.to(nodeOuter, { borderColor: "rgba(249,115,22,0.4)", scale: 1, duration: 0.4 });
           }
         });
 
@@ -148,7 +148,7 @@ export function ManufacturingClient() {
   return (
     <div ref={containerRef}>
       {/* Hero */}
-      <section className="relative pt-36 pb-20 overflow-hidden bg-transparent border-b border-glass-border">
+      <section className="relative pt-36 pb-16 md:pb-20 overflow-hidden bg-transparent border-b border-glass-border">
         
         {/* Background industrial image */}
         <div className="absolute inset-0 z-0">
@@ -162,12 +162,12 @@ export function ManufacturingClient() {
           <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian/70" />
         </div>
 
-        <div className="max-w-[1280px] mx-auto px-[5vw] relative z-10">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw] relative z-10">
           <motion.nav
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-10"
+            className="mb-6 md:mb-10"
           >
             <ol className="flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-steel">
               <li><a href="/" className="hover:text-amber transition-colors">Home</a></li>
@@ -176,7 +176,8 @@ export function ManufacturingClient() {
             </ol>
           </motion.nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-12 items-end">
+          {/* Desktop layout */}
+          <div className="hidden md:grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-12 items-end">
             <div>
               <motion.div 
                 initial={{ width: 0 }}
@@ -200,35 +201,73 @@ export function ManufacturingClient() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="hidden lg:block"
             >
-              <div className="blob-card p-6 rounded-2xl border border-glass-border">
+              <div className="blob-card p-6 rounded-2xl border border-white/10">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
                   <span className="font-mono text-[10px] text-amber tracking-widest uppercase">9-Step Process</span>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {PROCESS_STEPS.map((_, i) => (
-                    <div key={i} className="w-full aspect-square rounded-lg bg-charcoal/50 border border-glass-border flex items-center justify-center">
-                      <span className="font-mono text-[10px] text-cream/60">{String(i + 1).padStart(2, '0')}</span>
+                    <div key={i} className="w-full aspect-square rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+                      <span className="font-mono text-[11px] text-cream font-bold">{String(i + 1).padStart(2, '0')}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 flex items-center gap-2">
-                  <div className="w-8 h-[1px] bg-amber/50" />
-                  <span className="font-mono text-[9px] text-cream/50 tracking-widest uppercase">Raw Material to Dispatch</span>
+                  <div className="w-8 h-[1px] bg-amber/60" />
+                  <span className="font-mono text-[9px] text-cream/60 tracking-widest uppercase">Raw Material to Dispatch</span>
                 </div>
               </div>
             </motion.div>
+          </div>
+
+          {/* Mobile layout */}
+          <div className="md:hidden">
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "40px" }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="h-[2px] bg-amber mb-4"
+            />
+            <h1 className="font-bebas text-[52px] text-cream uppercase leading-[0.85] mb-4">
+              The Wire
+              <br/>
+              <span className="text-amber">Galvanizing</span>
+              <br/>
+              <span className="text-outline-amber">Process</span>
+            </h1>
+            <p className="font-sans text-sm text-cream/80 font-light leading-relaxed mb-6">
+              From raw MS wire to corrosion-resistant GI wire through a rigorous 9-step galvanizing process.
+            </p>
+            {/* Compact 9-step grid on mobile */}
+            <div className="blob-card p-4 rounded-xl border border-white/10">
+              <div className="flex items-center gap-2 mb-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
+                <span className="font-mono text-[10px] text-amber tracking-widest uppercase">9-Step Process</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {PROCESS_STEPS.map((step, i) => (
+                  <div key={i} className="aspect-square rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center gap-1 p-1">
+                    <span className="font-mono text-[10px] text-cream font-bold">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="font-mono text-[7px] text-cream/70 text-center leading-tight">{step.title}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-3 flex items-center gap-2">
+                <div className="w-6 h-[1px] bg-amber/60" />
+                <span className="font-mono text-[8px] text-cream/60 tracking-widest uppercase">Raw Material to Dispatch</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Animated Process Journey */}
-      <section className="py-24 md:py-32 bg-transparent relative z-10">
-        <div className="max-w-[1280px] mx-auto px-[5vw] relative">
+      <section className="py-16 md:py-24 lg:py-32 bg-transparent relative z-10">
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw] relative">
           
-          <div className="relative process-container pb-20">
+          <div className="relative process-container pb-16 md:pb-20">
             {/* Base Wire Track */}
             <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-[1px] md:-translate-x-1/2 rounded-full" />
             
@@ -238,7 +277,70 @@ export function ManufacturingClient() {
               className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#F97316] via-[#FF8C00] to-transparent -translate-x-[1.5px] md:-translate-x-1/2 rounded-full z-10 shadow-[0_0_15px_rgba(249,115,22,0.6)]" 
             />
 
-            <div className="flex flex-col gap-12 md:gap-24 relative z-20">
+            {/* Mobile: Vertical card layout */}
+            <div className="md:hidden flex flex-col gap-10 relative z-20">
+              {PROCESS_STEPS.map((step, idx) => {
+                const stepNum = String(idx + 1).padStart(2, '0');
+                
+                return (
+                  <div key={idx} className="process-step-item w-full relative group">
+                    
+                    {/* The Node on the Wire */}
+                    <div className="absolute left-[20px] top-8 -translate-y-1/2 -translate-x-1/2 z-30">
+                       <div className="process-node-outer w-10 h-10 rounded-full bg-obsidian border-2 border-amber flex items-center justify-center p-0.5 shadow-[0_0_12px_rgba(249,115,22,0.4)]">
+                          <div className="process-node-inner w-full h-full rounded-full bg-amber transition-all duration-300 relative flex items-center justify-center text-obsidian font-mono text-[11px] font-bold">
+                            {stepNum}
+                          </div>
+                       </div>
+                    </div>
+
+                    {/* Mobile Card: Image + Text stacked */}
+                    <div className="content-left pl-14 w-full">
+                      <div className="rounded-2xl overflow-hidden border border-white/10 bg-black/40 shadow-xl">
+                        {/* Image */}
+                        <div className="w-full aspect-video relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+                          <img 
+                            src={step.img} 
+                            alt={step.title}
+                            loading="lazy"
+                            className="w-full h-full object-cover brightness-80 contrast-105 group-hover:brightness-95 group-hover:scale-105 transition-all duration-700"
+                          />
+                          {/* Step number overlay on image */}
+                          <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2">
+                            <span className="font-mono text-[11px] text-amber font-bold tracking-widest bg-black/70 px-2.5 py-1 rounded-md">{stepNum}</span>
+                            {step.temp && (
+                              <span className="font-mono text-[9px] text-amber border border-amber/40 rounded-md px-2 py-1 bg-black/70">{step.temp}</span>
+                            )}
+                          </div>
+                        </div>
+                        {/* Text content */}
+                        <div className="p-5">
+                          <h2 className="font-bebas text-[26px] text-cream tracking-wide mb-4">{step.title}</h2>
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="font-mono text-[10px] text-amber tracking-[0.15em] uppercase mb-2 flex items-center gap-2">
+                                <span className="w-2 h-[2px] bg-amber rounded-full"></span> The Process
+                              </h4>
+                              <p className="font-sans text-white/90 text-[14px] leading-relaxed">{step.desc}</p>
+                            </div>
+                            <div className="pt-3 border-t border-white/10">
+                              <h4 className="font-mono text-[10px] text-white/70 tracking-[0.15em] uppercase mb-2 flex items-center gap-2">
+                                <span className="w-2 h-[2px] bg-white/50 rounded-full"></span> The Purpose
+                              </h4>
+                              <p className="font-sans text-white/80 text-[14px] leading-relaxed">{step.purpose}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Desktop: Alternating layout */}
+            <div className="hidden md:flex flex-col gap-16 lg:gap-28 relative z-20">
               {PROCESS_STEPS.map((step, idx) => {
                 const isEven = idx % 2 === 0;
                 const stepNum = String(idx + 1).padStart(2, '0');
@@ -248,8 +350,8 @@ export function ManufacturingClient() {
                     
                     {/* The Node on the Wire */}
                     <div className="absolute left-[20px] md:left-1/2 top-[30px] md:top-1/2 -translate-y-1/2 -translate-x-1/2 z-30">
-                       <div className="process-node-outer w-10 h-10 md:w-12 md:h-12 rounded-full bg-obsidian border-[2px] border-white/10 flex items-center justify-center p-1 transition-colors">
-                          <div className="process-node-inner w-full h-full rounded-full bg-slate-600 transition-all duration-300 relative flex items-center justify-center text-cream font-mono text-xs md:text-sm font-bold">
+                       <div className="process-node-outer w-11 h-11 md:w-14 md:h-14 rounded-full bg-obsidian border-2 border-amber flex items-center justify-center p-1 shadow-[0_0_16px_rgba(249,115,22,0.35)]">
+                          <div className="process-node-inner w-full h-full rounded-full bg-amber transition-all duration-300 relative flex items-center justify-center text-obsidian font-mono text-xs md:text-sm font-bold">
                             {stepNum}
                           </div>
                        </div>
@@ -259,31 +361,33 @@ export function ManufacturingClient() {
                     <div className={`content-left w-full md:w-1/2 pl-[60px] md:pl-0 pr-0 md:pr-12 lg:pr-20 flex items-center ${!isEven ? 'md:justify-end' : 'md:justify-start'}`}>
                       {isEven ? (
                         /* Image on Left (for Even steps) */
-                        <div className="w-full aspect-video md:aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden relative group-hover:border-amber/30 border border-glass-border transition-colors duration-500">
-                          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent z-10" />
+                        <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden relative group-hover:border-amber/40 border border-white/10 transition-colors duration-500 shadow-xl">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
                           <img 
                             src={step.img} 
                             alt={step.title}
                             loading="lazy"
-                            className="w-full h-full object-cover filter grayscale contrast-110 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
+                            className="w-full h-full object-cover brightness-75 contrast-105 group-hover:brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                           />
                         </div>
                       ) : (
                         /* Text on Left (for Odd steps) */
-                        <div className="flex flex-col gap-4 md:gap-5 w-full">
+                        <div className="flex flex-col gap-5 w-full">
                           <div className="flex items-center gap-3">
-                            <span className="font-mono text-xs text-amber font-bold tracking-widest">{stepNum}</span>
-                            <div className="w-8 h-[1px] bg-amber/50" />
+                            <span className="font-mono text-sm text-amber font-bold tracking-widest">{stepNum}</span>
+                            <div className="w-10 h-[1px] bg-amber/60" />
                             {step.temp && (
-                              <span className="font-mono text-[9px] text-amber/50 border border-amber/20 rounded-full px-2 py-0.5">{step.temp}</span>
+                              <span className="font-mono text-[10px] text-amber/70 border border-amber/25 rounded-full px-2.5 py-1">{step.temp}</span>
                             )}
                           </div>
                           <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
-                          <div className="blob-card p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg">
-                            <h4 className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-amber"></span> The Process</h4>
-                            <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
-                            <h4 className="font-mono text-[10px] text-cream/50 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-cream/30"></span> The Purpose</h4>
-                            <p className="font-sans text-cream/70 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
+                          <div className="blob-card p-6 lg:p-8 rounded-2xl border border-white/10 group-hover:border-amber/30 transition-colors shadow-xl">
+                            <h4 className="font-mono text-[11px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-amber rounded-full"></span> The Process</h4>
+                            <p className="font-sans text-white/90 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
+                            <div className="pt-4 border-t border-white/10">
+                              <h4 className="font-mono text-[11px] text-white/70 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-white/50 rounded-full"></span> The Purpose</h4>
+                              <p className="font-sans text-white/80 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
+                            </div>
                           </div>
                         </div>
                       )}
@@ -293,31 +397,33 @@ export function ManufacturingClient() {
                     <div className={`content-right w-full md:w-1/2 pl-[60px] md:pl-12 lg:pl-20 flex items-center mt-6 md:mt-0 ${isEven ? 'md:justify-start' : 'md:justify-end'}`}>
                       {isEven ? (
                         /* Text on Right (for Even steps) */
-                        <div className="flex flex-col gap-4 md:gap-5 w-full">
+                        <div className="flex flex-col gap-5 w-full">
                           <div className="flex items-center gap-3">
-                            <span className="font-mono text-xs text-amber font-bold tracking-widest">{stepNum}</span>
-                            <div className="w-8 h-[1px] bg-amber/50" />
+                            <span className="font-mono text-sm text-amber font-bold tracking-widest">{stepNum}</span>
+                            <div className="w-10 h-[1px] bg-amber/60" />
                             {step.temp && (
-                              <span className="font-mono text-[9px] text-amber/50 border border-amber/20 rounded-full px-2 py-0.5">{step.temp}</span>
+                              <span className="font-mono text-[10px] text-amber/70 border border-amber/25 rounded-full px-2.5 py-1">{step.temp}</span>
                             )}
                           </div>
                           <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide">{step.title}</h2>
-                          <div className="blob-card p-5 md:p-6 lg:p-8 rounded-xl border border-glass-border/50 group-hover:border-amber/20 transition-colors shadow-lg">
-                            <h4 className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-amber"></span> The Process</h4>
-                            <p className="font-sans text-cream/80 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
-                            <h4 className="font-mono text-[10px] text-cream/50 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-px bg-cream/30"></span> The Purpose</h4>
-                            <p className="font-sans text-cream/70 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
+                          <div className="blob-card p-6 lg:p-8 rounded-2xl border border-white/10 group-hover:border-amber/30 transition-colors shadow-xl">
+                            <h4 className="font-mono text-[11px] text-amber tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-amber rounded-full"></span> The Process</h4>
+                            <p className="font-sans text-white/90 text-sm lg:text-base leading-relaxed mb-5">{step.desc}</p>
+                            <div className="pt-4 border-t border-white/10">
+                              <h4 className="font-mono text-[11px] text-white/70 tracking-[0.2em] uppercase mb-3 flex items-center gap-2"><span className="w-2 h-[2px] bg-white/50 rounded-full"></span> The Purpose</h4>
+                              <p className="font-sans text-white/80 text-sm lg:text-base leading-relaxed">{step.purpose}</p>
+                            </div>
                           </div>
                         </div>
                       ) : (
                         /* Image on Right (for Odd steps) */
-                        <div className="w-full aspect-video md:aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden relative group-hover:border-amber/30 border border-glass-border transition-colors duration-500">
-                          <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent z-10" />
+                        <div className="w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden relative group-hover:border-amber/40 border border-white/10 transition-colors duration-500 shadow-xl">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
                           <img 
                             src={step.img} 
                             alt={step.title}
                             loading="lazy"
-                            className="w-full h-full object-cover filter grayscale contrast-110 brightness-90 group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105 transition-all duration-700"
+                            className="w-full h-full object-cover brightness-75 contrast-105 group-hover:brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                           />
                         </div>
                       )}
@@ -329,33 +435,33 @@ export function ManufacturingClient() {
             </div>
             
             {/* Glowing bottom terminus */}
-            <div className="absolute left-[20px] md:left-1/2 bottom-0 w-3 h-3 -translate-x-[6px] md:-translate-x-[6px] rounded-full bg-amber shadow-[0_0_20px_#F97316] z-10 animate-pulse hidden md:block" />
+            <div className="absolute left-[20px] md:left-1/2 bottom-0 w-3 h-3 -translate-x-[6px] md:-translate-x-[6px] rounded-full bg-amber shadow-[0_0_20px_#F97316] z-10 animate-pulse" />
           </div>
         </div>
       </section>
 
       {/* CTA Footer */}
-      <section className="py-24 md:py-32 bg-transparent border-t border-glass-border relative overflow-hidden">
-        <div className="max-w-[800px] mx-auto px-[5vw] text-center relative z-10">
+      <section className="py-16 md:py-24 lg:py-32 bg-transparent border-t border-glass-border relative overflow-hidden">
+        <div className="max-w-[800px] mx-auto px-5 md:px-[5vw] text-center relative z-10">
            <motion.div
              initial={{ opacity: 0, y: 30 }}
              whileInView={{ opacity: 1, y: 0 }}
              viewport={{ once: true }}
              transition={{ duration: 0.8 }}
            >
-             <h2 className="font-bebas text-5xl md:text-7xl text-cream mb-6">Experience <span className="text-amber">Precision</span></h2>
-             <p className="font-sans text-cream/70 text-lg font-light leading-relaxed mb-10 max-w-2xl mx-auto">
-               Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
+             <h2 className="font-bebas text-4xl md:text-5xl lg:text-7xl text-cream mb-4 md:mb-6">Experience <span className="text-amber">Precision</span></h2>
+             <p className="font-sans text-cream/70 text-base md:text-lg font-light leading-relaxed mb-8 md:mb-10 max-w-2xl mx-auto">
+                Our continuous wire galvanizing plant is designed for scale, quality, and uncompromising durability. Partner with us for your industrial wire needs.
              </p>
-             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300">
-                 <span className="relative z-10">Contact Us</span>
-                 <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
-               </Link>
-               <Link href="/quality" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center">
-                 View Quality Standards
-               </Link>
-             </div>
+             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
+                 <Link href="/contact" className="blob-btn-product font-mono text-xs tracking-widest uppercase font-bold px-8 py-4 inline-flex items-center justify-center group transition-all duration-300 w-full sm:w-auto">
+                  <span className="relative z-10">Contact Us</span>
+                  <span className="ml-3 transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+                <Link href="/quality" className="glass-btn font-mono text-xs tracking-widest uppercase px-8 py-4 inline-flex items-center justify-center w-full sm:w-auto">
+                  View Quality Standards
+                </Link>
+              </div>
            </motion.div>
         </div>
       </section>

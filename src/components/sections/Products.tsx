@@ -86,45 +86,50 @@ function FullScreenProduct({ prod, index }: { prod: typeof PRODUCTS[0]; index: n
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative h-screen overflow-hidden">
+    <div ref={sectionRef} className="relative min-h-[85dvh] md:h-screen overflow-hidden">
       {/* Image */}
       <div ref={imageRef} className="absolute inset-0 w-full h-full">
         <img src={prod.img} alt={prod.name} loading="lazy" className="w-full h-full object-cover" />
       </div>
 
       {/* Gradient overlays */}
-      <div ref={overlayRef} className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+      <div ref={overlayRef} className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent pointer-events-none" />
 
       {/* Big number background */}
       <div ref={numberRef} className="absolute top-1/2 -translate-y-1/2 right-[5vw] md:right-10 pointer-events-none z-[3]">
-        <span className="font-bebas text-[200px] md:text-[300px] text-white/[0.03] leading-none select-none">{prod.ordinal}</span>
+        <span className="font-bebas text-[120px] md:text-[200px] lg:text-[300px] text-white/[0.03] leading-none select-none">{prod.ordinal}</span>
       </div>
 
       {/* Content */}
-      <div ref={contentRef} className="absolute inset-0 flex flex-col justify-end p-[5vw] md:p-16 lg:p-20 z-10">
+      <div ref={contentRef} className="absolute inset-0 flex flex-col justify-end p-5 md:p-16 lg:p-20 z-10">
         <div className="max-w-2xl">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="font-mono text-amber text-sm font-bold tracking-wider">{prod.ordinal}</span>
-            <div className="h-[1px] w-12 bg-amber/50" />
+          <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+            <span className="font-mono text-amber text-xs md:text-sm font-bold tracking-wider">{prod.ordinal}</span>
+            <div className="h-[1px] w-8 md:w-12 bg-amber/50" />
           </div>
-          <h3 className="font-bebas text-4xl md:text-6xl lg:text-7xl text-cream tracking-wide leading-[0.9] mb-6">{prod.name}</h3>
+          <h3 className="font-bebas text-3xl md:text-6xl lg:text-7xl text-cream tracking-wide leading-[0.9] mb-4 md:mb-6">{prod.name}</h3>
 
-          <div className="blob-card p-6 md:p-8 max-w-lg">
-            <div className="flex flex-col mb-5">
+          <div className="blob-card p-4 md:p-8 max-w-lg">
+            {/* Specs table */}
+            <div className="flex flex-col mb-4 md:mb-5">
               {Object.entries(prod.specs).map(([k, v]) => (
-                <div key={k} className="flex justify-between items-center py-2.5 border-b last:border-b-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">{k}</span>
-                  <span className="font-mono text-sm text-cream font-medium">{v}</span>
+                <div key={k} className="flex justify-between items-start gap-4 py-2.5 border-b last:border-b-0" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                  <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.15em] text-white/50 shrink-0">{k}</span>
+                  <span className="font-mono text-xs md:text-sm text-cream font-medium text-right break-words">{v}</span>
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap gap-2 mb-5">
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-5">
               {prod.apps.map(app => (
-                <span key={app} className="text-[9px] font-mono px-2.5 py-1 rounded-full text-white/50 border border-white/8 uppercase tracking-wider">{app}</span>
+                <span key={app} className="text-[8px] md:text-[9px] font-mono px-2 md:px-2.5 py-1 rounded-full text-white/50 border border-white/10 uppercase tracking-wider">{app}</span>
               ))}
             </div>
-            <div className="flex gap-4">
+
+            {/* Buttons - stack on mobile, side-by-side on desktop */}
+            <div className="flex flex-col md:flex-row gap-2.5 md:gap-4">
               <Link href={`/products/${prod.slug}`} className="blob-btn-product font-mono text-[10px] tracking-widest uppercase font-bold flex items-center justify-center gap-2 flex-1 px-5 py-3">
                 <span>View Specs</span>
                 <span>→</span>
