@@ -10,7 +10,7 @@ const timeline = [
   { year: '2000s', title: 'Expansion & Modernization', description: 'Under the growing leadership of Mahesh Agarwal, the company expands manufacturing capabilities, upgrades machinery, and begins supplying to infrastructure and power sector contractors beyond Rajasthan.' },
   { year: 'Incorporation', title: 'Private Limited Registration', description: 'Khemji Wire & Wire Pvt. Ltd. is formally incorporated under the Companies Act (CIN: U51101RJ1988PTC004356), marking a significant milestone in the company\'s institutional growth and governance.' },
   { year: 'BIS Certification', title: 'IS:280 & IS:3975 Certified', description: 'Bureau of Indian Standards certifications for Mild Steel Wire (IS:280) and Formed Wire (IS:3975) validate the company\'s commitment to manufacturing excellence and open doors to government and large infrastructure contracts.' },
-  { year: 'Present', title: 'UDYAM Registered MSME', description: 'Registered as UDYAM-RJ-17-0030256, the company continues to grow — supplying HOT DIP Galvanized Wire, MS Wire, and Formed Wire across India from its RIICO Industrial Area facility in Jaipur.' },
+  { year: 'Present', title: 'Strengthening Our Presence Across India', description: 'Today, we continue to expand our reach and capabilities, supplying quality wire products to the cable, infrastructure, power, and industrial sectors nationwide.' },
 ];
 
 const coreValues = [
@@ -21,8 +21,8 @@ const coreValues = [
 ];
 
 const certifications = [
-  { code: 'IS:280', name: 'BIS Certified — Mild Steel Wire', desc: 'Bureau of Indian Standards certification for Mild Steel Wire. Covers tensile strength, elongation, and dimensional tolerances as per Indian national standards.', tag: 'Bureau of Indian Standards' },
-  { code: 'IS:3975', name: 'BIS Certified — Formed Wire', desc: 'BIS certification for Mild Steel Stay Wires and Formed Wire products used in power, telecom, and infrastructure applications.', tag: 'Bureau of Indian Standards' },
+  { code: 'IS:280', name: 'BIS Certified — Hot Dip Galvanized MS Wire', desc: 'Bureau of Indian Standards certification for Hot dip galvanized Mild Steel Wire (IS:280), reinforcing our commitment to quality, compliance, and manufacturing excellence.', tag: 'Bureau of Indian Standards' },
+  { code: 'IS:3975', name: 'BIS Certified — Round & Formed Wire (Strip)', desc: 'Bureau of Indian Standards certification for Round and Formed Wire (Strip) for cable armouring (IS:3975), reinforcing our commitment to quality, compliance, and manufacturing excellence.', tag: 'Bureau of Indian Standards' },
   { code: 'UDYAM', name: 'MSME Registration', desc: 'Registered Micro, Small & Medium Enterprise under the Government of India\'s UDYAM portal. Eligible for government tenders, MSME benefits, and priority sector supply.', tag: 'Govt. of India · MSME Ministry' },
 ];
 
@@ -38,7 +38,7 @@ const facilityDetails = [
 
 const teamPillars = [
   { icon: '🏭', title: 'Production Team', desc: 'Skilled operators managing wire drawing, annealing, and hot-dip galvanizing lines — trained for precision and consistency.' },
-  { icon: '🔬', title: 'Quality Control', desc: 'Dedicated QC personnel conducting dimensional, tensile, and coating tests on every production batch before dispatch.' },
+  { icon: '🔬', title: 'Quality Assurance', desc: 'Comprehensive testing and inspection procedures are carried out throughout the manufacturing process to ensure consistent quality, reliability, and compliance with applicable standards and customer specifications.' },
   { icon: '📦', title: 'Dispatch & Logistics', desc: 'Efficient packing, documentation, and coordination for timely delivery across Rajasthan and pan-India destinations.' },
   { icon: '💼', title: 'Sales & Customer Service', desc: 'Experienced team managing B2B relationships, order processing, and technical support for distributors and contractors.' },
 ];
