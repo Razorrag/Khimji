@@ -87,8 +87,8 @@ export function ProcessTeaser() {
                   transition={{ duration: 0.5, delay: i * 0.06 }}
                   className="relative w-[100px] xl:w-[115px] h-[100px] xl:h-[115px] rounded-full overflow-hidden border-[2.5px] border-amber/70 shadow-[0_0_24px_rgba(249,115,22,0.12)] flex-shrink-0 mx-auto"
                 >
-                  <img src={step.img} alt={step.label} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                  <img src={step.img} alt={step.label} className="w-full h-full object-cover brightness-[0.8] contrast-[1.05]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
                 </motion.div>
                 {i < STEPS.length - 1 && <ArrowRight />}
               </div>
@@ -138,8 +138,8 @@ export function ProcessTeaser() {
               >
                 {/* Image */}
                 <div className="relative w-[62px] h-[62px] rounded-full overflow-hidden border-[2px] border-amber/70 shadow-[0_0_14px_rgba(249,115,22,0.1)] flex-shrink-0">
-                  <img src={step.img} alt={step.label} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                  <img src={step.img} alt={step.label} className="w-full h-full object-cover brightness-[0.8] contrast-[1.05]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
                 </div>
 
                 {/* Content */}

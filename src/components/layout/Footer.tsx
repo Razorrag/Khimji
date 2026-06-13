@@ -99,7 +99,10 @@ export function Footer() {
                   <a href="tel:+919829277869" className="hover:text-amber transition-colors">+91-9829277869</a><br />
                   <a href="tel:+911412954144" className="hover:text-amber transition-colors">+91-141-2954144</a>
                 </p>
-                <a href="mailto:info@khemjiwire.in" className="hover:text-amber transition-colors">info@khemjiwire.in</a>
+                <div className="flex flex-col gap-1">
+                  <a href="mailto:info@khemjiwire.in" className="hover:text-amber transition-colors">info@khemjiwire.in</a>
+                  <a href="mailto:khemjiwire@gmail.com" className="hover:text-amber transition-colors">khemjiwire@gmail.com</a>
+                </div>
               </div>
               <div className="flex flex-wrap items-center gap-2 mt-5">
                 <span className="px-2.5 py-1 rounded border border-white/20 font-mono text-[9px] text-cream/60 uppercase tracking-wider">IS 280</span>

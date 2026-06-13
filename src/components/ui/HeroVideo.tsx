@@ -3,16 +3,13 @@
 import { useEffect, useState } from 'react';
 
 export function HeroVideo() {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.innerWidth <= 768 : false
-  );
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
-    typeof window !== 'undefined'
-      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      : false
-  );
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth <= 768);
+    setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
 

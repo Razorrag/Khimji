@@ -215,7 +215,24 @@ export function ManufacturingClient() {
         }
       });
     }, containerRef);
-    return () => ctx.revert();
+
+    // Refresh ScrollTrigger as fonts, images, and layout settle
+    const refreshAll = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener('load', refreshAll);
+    const t1 = setTimeout(refreshAll, 100);
+    const t2 = setTimeout(refreshAll, 1000);
+    const t3 = setTimeout(refreshAll, 2500);
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener('load', refreshAll);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, []);
 
   return (
@@ -318,10 +335,10 @@ export function ManufacturingClient() {
                       <img
                         src={step.img}
                         alt={step.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover brightness-[0.8] contrast-[1.05]"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-4 left-4">
                         <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-black/70 px-3 py-1.5 rounded-md border border-amber/30">
                           {step.temp}
@@ -386,10 +403,10 @@ export function ManufacturingClient() {
                       <img
                         src={step.img}
                         alt={step.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover brightness-[0.8] contrast-[1.05]"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-4 left-4">
                         <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-black/70 px-3 py-1.5 rounded-md border border-amber/30">
                           {step.temp}

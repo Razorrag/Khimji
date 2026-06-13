@@ -391,7 +391,7 @@ export function ProductsCatalogue() {
               Three Products.<br />
               <span className="text-amber">One Standard.</span>
             </h1>
-            <p className="font-sans text-sm md:text-base text-white/45 max-w-[500px] leading-relaxed">
+            <p className="font-sans text-sm md:text-base text-white/60 max-w-[500px] leading-relaxed">
               Every strand engineered to IS 280 & IS 3975 standards. From raw wire to finished coil.
             </p>
           </motion.div>

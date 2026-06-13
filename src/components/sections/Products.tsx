@@ -175,7 +175,7 @@ function ProductTransition() {
           Three Products.<br/>
           <span className="text-amber">One Standard.</span>
         </h2>
-        <p className="font-sans text-sm text-white/30 max-w-md mx-auto leading-relaxed">
+        <p className="font-sans text-sm text-white/60 max-w-md mx-auto leading-relaxed">
           Every strand engineered to IS 280 & IS 3975 standards. From raw wire to finished coil.
         </p>
       </div>

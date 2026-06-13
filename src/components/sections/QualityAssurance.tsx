@@ -6,7 +6,7 @@ import { motion, useInView } from 'framer-motion';
 const TESTS_ROW1 = [
   {
     name: "Diameter Testing",
-    desc: "Digital micrometer verification on every coil \u2014 tolerance held to \u00b10.01mm ensuring dimensional accuracy across full batch lengths.",
+    desc: "Digital micrometer verification on every coil \u2014 ensuring dimensional accuracy across full batch lengths.",
     metric: "\u00b10.01mm",
     detail: "Inline micrometer checks every 100m of wire. Digital verification logged per batch.",
     icon: (
@@ -19,9 +19,9 @@ const TESTS_ROW1 = [
   },
   {
     name: "Zinc Coating",
-    desc: "Gravimetric acid-strip method measures mass of zinc per m\u00b2. Light, Medium, and Heavy coating classes verified against IS 280 tables.",
+    desc: "Gravimetric acid-strip method measures mass of zinc in gram/m². We ensure compliance with applicable Indian Standards and customer requirements.",
     metric: "60\u2013300 g/m\u00b2",
-    detail: "Antimony chloride stripping test. Results compared against IS 280 minimum tables per wire diameter.",
+    detail: "Testing Method: Antimony Chloride Acid-Strip Test",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
         <path d="M4 6h16M4 10h16M4 14h16M4 18h16" strokeLinecap="round" />
@@ -59,7 +59,7 @@ const TESTS_ROW2 = [
   },
   {
     name: "Resistivity",
-    desc: "Mandatory for IS 3975 cable armouring wire. Electrical resistance measured per km \u2014 must not exceed 14.5 \u03a9/km at 20\u00b0C.",
+    desc: "Mandatory for IS 3975 cable armouring round wire & strip. Electrical resistance measured per km \u2014 must not exceed 14.5 \u03a9/km at 20\u00b0C.",
     metric: "\u226414.5 \u03a9/km",
     detail: "Kelvin 4-wire bridge method. Critical for cable earthing continuity compliance.",
     icon: (
@@ -112,15 +112,12 @@ function TestCard({ test, index, className }: { test: typeof TESTS_ROW1[0]; inde
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
       <div>
-        {/* Top row: icon + metric */}
+        {/* Top row: icon */}
         <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-amber/20 bg-amber/[0.06] flex items-center justify-center text-amber group-hover:border-amber/40 group-hover:bg-amber/10 transition-all duration-400 flex-shrink-0">
             <span className="[&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-5 sm:[&_svg]:h-5 animate-none">
               {test.icon}
             </span>
-          </div>
-          <div className="font-bebas text-lg sm:text-2xl md:text-3xl text-amber leading-none text-glow-amber text-right truncate">
-            <AnimatedCounter value={test.metric} isInView={isInView} />
           </div>
         </div>
 
