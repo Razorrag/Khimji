@@ -9,7 +9,7 @@ const timeline = [
   { year: 'Early 1990s', title: 'Building the Foundation', description: 'The company steadily builds its customer base across Rajasthan, earning a reputation for reliable supply and consistent wire quality. Customer trust becomes the company\'s most valuable asset.' },
   { year: '2000s', title: 'Expansion & Modernization', description: 'Under the growing leadership of Mahesh Agarwal, the company expands manufacturing capabilities, upgrades machinery, and begins supplying to infrastructure and power sector contractors beyond Rajasthan.' },
   { year: 'Incorporation', title: 'Private Limited Registration', description: 'Khemji Wire & Wire Pvt. Ltd. is formally incorporated under the Companies Act (CIN: U51101RJ1988PTC004356), marking a significant milestone in the company\'s institutional growth and governance.' },
-  { year: 'BIS Certification', title: 'IS:280 & IS:3975 Certified', description: 'Bureau of Indian Standards certifications for Mild Steel Wire (IS:280) and Formed Wire (IS:3975) validate the company\'s commitment to manufacturing excellence and open doors to government and large infrastructure contracts.' },
+  { year: 'BIS Certification', title: 'IS:280 & IS:3975 Certified', description: 'Bureau of Indian Standards certifications for Hot dip galvanized Mild Steel Wire (IS:280) and Round and Formed Wire (Strip) for cable armouring (IS:3975) reinforcing our commitment to quality, compliance, and manufacturing excellence.' },
   { year: 'Present', title: 'Strengthening Our Presence Across India', description: 'Today, we continue to expand our reach and capabilities, supplying quality wire products to the cable, infrastructure, power, and industrial sectors nationwide.' },
 ];
 
@@ -26,14 +26,27 @@ const certifications = [
   { code: 'UDYAM', name: 'MSME Registration', desc: 'Registered Micro, Small & Medium Enterprise under the Government of India\'s UDYAM portal. Eligible for government tenders, MSME benefits, and priority sector supply.', tag: 'Govt. of India · MSME Ministry' },
 ];
 
-const facilityDetails = [
-  { label: 'Location', value: 'F-153, RIICO Industrial Area, Sarna Doongar, Jaipur, Rajasthan' },
-  { label: 'Industrial Zone', value: 'RIICO — Rajasthan Industrial & Investment Corporation Zone' },
-  { label: 'Core Processes', value: 'Wire Drawing · Annealing · Hot Dip Galvanizing · Wire Forming' },
-  { label: 'Product Output', value: 'HDG Wire, MS Wire (Bright & Black Annealed), Formed & Stay Wires' },
-  { label: 'Quality Infrastructure', value: 'In-house testing for tensile strength, elongation & zinc coating weight' },
-  { label: 'Dispatch Connectivity', value: 'Road & rail access for pan-India logistics from Jaipur' },
-  { label: 'Operational Since', value: '1988 — Over 35 years of continuous production' },
+const facilityPillars = [
+  {
+    icon: "🏭",
+    title: "Manufacturing Since 1988",
+    value: "35+ years of production excellence.",
+  },
+  {
+    icon: "⚙️",
+    title: "Integrated Production Processes",
+    value: "Wire Drawing • Annealing • Hot-Dip Galvanizing • Wire Forming",
+  },
+  {
+    icon: "🔬",
+    title: "Quality Assurance",
+    value: "Comprehensive testing and inspection facilities.",
+  },
+  {
+    icon: "🚚",
+    title: "Pan-India Supply Network",
+    value: "Reliable delivery to customers across India.",
+  },
 ];
 
 const teamPillars = [
@@ -419,6 +432,9 @@ export function About() {
             <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
               Certifications & <span className="text-amber">Registrations</span>
             </h2>
+            <p className="font-sans text-sm text-cream/60 max-w-[680px] leading-relaxed mt-5">
+              Bureau of Indian Standards certifications for Hot dip galvanized Mild Steel Wire (IS:280) and Round and Formed Wire (Strip) for cable armouring (IS:3975) reinforcing our commitment to quality, compliance, and manufacturing excellence.
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
@@ -481,57 +497,50 @@ export function About() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-charcoal relative">
-                <img
-                  src="/WhatsApp%20Image%202026-06-12%20at%2023.12.32.jpeg"
-                  alt="Khemji Wire Manufacturing Facility"
-                  loading="lazy"
-                  className="w-full h-full object-cover filter grayscale contrast-125 brightness-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="blob-card rounded-xl p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-2 h-2 rounded-full bg-amber animate-pulse" />
-                      <span className="font-mono text-[10px] text-amber tracking-widest uppercase">F-153, RIICO Industrial Area · Sarna Doongar · Jaipur</span>
-                    </div>
-                  </div>
+          {/* Top: Facility Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative mb-12"
+          >
+            <div className="aspect-[16/7] md:aspect-[21/9] rounded-2xl overflow-hidden bg-charcoal relative">
+              <img
+                src="/WhatsApp%20Image%202026-06-12%20at%2023.12.32.jpeg"
+                alt="Khemji Wire Manufacturing Facility"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber animate-pulse" />
+                  <span className="font-mono text-[10px] md:text-xs text-amber tracking-widest uppercase">F-153, RIICO Industrial Area &middot; Sarna Doongar &middot; Jaipur</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col gap-4"
-            >
-              {facilityDetails.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 * i }}
-                  className="blob-card p-5 rounded-xl flex items-start gap-5 border-l-2 border-transparent hover:border-amber transition-colors"
-                >
-                  <div className="w-2 h-2 rounded-full bg-amber mt-2 flex-shrink-0" />
-                  <div>
-                    <span className="font-mono text-[10px] text-amber tracking-widest uppercase">{item.label}</span>
-                    <p className="font-sans text-sm text-cream/80 mt-1">{item.value}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+          {/* Bottom: 4 Pillar Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            {facilityPillars.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 * i }}
+                className="blob-card p-6 md:p-7 rounded-xl group hover:border-amber/30 transition-all duration-500 relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-amber/60 via-amber/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                <div className="text-4xl md:text-5xl mb-4 group-hover:scale-110 transition-transform duration-500">{item.icon}</div>
+                <h4 className="font-bebas text-lg md:text-xl text-cream tracking-wide uppercase mb-2 group-hover:text-amber transition-colors duration-300">
+                  {item.title}
+                </h4>
+                <p className="font-sans text-[12px] md:text-[13px] text-cream/60 leading-relaxed">{item.value}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
