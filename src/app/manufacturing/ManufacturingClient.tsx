@@ -8,69 +8,140 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PROCESS_STEPS = [
+/* ── Phase 1: MS Wire Rod → MS Wire (3 steps) ── */
+const MS_WIRE_STEPS = [
   {
-    title: "MS Wire Rod Coil",
+    title: "Raw Material Inspection",
     num: "01",
-    desc: "High quality MS wire rod coils are selected as raw material for GI wire production.",
-    purpose: "Raw material selection ensures consistent carbon content, diameter uniformity, and surface quality \u2014 the foundation of every GI wire coil.",
-    detail: "Only premium low-carbon steel wire rods are sourced from certified mills. Each coil is inspected for surface defects, diameter tolerance, and metallurgical composition before entering the production line.",
+    desc: "MS wire rod coils are inspected for surface defects, diameter tolerance, and carbon content before entering the production line.",
+    purpose: "Rigorous incoming inspection ensures consistent metallurgical composition and dimensional accuracy \u2014 the foundation of every GI wire coil.",
+    detail: "Only premium low-carbon steel wire rods sourced from certified mills pass through. Each coil undergoes visual inspection for surface defects, checks for diameter tolerance, and verification of mill test certificates confirming carbon content and tensile strength.",
     temp: "Raw Material",
     img: "/process/1.jpeg"
   },
   {
-    title: "Descaling Process",
+    title: "Descaling & Surface Preparation",
     num: "02",
-    desc: "Wire rod is cleaned through descaling process to remove scale, rust and impurities.",
-    purpose: "Mechanical descaling removes all oxide layer and surface contaminants, exposing clean steel for effective acid pickling and zinc bonding.",
-    detail: "The wire passes through a series of breaker rolls and abrasive brushes that fracture and remove the brittle mill scale. This mechanical preparation reduces acid consumption in the subsequent pickling stage and ensures a uniformly clean surface.",
+    desc: "Wire rod is mechanically descaled to remove mill scale, rust, and surface impurities.",
+    purpose: "Mechanical descaling removes the brittle oxide layer, exposing clean steel for effective downstream processing.",
+    detail: "The wire passes through a series of breaker rolls and abrasive brushes that fracture and remove mill scale. This mechanical preparation ensures a uniformly clean surface and reduces acid consumption during pickling.",
     temp: "Mechanical",
     img: "/process/2.jpeg"
   },
   {
-    title: "Wire Drawing Process",
+    title: "Wire Drawing",
     num: "03",
-    desc: "Cleaned wire is drawn through a series of dies to reduce diameter and achieve the desired strength and size.",
-    purpose: "Progressive die drawing achieves precise diameter control and work-hardens the wire to meet target tensile strength specifications.",
-    detail: "Wire is pulled through tungsten carbide dies of progressively smaller apertures. Each pass reduces the cross-section while increasing tensile strength through work hardening. Lubrication and cooling are critical to prevent surface damage and maintain die life.",
+    desc: "Cleaned wire is drawn through a series of tungsten carbide dies to reduce diameter and achieve target tensile strength.",
+    purpose: "Progressive die drawing achieves precise diameter control and work-hardens the wire to meet strength specifications.",
+    detail: "Wire is pulled through tungsten carbide dies of progressively smaller apertures. Each pass reduces cross-section while increasing tensile strength through work hardening. Lubrication and cooling prevent surface damage and maintain die life.",
     temp: "Cold Process",
     img: "/process/3.jpeg"
-  },
+  }
+];
+
+/* ── Phase 2: MS Wire → GI Wire (8 steps) ── */
+const GI_WIRE_STEPS = [
   {
-    title: "Annealing Process",
+    title: "Annealing",
     num: "04",
-    desc: "Drawn wire is annealed in a controlled atmosphere to improve ductility and remove internal stresses.",
-    purpose: "Controlled atmosphere annealing restores ductility lost during drawing, relieves internal stresses, and prepares the wire for uniform zinc adhesion.",
-    detail: "In a nitrogen-hydrogen atmosphere furnace, the wire is heated to precisely controlled temperatures and slowly cooled. This recrystallization process softens the wire, eliminates work hardening effects, and creates a clean oxide-free surface essential for galvanizing.",
+    desc: "Drawn MS wire is annealed in a controlled atmosphere furnace to improve ductility and remove internal stresses.",
+    purpose: "Controlled atmosphere annealing restores ductility, relieves work hardening, and creates a clean oxide-free surface essential for uniform zinc adhesion.",
+    detail: "In a nitrogen-hydrogen atmosphere furnace, the wire is heated to precisely controlled temperatures and slowly cooled. This recrystallization process softens the wire and eliminates internal stresses from the drawing process.",
     temp: "Heat Treatment",
     img: "/process/4.jpeg"
   },
   {
-    title: "Galvanizing Process",
+    title: "Water Quenching & Cooling",
     num: "05",
-    desc: "Annealed wire is hot-dip galvanized in molten zinc to form a uniform, corrosion resistant zinc coating.",
-    purpose: "Molten zinc at 450\u2013460\u00B0C reacts with steel to form tightly bonded zinc-iron alloy layers, providing 25+ years of rust protection.",
-    detail: "The wire enters a bath of molten zinc maintained at 450\u2013460\u00B0C. A metallurgical reaction occurs as the wire travels through, forming sequential layers of zinc-iron alloys (Gamma, Delta, Zeta) topped with pure Eta zinc. Wiping dies control coating thickness with precision.",
+    desc: "Annealed wire is rapidly cooled in a water quench to lock in the softened metallurgical structure.",
+    purpose: "Rapid quenching stabilises the recrystallised grain structure, preparing the wire for the chemical cleaning stages that follow.",
+    detail: "Immediately after the annealing furnace, the wire passes through a water quench tank. This controlled cooling halts the annealing process at the optimal point, preserving ductility while preventing surface oxidation before pickling.",
+    temp: "Rapid Cool",
+    img: "/process/6.jpeg"
+  },
+  {
+    title: "Pickling",
+    num: "06",
+    desc: "Wire passes through a dilute acid bath to remove residual oxide and create a chemically clean surface.",
+    purpose: "Acid pickling dissolves any remaining scale or oxide layer, exposing pure steel for a metallurgically sound zinc-iron bond.",
+    detail: "The wire is immersed in a dilute hydrochloric acid bath. The acid dissolves residual iron oxides without attacking the base steel. Bath concentration, temperature, and immersion time are carefully controlled to achieve a uniformly etched surface.",
+    temp: "Chemical Bath",
+    img: "/more%20images/1.jpeg"
+  },
+  {
+    title: "Rinsing",
+    num: "07",
+    desc: "Pickled wire is thoroughly rinsed with high-pressure water to remove all acid residues.",
+    purpose: "Complete rinsing prevents acid carryover into the flux bath, ensuring consistent flux chemistry and uniform galvanizing.",
+    detail: "High-pressure water jets rinse the wire immediately after pickling, removing all traces of acid and dissolved iron salts. Multi-stage rinsing with cascading water flow minimises water consumption while achieving a neutral surface pH.",
+    temp: "Water Wash",
+    img: "/more%20images/2.jpeg"
+  },
+  {
+    title: "Fluxing",
+    num: "08",
+    desc: "Wire passes through a flux solution that promotes wetting and ensures a uniform reaction with molten zinc.",
+    purpose: "The zinc ammonium chloride flux cleans the wire surface and prevents re-oxidation just before it enters the zinc bath, enabling a flawless coating.",
+    detail: "The wire passes through a hot flux solution (typically zinc ammonium chloride). The flux decomposes on contact with the hot wire, releasing hydrochloric acid that gives a final etch, while the zinc salt deposits a thin layer that promotes immediate alloying with molten zinc.",
+    temp: "Chemical Prep",
+    img: "/more%20images/3.jpeg"
+  },
+  {
+    title: "Hot-Dip Galvanizing",
+    num: "09",
+    desc: "Wire enters a bath of molten zinc at 450\u2013460\u00B0C, forming tightly bonded zinc-iron alloy layers.",
+    purpose: "The metallurgical reaction between iron and molten zinc produces a multi-layer coating (Gamma, Delta, Zeta, Eta) that delivers 25+ years of corrosion protection.",
+    detail: "The wire travels through a bath of molten zinc maintained at 450\u2013460\u00B0C. A diffusion-controlled reaction forms sequential intermetallic layers \u2014 Gamma (adjacent to steel), Delta, Zeta, and a pure Eta layer on the surface. Immersion time and bath chemistry are precisely controlled.",
     temp: "450\u2013460\u00B0C",
     img: "/process/5.jpeg"
   },
   {
-    title: "Cooling & Surface Finish",
-    num: "06",
-    desc: "Galvanized wire is cooled and passivated to enhance surface finish and increase corrosion resistance.",
-    purpose: "Rapid quenching solidifies the zinc coating, locks in the metallurgical bond, and passivation adds an extra protective chromate layer.",
-    detail: "Immediately after galvanizing, the wire passes through a water quench tank that rapidly solidifies the molten zinc coating. A final chromate passivation treatment is applied to prevent white rust formation during storage and transit.",
-    temp: "Water Quench",
-    img: "/process/6.jpeg"
+    title: "Wiping & Coating Control",
+    num: "10",
+    desc: "As the wire exits the zinc bath, adjustable wiping dies control coating thickness with precision.",
+    purpose: "Wiping dies meter the exact coating weight required by IS 280 standards, removing excess zinc while ensuring uniform coverage.",
+    detail: "Immediately above the zinc bath, a set of adjustable ceramic or asbestos wiping dies surround the exiting wire. The dies scrape off excess molten zinc, controlling the final coating thickness to within tight tolerances. Die alignment and pressure are critical for uniform coating.",
+    temp: "Precision",
+    img: "/more%20images/4.jpeg"
   },
   {
-    title: "Winding & Packing",
-    num: "07",
-    desc: "GI wire is wound into coils, checked for quality and packed securely for safe delivery.",
-    purpose: "Precise coiling into 25\u2013150 kg bundles with Hessian wrapping and wire binding ensures scratch-free transit and easy handling at site.",
-    detail: "Finished wire is precision-wound into uniform coils using automatic winding machines. Each coil is weighed, tagged with a batch number, wrapped in Hessian cloth, and secured with steel strapping. Material Test Certificates accompany every dispatch.",
+    title: "Cooling, Coiling & Inspection",
+    num: "11",
+    desc: "Galvanized wire is air-cooled, precision-wound into coils, inspected, and prepared for dispatch.",
+    purpose: "Controlled cooling sets the final coating, while automated winding and batch traceability ensure every coil meets quality standards.",
+    detail: "The wire is air-cooled on a long cooling conveyor to solidify the coating fully. Automatic winding machines produce uniform coils weighing 25\u2013150 kg. Each coil is weighed, tagged with a unique batch number, sampled for QC testing, and wrapped in Hessian cloth with steel strapping.",
     temp: "Final Stage",
     img: "/process/7.jpeg"
+  }
+];
+
+const ALL_STEPS = [...MS_WIRE_STEPS, ...GI_WIRE_STEPS];
+
+const FINISHED_PRODUCTS = [
+  {
+    name: "GI Wire",
+    desc: "General purpose galvanized steel wire used in fencing, binding, and industrial applications. Available in IS 280 standard diameters with uniform zinc coating.",
+    spec: "0.5 mm \u2013 6.0 mm"
+  },
+  {
+    name: "GI Wire Coil",
+    desc: "Continuous length galvanized wire precision-wound into compact coils for easy handling, storage, and automated dispensing in industrial applications.",
+    spec: "25 kg \u2013 150 kg"
+  },
+  {
+    name: "GI Binding Wire",
+    desc: "Soft-annealed galvanized binding wire engineered for construction tying and reinforcement applications. Excellent knot strength and corrosion resistance.",
+    spec: "0.7 mm \u2013 1.6 mm"
+  },
+  {
+    name: "GI Hex Netting",
+    desc: "Hexagonal wire mesh woven from galvanized wire for poultry enclosures, garden fencing, and civil engineering reinforcement applications.",
+    spec: "13 mm \u2013 50 mm mesh"
+  },
+  {
+    name: "GI Welded Mesh",
+    desc: "Rigid welded wire mesh panels fabricated from galvanized wire for concrete reinforcement, security fencing, and industrial screening.",
+    spec: "25 mm \u2013 100 mm grid"
   }
 ];
 
@@ -81,7 +152,6 @@ export function ManufacturingClient() {
   useLayoutEffect(() => {
     if (!containerRef.current) return;
     const ctx = gsap.context(() => {
-      // Fill line scroll animation
       if (fillLineRef.current) {
         ScrollTrigger.create({
           trigger: ".process-journey",
@@ -95,14 +165,13 @@ export function ManufacturingClient() {
         });
       }
 
-      // Step reveal animations
       gsap.utils.toArray<HTMLElement>('.process-step').forEach((step) => {
-        const img = step.querySelector('.step-img');
+        const viz = step.querySelector('.step-visual');
         const content = step.querySelector('.step-content');
         const node = step.querySelector('.step-node');
 
-        if (img) {
-          gsap.fromTo(img,
+        if (viz) {
+          gsap.fromTo(viz,
             { scale: 1.3, opacity: 0 },
             {
               scale: 1, opacity: 1,
@@ -153,7 +222,6 @@ export function ManufacturingClient() {
     <div ref={containerRef}>
       {/* ═══════════ HERO ═══════════ */}
       <section className="relative pt-36 pb-20 md:pb-28 overflow-hidden bg-transparent border-b border-glass-border">
-        {/* Background flame gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-amber/[0.03] via-transparent to-transparent pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -165,7 +233,7 @@ export function ManufacturingClient() {
             className="mb-8 md:mb-12"
           >
             <ol className="flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-steel">
-              <li><a href="/" className="hover:text-amber transition-colors">Home</a></li>
+              <li><Link href="/" className="hover:text-amber transition-colors">Home</Link></li>
               <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
               <li className="text-cream">Manufacturing</li>
             </ol>
@@ -179,15 +247,13 @@ export function ManufacturingClient() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="h-[2px] bg-amber mb-6"
               />
-              <h1 className="font-bebas text-[clamp(48px,10vw,110px)] text-cream uppercase leading-[0.82] mb-4">
-                The Wire
+              <h1 className="font-bebas text-[clamp(36px,8.5vw,110px)] text-cream uppercase leading-[0.82] mb-4">
+                Manufacturing
                 <br />
-                <span className="text-amber">Galvanizing</span>
-                <br />
-                <span className="text-outline-amber">Process</span>
+                <span className="text-amber">Process</span>
               </h1>
               <p className="font-sans text-sm md:text-base text-white/60 font-light max-w-[520px] leading-relaxed mt-6">
-                From raw MS wire rod to corrosion-resistant GI wire. A meticulously engineered 7-step journey where steel meets fire, chemistry, and precision.
+                From Steel Wire Rod to Galvanized Wire &mdash; a meticulously engineered 11-step process where raw material is transformed into corrosion-resistant GI wire through drawing, heat treatment, chemical preparation, and hot-dip galvanizing.
               </p>
             </div>
 
@@ -201,8 +267,8 @@ export function ManufacturingClient() {
                 <div className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
                 <span className="font-mono text-[10px] text-amber tracking-widest uppercase">The Journey</span>
               </div>
-              <div className="grid grid-cols-7 gap-1.5">
-                {PROCESS_STEPS.map((s, i) => (
+              <div className="grid grid-cols-6 gap-1.5">
+                {ALL_STEPS.map((s, i) => (
                   <div key={i} className="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center hover:bg-amber/10 hover:border-amber/40 transition-colors">
                     <span className="font-mono text-[9px] text-cream font-bold">{s.num}</span>
                   </div>
@@ -210,7 +276,7 @@ export function ManufacturingClient() {
               </div>
               <div className="mt-3 flex items-center gap-2">
                 <div className="w-6 h-[1px] bg-amber/60" />
-                <span className="font-mono text-[8px] text-white/50 tracking-widest uppercase">Raw Material to Dispatch</span>
+                <span className="font-mono text-[8px] text-white/50 tracking-widest uppercase">MS Rod to GI Wire</span>
               </div>
             </motion.div>
           </div>
@@ -219,10 +285,7 @@ export function ManufacturingClient() {
 
       {/* ═══════════ PROCESS JOURNEY ═══════════ */}
       <section className="process-journey py-16 md:py-24 lg:py-28 bg-transparent relative">
-        {/* The timeline line */}
         <div className="absolute left-[30px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-[1px] md:-translate-x-1/2" />
-
-        {/* The animated fill line */}
         <div
           ref={fillLineRef}
           className="absolute left-[30px] md:left-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-amber via-amber/80 to-transparent -translate-x-[1.5px] md:-translate-x-1/2 z-10 shadow-[0_0_20px_rgba(249,115,22,0.4)]"
@@ -230,54 +293,55 @@ export function ManufacturingClient() {
 
         <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw] relative z-20">
 
-          {PROCESS_STEPS.map((step, i) => {
+          {/* ── Phase 1 Label ── */}
+          <div className="relative mb-16 md:mb-20 pl-[68px] md:pl-0">
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-amber/60 to-transparent max-w-[120px]" />
+              <span className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase">Phase 01</span>
+            </div>
+            <h2 className="font-bebas text-2xl md:text-3xl text-cream/80 tracking-wide uppercase mt-2">
+              Conversion of MS Wire Rod to MS Wire
+            </h2>
+          </div>
+
+          {MS_WIRE_STEPS.map((step, i) => {
             const isEven = i % 2 === 0;
             return (
               <div key={i} className="process-step relative mb-20 md:mb-28 last:mb-0">
-                {/* Timeline Node */}
                 <div className="step-node absolute left-[30px] md:left-1/2 top-8 md:top-1/2 md:-translate-y-1/2 -translate-x-1/2 z-30 w-14 h-14 rounded-full bg-obsidian border-2 border-amber/40 flex items-center justify-center shadow-[0_0_20px_rgba(249,115,22,0.2)]">
                   <span className="font-bebas text-lg md:text-xl text-amber leading-none">{step.num}</span>
                 </div>
 
                 <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16 pl-[68px] md:pl-0">
-                  {/* Image Side */}
-                  <div className={`step-img w-full md:w-1/2 overflow-hidden rounded-2xl border border-white/10 ${isEven ? 'md:order-1' : 'md:order-2'}`}>
-                    <div className="aspect-[16/10] relative overflow-hidden">
+                  <div className={`step-visual w-full md:w-1/2 overflow-hidden rounded-2xl border border-white/10 ${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                    <div className="aspect-[16/10] relative overflow-hidden bg-obsidian">
                       <img
                         src={step.img}
                         alt={step.title}
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-                      {/* Temp badge on image */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-4 left-4">
-                        <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-black/60 px-3 py-1.5 rounded-md border border-amber/30">
+                        <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-black/70 px-3 py-1.5 rounded-md border border-amber/30">
                           {step.temp}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content Side */}
                   <div className={`step-content w-full md:w-1/2 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
                     <div className="max-w-[450px]">
-                      {/* Step number */}
                       <div className="flex items-center gap-3 mb-3">
                         <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Step {step.num}</span>
                         <div className="h-[1px] w-8 bg-amber/50" />
                       </div>
-
-                      {/* Title */}
                       <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide uppercase mb-4 leading-[0.9]">
                         {step.title}
                       </h2>
-
-                      {/* Description */}
                       <p className="font-sans text-sm md:text-base text-white/80 leading-relaxed mb-4">
                         {step.desc}
                       </p>
-
-                      {/* Detail */}
                       <div className="blob-card p-4 md:p-5 rounded-xl border border-white/10 bg-white/[0.02] mb-4">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
@@ -287,8 +351,74 @@ export function ManufacturingClient() {
                           {step.detail}
                         </p>
                       </div>
+                      <p className="font-sans text-[11px] md:text-xs text-white/45 leading-relaxed italic border-l-2 border-amber/30 pl-3">
+                        {step.purpose}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
 
-                      {/* Purpose */}
+          {/* ── Phase 2 Label ── */}
+          <div className="relative my-16 md:my-20 pl-[68px] md:pl-0">
+            <div className="flex items-center gap-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-amber/60 to-transparent max-w-[120px]" />
+              <span className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase">Phase 02</span>
+            </div>
+            <h2 className="font-bebas text-2xl md:text-3xl text-cream/80 tracking-wide uppercase mt-2">
+              Hot-Dip Galvanizing Process
+            </h2>
+          </div>
+
+          {GI_WIRE_STEPS.map((step, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <div key={i} className="process-step relative mb-20 md:mb-28 last:mb-0">
+                <div className="step-node absolute left-[30px] md:left-1/2 top-8 md:top-1/2 md:-translate-y-1/2 -translate-x-1/2 z-30 w-14 h-14 rounded-full bg-obsidian border-2 border-amber/40 flex items-center justify-center shadow-[0_0_20px_rgba(249,115,22,0.2)]">
+                  <span className="font-bebas text-lg md:text-xl text-amber leading-none">{step.num}</span>
+                </div>
+
+                <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16 pl-[68px] md:pl-0">
+                  <div className={`step-visual w-full md:w-1/2 overflow-hidden rounded-2xl border border-white/10 ${isEven ? 'md:order-1' : 'md:order-2'}`}>
+                    <div className="aspect-[16/10] relative overflow-hidden bg-obsidian">
+                      <img
+                        src={step.img}
+                        alt={step.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute bottom-4 left-4">
+                        <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-black/70 px-3 py-1.5 rounded-md border border-amber/30">
+                          {step.temp}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className={`step-content w-full md:w-1/2 ${isEven ? 'md:order-2' : 'md:order-1'}`}>
+                    <div className="max-w-[450px]">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="font-mono text-[10px] text-amber tracking-widest uppercase">Step {step.num}</span>
+                        <div className="h-[1px] w-8 bg-amber/50" />
+                      </div>
+                      <h2 className="font-bebas text-3xl md:text-4xl lg:text-5xl text-cream tracking-wide uppercase mb-4 leading-[0.9]">
+                        {step.title}
+                      </h2>
+                      <p className="font-sans text-sm md:text-base text-white/80 leading-relaxed mb-4">
+                        {step.desc}
+                      </p>
+                      <div className="blob-card p-4 md:p-5 rounded-xl border border-white/10 bg-white/[0.02] mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
+                          <span className="font-mono text-[9px] text-amber tracking-widest uppercase">How It Works</span>
+                        </div>
+                        <p className="font-sans text-[12px] md:text-[13px] text-white/60 leading-relaxed">
+                          {step.detail}
+                        </p>
+                      </div>
                       <p className="font-sans text-[11px] md:text-xs text-white/45 leading-relaxed italic border-l-2 border-amber/30 pl-3">
                         {step.purpose}
                       </p>
@@ -304,6 +434,124 @@ export function ManufacturingClient() {
             <div className="w-4 h-4 rounded-full bg-amber shadow-[0_0_30px_#F97316] animate-pulse" />
           </div>
           <p className="text-center font-mono text-[9px] text-amber/60 tracking-widest uppercase mt-4">End of Process</p>
+        </div>
+      </section>
+
+      {/* ═══════════ PROCESS FLOW DIAGRAM ═══════════ */}
+      <section className="py-20 md:py-28 bg-transparent border-t border-glass-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-amber/[0.02] via-transparent to-transparent pointer-events-none" />
+
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-amber/60 to-transparent max-w-[80px]" />
+              <span className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase">Visual Overview</span>
+            </div>
+            <h2 className="font-bebas text-3xl md:text-5xl lg:text-6xl text-cream tracking-wide uppercase mb-4">
+              Process Flow
+            </h2>
+            <p className="font-sans text-sm md:text-base text-white/60 font-light max-w-[600px] leading-relaxed mb-10">
+              End-to-end journey of GI wire manufacturing &mdash; from incoming MS wire rod to the finished galvanized product.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="overflow-x-auto pb-4"
+          >
+            <div className="flex items-center gap-2 min-w-max">
+              <div className="blob-card px-4 py-3 rounded-lg border border-white/10 bg-amber/10 shrink-0">
+                <span className="font-mono text-[10px] text-cream whitespace-nowrap">MS Wire Rod</span>
+              </div>
+              {[
+                "Raw Material Inspection",
+                "Descaling & Surface Preparation",
+                "Wire Drawing",
+                "Annealing",
+                "Water Quenching & Cooling",
+                "Pickling",
+                "Rinsing",
+                "Fluxing",
+                "Hot-Dip Galvanizing",
+                "Wiping & Coating Control",
+                "Cooling, Coiling & Inspection"
+              ].map((label, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-amber/60 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                  </svg>
+                  <div className="blob-card px-4 py-3 rounded-lg border border-white/10 shrink-0">
+                    <span className="font-mono text-[10px] text-white/80 whitespace-nowrap">{label}</span>
+                  </div>
+                </div>
+              ))}
+              <svg className="w-4 h-4 text-amber/60 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+              <div className="blob-card px-4 py-3 rounded-lg border border-green-500/30 bg-green-500/10 shrink-0">
+                <span className="font-mono text-[10px] text-green-400 whitespace-nowrap font-bold">Finished GI Wire</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ FINISHED PRODUCTS ═══════════ */}
+      <section className="py-20 md:py-28 bg-transparent border-t border-glass-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-amber/[0.02] via-transparent to-transparent pointer-events-none" />
+
+        <div className="max-w-[1280px] mx-auto px-5 md:px-[5vw]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="h-px flex-1 bg-gradient-to-r from-amber/60 to-transparent max-w-[80px]" />
+              <span className="font-mono text-[10px] text-amber tracking-[0.2em] uppercase">Our Range</span>
+            </div>
+            <h2 className="font-bebas text-3xl md:text-5xl lg:text-6xl text-cream tracking-wide uppercase mb-4">
+              Finished <span className="text-amber">Products</span>
+            </h2>
+            <p className="font-sans text-sm md:text-base text-white/60 font-light max-w-[600px] leading-relaxed mb-10">
+              From our galvanizing lines emerge a complete range of GI wire products serving construction, agriculture, industry, and infrastructure.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {FINISHED_PRODUCTS.map((product, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="blob-card p-6 rounded-xl border border-white/10 hover:border-amber/20 transition-all duration-500 group"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-amber/10 border border-amber/20 flex items-center justify-center">
+                    <span className="font-bebas text-sm text-amber">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                </div>
+                <h3 className="font-bebas text-xl md:text-2xl text-cream tracking-wide uppercase mb-2">{product.name}</h3>
+                <p className="font-sans text-[12px] md:text-[13px] text-white/60 leading-relaxed mb-3">{product.desc}</p>
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[9px] text-amber tracking-widest uppercase">Spec</span>
+                  <div className="h-[1px] w-4 bg-amber/40" />
+                  <span className="font-mono text-[9px] text-white/50">{product.spec}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

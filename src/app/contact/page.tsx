@@ -1,5 +1,6 @@
 import { Contact } from '@/components/sections/Contact';
 import type { Metadata } from 'next';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Contact Us | Khemji Wire',
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Contact Us', href: '/contact' }])) }} />
       <div className="bg-transparent relative z-10 pt-20">
         <Contact />
       </div>
@@ -46,13 +48,13 @@ export default function ContactPage() {
       {/* Company ID strip */}
       <section className="py-8 border-t border-glass-border bg-transparent backdrop-blur-md relative z-10">
         <div className="max-w-[1280px] mx-auto px-[5vw] flex flex-wrap gap-x-6 gap-y-3 font-mono text-[9px] md:text-[10px] text-steel/40 tracking-widest uppercase items-center justify-center text-center">
-          <span>GSTIN: 08AABCK1234F1Z5</span>
+          <span>GSTIN: 08AAECA7760L1ZA</span>
           <span className="hidden sm:inline">·</span>
-          <span>CIN: U27109RJ2008PTC027123</span>
+          <span>CIN: U51101RJ1988PTC004356</span>
           <span className="hidden md:inline">·</span>
-          <span>UDYAM: UDYAM-RJ-17-0012345</span>
+          <span>UDYAM: UDYAM-RJ-17-0030256</span>
           <span className="hidden sm:inline">·</span>
-          <span>PAN: AABCK1234F</span>
+          <span>PAN: AAECA7760L</span>
         </div>
       </section>
     </>

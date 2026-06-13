@@ -1,6 +1,41 @@
 import type { Metadata } from 'next';
 import { ClientLayoutProviders } from './ClientLayoutProviders';
+import { organizationSchemaEnriched, generatePersonSchema } from '@/lib/schema';
+import {
+  Bebas_Neue,
+  DM_Sans,
+  JetBrains_Mono,
+  Playfair_Display,
+} from 'next/font/google';
 import './globals.css';
+
+const bebasNeue = Bebas_Neue({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-bebas',
+  display: 'swap',
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '1000'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-playfair',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.khemjiwire.in'),
@@ -50,39 +85,8 @@ export const metadata: Metadata = {
   }
 };
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Khemji Wire & Wire Pvt. Ltd.",
-  "alternateName": ["Khemji Wire", "Khemji Wire Industries"],
-  "url": "https://www.khemjiwire.in",
-  "logo": "https://www.khemjiwire.in/logo.png",
-  "image": "https://www.khemjiwire.in/logo.png",
-  "description": "Manufacturer of Galvanized Iron Wire, Hot Dip Galvanized MS Wire and Formed Wire for Cable Armouring. IS 280 and IS 3975 certified. Established 1988.",
-  "foundingDate": "1988",
-  "numberOfEmployees": "50+",
-  "telephone": ["+91-9829277869", "+91-141-2954144"],
-  "email": "info@khemjiwire.in",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "F-153, Sarna Doongar, RIICO Industrial Area",
-    "addressLocality": "Jaipur",
-    "addressRegion": "Rajasthan",
-    "postalCode": "302012",
-    "addressCountry": "IN"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": "27.0206",
-    "longitude": "75.7172"
-  },
-  "areaServed": "India",
-  "knowsAbout": ["Galvanized Iron Wire", "Cable Armouring Wire", "IS 280", "IS 3975", "Hot Dip Galvanizing"],
-  "sameAs": [
-    "https://www.indiamart.com/khemji-wire",
-    "https://www.linkedin.com/company/khemji-wire"
-  ]
-};
+const founderSchema = generatePersonSchema('Om Prakash Agarwal', 'Founder');
+const directorSchema = generatePersonSchema('Mahesh Chand Agarwal', 'Director');
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -114,20 +118,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth"
+      className={`${bebasNeue.variable} ${dmSans.variable} ${jetBrainsMono.variable} ${playfairDisplay.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link 
-          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" 
-          rel="stylesheet" 
-        />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchemaEnriched) }}
         />
         <script
           type="application/ld+json"
@@ -136,6 +135,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(founderSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(directorSchema) }}
         />
       </head>
       <body>

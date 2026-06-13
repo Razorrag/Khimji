@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Clock, ChevronRight } from 'lucide-react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
@@ -28,6 +29,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+const AUTHOR = {
+  name: "Technical Team, Khemji Wire & Wire Pvt. Ltd.",
+  credentials: "IS 280 & IS 3975 certified wire manufacturing since 1988",
+  url: "https://www.khemjiwire.in/about"
+};
+
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
@@ -38,15 +45,17 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "TechArticle",
     "headline": post.title,
     "description": post.meta,
-    "datePublished": "2026-06-09T12:00:00+05:30",
-    "dateModified": "2026-06-09T12:00:00+05:30",
+    "datePublished": post.dateISO,
+    "dateModified": post.dateISO,
+    "proficiencyLevel": "Expert",
+    "dependencies": "IS 280, IS 3975",
     "author": {
-      "@type": "Organization",
-      "name": "Khemji Wire & Wire Pvt. Ltd.",
-      "url": "https://www.khemjiwire.in"
+      "@type": "Person",
+      "name": "Technical Team — Khemji Wire",
+      "affiliation": { "@type": "Organization", "name": "Khemji Wire & Wire Pvt. Ltd." }
     },
     "publisher": {
       "@type": "Organization",
@@ -68,6 +77,10 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Blog', href: '/blog' }, { name: post.title }])) }}
+      />
       
       <article className="pt-40 pb-24 px-[5vw] max-w-[900px] mx-auto min-h-[100svh]">
         {/* Back Link */}
@@ -86,11 +99,14 @@ export default async function BlogPostPage({ params }: PageProps) {
           {post.title}
         </h1>
 
-        {/* Post Meta */}
+        {/* Post Meta with visible machine-readable dates */}
         <div className="flex flex-wrap items-center gap-6 font-mono text-[10px] md:text-xs tracking-widest uppercase text-steel/60 mb-16">
           <span className="px-3 py-1 text-amber border rounded-full"
                 style={{ backgroundColor: "rgba(249,115,22,0.1)", borderColor: "rgba(249,115,22,0.2)" }}>{post.category}</span>
-          <span className="flex items-center gap-2"><Calendar className="w-3.5 h-3.5" />{post.date}</span>
+          <span className="flex items-center gap-2">
+            <Calendar className="w-3.5 h-3.5" />
+            <time dateTime={post.dateISO.split('T')[0]}>{post.date}</time>
+          </span>
           <span className="flex items-center gap-2"><Clock className="w-3.5 h-3.5" />{post.readTime}</span>
         </div>
 
@@ -102,8 +118,25 @@ export default async function BlogPostPage({ params }: PageProps) {
           />
         </div>
 
+        {/* Author Bio Section */}
+        <div className="blob-card p-6 md:p-8 rounded-2xl border border-glass-border mb-8">
+          <div className="flex flex-col sm:flex-row items-start gap-4">
+            <div className="w-14 h-14 rounded-full bg-amber/10 border border-amber/25 flex items-center justify-center flex-shrink-0">
+              <span className="font-bebas text-xl text-amber">KW</span>
+            </div>
+            <div>
+              <h4 className="font-mono text-[10px] text-amber tracking-widest uppercase mb-1">Author</h4>
+              <p className="font-sans text-sm text-cream font-medium mb-1">{AUTHOR.name}</p>
+              <p className="font-sans text-xs text-steel/60">{AUTHOR.credentials}</p>
+              <p className="font-sans text-[11px] text-steel/40 italic mt-3">
+                This article was reviewed by Khemji Wire&apos;s engineering team and reflects IS 280:2006 and IS 3975:1999 standard requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Box */}
-        <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border flex flex-col md:flex-row items-center justify-between gap-8 mt-20 relative overflow-hidden">
+        <div className="blob-card p-8 md:p-12 rounded-2xl border border-glass-border flex flex-col md:flex-row items-center justify-between gap-8 mt-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-[100px] pointer-events-none"
                style={{ backgroundColor: "rgba(249,115,22,0.05)" }} />
           <div className="relative z-10 text-center md:text-left">
@@ -177,6 +210,60 @@ export default async function BlogPostPage({ params }: PageProps) {
         .prose-custom strong {
           color: var(--color-cream);
           font-weight: 600;
+        }
+        .quick-answer {
+          background: rgba(249, 115, 22, 0.06);
+          border-left: 4px solid #F97316;
+          border-radius: 0.75rem;
+          padding: 1.25rem 1.5rem;
+          margin-bottom: 2rem;
+        }
+        .quick-answer strong {
+          color: #F97316;
+          font-weight: 600;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.1em;
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+        .quick-answer p {
+          color: var(--color-cream);
+          font-size: 1rem;
+          margin-bottom: 0;
+        }
+        .key-takeaways {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 0.75rem;
+          padding: 1.5rem;
+          margin-top: 2.5rem;
+          margin-bottom: 2rem;
+        }
+        .key-takeaways h3 {
+          font-family: var(--font-bebas);
+          font-size: 1.5rem;
+          color: var(--color-amber);
+          margin-bottom: 1rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+        .key-takeaways ul {
+          list-style: none;
+          padding-left: 0;
+          margin: 0;
+        }
+        .key-takeaways li {
+          padding-left: 1.5rem;
+          position: relative;
+          margin-bottom: 0.75rem;
+          color: var(--color-steel);
+        }
+        .key-takeaways li::before {
+          content: "→";
+          position: absolute;
+          left: 0;
+          color: #F97316;
         }
       `}} />
     </>

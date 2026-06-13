@@ -3,13 +3,18 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
+interface MagneticButtonProps extends Omit<React.ComponentProps<typeof motion.button>, 'type'> {
+  children: React.ReactNode;
+  type?: 'button' | 'submit' | 'reset';
+}
+
 export function MagneticButton({ 
   children, 
   className = "", 
   type = "button",
   disabled = false,
   ...props 
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }) {
+}: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -29,14 +34,14 @@ export function MagneticButton({
   return (
     <motion.button
       ref={ref}
-      type={type as any}
+      type={type}
       disabled={disabled}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={className}
-      {...props as any}
+      {...props as React.ComponentProps<typeof motion.button>}
     >
       {children}
     </motion.button>

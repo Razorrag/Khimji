@@ -1,5 +1,6 @@
 import { Industries } from '@/components/sections/Industries';
 import type { Metadata } from 'next';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Industries & Applications | Khemji Wire',
@@ -19,5 +20,10 @@ export const metadata: Metadata = {
 };
 
 export default function IndustriesPage() {
-  return <Industries />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Industries', href: '/industries' }])) }} />
+      <Industries />
+    </>
+  );
 }

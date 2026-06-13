@@ -4,7 +4,6 @@ import { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SplitText } from '../ui/SplitText';
-import { MagneticButton } from '../ui/MagneticButton';
 
 export function Contact() {
   const [formData, setFormData] = useState({

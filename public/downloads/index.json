@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Khemji Wire Product Catalogue 2026",
+    "filename": "khemji-wire-product-catalogue-2026.pdf",
+    "description": "Complete product catalogue with full specifications for Hot Dip Galvanized MS Wire, Cable Armouring Round Wire, and Formed Wire. Includes IS standard references, coating class tables, and tensile strength charts.",
+    "type": "application/pdf",
+    "size": "2.4 MB",
+    "updated": "2026-06"
+  },
+  {
+    "name": "GI Wire IS 280 Technical Datasheet",
+    "filename": "gi-wire-is-280-datasheet.pdf",
+    "description": "Technical datasheet for Hot Dip Galvanized Mild Steel Wire as per IS 280:2006. Includes chemical composition, mechanical properties, zinc coating tables, dimensional tolerances, and testing methods.",
+    "type": "application/pdf",
+    "size": "1.1 MB",
+    "updated": "2026-06"
+  },
+  {
+    "name": "Cable Armouring Round Wire IS 3975 Datasheet",
+    "filename": "cable-armouring-round-wire-is-3975-datasheet.pdf",
+    "description": "Technical datasheet for Cable Armouring Round Wire as per IS 3975:1999. Includes 7 size specifications, resistivity limits, tensile strength ranges, and quality testing criteria.",
+    "type": "application/pdf",
+    "size": "0.9 MB",
+    "updated": "2026-06"
+  },
+  {
+    "name": "Formed Wire Cable Armouring IS 3975 Datasheet",
+    "filename": "formed-wire-cable-armouring-is-3975-datasheet.pdf",
+    "description": "Technical datasheet for Formed Wire (Strip) for Cable Armouring as per IS 3975:1999. Includes dimensional properties, mechanical specifications, and application guidelines.",
+    "type": "application/pdf",
+    "size": "0.9 MB",
+    "updated": "2026-06"
+  }
+]

@@ -1,5 +1,6 @@
 import { ProductsCatalogue } from './ProductsCatalogue';
 import type { Metadata } from 'next';
+import { generateBreadcrumbs, generateProductSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Product Catalogue | Khemji Wire',
@@ -19,5 +20,19 @@ export const metadata: Metadata = {
 };
 
 export default function ProductsPage() {
-  return <ProductsCatalogue />;
+  const productSchemas = [
+    generateProductSchema('Hot Dip Galvanized Mild Steel Wire', 'IS 280:2006 certified galvanized iron wire available in 1.25 mm to 4.00 mm diameter with tensile strength 300–550 MPa. Suitable for fencing, agriculture, solar fencing, chain link fencing, and general engineering.'),
+    generateProductSchema('Cable Armouring Round Wire', 'IS 3975:1999 certified galvanized round wire for power and telecom cable armouring. Available in 7 sizes from 1.25 mm to 4.00 mm with max resistivity 14.5 × 10⁻⁶ Ohm-cm.'),
+    generateProductSchema('Cable Armouring Formed Wire (Strip)', 'IS 3975:1999 certified formed wire strip for enhanced cable armouring. 4.00 mm × 0.80 mm size with optimized profile for improved cable coverage and efficient material utilization.'),
+  ];
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Products', href: '/products' }])) }} />
+      {productSchemas.map((schema, i) => schema && (
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
+      <ProductsCatalogue />
+    </>
+  );
 }

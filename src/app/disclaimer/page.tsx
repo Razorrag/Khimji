@@ -1,19 +1,34 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Disclaimer | Khemji Wire',
   description: 'Disclaimer and limitation of liability for Khemji Wire & Wire Pvt. Ltd., Jaipur, Rajasthan.',
   alternates: { canonical: 'https://www.khemjiwire.in/disclaimer' },
+  openGraph: {
+    title: 'Disclaimer | Khemji Wire & Wire Pvt. Ltd.',
+    description: 'Disclaimer and limitation of liability for Khemji Wire & Wire Pvt. Ltd., Jaipur, Rajasthan.',
+    url: 'https://www.khemjiwire.in/disclaimer',
+    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Khemji Wire Disclaimer' }]
+  },
+  twitter: {
+    title: 'Disclaimer | Khemji Wire',
+    description: 'Disclaimer and limitation of liability for Khemji Wire & Wire Pvt. Ltd.',
+    images: ['/logo.png']
+  }
 };
 
 export default function DisclaimerPage() {
   return (
-    <div className="relative min-h-screen bg-transparent">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Disclaimer', href: '/disclaimer' }])) }} />
+      <div className="relative min-h-screen bg-transparent">
       <div className="pt-36 pb-10 bg-transparent">
         <div className="max-w-[800px] mx-auto px-[5vw]">
           <nav className="mb-8">
             <ol className="flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-steel">
-              <li><a href="/" className="hover:text-amber transition-colors">Home</a></li>
+              <li><Link href="/" className="hover:text-amber transition-colors">Home</Link></li>
               <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
               <li className="text-cream">Disclaimer</li>
             </ol>
@@ -85,5 +100,6 @@ export default function DisclaimerPage() {
       </p>
     </div>
     </div>
+    </>
   );
 }

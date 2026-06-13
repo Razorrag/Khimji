@@ -26,7 +26,7 @@ export function Leadership() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-playfair italic text-2xl md:text-[32px] md:leading-[1.4] text-cream mb-16 relative z-10"
         >
-          Our vision is to build a manufacturing organization known for trust, quality, and long-term customer relationships while contributing to India's growing infrastructure and industrial sector.
+          Our vision is to build a manufacturing organization known for trust, quality, and long-term customer relationships while contributing to India&apos;s growing infrastructure and industrial sector.
         </motion.blockquote>
 
         <motion.div
@@ -50,8 +50,8 @@ export function Leadership() {
             <ul className="text-left font-sans text-xs text-steel space-y-2 mt-2">
               <li className="flex items-start gap-2"><span className="text-amber">▹</span> Deliver high-quality galvanized wire products</li>
               <li className="flex items-start gap-2"><span className="text-amber">▹</span> Maintain consistency in every batch</li>
-              <li className="flex items-start gap-2"><span className="text-amber">▹</span> Build long-term customer trust</li>
-              <li className="flex items-start gap-2"><span className="text-amber">▹</span> Support India's industrial development</li>
+              <li className="flex items-start gap-2"><span className="text-amber">▹</span> Build long-term customer trust and partnerships</li>
+              <li className="flex items-start gap-2"><span className="text-amber">▹</span> Support India&apos;s industrial development</li>
             </ul>
           </div>
 

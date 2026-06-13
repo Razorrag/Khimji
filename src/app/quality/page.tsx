@@ -1,5 +1,6 @@
 import { Quality } from '@/components/sections/Quality';
 import type { Metadata } from 'next';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Quality Assurance | IS 280 & IS 3975 Certified | Khemji Wire',
@@ -19,5 +20,10 @@ export const metadata: Metadata = {
 };
 
 export default function QualityPage() {
-  return <Quality />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Quality', href: '/quality' }])) }} />
+      <Quality />
+    </>
+  );
 }

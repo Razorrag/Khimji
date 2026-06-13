@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const timeline = [
@@ -59,7 +59,7 @@ export function About() {
             className="mb-10"
           >
             <ol className="flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-steel">
-              <li><a href="/" className="hover:text-amber transition-colors">Home</a></li>
+              <li><Link href="/" className="hover:text-amber transition-colors">Home</Link></li>
               <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
               <li className="text-cream">About Us</li>
             </ol>
@@ -96,30 +96,18 @@ export function About() {
       {/* ───── Our Story / Timeline ───── */}
       <div className="py-24 md:py-32 bg-transparent relative border-t border-glass-border">
         <div className="max-w-[1280px] mx-auto px-[5vw]">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-12 items-start mb-20">
+          <div className="mb-20">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="max-w-[800px]"
             >
               <h3 className="font-mono text-[11px] text-amber tracking-widest uppercase mb-4">Our Journey</h3>
               <h2 className="font-bebas text-[clamp(48px,6vw,80px)] leading-[0.85] text-cream">
                 From <span className="text-amber">Humble</span> Beginnings to Industry <span className="text-amber">Trust</span>
               </h2>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden"
-            >
-              <img src="/download (1).jpg" alt="Khemji Wire factory facility" loading="lazy" className="w-full h-full object-cover grayscale contrast-125 brightness-90" />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4">
-                <span className="font-mono text-[9px] text-amber tracking-widest uppercase bg-obsidian/80 px-3 py-1.5 rounded">Est. 1988 · Jaipur</span>
-              </div>
             </motion.div>
           </div>
 
@@ -503,7 +491,7 @@ export function About() {
             >
               <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-charcoal relative">
                 <img
-                  src="/download (2).jpg"
+                  src="/WhatsApp%20Image%202026-06-12%20at%2023.12.32.jpeg"
                   alt="Khemji Wire Manufacturing Facility"
                   loading="lazy"
                   className="w-full h-full object-cover filter grayscale contrast-125 brightness-90"

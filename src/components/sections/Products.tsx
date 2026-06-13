@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useLayoutEffect } from 'react';
-import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
@@ -35,7 +34,7 @@ const PRODUCTS = [
   }
 ];
 
-function FullScreenProduct({ prod, index }: { prod: typeof PRODUCTS[0]; index: number }) {
+function FullScreenProduct({ prod }: { prod: typeof PRODUCTS[0]; index?: number }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);

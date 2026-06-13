@@ -5,6 +5,7 @@ export interface BlogPost {
   category: string;
   readTime: string;
   date: string;
+  dateISO: string;
   excerpt: string;
   content: string;
 }
@@ -17,8 +18,14 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Pricing",
     readTime: "5 min",
     date: "June 2026",
+    dateISO: "2026-06-01T10:00:00+05:30",
     excerpt: "Current rates, price factors, and how to get the best bulk price from a direct manufacturer.",
     content: `
+      <div class="quick-answer">
+        <strong>Quick Answer:</strong>
+        <p>GI wire price in India ranges ₹58–80/kg ex-factory depending on coating weight, grade, and order volume (June 2026). Heavy coated wire (250+ g/m²) costs ₹72–80/kg, while light coated wire (60–100 g/m²) costs ₹58–65/kg.</p>
+      </div>
+
       <h2>GI Wire Price Per Kg in India 2025–2026: What Buyers Need to Know</h2>
       <p>Buying galvanized iron (GI) wire in bulk for industrial, cable armouring, agricultural, or construction projects requires a clear understanding of current market dynamics. As of mid-2026, the baseline galvanized wire rate in India ranges between ₹58 and ₹80 per kilogram, ex-factory. The final pricing depends heavily on technical specifications like the mass of zinc coating (g/m²), wire gauge (diameter in mm), tensile strength (soft vs. hard grade), and order volume.</p>
       
@@ -76,7 +83,18 @@ export const BLOG_POSTS: BlogPost[] = [
       <p>Yes. Soft grade GI wire undergoes an additional thermal annealing process to make the steel highly ductile and pliable, making it easy to twist and bind on construction sites. Hard grade GI wire bypasses this step and retains higher tensile strength (450–550 N/mm²), making it suitable for chain-link fences. The extra annealing step typically adds a small operational cost of ₹2–4/kg for soft wire.</p>
       
       <h3>How to Get the Best Price on GI Wire</h3>
-      <p>To optimize your project budget, buy directly from certified manufacturers like Khemji Wire & Wire Pvt. Ltd., avoiding middleman distributor commissions. Establishing a long-term supply contract is also recommended to lock in raw material margins.</p>
+      <p>To optimize your project budget, buy directly from certified manufacturers like Khemji Wire & Wire Pvt. Ltd., avoiding middleman distributor commissions. Establishing a long-term supply contract is also recommended to lock in raw material margins. For current pricing, contact us at <a href="tel:+919829277869" class="text-amber hover:underline">+91-9829277869</a>. For standard specifications, refer to <a href="https://bis.gov.in" target="_blank" rel="nofollow" class="text-amber hover:underline">Bureau of Indian Standards</a> for IS 280:2006 guidelines.</p>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>GI wire prices in India range ₹58–80/kg ex-factory as of June 2026, varying by coating weight and tensile grade</li>
+          <li>Heavy coated wire (250+ g/m²) commands a ₹10–15/kg premium over light coated wire</li>
+          <li>Steel wire rod cost and LME zinc prices are the two biggest drivers of finished wire pricing</li>
+          <li>Bulk orders of 10+ MT receive 5–8% volume discounts from direct manufacturers</li>
+          <li>Buying directly from BIS-certified manufacturers eliminates middleman commissions</li>
+        </ul>
+      </div>
     `
   },
   {
@@ -86,10 +104,16 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Standards",
     readTime: "6 min",
     date: "May 2026",
+    dateISO: "2026-05-01T10:00:00+05:30",
     excerpt: "Which Indian standard applies to your wire requirement? Full comparison.",
     content: `
+      <div class="quick-answer">
+        <strong>Quick Answer:</strong>
+        <p>IS 280:2006 covers mild steel wire for general engineering, fencing, and binding. IS 3975:1999 specifically covers wire for cable armouring with strict resistivity limits (max 14.5 Ω/km). Specify IS 280 for construction and agricultural use; specify IS 3975 for power and telecom cable armouring.</p>
+      </div>
+
       <h2>IS 280 vs. IS 3975: Which Wire Standard Do You Need?</h2>
-      <p>Indian steel manufacturing is strictly governed by standards published by the Bureau of Indian Standards (BIS). For galvanized iron (GI) wire, two primary standards dictate quality, chemistry, and testing: <strong>IS 280</strong> and <strong>IS 3975</strong>. Specifying the incorrect standard can lead to mechanical failure or cable rejection.</p>
+      <p>Indian steel manufacturing is strictly governed by standards published by the <a href="https://bis.gov.in" target="_blank" rel="nofollow" class="text-amber hover:underline">Bureau of Indian Standards (BIS)</a>. For galvanized iron (GI) wire, two primary standards dictate quality, chemistry, and testing: <strong>IS 280</strong> and <strong>IS 3975</strong>. Specifying the incorrect standard can lead to mechanical failure or cable rejection.</p>
       
       <h3>What is IS 280?</h3>
       <p><strong>IS 280:2006</strong> covers specifications for mild steel wire for general engineering, agricultural trellising, binding wire, and security fencing. It categorizes wire into soft, medium-hard, and hard tensile grades, and defines three classes of hot-dip galvanized coating: Light, Medium, and Heavy coating weights.</p>
@@ -142,6 +166,17 @@ export const BLOG_POSTS: BlogPost[] = [
       
       <h3>Which Standard Should You Specify?</h3>
       <p>Specify <strong>IS 280</strong> if you are sourcing wire for chain-link fencing, vineyard trellising, barbed wire, poultry cages, or construction binding wire. Specify <strong>IS 3975</strong> if you represent a cable manufacturer producing insulated power cables, control cables, instrumentation cables, or telecom protection systems.</p>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>IS 280:2006 is for general-purpose GI wire (fencing, binding, agriculture), while IS 3975:1999 is for cable armouring wire</li>
+          <li>IS 3975 mandates a maximum electrical resistivity of 14.5 Ω/km — IS 280 has no resistivity requirement</li>
+          <li>IS 3975 allows round wire, formed wire, and steel tape profiles; IS 280 covers round wire only</li>
+          <li>Tensile strength range for IS 3975 is strictly 300–500 MPa for cable flexibility</li>
+          <li>Both standards require zinc coating testing via mass-of-zinc and copper sulfate dip methods</li>
+        </ul>
+      </div>
     `
   },
   {
@@ -151,8 +186,14 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Manufacturing",
     readTime: "7 min",
     date: "April 2026",
+    dateISO: "2026-04-01T10:00:00+05:30",
     excerpt: "8-step breakdown of the continuous hot-dip wire galvanizing line.",
     content: `
+      <div class="quick-answer">
+        <strong>Quick Answer:</strong>
+        <p>Hot dip galvanized wire is manufactured through an 8-step continuous process: raw material selection, cold wire drawing, thermal annealing, acid pickling, rinsing and fluxing, molten zinc bath at 450–460°C, coating wiping, and final testing and coiling. The zinc coating provides 25+ years of corrosion protection.</p>
+      </div>
+
       <h2>The Hot Dip Galvanizing Process — How GI Wire Is Made</h2>
       <p>Hot-dip galvanizing is a highly specialized metallurgical process in which iron or steel is coated with a protective layer of zinc. For wire, this is performed in a continuous galvanizing line where steel wire is pulled at high speeds through successive chemical baths and a bath of molten zinc. This guide details the 8-stage manufacturing process employed at our state-of-the-art facility in Jaipur.</p>
       
@@ -178,7 +219,18 @@ export const BLOG_POSTS: BlogPost[] = [
       <p>As the wire exits the zinc bath, it passes through specialized wiping pads (such as charcoal or asbestos wipes) to control the thickness and weight of the zinc coating. This dictates whether the finished wire meets light, medium, or heavy coating standards.</p>
       
       <h3>Step 8: Testing & Coiling</h3>
-      <p>The finished galvanized wire is cooled, batch-tested for diameter, tensile strength, and zinc weight, and wound into coils (usually 25kg to 150kg) using continuous take-up coiling frames.</p>
+      <p>The finished galvanized wire is cooled, batch-tested for diameter, tensile strength, and zinc weight, and wound into coils (usually 25kg to 150kg) using continuous take-up coiling frames. For official IS 280:2006 guidelines, refer to <a href="https://bis.gov.in" target="_blank" rel="nofollow" class="text-amber hover:underline">Bureau of Indian Standards</a>.</p>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>Hot dip galvanizing produces a metallurgical zinc-iron alloy bond, providing 25+ years of corrosion protection</li>
+          <li>The molten zinc bath is maintained at precisely 450–460°C for optimal intermetallic layer formation</li>
+          <li>Steel wire rod starts at 5.5mm and is cold-drawn down to target gauge (e.g., 1.6mm or 2.0mm)</li>
+          <li>Acid pickling and fluxing are critical steps — molten zinc will not bond to oxidized steel</li>
+          <li>Coating weight (light/medium/heavy) is controlled by wiping pads as wire exits the zinc bath</li>
+        </ul>
+      </div>
     `
   },
   {
@@ -188,8 +240,14 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Technical",
     readTime: "6 min",
     date: "March 2026",
+    dateISO: "2026-03-01T10:00:00+05:30",
     excerpt: "Technical parameters, round vs formed wire profiles, and cable manufacturer specifications.",
     content: `
+      <div class="quick-answer">
+        <strong>Quick Answer:</strong>
+        <p>Cable armouring wire is a galvanized steel wire (round or formed) applied helically around power and telecom cables to provide mechanical protection, rodent resistance, and electrical grounding. IS 3975:1999 mandates a maximum resistivity of 14.5 Ω/km, tensile strength 300–500 MPa, and minimum 10% elongation.</p>
+      </div>
+
       <h2>Cable Armouring Wire — The Complete Buyer's Guide</h2>
       <p>In power distribution and telecommunication, cables are frequently buried underground or laid in harsh industrial cable trenches. To protect the insulated conductor cores from mechanical crushing, rodent chew, and installation strains, cables require mechanical armouring. This guide explains how to specify galvanized steel armouring wire as per IS 3975 standards.</p>
       
@@ -238,6 +296,18 @@ export const BLOG_POSTS: BlogPost[] = [
           </tr>
         </tbody>
       </table>
+      <p>All specifications should be verified against <a href="https://bis.gov.in" target="_blank" rel="nofollow" class="text-amber hover:underline">BIS IS 3975:1999</a> standard requirements.</p>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>Cable armouring wire provides mechanical protection, rodent resistance, and electrical grounding for underground cables</li>
+          <li>Two profiles exist: round wire (SWA) for multi-core cables and formed wire (SFA) for high-voltage cables</li>
+          <li>IS 3975:1999 mandates max 14.5 Ω/km resistivity, 300–500 MPa tensile strength, and min 10% elongation</li>
+          <li>Copper sulfate dip test verifies zinc coating continuity with no bare steel spots</li>
+          <li>Formed wire offers better cable coverage and material efficiency than round wire</li>
+        </ul>
+      </div>
     `
   },
   {
@@ -247,8 +317,14 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Construction",
     readTime: "5 min",
     date: "February 2026",
+    dateISO: "2026-02-01T10:00:00+05:30",
     excerpt: "Gauges, tensile strengths, and yield estimations for concrete reinforcement rebar binding.",
     content: `
+      <div class="quick-answer">
+        <strong>Quick Answer:</strong>
+        <p>GI binding wire for construction should be soft annealed grade (below 450 N/mm²) in 16–20 SWG gauges. 18 SWG (1.20 mm) is the most common gauge for standard slab and beam rebar binding. Estimate 8–10 kg of binding wire per metric ton of reinforcement steel.</p>
+      </div>
+
       <h2>GI Binding Wire for Construction — A Practical Selection Guide</h2>
       <p>On civil construction sites, reinforcing steel bars (rebars) must be tied securely together to form columns, beams, slabs, and footings before concrete is poured. The wire used to secure these rebars is called binding wire. In India, galvanized iron (GI) binding wire is increasingly preferred over black annealed wire due to its rust resistance, preventing concrete spalling. This guide explains how to select the right wire for your project.</p>
       
@@ -285,6 +361,17 @@ export const BLOG_POSTS: BlogPost[] = [
       
       <h3>Estimated Requirement: How Much to Order?</h3>
       <p>A common rule of thumb for construction estimation is that you will need approximately <strong>8 kg to 10 kg of binding wire per metric ton (MT)</strong> of reinforcement steel. Factors like rebar spacing and thickness will cause minor variations.</p>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>GI binding wire is preferred over black annealed wire for RCC construction due to rust resistance</li>
+          <li>18 SWG (1.20 mm) soft annealed grade is the most common binding wire specification</li>
+          <li>Binding wire must be soft annealed (below 450 N/mm²) — hard grade cannot be twisted easily</li>
+          <li>Estimate 8–10 kg of binding wire per metric ton of reinforcement steel</li>
+          <li>GI wire prevents concrete spalling caused by rust expansion from black annealed wire</li>
+        </ul>
+      </div>
     `
   }
 ];

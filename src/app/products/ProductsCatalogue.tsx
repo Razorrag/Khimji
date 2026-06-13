@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -196,7 +195,7 @@ const PRODUCTS = [
   }
 ];
 
-function ProductHero({ prod, index }: { prod: typeof PRODUCTS[0]; index: number }) {
+function ProductHero({ prod }: { prod: typeof PRODUCTS[0]; index?: number }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]">
       <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr]">

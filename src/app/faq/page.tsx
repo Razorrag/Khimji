@@ -1,6 +1,7 @@
 import { FAQClient } from './FAQClient';
 import { ALL_FAQS } from '@/lib/faq-data';
 import type { Metadata } from 'next';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'FAQ — GI Wire Specifications, Pricing & Delivery | Khemji Wire',
@@ -26,10 +27,8 @@ export default function FAQPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'FAQ', href: '/faq' }])) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <FAQClient />
     </>
   );

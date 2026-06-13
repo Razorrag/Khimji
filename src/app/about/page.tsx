@@ -1,5 +1,6 @@
 import { About } from '@/components/sections/About';
 import type { Metadata } from 'next';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'About Us | Khemji Wire',
@@ -19,5 +20,10 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return <About />;
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'About Us' }])) }} />
+      <About />
+    </>
+  );
 }

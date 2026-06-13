@@ -7,7 +7,7 @@ export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const isTouchDevice = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
 
   const springX = useSpring(0, { stiffness: 500, damping: 28, mass: 0.1 });
   const springY = useSpring(0, { stiffness: 500, damping: 28, mass: 0.1 });
@@ -16,9 +16,7 @@ export function CustomCursor() {
   const slowSpringY = useSpring(0, { stiffness: 250, damping: 20, mass: 0.5 });
 
   useEffect(() => {
-    const coarse = window.matchMedia('(pointer: coarse)').matches;
-    setIsTouchDevice(coarse);
-    if (coarse) return;
+    if (isTouchDevice) return;
 
     const updateMousePosition = (e: MouseEvent) => {
       springX.set(e.clientX - 6);
@@ -62,7 +60,7 @@ export function CustomCursor() {
       window.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [isVisible, springX, springY, slowSpringX, slowSpringY]);
+  }, [isVisible, springX, springY, slowSpringX, slowSpringY, isTouchDevice]);
 
   if (isTouchDevice) return null;
 

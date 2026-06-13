@@ -157,7 +157,7 @@ export function Footer() {
             <Link href="/sitemap.xml" className="hover:text-cream transition-colors">Sitemap</Link>
           </div>
           <span className="font-mono text-[10px] text-cream/40 tracking-wider">
-            GSTIN: 08AABCK1234F1Z5
+            GSTIN: 08AAECA7760L1ZA · CIN: U51101RJ1988PTC004356
           </span>
         </motion.div>
       </div>

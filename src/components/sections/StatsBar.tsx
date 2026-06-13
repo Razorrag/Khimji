@@ -1,6 +1,5 @@
 "use client";
 
-import { AnimatedStat } from '../ui/AnimatedStat';
 import { motion } from 'framer-motion';
 import { ScrollReveal, StaggerReveal, StaggerItem } from '../ui/ScrollReveal';
 

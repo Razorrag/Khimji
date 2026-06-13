@@ -1,19 +1,34 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { generateBreadcrumbs } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Khemji Wire',
   description: 'Terms of service and industrial supply agreements for Khemji Wire & Wire Pvt. Ltd., Jaipur, Rajasthan.',
   alternates: { canonical: 'https://www.khemjiwire.in/terms' },
+  openGraph: {
+    title: 'Terms of Service | Khemji Wire & Wire Pvt. Ltd.',
+    description: 'Terms of service and industrial supply agreements for Khemji Wire & Wire Pvt. Ltd., Jaipur, Rajasthan.',
+    url: 'https://www.khemjiwire.in/terms',
+    images: [{ url: '/logo.png', width: 1200, height: 630, alt: 'Khemji Wire Terms of Service' }]
+  },
+  twitter: {
+    title: 'Terms of Service | Khemji Wire',
+    description: 'Terms of service and industrial supply agreements for Khemji Wire & Wire Pvt. Ltd.',
+    images: ['/logo.png']
+  }
 };
 
 export default function TermsPage() {
   return (
-    <div className="relative min-h-screen bg-transparent">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateBreadcrumbs([{ name: 'Terms of Service', href: '/terms' }])) }} />
+      <div className="relative min-h-screen bg-transparent">
       <div className="pt-36 pb-10 bg-transparent">
         <div className="max-w-[800px] mx-auto px-[5vw]">
           <nav className="mb-8">
             <ol className="flex items-center gap-2 font-mono text-[10px] md:text-xs uppercase tracking-widest text-steel">
-              <li><a href="/" className="hover:text-amber transition-colors">Home</a></li>
+              <li><Link href="/" className="hover:text-amber transition-colors">Home</Link></li>
               <li style={{ color: "rgba(249,115,22,0.4)" }}>/</li>
               <li className="text-cream">Terms of Service</li>
             </ol>
@@ -54,7 +69,7 @@ export default function TermsPage() {
 
       <h2 className="font-bebas text-3xl text-cream mt-12 mb-6 uppercase tracking-wider">6. Privacy</h2>
       <p className="mb-6">
-        Any personal information gathered via the pages within this site will not be shared with or sold to any third party without prior consent. All reasonable efforts are made to protect the privacy of any person divulging personal information within this site. We do not store sensitive information of any kind. For further details, please visit our <a href="/privacy-policy" className="text-amber hover:underline">Privacy Policy</a>.
+        Any personal information gathered via the pages within this site will not be shared with or sold to any third party without prior consent. All reasonable efforts are made to protect the privacy of any person divulging personal information within this site. We do not store sensitive information of any kind. For further details, please visit our <Link href="/privacy-policy" className="text-amber hover:underline">Privacy Policy</Link>.
       </p>
 
       <h2 className="font-bebas text-3xl text-cream mt-12 mb-6 uppercase tracking-wider">7. Governing Law &amp; Jurisdiction</h2>
@@ -71,5 +86,6 @@ export default function TermsPage() {
       </p>
     </div>
     </div>
+    </>
   );
 }

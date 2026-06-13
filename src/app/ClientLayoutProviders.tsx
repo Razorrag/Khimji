@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useLayoutEffect, useEffect } from 'react';
+import { useLayoutEffect, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -18,7 +18,6 @@ import { WhatsAppButton } from '../components/ui/WhatsAppButton';
 gsap.registerPlugin(ScrollTrigger);
 
 export function ClientLayoutProviders({ children }: { children: React.ReactNode }) {
-  const [isLoaded, setIsLoaded] = useState(false);
   const pathname = usePathname();
 
   useLayoutEffect(() => {
@@ -76,7 +75,7 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
       <MobileBackground />
 
       {/* Preloader overlay — sits ON TOP of everything, fades out when hero video is playing */}
-      <Preloader onComplete={() => setIsLoaded(true)} />
+      <Preloader onComplete={() => {}} />
 
       {/* Main layout — always rendered, hero video starts immediately */}
       <div className="min-h-[100svh] relative flex flex-col pt-16 md:pt-0">

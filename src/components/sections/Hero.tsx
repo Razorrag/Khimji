@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Link from "next/link";
 import { HeroVideo } from "../ui/HeroVideo";
 
 function CornerBracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {

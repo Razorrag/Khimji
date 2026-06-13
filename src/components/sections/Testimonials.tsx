@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TESTIMONIALS = [
@@ -28,18 +28,18 @@ export function Testimonials() {
   const [activeIdx, setActiveIdx] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const startTimer = () => {
+  const stopTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+  }, []);
+
+  const startTimer = useCallback(() => {
     stopTimer();
     timerRef.current = setInterval(() => {
       setActiveIdx((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 6000);
-  };
-
-  const stopTimer = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-  };
+  }, [stopTimer]);
 
   useEffect(() => {
     startTimer();
@@ -58,7 +58,7 @@ export function Testimonials() {
       stopTimer();
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, []);
+  }, [startTimer, stopTimer]);
 
   const current = TESTIMONIALS[activeIdx];
 
@@ -94,7 +94,7 @@ export function Testimonials() {
               className="text-center flex flex-col items-center"
             >
               <blockquote className="font-playfair italic text-xl md:text-2xl lg:text-3xl text-cream leading-relaxed mb-10 max-w-[850px]">
-                "{current.quote}"
+                &ldquo;{current.quote}&rdquo;
               </blockquote>
               
               <div className="flex items-center gap-4">
