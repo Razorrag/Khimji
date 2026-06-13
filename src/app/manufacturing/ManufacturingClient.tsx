@@ -120,29 +120,19 @@ const ALL_STEPS = [...MS_WIRE_STEPS, ...GI_WIRE_STEPS];
 
 const FINISHED_PRODUCTS = [
   {
-    name: "GI Wire",
-    desc: "General purpose galvanized steel wire used in fencing, binding, and industrial applications. Available in IS 280 standard diameters with uniform zinc coating.",
-    spec: "0.5 mm \u2013 6.0 mm"
+    name: "Hot Dip Galvanized MS Wire",
+    desc: "IS 280 compliant galvanized steel wire manufactured through our 11-step hot-dip process. Available in soft, half-hard, and hard grades for fencing, binding, and industrial applications.",
+    spec: "1.25 mm \u2013 4.00 mm"
   },
   {
-    name: "GI Wire Coil",
-    desc: "Continuous length galvanized wire precision-wound into compact coils for easy handling, storage, and automated dispensing in industrial applications.",
-    spec: "25 kg \u2013 150 kg"
+    name: "Round Wire for Cable Armouring",
+    desc: "IS 3975 compliant galvanized round wire engineered for mechanical protection in power, control, and communication cables. Tested for low resistivity and high elongation.",
+    spec: "1.25 mm \u2013 4.00 mm"
   },
   {
-    name: "GI Binding Wire",
-    desc: "Soft-annealed galvanized binding wire engineered for construction tying and reinforcement applications. Excellent knot strength and corrosion resistance.",
-    spec: "0.7 mm \u2013 1.6 mm"
-  },
-  {
-    name: "GI Hex Netting",
-    desc: "Hexagonal wire mesh woven from galvanized wire for poultry enclosures, garden fencing, and civil engineering reinforcement applications.",
-    spec: "13 mm \u2013 50 mm mesh"
-  },
-  {
-    name: "GI Welded Mesh",
-    desc: "Rigid welded wire mesh panels fabricated from galvanized wire for concrete reinforcement, security fencing, and industrial screening.",
-    spec: "25 mm \u2013 100 mm grid"
+    name: "Formed Wire (Strip) for Cable Armouring",
+    desc: "IS 3975 compliant galvanized formed wire (flat strip) for cable armouring applications. Precision-formed with uniform zinc coating for reliable cable protection.",
+    spec: "4.00 mm \u00d7 0.80 mm"
   }
 ];
 
