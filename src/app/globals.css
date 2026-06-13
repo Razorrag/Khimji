@@ -253,6 +253,16 @@
     }
   }
 
+  /* Fallback for browsers that don't support background-clip: text */
+  @supports not (background-clip: text) {
+    .textured-text-primary { color: var(--color-cream); background: none; -webkit-text-fill-color: unset; }
+    .textured-text-amber { color: var(--color-amber); background: none; -webkit-text-fill-color: unset; }
+    .textured-text-silver { color: var(--color-cream); background: none; -webkit-text-fill-color: unset; }
+    .textured-text-silver-amber { color: var(--color-amber); background: none; -webkit-text-fill-color: unset; }
+    .hero-text-texture { color: var(--color-cream); background: none; -webkit-text-fill-color: unset; }
+  }
+
+  /* High contrast override */
   @media (prefers-contrast: more) {
     .textured-text-primary {
       -webkit-text-fill-color: var(--color-cream);
@@ -702,31 +712,7 @@
   100% { background-position: 0% 50%, 50% 50%; }
 }
 
-@keyframes meshShift {
-  0%   { background-position: 0% 0%, 100% 100%, 50% 50%; }
-  100% { background-position: 15% 10%, 85% 90%, 55% 45%; }
-}
 
-@keyframes liquidMetalFlow {
-  0% { background-position: 100% center; }
-  100% { background-position: 0% center; }
-}
-
-@keyframes textShine {
-  0% { background-position: 200% center; }
-  100% { background-position: 0% center; }
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes blobShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 /* ─────────────────────────────────────────────
    SMOOTH TRANSITIONS & POLISH
@@ -745,17 +731,13 @@ html {
   color: #FAFAFA;
 }
 
-/* Smooth image loading */
+/* Smooth image loading - fade in on load */
 img {
-  transition: opacity 0.4s ease;
-}
-
-img[loading="lazy"] {
   opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-img[loading="lazy"].loaded,
-img[loading="lazy"]:not([src=""]) {
+img[src]:not([src=""]) {
   opacity: 1;
 }
 

@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -145,16 +146,98 @@ const FINISHED_PRODUCTS = [
   }
 ];
 
+function useImagePreload(srcs: string[]): boolean {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (srcs.length === 0) return;
+    let cancelled = false;
+    let completed = 0;
+
+    const checkDone = () => {
+      if (cancelled) return;
+      completed++;
+      if (completed >= srcs.length) {
+        setLoaded(true);
+      }
+    };
+
+    srcs.forEach((src) => {
+      const img = new Image();
+      img.onload = checkDone;
+      img.onerror = checkDone;
+      img.src = src;
+    });
+
+    return () => { cancelled = true; };
+  }, [srcs]);
+
+  return srcs.length === 0 || loaded;
+}
+
+function useScrollTriggerRefresh() {
+  const refresh = useCallback(() => ScrollTrigger.refresh(), []);
+
+  useEffect(() => {
+    const imgs = document.querySelectorAll<HTMLImageElement>('.process-step img');
+    if (imgs.length === 0) { refresh(); return; }
+
+    let count = 0;
+    const check = () => {
+      count++;
+      if (count >= imgs.length) refresh();
+    };
+    imgs.forEach((img) => {
+      if (img.complete) check();
+      else { img.addEventListener('load', check, { once: true }); img.addEventListener('error', check, { once: true }); }
+    });
+  }, [refresh]);
+}
+
 export function ManufacturingClient() {
   const containerRef = useRef<HTMLDivElement>(null);
   const fillLineRef = useRef<HTMLDivElement>(null);
+  const journeyRef = useRef<HTMLDivElement>(null);
+  const gsapInitRef = useRef(false);
+  const [activeStep, setActiveStep] = useState<number | null>(null);
 
-  useLayoutEffect(() => {
-    if (!containerRef.current) return;
+  const allImageSrcs = ALL_STEPS.map((s) => s.img);
+  const imagesReady = useImagePreload(allImageSrcs);
+
+  useScrollTriggerRefresh();
+
+  // Track active step via IntersectionObserver
+  useEffect(() => {
+    const steps = document.querySelectorAll<HTMLElement>('.process-step');
+    if (!steps.length) return;
+
+    const stepsArr = Array.from(steps);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length) {
+          const target = visible[Math.floor(visible.length / 2)].target as HTMLElement;
+          const idx = stepsArr.indexOf(target);
+          setActiveStep(idx >= 0 ? idx : null);
+        }
+      },
+      { threshold: 0.3, rootMargin: '-80px 0px' }
+    );
+
+    steps.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!imagesReady || gsapInitRef.current) return;
+    gsapInitRef.current = true;
+
     const ctx = gsap.context(() => {
       if (fillLineRef.current) {
         ScrollTrigger.create({
-          trigger: ".process-journey",
+          trigger: journeyRef.current,
           start: "top 40%",
           end: "bottom 60%",
           scrub: 0.8,
@@ -216,24 +299,13 @@ export function ManufacturingClient() {
       });
     }, containerRef);
 
-    // Refresh ScrollTrigger as fonts, images, and layout settle
-    const refreshAll = () => {
-      ScrollTrigger.refresh();
-    };
-
-    window.addEventListener('load', refreshAll);
-    const t1 = setTimeout(refreshAll, 100);
-    const t2 = setTimeout(refreshAll, 1000);
-    const t3 = setTimeout(refreshAll, 2500);
+    ScrollTrigger.refresh();
 
     return () => {
       ctx.revert();
-      window.removeEventListener('load', refreshAll);
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
+      gsapInitRef.current = false;
     };
-  }, []);
+  }, [imagesReady]);
 
   return (
     <div ref={containerRef}>
@@ -286,8 +358,11 @@ export function ManufacturingClient() {
               </div>
               <div className="grid grid-cols-6 gap-1.5">
                 {ALL_STEPS.map((s, i) => (
-                  <div key={i} className="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center hover:bg-amber/10 hover:border-amber/40 transition-colors">
+                  <div key={i} className="group/step relative w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center hover:bg-amber/10 hover:border-amber/40 transition-colors">
                     <span className="font-mono text-[9px] text-cream font-bold">{s.num}</span>
+                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[7px] text-amber bg-obsidian px-2 py-1 rounded border border-amber/20 opacity-0 group-hover/step:opacity-100 transition-opacity pointer-events-none z-50">
+                      {s.title}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -301,7 +376,7 @@ export function ManufacturingClient() {
       </section>
 
       {/* ═══════════ PROCESS JOURNEY ═══════════ */}
-      <section className="process-journey py-16 md:py-24 lg:py-28 bg-transparent relative">
+      <section ref={journeyRef} className="process-journey py-16 md:py-24 lg:py-28 bg-transparent relative">
         <div className="absolute left-[30px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 -translate-x-[1px] md:-translate-x-1/2" />
         <div
           ref={fillLineRef}
@@ -332,11 +407,12 @@ export function ManufacturingClient() {
                 <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16 pl-[68px] md:pl-0">
                   <div className={`step-visual w-full md:w-1/2 overflow-hidden rounded-2xl border border-white/10 ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                     <div className="aspect-[16/10] relative overflow-hidden bg-obsidian">
-                      <img
+                      <NextImage
                         src={step.img}
                         alt={step.title}
-                        className="w-full h-full object-cover brightness-[0.8] contrast-[1.05]"
-                        loading="lazy"
+                        fill
+                        className="object-cover brightness-[0.8] contrast-[1.05]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-4 left-4">
@@ -400,11 +476,12 @@ export function ManufacturingClient() {
                 <div className="flex flex-col md:flex-row items-start gap-6 md:gap-10 lg:gap-16 pl-[68px] md:pl-0">
                   <div className={`step-visual w-full md:w-1/2 overflow-hidden rounded-2xl border border-white/10 ${isEven ? 'md:order-1' : 'md:order-2'}`}>
                     <div className="aspect-[16/10] relative overflow-hidden bg-obsidian">
-                      <img
+                      <NextImage
                         src={step.img}
                         alt={step.title}
-                        className="w-full h-full object-cover brightness-[0.8] contrast-[1.05]"
-                        loading="lazy"
+                        fill
+                        className="object-cover brightness-[0.8] contrast-[1.05]"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                       <div className="absolute bottom-4 left-4">
@@ -501,16 +578,16 @@ export function ManufacturingClient() {
                 "Wiping & Coating Control",
                 "Cooling, Coiling & Inspection"
               ].map((label, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-amber/60 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <div key={i} className="flex items-center gap-2 group/arrow">
+                  <svg className="w-4 h-4 text-amber/40 shrink-0 group-hover/arrow:text-amber transition-colors duration-300 flowing-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                   </svg>
-                  <div className="blob-card px-4 py-3 rounded-lg border border-white/10 shrink-0">
+                  <div className="blob-card px-4 py-3 rounded-lg border border-white/10 shrink-0 transition-all duration-300 hover:border-amber/30 hover:bg-amber/[0.03]">
                     <span className="font-mono text-[10px] text-white/80 whitespace-nowrap">{label}</span>
                   </div>
                 </div>
               ))}
-              <svg className="w-4 h-4 text-amber/60 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg className="w-4 h-4 text-amber/40 shrink-0 flowing-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
               <div className="blob-card px-4 py-3 rounded-lg border border-green-500/30 bg-green-500/10 shrink-0">
@@ -600,6 +677,33 @@ export function ManufacturingClient() {
           </motion.div>
         </div>
       </section>
+
+      {/* ═══════════ FLOATING STEP INDICATOR ═══════════ */}
+      {activeStep !== null && (
+        <div className="hidden md:flex fixed right-4 lg:right-8 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-2">
+          <span className="font-mono text-[8px] text-amber/60 tracking-widest uppercase mb-1">Step</span>
+          <div className="flex flex-col items-center gap-1.5">
+            {ALL_STEPS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  const el = document.querySelectorAll<HTMLElement>('.process-step')[i];
+                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  i === activeStep
+                    ? 'bg-amber scale-150 shadow-[0_0_10px_rgba(249,115,22,0.6)]'
+                    : 'bg-white/20 hover:bg-white/40'
+                }`}
+                aria-label={`Go to step ${i + 1}`}
+              />
+            ))}
+          </div>
+          <span className="font-mono text-[8px] text-amber/60 tracking-widest uppercase mt-1">
+            {String(activeStep + 1).padStart(2, '0')}/{String(ALL_STEPS.length).padStart(2, '0')}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

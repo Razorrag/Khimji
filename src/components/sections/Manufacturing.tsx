@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -34,12 +34,21 @@ export function Manufacturing() {
   const containerRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const mobilePathRef = useRef<HTMLDivElement>(null);
+  const initRef = useRef(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (initRef.current) return;
+    initRef.current = true;
+
     const ctx = gsap.context(() => {
       // Desktop SVG Path Draw
       if (pathRef.current) {
-        const length = pathRef.current.getTotalLength();
+        let length: number;
+        try {
+          length = pathRef.current.getTotalLength();
+        } catch {
+          length = 2800;
+        }
         gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
 
         ScrollTrigger.create({
@@ -84,7 +93,9 @@ export function Manufacturing() {
         });
       });
 
+      ScrollTrigger.refresh();
     }, containerRef);
+
     return () => ctx.revert();
   }, []);
 
