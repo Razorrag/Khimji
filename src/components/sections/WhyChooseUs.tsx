@@ -7,44 +7,44 @@ const REASONS = [
   {
     num: "01",
     icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-    headline: "IS 280 & IS 3975 Certified",
-    metric: "BIS Standard Compliant",
-    desc: "Every product line manufactured per Bureau of Indian Standards specifications. Test certificates provided with every dispatch."
+    headline: "IS 280 & IS 3975 Compliant",
+    metric: "Manufactured to BIS Standards",
+    desc: "Every product is manufactured in accordance with applicable Bureau of Indian Standards specifications and subjected to rigorous quality checks. Material Test Certificates are provided with every dispatch."
   },
   {
     num: "02",
     icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4",
-    headline: "700 MT Monthly Capacity",
-    metric: "Large Scale. Consistent Supply.",
-    desc: "Our wire drawing and hot-dip galvanizing line handles large project volumes without compromising quality or delivery timelines."
+    headline: "Large-Scale Manufacturing",
+    metric: "Consistent Quality. Reliable Supply.",
+    desc: "Our integrated wire drawing and hot-dip galvanizing facilities are equipped to meet bulk project requirements while maintaining stringent quality standards and dependable delivery schedules."
   },
   {
     num: "03",
     icon: "M8 17h8m-8 4h8m-6-8h.01M5 12h.01M12 8h.01M5 16h.01M16 12h.01M12 4h.01M5 8h.01M3 3h18v12H3V3zM7 21h10",
-    headline: "Reliable PAN India Delivery",
-    metric: "7\u201320 Day Lead Time",
-    desc: "Trusted freight partners cover all major industrial hubs. GPS-tracked dispatch with Material Test Certificate for every shipment."
+    headline: "Reliable PAN-India Delivery",
+    metric: "Timely Dispatch. Nationwide Reach.",
+    desc: "A well-established logistics network ensures efficient delivery across India. Every shipment is accompanied by complete quality documentation and traceability records."
   },
   {
     num: "04",
     icon: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zM15 12a3 3 0 11-6 0 3 3 0 016 0z",
     headline: "Custom Manufacturing",
     metric: "Your Spec. Our Precision.",
-    desc: "Custom wire diameter, coating weight, tensile grade, and coil packaging \u2014 manufactured to your exact technical specification."
+    desc: "From wire diameter and zinc coating requirements to coil size and packaging preferences, we deliver tailored solutions designed to meet your exact application and project needs."
   },
   {
     num: "05",
     icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z",
-    headline: "Serving Since 1988",
-    metric: "35+ Years of Experience",
-    desc: "Trusted by cable manufacturers, infrastructure contractors, and power sector clients across India."
+    headline: "Since 1988",
+    metric: "35+ Years of Excellence",
+    desc: "With more than 35 years of industry experience, we have earned the trust of cable manufacturers, infrastructure companies, and industrial customers across India."
   },
   {
     num: "06",
     icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z",
     headline: "Long-Term Partnerships",
-    metric: "200+ Active Clients",
-    desc: "We don\u2019t just supply wire \u2014 we build supply relationships. Volume contracts, dedicated account management, and priority dispatch."
+    metric: "Trusted by 200+ Active Customers",
+    desc: "We believe in building lasting relationships through consistent quality, dependable service, technical support, and a commitment to customer success."
   }
 ];
 

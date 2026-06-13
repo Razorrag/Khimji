@@ -8,23 +8,24 @@ const LEADERS = [
     name: "Mr. Om Prakash Agarwal",
     title: "Founder & Chairman",
     initials: "OPA",
-    goal: "Build a manufacturing organization known for trust, quality, and long-term customer relationships while contributing to India's growing infrastructure and industrial sector.",
+    goal: "\"To build a manufacturing organization founded on trust, uncompromising quality, and enduring customer relationships while contributing to India's industrial and infrastructure growth.\"",
     points: [
-      "Established Khemji Wire Industries in 1988",
-      "Built the company from limited resources to a trusted manufacturer",
-      "Instilled values of quality, reliability, and ethical business conduct"
+      "Founded Khemji Wire Industries in 1988",
+      "Transformed a modest enterprise into a trusted wire manufacturing company",
+      "Established a culture of quality, reliability, and ethical business practices",
+      "Laid the foundation for sustainable growth and customer confidence"
     ]
   },
   {
     name: "Mr. Mahesh Chand Agarwal",
     title: "Director",
     initials: "MCA",
-    goal: "Drive operational excellence and strategic growth — setting industry standards, not just meeting them. Every batch tells our story.",
+    goal: "\"Excellence is achieved through continuous improvement, operational discipline, and an unwavering commitment to quality.\"",
     points: [
-      "Leading operational excellence and strategic planning",
-      "Driving manufacturing process optimization and technology upgrades",
-      "Ensuring quality standards remain uncompromised across all product lines",
-      "Expanding market reach across India's cable and infrastructure sectors"
+      "Leads strategic growth and operational excellence initiatives",
+      "Drives process optimization and technology advancement across manufacturing operations",
+      "Ensures consistent quality standards across all product lines",
+      "Expands the company's presence in the cable, infrastructure, and industrial sectors"
     ]
   }
 ];
@@ -102,7 +103,7 @@ export function LeadershipSection() {
               transition={{ duration: 0.7, delay: 0.45 }}
               className="text-amber block"
             >
-              The Precision
+              Our Excellence
             </motion.span>
           </h2>
         </motion.div>

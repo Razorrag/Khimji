@@ -7,7 +7,7 @@ const INDUSTRIES = [
   {
     id: "01",
     name: "Cable Manufacturers",
-    detail: "Our IS 3975 formed wire and round galvanized wire is the backbone of underground power and telecom cable armouring across India. Cable manufacturers trust our consistent zinc coating and dimensional accuracy for zero-rejection production runs.",
+    detail: "Trusted by leading cable manufacturers, our IS 3975 compliant Formed and Round Galvanized Armouring Wires are widely used for power, control, and communication cables across India. Consistent zinc coating, precise dimensional accuracy, and reliable mechanical properties ensure smooth processing and dependable cable performance.",
     tags: ["IS 3975", "Round Wire", "Formed Wire", "Resistivity Tested"],
     stat: "700+ MT",
     statLabel: "Monthly Supply Capacity"
@@ -15,8 +15,8 @@ const INDUSTRIES = [
   {
     id: "02",
     name: "Power Sector",
-    detail: "Transmission towers, distribution infrastructure, and substation earthing systems all rely on galvanized wire that stands up to decades of outdoor exposure. Our heavy-coated IS 280 wire is specified in major power sector projects.",
-    tags: ["Heavy Coating", "IS 280", "Earthing Wire", "Long Service Life"],
+    detail: "Transmission lines, distribution networks, and substation earthing systems depend on galvanized steel wire capable of withstanding prolonged outdoor exposure. Our IS 280 compliant galvanized wires offer superior corrosion resistance, reliable mechanical strength, and long-term performance for critical power infrastructure applications.",
+    tags: ["IS 280 Compliant", "Earthing Applications", "Superior Corrosion Resistance", "Long Service Life"],
     stat: "40+ Yrs",
     statLabel: "Coating Lifespan (Rural)"
   },
@@ -31,18 +31,10 @@ const INDUSTRIES = [
   {
     id: "04",
     name: "Industrial Manufacturers",
-    detail: "Welded mesh, gabion baskets, chain-link fencing, and general industrial fastening all demand wire that balances strength, flexibility, and surface quality. Custom diameters and coating weights available for OEM requirements.",
-    tags: ["Custom Gauges", "Mesh Wire", "Chain Link", "OEM Supply"],
-    stat: "1.25\u20134mm",
-    statLabel: "Full Diameter Range"
-  },
-  {
-    id: "05",
-    name: "Construction Sector",
-    detail: "From foundation mats to slab reinforcement \u2014 construction sites across Rajasthan and North India rely on Khemji Wire binding wire for concrete reinforcement work. Consistent softness, accurate coil weights, and timely delivery are our commitment.",
-    tags: ["Binding Wire", "Rebar Tying", "IS 280", "On-Site Ready"],
-    stat: "8\u201310 kg",
-    statLabel: "Per MT of Rebar (Typical Usage)"
+    detail: "Serving diverse industrial applications with high-quality galvanized wires engineered for strength, flexibility, and consistent surface finish. Widely used in welded mesh, chain-link fencing, gabion baskets, and general fabrication, our wires are available in multiple diameters and zinc coating specifications to meet customer requirements.",
+    tags: ["Custom Diameter Options", "Welded Mesh Applications", "Chain-Link Fencing", "OEM & Industrial Supply"],
+    stat: "1.25\u20134.00 mm",
+    statLabel: "Diameter Range"
   },
 ];
 

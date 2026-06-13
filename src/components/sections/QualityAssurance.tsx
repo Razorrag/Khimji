@@ -58,6 +58,18 @@ const TESTS_ROW2 = [
     )
   },
   {
+    name: "Elongation",
+    desc: "Elongation is verified using a calibrated Universal Testing Machine (UTM) to ensure a minimum elongation of 10%, confirming excellent flexibility and formability.",
+    metric: "\u226510%",
+    detail: "Percentage elongation measured during tensile break testing and verified against product specifications before dispatch.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+        <path d="M4 20L20 4M4 4l16 16" strokeLinecap="round" />
+        <path d="M8 8v8m8-8v8" strokeWidth="1" strokeLinecap="round" />
+      </svg>
+    )
+  },
+  {
     name: "Resistivity",
     desc: "Mandatory for IS 3975 cable armouring round wire & strip. Electrical resistance measured per km \u2014 must not exceed 14.5 \u03a9/km at 20\u00b0C.",
     metric: "\u226414.5 \u03a9/km",

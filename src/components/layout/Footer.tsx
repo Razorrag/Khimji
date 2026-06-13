@@ -72,8 +72,8 @@ export function Footer() {
               <nav className="flex flex-col gap-3">
                 {[
                   { label: 'Hot Dip Galvanized MS Wire' },
-                  { label: 'Low Carbon GI Wire' },
-                  { label: 'Formed Wire for Cable Armouring' }
+                  { label: 'Round Wire for Cable Armouring' },
+                  { label: 'Formed Wire (Strip) for Cable Armouring' }
                 ].map((link) => (
                   <Link key={link.label} href="/products" className="font-sans text-[13px] text-cream/60 hover:text-cream transition-colors w-fit">
                     {link.label}
