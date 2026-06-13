@@ -6,7 +6,7 @@ import { motion, useInView } from 'framer-motion';
 
 export function Footer() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <footer ref={ref} className="relative bg-transparent border-t border-glass-border pt-24 pb-8 overflow-hidden z-20" style={{ paddingBottom: 'calc(2rem + env(safe-area-inset-bottom, 0px))' }}>

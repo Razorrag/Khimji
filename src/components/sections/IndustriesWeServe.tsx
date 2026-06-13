@@ -68,7 +68,7 @@ export function IndustriesWeServe() {
 
 function IndustryRow({ industry, index }: { industry: typeof INDUSTRIES[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
   const isEven = index % 2 === 0;
 
   return (

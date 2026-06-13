@@ -50,7 +50,7 @@ const REASONS = [
 
 function ReasonCard({ reason, index }: { reason: typeof REASONS[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-30px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.div
@@ -58,44 +58,47 @@ function ReasonCard({ reason, index }: { reason: typeof REASONS[0]; index: numbe
       initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
       animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      className="h-full"
     >
-      <div className="relative p-3.5 sm:p-5 md:p-6 h-full transition-all duration-500">
-        {/* Number + Icon row */}
-        <div className="flex items-center justify-between mb-2 sm:mb-4">
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.08 + 0.2 }}
-            className="font-mono text-[10px] sm:text-[12px] md:text-[13px] text-amber font-bold tracking-widest"
-          >
-            {reason.num}
-          </motion.span>
-          <motion.div
-            initial={{ opacity: 0, scale: 0, rotate: -180 }}
-            animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.08 + 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="w-8 h-8 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-xl border border-amber/30 bg-amber/10 flex items-center justify-center text-amber"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 sm:w-5 md:w-6 sm:h-5 md:h-6">
-              <path d={reason.icon} />
-            </svg>
-          </motion.div>
+      <div className="relative p-5 sm:p-6 md:p-8 h-full rounded-2xl border border-white/[0.03] bg-white/[0.01] hover:bg-white/[0.03] hover:border-amber/20 transition-all duration-500 group flex flex-col justify-between">
+        <div>
+          {/* Number + Icon row */}
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.08 + 0.2 }}
+              className="font-mono text-[10px] sm:text-[12px] md:text-[13px] text-amber font-bold tracking-widest"
+            >
+              {reason.num}
+            </motion.span>
+            <motion.div
+              initial={{ opacity: 0, scale: 0, rotate: -180 }}
+              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.08 + 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-xl border border-amber/20 bg-amber/[0.06] flex items-center justify-center text-amber group-hover:border-amber/40 group-hover:bg-amber/10 transition-all duration-500"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 sm:w-6 sm:h-6">
+                <path d={reason.icon} />
+              </svg>
+            </motion.div>
+          </div>
+
+          {/* Headline */}
+          <h3 className="font-bebas text-lg sm:text-xl md:text-2xl lg:text-[26px] text-cream tracking-wide mb-1.5 sm:mb-2 leading-tight group-hover:text-amber transition-colors duration-400">
+            {reason.headline}
+          </h3>
+
+          {/* Metric */}
+          <p className="font-mono text-[9px] sm:text-[10px] md:text-xs text-amber tracking-wider mb-3 sm:mb-4 uppercase font-semibold">
+            {reason.metric}
+          </p>
+
+          {/* Description */}
+          <p className="font-sans text-xs sm:text-[13px] md:text-sm text-cream/60 leading-relaxed group-hover:text-cream/80 transition-colors duration-400">
+            {reason.desc}
+          </p>
         </div>
-
-        {/* Headline */}
-        <h3 className="font-bebas text-base sm:text-xl md:text-2xl lg:text-[26px] text-cream tracking-wide mb-1 sm:mb-1.5 leading-tight">
-          {reason.headline}
-        </h3>
-
-        {/* Metric */}
-        <p className="font-mono text-[9px] sm:text-[10px] md:text-xs text-amber tracking-wider mb-2 sm:mb-3 uppercase font-semibold">
-          {reason.metric}
-        </p>
-
-        {/* Description */}
-        <p className="font-sans text-[11px] sm:text-[13px] md:text-sm text-cream/70 leading-relaxed">
-          {reason.desc}
-        </p>
       </div>
     </motion.div>
   );
@@ -104,15 +107,7 @@ function ReasonCard({ reason, index }: { reason: typeof REASONS[0]; index: numbe
 export function WhyChooseUs() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: '-60px' });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const sectionOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
-  const sectionY = useTransform(scrollYProgress, [0, 0.15], [50, 0]);
+  const isHeaderInView = useInView(headerRef, { once: true, margin: '0px' });
 
   return (
     <section ref={sectionRef} className="relative py-16 md:py-24 overflow-hidden">
@@ -162,14 +157,11 @@ export function WhyChooseUs() {
         </motion.div>
 
         {/* Cards grid */}
-        <motion.div
-          style={{ opacity: sectionOpacity, y: sectionY }}
-          className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {REASONS.map((reason, i) => (
             <ReasonCard key={reason.headline} reason={reason} index={i} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

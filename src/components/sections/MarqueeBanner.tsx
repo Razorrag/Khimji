@@ -29,7 +29,7 @@ function MarqueeRow({ items, direction = 1, speed = 40 }: { items: string[], dir
 
 export function MarqueeBanner() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.section

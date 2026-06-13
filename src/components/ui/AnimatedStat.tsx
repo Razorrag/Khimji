@@ -7,7 +7,7 @@ import gsap from 'gsap';
 export function AnimatedStat({ value, suffix, label }: { value: number; suffix?: string; label: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   useEffect(() => {
     if (isInView && numberRef.current) {

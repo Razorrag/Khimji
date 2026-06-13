@@ -32,7 +32,7 @@ const LEADERS = [
 
 function AnimatedPoint({ point, index, baseDelay }: { point: string; index: number; baseDelay: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-20px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.div
@@ -51,15 +51,7 @@ function AnimatedPoint({ point, index, baseDelay }: { point: string; index: numb
 export function LeadershipSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: '-60px' });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const sectionOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
-  const sectionY = useTransform(scrollYProgress, [0, 0.2], [60, 0]);
+  const isHeaderInView = useInView(headerRef, { once: true, margin: '0px' });
 
   return (
     <section ref={sectionRef} className="relative py-20 md:py-28 overflow-hidden border-t border-glass-border">
@@ -109,14 +101,11 @@ export function LeadershipSection() {
         </motion.div>
 
         {/* Two leaders */}
-        <motion.div
-          style={{ opacity: sectionOpacity, y: sectionY }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
           {LEADERS.map((leader, i) => (
             <LeaderBlock key={leader.name} leader={leader} index={i} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -124,7 +113,7 @@ export function LeadershipSection() {
 
 function LeaderBlock({ leader, index }: { leader: typeof LEADERS[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.div

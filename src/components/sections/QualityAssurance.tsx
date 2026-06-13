@@ -3,11 +3,11 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const TESTS_ROW1 = [
+const TESTS = [
   {
     name: "Diameter Testing",
-    desc: "Digital micrometer verification on every coil \u2014 ensuring dimensional accuracy across full batch lengths.",
-    metric: "\u00b10.01mm",
+    desc: "Digital micrometer verification on every coil — ensuring dimensional accuracy across full batch lengths.",
+    metric: "±0.01mm",
     detail: "Inline micrometer checks every 100m of wire. Digital verification logged per batch.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
@@ -20,7 +20,7 @@ const TESTS_ROW1 = [
   {
     name: "Zinc Coating",
     desc: "Gravimetric acid-strip method measures mass of zinc in gram/m². We ensure compliance with applicable Indian Standards and customer requirements.",
-    metric: "60\u2013300 g/m\u00b2",
+    metric: "60–300 g/m²",
     detail: "Testing Method: Antimony Chloride Acid-Strip Test",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
@@ -33,21 +33,18 @@ const TESTS_ROW1 = [
   },
   {
     name: "UTS Testing",
-    desc: "Universal Testing Machine verifies Ultimate Tensile Strength against grade specification \u2014 soft, half-hard, or hard \u2014 before dispatch.",
-    metric: "300\u2013550 N/mm\u00b2",
+    desc: "Universal Testing Machine verifies Ultimate Tensile Strength against grade specification — soft, half-hard, or hard — before dispatch.",
+    metric: "300–550 N/mm²",
     detail: "Tensile break test on calibrated UTM. Test certificates issued per batch.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
         <path d="M12 2v20M8 6l4-4 4 4M8 18l4 4 4-4" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     )
-  }
-];
-
-const TESTS_ROW2 = [
+  },
   {
     name: "Surface Finish",
-    desc: "Visual and tactile inspection for rough spots, zinc drips, bare patches, or surface porosity \u2014 zero tolerance for sub-standard finish.",
+    desc: "Visual and tactile inspection for rough spots, zinc drips, bare patches, or surface porosity — zero tolerance for sub-standard finish.",
     metric: "Visual + Touch",
     detail: "Bright light surface scan and trained inspector hand-verification.",
     icon: (
@@ -60,7 +57,7 @@ const TESTS_ROW2 = [
   {
     name: "Elongation",
     desc: "Elongation is verified using a calibrated Universal Testing Machine (UTM) to ensure a minimum elongation of 10%, confirming excellent flexibility and formability.",
-    metric: "\u226510%",
+    metric: "≥10%",
     detail: "Percentage elongation measured during tensile break testing and verified against product specifications before dispatch.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
@@ -71,8 +68,8 @@ const TESTS_ROW2 = [
   },
   {
     name: "Resistivity",
-    desc: "Mandatory for IS 3975 cable armouring round wire & strip. Electrical resistance measured per km \u2014 must not exceed 14.5 \u03a9/km at 20\u00b0C.",
-    metric: "\u226414.5 \u03a9/km",
+    desc: "Mandatory for IS 3975 cable armouring round wire & strip. Electrical resistance measured per km — must not exceed 14.5 Ω/km at 20°C.",
+    metric: "≤14.5 Ω/km",
     detail: "Kelvin 4-wire bridge method. Critical for cable earthing continuity compliance.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
@@ -111,43 +108,44 @@ function AnimatedCounter({ value, isInView }: { value: string; isInView: boolean
   return <span>{display || value}</span>;
 }
 
-function TestCard({ test, index, className }: { test: typeof TESTS_ROW1[0]; index: number; className?: string }) {
+function TestCard({ test, index, className }: { test: typeof TESTS[0]; index: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.div
       ref={ref}
-      className={`blob-card p-3 sm:p-4 md:p-5 group relative flex flex-col justify-between min-h-[150px] sm:min-h-auto ${className || ''}`}
+      className={`blob-card p-5 sm:p-6 md:p-8 group relative flex flex-col justify-between min-h-[200px] sm:min-h-auto ${className || ''}`}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
     >
+      <div className="blob-card-sweep" />
       <div>
         {/* Top row: icon */}
-        <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-amber/20 bg-amber/[0.06] flex items-center justify-center text-amber group-hover:border-amber/40 group-hover:bg-amber/10 transition-all duration-400 flex-shrink-0">
-            <span className="[&_svg]:w-4 [&_svg]:h-4 sm:[&_svg]:w-5 sm:[&_svg]:h-5 animate-none">
+        <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
+          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl border border-amber/20 bg-amber/[0.06] flex items-center justify-center text-amber group-hover:border-amber/40 group-hover:bg-amber/10 transition-all duration-400 flex-shrink-0">
+            <span className="[&_svg]:w-5 [&_svg]:h-5 sm:[&_svg]:w-6 sm:[&_svg]:h-6 animate-none">
               {test.icon}
             </span>
           </div>
         </div>
 
         {/* Name */}
-        <h4 className="font-bebas text-sm sm:text-base md:text-lg text-cream tracking-wide mb-1.5 group-hover:text-amber transition-colors duration-400">
+        <h4 className="font-bebas text-base sm:text-lg md:text-xl text-cream tracking-wide mb-2 group-hover:text-amber transition-colors duration-400">
           {test.name}
         </h4>
 
         {/* Description */}
-        <p className="font-sans text-[10px] sm:text-[11px] md:text-xs text-steel/60 leading-relaxed mb-3">
+        <p className="font-sans text-xs sm:text-[13px] md:text-sm text-steel/70 leading-relaxed mb-5">
           {test.desc}
         </p>
       </div>
 
       <div>
         {/* Detail line */}
-        <div className="pt-2 border-t border-white/[0.05]">
-          <p className="font-mono text-[8px] sm:text-[9px] md:text-[10px] text-steel/40 leading-relaxed">
+        <div className="pt-3 border-t border-white/[0.08]">
+          <p className="font-mono text-[10px] sm:text-xs text-steel/50 leading-relaxed">
             {test.detail}
           </p>
         </div>
@@ -166,7 +164,7 @@ function TestCard({ test, index, className }: { test: typeof TESTS_ROW1[0]; inde
 
 export function QualityAssurance() {
   const headerRef = useRef<HTMLDivElement>(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: '-100px' });
+  const isHeaderInView = useInView(headerRef, { once: true, margin: '0px' });
 
   return (
     <section className="relative py-12 md:py-20 overflow-hidden industrial-grid-bg">
@@ -176,7 +174,7 @@ export function QualityAssurance() {
       <div className="max-w-[1100px] mx-auto px-[5vw] relative z-10">
 
         {/* Header */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-10">
+        <div ref={headerRef} className="flex flex-col lg:flex-row justify-between items-start gap-8 mb-12">
           <div className="max-w-[600px]">
             <div className="flex items-center gap-3 mb-4">
               <div className="h-[2px] w-10 bg-amber" />
@@ -187,7 +185,7 @@ export function QualityAssurance() {
               <span className="text-amber">Trust</span>
             </h2>
             <p className="font-sans text-[13px] md:text-sm text-steel/70 leading-relaxed">
-              At Khemji Wire & Wire Pvt. Ltd., quality is not a department &mdash; it&apos;s built into every metre of wire we produce.
+              At Khemji Wire & Wire Pvt. Ltd., quality is not a department — it's built into every metre of wire we produce.
             </p>
           </div>
 
@@ -227,17 +225,10 @@ export function QualityAssurance() {
           </motion.div>
         </div>
 
-        {/* Row 1: 3 cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 mb-3 md:mb-5">
-          {TESTS_ROW1.map((test, i) => (
-            <TestCard key={test.name} test={test} index={i} className={i === 2 ? "col-span-2 lg:col-span-1" : ""} />
-          ))}
-        </div>
-
-        {/* Row 2: 2 cards centered */}
-        <div className="grid grid-cols-2 gap-3 md:gap-5 max-w-[740px] mx-auto">
-          {TESTS_ROW2.map((test, i) => (
-            <TestCard key={test.name} test={test} index={i + 3} />
+        {/* Unified Grid: 6 cards arranged properly and designed in a spacious way */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {TESTS.map((test, i) => (
+            <TestCard key={test.name} test={test} index={i} />
           ))}
         </div>
 

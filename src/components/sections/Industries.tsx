@@ -15,7 +15,7 @@ const INDUSTRIES = [
 
 function IndustryCard({ ind, index }: { ind: typeof INDUSTRIES[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-40px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.div

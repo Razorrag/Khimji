@@ -15,7 +15,7 @@ const MISSION_ITEMS = [
 
 export function FounderSection() {
   const quoteRef = useRef<HTMLDivElement>(null);
-  const isQuoteInView = useInView(quoteRef, { once: true, margin: '-80px' });
+  const isQuoteInView = useInView(quoteRef, { once: true, margin: '0px' });
 
   return (
     <section className="relative py-16 md:py-24 overflow-hidden border-t border-glass-border">

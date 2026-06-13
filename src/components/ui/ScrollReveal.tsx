@@ -33,7 +33,7 @@ export function ScrollReveal({
   once = true,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, margin: '-60px' });
+  const isInView = useInView(ref, { once, margin: '0px' });
   const offset = directionMap[direction];
 
   const x = offset.x !== undefined ? (offset.x > 0 ? distance : -distance) : 0;
@@ -68,7 +68,7 @@ export function StaggerReveal({
   baseDelay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
+  const isInView = useInView(ref, { once: true, margin: '0px' });
 
   return (
     <motion.div
