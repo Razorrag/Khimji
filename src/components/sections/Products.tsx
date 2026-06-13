@@ -43,41 +43,48 @@ function FullScreenProduct({ prod }: { prod: typeof PRODUCTS[0]; index?: number 
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
+      // Background Image Parallax (scrubbed)
+      gsap.fromTo(imageRef.current,
+        { scale: 1.25, filter: 'brightness(0.5)' },
+        {
+          scale: 1, filter: 'brightness(1)',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0.5,
+          }
+        }
+      );
+
+      // Card content & overlays entrance (triggers once, non-scrubbed)
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
+          start: 'top 70%',
+          toggleActions: 'play none none none',
         }
       });
-
-      // Image scales down from 1.2 to 1
-      tl.fromTo(imageRef.current,
-        { scale: 1.25, filter: 'brightness(0.6)' },
-        { scale: 1, filter: 'brightness(1)', ease: 'none', duration: 1 },
-        0
-      );
 
       // Dark overlay cuts in
       tl.fromTo(overlayRef.current,
         { opacity: 0 },
-        { opacity: 1, ease: 'power2.in', duration: 0.3 },
-        0.1
+        { opacity: 1, ease: 'power2.out', duration: 0.6 }
       );
 
       // Number slides in from left
       tl.fromTo(numberRef.current,
-        { x: -80, opacity: 0 },
-        { x: 0, opacity: 1, ease: 'power3.out', duration: 0.4 },
-        0.15
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, ease: 'power3.out', duration: 0.8 },
+        '-=0.4'
       );
 
-      // Content slides up
+      // Content slides up and fades in
       tl.fromTo(contentRef.current,
-        { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, ease: 'power3.out', duration: 0.5 },
-        0.2
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, ease: 'power3.out', duration: 0.8 },
+        '-=0.6'
       );
 
     }, sectionRef);
@@ -150,15 +157,15 @@ function ProductTransition() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(ref.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1, y: 0,
+          duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: ref.current,
             start: 'top 80%',
-            end: 'top 40%',
-            scrub: 0.3,
+            toggleActions: 'play none none none',
           }
         }
       );

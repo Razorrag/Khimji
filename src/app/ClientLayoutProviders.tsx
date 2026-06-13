@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useEffect } from 'react';
+import { useLayoutEffect, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -19,6 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function ClientLayoutProviders({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
 
   useLayoutEffect(() => {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -34,28 +35,37 @@ export function ClientLayoutProviders({ children }: { children: React.ReactNode 
       touchMultiplier: 2,
       infinite: false,
     });
+    lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const lenisUpdate = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+
+    gsap.ticker.add(lenisUpdate);
 
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      lenisRef.current = null;
+      gsap.ticker.remove(lenisUpdate);
     };
   }, []);
 
-  // Cleanup ScrollTrigger on route change
+  // Reset scroll and refresh ScrollTrigger on route change (ensures new page triggers align properly)
   useEffect(() => {
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+    window.scrollTo(0, 0);
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   // Safari bfcache: refresh ScrollTrigger when navigating back
