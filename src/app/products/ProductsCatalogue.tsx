@@ -13,7 +13,7 @@ const PRODUCTS = [
     name: "Hot Dip Galvanized Mild Steel Wire",
     ordinal: "01",
     tagline: "Corrosion-Protected Steel Wire",
-    longDesc: "Galvanized Iron (GI) Wires are manufactured from high-quality steel wire rods coated with a protective layer of zinc through the hot-dip galvanization process. This zinc coating acts as a shield against corrosion and rust, significantly enhancing the wire's durability and service life in diverse environmental conditions. The thickness of the zinc coating, measured in grams per square meter (GSM), plays a crucial role in determining the wire's corrosion resistance and overall performance. Available in a wide range of diameters and coating specifications, GI Wires offer an excellent combination of strength, flexibility, and reliability. Known for their high tensile strength, superior ductility, and ease of handling, GI Wires are widely used across industries such as construction, agriculture, fencing, power transmission, cable armouring, wire mesh manufacturing, and general engineering applications.",
+    longDesc: "Galvanized Iron (GI) Wires are manufactured from high-quality steel wire rods coated with a protective layer of zinc through the hot-dip galvanization process. This zinc coating acts as a shield against corrosion and rust, significantly enhancing the wire's durability and service life in diverse environmental conditions.\n\nThe thickness of the zinc coating, measured in grams per square meter (GSM), plays a crucial role in determining the wire's corrosion resistance and overall performance. Available in a wide range of diameters and coating specifications, GI Wires offer an excellent combination of strength, flexibility, and reliability.\n\nKnown for their high tensile strength, superior ductility, and ease of handling, GI Wires are widely used across industries such as construction, agriculture, fencing, power transmission, cable armouring, wire mesh manufacturing, and general engineering applications.",
     standard: "IS 280:2006",
     img: "/1.png",
     highlights: ["Corrosion Protected", "High Strength", "Excellent Flexibility", "Extended Durability"],
@@ -25,13 +25,13 @@ const PRODUCTS = [
       "Standard": "IS 280:2006"
     },
     features: [
-      "Excellent atmospheric corrosion resistance",
-      "Uniform zinc coating thickness across full batch",
-      "High tensile strength and superior ductility",
-      "Smooth finish free from rough spots or zinc drips",
-      "Consistent diameter across coils",
-      "Weather-proof for outdoor applications",
-      "Easy handling for machine and manual operations"
+      "Superior corrosion resistance for extended service life",
+      "Uniform and consistent zinc coating",
+      "High tensile strength with excellent flexibility",
+      "Smooth surface finish and superior coating adhesion",
+      "Precise dimensional control and coil consistency",
+      "Suitable for demanding outdoor and industrial applications",
+      "Available in multiple diameters and coating specifications"
     ],
     applications: [
       "Fencing and perimeter protection",
